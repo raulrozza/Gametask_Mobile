@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { AppLoading } from 'expo';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+
+// Components
+import Input from '../../components/Input';
 
 // Contexts
 import { useAuth } from '../../contexts/Authorization';
@@ -35,10 +39,12 @@ const Login: React.FC = () => {
   const [signupButtonDisabled, setSignupButtonDisabled] = useState(false);
   const [formToggle, setFormToggle] = useState(true);
   // Auth
-  const { signIn } = useAuth();
+  const { signIn, loading } = useAuth();
+
+  if (loading) return <AppLoading />;
 
   return (
-    <View style={styles.homePage}>
+    <ScrollView contentContainerStyle={styles.homePage}>
       <View style={styles.title}>
         <Text style={styles.titleText}>Gamification App</Text>
       </View>
@@ -95,6 +101,7 @@ const Login: React.FC = () => {
               signIn(response.data);
             } catch (error) {
               console.error(error, error.response?.data);
+              alert('Houve um problema ao entrar.');
             }
 
             setLoginButtonDisabled(false);
@@ -112,31 +119,31 @@ const Login: React.FC = () => {
               style={[styles.form, formToggle ? styles.formActive : undefined]}
             >
               <View style={styles.inputGroup}>
-                <TextInput
+                <Input
                   value={values.email}
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
                   placeholder="E-mail"
-                  style={styles.input}
+                  autoCapitalize="none"
                 />
                 {errors.email && touched.email ? (
                   <View style={styles.errorField}>
-                    <Text>{errors.email}</Text>
+                    <Text style={styles.errorFieldText}>{errors.email}</Text>
                   </View>
                 ) : null}
               </View>
 
               <View style={styles.inputGroup}>
-                <TextInput
+                <Input
                   value={values.password}
                   onChangeText={handleChange('password')}
                   onBlur={handleBlur('password')}
                   placeholder="Senha"
-                  style={styles.input}
+                  secureTextEntry
                 />
                 {errors.password && touched.password ? (
                   <View style={styles.errorField}>
-                    <Text>{errors.password}</Text>
+                    <Text style={styles.errorFieldText}>{errors.password}</Text>
                   </View>
                 ) : null}
               </View>
@@ -145,8 +152,14 @@ const Login: React.FC = () => {
                 <TouchableOpacity
                   onPress={() => handleSubmit()}
                   disabled={loginButtonDisabled}
+                  style={[
+                    styles.confirmButton,
+                    loginButtonDisabled
+                      ? styles.confirmButtonDisabled
+                      : undefined,
+                  ]}
                 >
-                  <Text>Entrar</Text>
+                  <Text style={styles.confirmButtonText}>Entrar</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -175,9 +188,10 @@ const Login: React.FC = () => {
             try {
               await api.post('/signup', values);
 
-              window.location.reload();
+              setFormToggle(true);
             } catch (error) {
               console.error(error);
+              alert('Houve um problema ao cadastrar.');
             }
 
             setSignupButtonDisabled(false);
@@ -195,76 +209,80 @@ const Login: React.FC = () => {
               style={[styles.form, formToggle ? undefined : styles.formActive]}
             >
               <View style={styles.inputGroup}>
-                <TextInput
+                <Input
                   value={values.firstname}
                   onChangeText={handleChange('firstname')}
                   onBlur={handleBlur('firstname')}
                   placeholder="Nome"
-                  style={styles.input}
+                  autoCapitalize="words"
                 />
                 {errors.firstname && touched.firstname ? (
                   <View style={styles.errorField}>
-                    <Text>{errors.firstname}</Text>
+                    <Text style={styles.errorFieldText}>
+                      {errors.firstname}
+                    </Text>
                   </View>
                 ) : null}
               </View>
 
               <View style={styles.inputGroup}>
-                <TextInput
+                <Input
                   value={values.lastname}
                   onChangeText={handleChange('lastname')}
                   onBlur={handleBlur('lastname')}
                   placeholder="Sobrenome"
-                  style={styles.input}
+                  autoCapitalize="words"
                 />
                 {errors.lastname && touched.lastname ? (
                   <View style={styles.errorField}>
-                    <Text>{errors.lastname}</Text>
+                    <Text style={styles.errorFieldText}>{errors.lastname}</Text>
                   </View>
                 ) : null}
               </View>
 
               <View style={styles.inputGroup}>
-                <TextInput
+                <Input
                   value={values.email}
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
                   placeholder="E-mail"
-                  style={styles.input}
+                  autoCapitalize="none"
                 />
                 {errors.email && touched.email ? (
                   <View style={styles.errorField}>
-                    <Text>{errors.email}</Text>
+                    <Text style={styles.errorFieldText}>{errors.email}</Text>
                   </View>
                 ) : null}
               </View>
 
               <View style={styles.inputGroup}>
-                <TextInput
+                <Input
                   value={values.password}
                   onChangeText={handleChange('password')}
                   onBlur={handleBlur('password')}
                   placeholder="Senha"
-                  style={styles.input}
+                  secureTextEntry
                 />
                 {errors.password && touched.password ? (
                   <View style={styles.errorField}>
-                    <Text>{errors.password}</Text>
+                    <Text style={styles.errorFieldText}>{errors.password}</Text>
                   </View>
                 ) : null}
               </View>
 
               <View style={styles.inputGroup}>
-                <TextInput
+                <Input
                   value={values.confirmPassword}
                   onChangeText={handleChange('confirmPassword')}
                   onBlur={handleBlur('confirmPassword')}
                   placeholder="Confirme a senha"
-                  style={styles.input}
+                  secureTextEntry
                 />
                 {errors.confirmPassword && touched.confirmPassword ? (
                   <View style={styles.errorField}>
-                    <Text>{errors.confirmPassword}</Text>
+                    <Text style={styles.errorFieldText}>
+                      {errors.confirmPassword}
+                    </Text>
                   </View>
                 ) : null}
               </View>
@@ -273,15 +291,21 @@ const Login: React.FC = () => {
                 <TouchableOpacity
                   onPress={() => handleSubmit()}
                   disabled={signupButtonDisabled}
+                  style={[
+                    styles.confirmButton,
+                    signupButtonDisabled
+                      ? styles.confirmButtonDisabled
+                      : undefined,
+                  ]}
                 >
-                  <Text>Cadastrar</Text>
+                  <Text style={styles.confirmButtonText}>Cadastrar</Text>
                 </TouchableOpacity>
               </View>
             </View>
           )}
         </Formik>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

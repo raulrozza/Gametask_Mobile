@@ -70,14 +70,32 @@ export default StyleSheet.create({
     width: 200,
     marginBottom: 5,
   },
-  input: {
-    width: '100%',
-    height: 36,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: appTheme.primaryShade,
+  errorField: {
+    backgroundColor: 'rgb(253, 57, 57)',
+    paddingTop: 7,
+    paddingBottom: 2,
+    paddingHorizontal: 5,
+    marginTop: -5,
+    marginBottom: 10,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    zIndex: -5,
   },
-  errorField: {},
+  errorFieldText: {
+    color: '#FFF',
+  },
+  confirmButton: {
+    backgroundColor: appTheme.secondary,
+    borderRadius: 2,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+  },
+  confirmButtonText: {
+    color: appTheme.secondaryContrast,
+    lineHeight: 24,
+    fontSize: 16,
+  },
+  confirmButtonDisabled: {
+    opacity: 0.6,
+  },
 });

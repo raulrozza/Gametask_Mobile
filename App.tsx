@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import 'react-native-gesture-handler';
 import React from 'react';
 import { AppLoading } from 'expo';
