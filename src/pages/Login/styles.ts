@@ -18,17 +18,22 @@ interface ConfirmProps extends Props {
 
 export const HomePage = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: Constants.statusBarHeight,
   },
 }))<Props>`
   background-color: ${({ theme }) => theme.primaryLowShade};
-  height: 100%;
+`;
+
+export const TitleContainer = styled.View`
+  width: 100%;
+  height: 20%;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Title = styled.View<Props>`
-  margin-bottom: 20px;
   background-color: ${({ theme }) => theme.secondaryLowShade};
   padding: 10px 20px;
   border-radius: 15px;
@@ -43,53 +48,61 @@ export const TitleText = styled.Text<Props>`
   font-size: 24px;
 `;
 
+export const FormContainer = styled.View`
+  height: 80%;
+`;
+
 export const Container = styled.View<Props>`
   background-color: ${({ theme }) => theme.primary};
   border-radius: 3px;
-  min-width: 300px;
-  margin: 0 16px;
+  flex: 1;
+  margin: 0 16px 16px;
 `;
 
 export const FormToggle = styled.View`
   width: 100%;
+  height: 60px;
   flex-direction: row;
 `;
 
 export const ToggleButton = styled.TouchableOpacity<ToggleProps>`
   width: 50%;
   padding: 8px;
+  justify-content: center;
+  align-items: center;
   background-color: ${({ theme, active }) =>
     active ? theme.primary : theme.secondary};
 `;
 
 export const ToggleButtonText = styled.Text<ToggleProps>`
-  font-size: 16px;
+  font-size: 20px;
   font-family: Roboto;
+  font-weight: bold;
   color: ${({ theme, active }) =>
     active ? theme.secondary : theme.secondaryContrast};
 `;
 
-export const Form = styled.View<ActiveProps>`
-  justify-content: flex-start;
-  align-items: center;
+export const Form = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}))<ActiveProps>`
+  margin: 16px 0;
 
   ${({ active }) =>
     active
       ? css`
-          height: auto;
-          overflow: visible;
-          margin: 12px 0;
+          display: flex;
         `
       : css`
-          height: 0px;
-          overflow: hidden;
-          margin: 0px;
+          display: none;
         `}
 `;
 
 export const InputGroup = styled.View`
-  width: 200px;
-  margin-bottom: 5px;
+  width: 80%;
+  margin-bottom: 8px;
 `;
 
 export const ErrorField = styled.View`
