@@ -2,7 +2,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { AppLoading } from 'expo';
-import { StatusBar } from 'react-native';
 import {
   Roboto_400Regular,
   Roboto_500Medium,
@@ -16,8 +15,10 @@ import {
 
 // Contexts
 import Authorization from './src/contexts/Authorization';
+import Theme from './src/contexts/Theme';
 
-import Login from './src/pages/Login';
+// Routes
+import Routes from './src/routes/index.routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -32,13 +33,10 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <Authorization>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="transparent"
-        translucent
-      />
-      <Login />
-    </Authorization>
+    <Theme>
+      <Authorization>
+        <Routes />
+      </Authorization>
+    </Theme>
   );
 }

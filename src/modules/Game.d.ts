@@ -1,10 +1,5 @@
 declare module 'game' {
-  import { ElementType } from 'react';
-  import { colorPallete } from 'authorization';
-
-  export interface GameProps {
-    children: ElementType | Element;
-  }
+  import { colorPallete } from '../contexts/Theme';
 
   export interface GameObject {
     id: string;

@@ -1,29 +1,14 @@
 declare module 'authorization' {
-  import { ReactElement, ReactChild, ReactNode } from 'react';
-
   export interface User {
     token: string;
-    [key: string]: string;
-  }
-
-  export interface AuthorizationProps {
-    children: ReactChild | ReactElement | ReactNode;
-  }
-
-  export interface colorPallete {
-    primary: string;
-    primaryIntense: string;
-    primaryExtraIntense: string;
-    primaryLowShade: string;
-    primaryShade: string;
-    primaryContrast: string;
-    secondary: string;
-    secondaryTransparent: string;
-    secondaryIntense: string;
-    secondaryExtraIntense: string;
-    secondaryLowShade: string;
-    secondaryShade: string;
-    secondaryContrast: string;
+    firstname: string;
+    lastname: string;
+    experience: number;
+    level: number;
+    email: string;
+    currentTitle: {
+      name: string;
+    };
     [key: string]: string;
   }
 
@@ -33,6 +18,5 @@ declare module 'authorization' {
     loading: boolean;
     signIn: Function;
     signOut: Function;
-    appTheme: colorPallete;
   }
 }

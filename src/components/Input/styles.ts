@@ -1,18 +1,19 @@
-import { StyleSheet } from 'react-native';
-import { appTheme } from '../../utils/setTheme';
+import styled, { css } from 'styled-components/native';
+import { ColorPallete } from 'theme';
 
-export default StyleSheet.create({
-  input: {
-    width: '100%',
-    height: 36,
-    backgroundColor: appTheme.primary,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: appTheme.primaryShade,
-  },
-  focused: {
-    borderColor: appTheme.secondary,
-  },
-});
+interface Props {
+  theme: ColorPallete;
+  focused: boolean;
+}
+
+export const StyledInput = styled.TextInput<Props>`
+  width: 100%;
+  height: 36px;
+  border-radius: 5px;
+  padding: 0 10px;
+  ${({ theme, focused }) => css`
+    background-color: ${theme.primary};
+    border: 1px solid ${focused ? theme.secondary : theme.primaryShade};
+    color: ${theme.primaryContrast};
+  `}
+`;

@@ -1,20 +1,22 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 // Types
-import { GameProps, GameHook } from 'game';
+import { GameHook } from 'game';
 
 // Contexts
 import { useAuth } from './Authorization';
+import { useTheme } from './Theme';
 
 import api from '../services/api';
-import setTheme from '../utils/setTheme';
 
 const GameContext = createContext({});
 
-const Game = ({ children }: GameProps) => {
+const Game: React.FC = ({ children }) => {
   const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
   const { signOut } = useAuth();
+  const { changeTheme } = useTheme();
 
   useEffect(() => {
     (async () => {
@@ -22,7 +24,7 @@ const Game = ({ children }: GameProps) => {
         const { data: game } = await api.get('/game/5ebc0a1e1da3fa28f4a455a7');
 
         setGame(game);
-        setTheme(game.theme);
+        changeTheme(game.theme);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -37,7 +39,7 @@ const Game = ({ children }: GameProps) => {
         }
       }
     })();
-  }, [signOut]);
+  }, []);
 
   return (
     <GameContext.Provider value={{ game, loading }}>
@@ -50,6 +52,10 @@ export const useGame = () => {
   const game = useContext(GameContext) as GameHook;
 
   return game;
+};
+
+Game.propTypes = {
+  children: PropTypes.node,
 };
 
 export default Game;

@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { TextInput, TextInputProps } from 'react-native';
+import { TextInputProps } from 'react-native';
 
-import styles from './styles';
+// Contexts
+import { useTheme } from '../../contexts/Theme';
+
+import { StyledInput } from './styles';
 
 const Input: React.FC<TextInputProps> = ({ onBlur, ...props }) => {
   const [focused, setFocus] = useState(false);
+  const { theme } = useTheme();
 
   return (
-    <TextInput
+    <StyledInput
       onBlur={event => {
         setFocus(false);
         if (onBlur) onBlur(event);
       }}
       onFocus={() => setFocus(true)}
-      style={[styles.input, focused ? styles.focused : undefined]}
+      focused={focused}
+      theme={theme}
+      placeholderTextColor={theme.primaryShade}
       {...props}
     />
   );

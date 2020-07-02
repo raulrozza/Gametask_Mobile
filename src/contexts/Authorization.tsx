@@ -1,19 +1,21 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { AsyncStorage } from 'react-native';
-import { AuthorizationProps, User, Auth } from 'authorization';
+import { User, Auth } from 'authorization';
+
+// Contexts
+import { useTheme } from './Theme';
 
 // Services
 import api from '../services/api';
 
-// Utils
-import setTheme, { appTheme } from '../utils/setTheme';
-
 const AuthorizationContext = createContext({});
 
-const Authorization = ({ children }: AuthorizationProps) => {
-  const [user, setUser] = useState<User | null>(null);
+const Authorization: React.FC = ({ children }) => {
+  const [user, setUser] = useState<User>({} as User);
   const [logged, setLogged] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { changeTheme } = useTheme();
 
   useEffect(() => {
     (async () => {
@@ -36,16 +38,15 @@ const Authorization = ({ children }: AuthorizationProps) => {
     setLogged(true);
   };
 
-  const signOut = () => {
-    localStorage.clear();
-    setUser(null);
-    setTheme();
+  const signOut = async () => {
+    await AsyncStorage.clear();
+    setUser({} as User);
     setLogged(false);
   };
 
   return (
     <AuthorizationContext.Provider
-      value={{ user, logged, loading, signIn, signOut, appTheme }}
+      value={{ user, logged, loading, signIn, signOut }}
     >
       {children}
     </AuthorizationContext.Provider>
@@ -56,6 +57,10 @@ export const useAuth = () => {
   const auth = useContext(AuthorizationContext) as Auth;
 
   return auth;
+};
+
+Authorization.propTypes = {
+  children: PropTypes.node,
 };
 
 export default Authorization;

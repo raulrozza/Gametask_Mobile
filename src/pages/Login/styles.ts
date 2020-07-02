@@ -1,101 +1,122 @@
-import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
-import { appTheme } from '../../utils/setTheme';
+import styled, { css } from 'styled-components/native';
+import { ColorPallete } from 'theme';
 
-export default StyleSheet.create({
-  homePage: {
-    backgroundColor: appTheme.primaryLowShade,
-    flex: 1,
+interface Props {
+  theme: ColorPallete;
+}
+
+interface ActiveProps {
+  active: boolean;
+}
+
+interface ToggleProps extends Props, ActiveProps {}
+
+interface ConfirmProps extends Props {
+  disabled: boolean;
+}
+
+export const HomePage = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: Constants.statusBarHeight,
   },
+}))<Props>`
+  background-color: ${({ theme }) => theme.primaryLowShade};
+  height: 100%;
+`;
 
-  title: {
-    marginBottom: 20,
-    backgroundColor: appTheme.secondaryLowShade,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 15,
-    width: 300,
-  },
-  titleText: {
-    textAlign: 'center',
-    color: appTheme.secondaryContrast,
-    fontFamily: 'OpenSans_700Bold',
-    fontWeight: 'bold',
-    fontSize: 24,
-  },
+export const Title = styled.View<Props>`
+  margin-bottom: 20px;
+  background-color: ${({ theme }) => theme.secondaryLowShade};
+  padding: 10px 20px;
+  border-radius: 15px;
+  width: 300px;
+`;
 
-  container: {
-    backgroundColor: appTheme.primary,
-    borderRadius: 3,
-    minWidth: 300,
-    marginHorizontal: 16,
-  },
-  formToggle: {
-    width: '100%',
-    flexDirection: 'row',
-  },
+export const TitleText = styled.Text<Props>`
+  text-align: center;
+  color: ${({ theme }) => theme.secondaryContrast};
+  font-family: OpenSans_700Bold;
+  font-weight: bold;
+  font-size: 24px;
+`;
 
-  toggleButton: {
-    width: '50%',
-    padding: 8,
-    fontFamily: 'Roboto_500Regular',
-    backgroundColor: appTheme.secondary,
-  },
-  toggleButtonActive: {
-    backgroundColor: appTheme.primary,
-  },
-  toggleButtonText: {
-    color: appTheme.secondaryContrast,
-    fontSize: 16,
-  },
-  toggleButtonTextActive: {
-    color: appTheme.secondary,
-  },
-  form: {
-    height: 0,
-    overflow: 'hidden',
-    marginVertical: 12,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  formActive: {
-    height: 'auto',
-    overflow: 'visible',
-    margin: 0,
-  },
-  inputGroup: {
-    width: 200,
-    marginBottom: 5,
-  },
-  errorField: {
-    backgroundColor: 'rgb(253, 57, 57)',
-    paddingTop: 7,
-    paddingBottom: 2,
-    paddingHorizontal: 5,
-    marginTop: -5,
-    marginBottom: 10,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
-    zIndex: -5,
-  },
-  errorFieldText: {
-    color: '#FFF',
-  },
-  confirmButton: {
-    backgroundColor: appTheme.secondary,
-    borderRadius: 2,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-  },
-  confirmButtonText: {
-    color: appTheme.secondaryContrast,
-    lineHeight: 24,
-    fontSize: 16,
-  },
-  confirmButtonDisabled: {
-    opacity: 0.6,
-  },
-});
+export const Container = styled.View<Props>`
+  background-color: ${({ theme }) => theme.primary};
+  border-radius: 3px;
+  min-width: 300px;
+  margin: 0 16px;
+`;
+
+export const FormToggle = styled.View`
+  width: 100%;
+  flex-direction: row;
+`;
+
+export const ToggleButton = styled.TouchableOpacity<ToggleProps>`
+  width: 50%;
+  padding: 8px;
+  background-color: ${({ theme, active }) =>
+    active ? theme.primary : theme.secondary};
+`;
+
+export const ToggleButtonText = styled.Text<ToggleProps>`
+  font-size: 16px;
+  font-family: Roboto;
+  color: ${({ theme, active }) =>
+    active ? theme.secondary : theme.secondaryContrast};
+`;
+
+export const Form = styled.View<ActiveProps>`
+  justify-content: flex-start;
+  align-items: center;
+
+  ${({ active }) =>
+    active
+      ? css`
+          height: auto;
+          overflow: visible;
+          margin: 12px 0;
+        `
+      : css`
+          height: 0px;
+          overflow: hidden;
+          margin: 0px;
+        `}
+`;
+
+export const InputGroup = styled.View`
+  width: 200px;
+  margin-bottom: 5px;
+`;
+
+export const ErrorField = styled.View`
+  background-color: 'rgb(253, 57, 57)';
+  padding: 7px 5px 2px;
+  margin: -5px 0 10px;
+  border-radius: 5px;
+  z-index: -5;
+`;
+
+export const ErrorFieldText = styled.Text`
+  color: #fff;
+`;
+
+export const ConfirmButton = styled.TouchableOpacity<ConfirmProps>`
+  background-color: ${({ theme }) => theme.secondary};
+  border-radius: 2px;
+  padding: 8px 12px;
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.9;
+    `}
+`;
+
+export const ConfirmButtonText = styled.Text<Props>`
+  color: ${({ theme }) => theme.secondaryContrast};
+  line-height: 24px;
+  font-size: 16px;
+`;

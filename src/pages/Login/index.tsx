@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { AppLoading } from 'expo';
-import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 
 // Components
 import Input from '../../components/Input';
 
 // Contexts
 import { useAuth } from '../../contexts/Authorization';
+import { useTheme } from '../../contexts/Theme';
 
 // Formik
 import { Formik } from 'formik';
@@ -17,7 +16,21 @@ import * as Yup from 'yup';
 // Services
 import api from '../../services/api';
 
-import styles from './styles';
+import {
+  HomePage,
+  Title,
+  TitleText,
+  Container,
+  FormToggle,
+  ToggleButton,
+  ToggleButtonText,
+  Form,
+  InputGroup,
+  ErrorField,
+  ErrorFieldText,
+  ConfirmButton,
+  ConfirmButtonText,
+} from './styles';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -39,52 +52,38 @@ const Login: React.FC = () => {
   const [signupButtonDisabled, setSignupButtonDisabled] = useState(false);
   const [formToggle, setFormToggle] = useState(true);
   // Auth
-  const { signIn, loading } = useAuth();
-
-  if (loading) return <AppLoading />;
+  const { signIn } = useAuth();
+  // Theme
+  const { theme } = useTheme();
 
   return (
-    <ScrollView contentContainerStyle={styles.homePage}>
-      <View style={styles.title}>
-        <Text style={styles.titleText}>Gamification App</Text>
-      </View>
+    <HomePage theme={theme}>
+      <Title theme={theme}>
+        <TitleText theme={theme}>Gamification App</TitleText>
+      </Title>
 
-      <View style={styles.container}>
-        <View style={styles.formToggle}>
-          <TouchableOpacity
-            style={[
-              styles.toggleButton,
-              formToggle ? styles.toggleButtonActive : undefined,
-            ]}
+      <Container theme={theme}>
+        <FormToggle>
+          <ToggleButton
+            theme={theme}
+            active={formToggle}
             onPress={() => setFormToggle(true)}
           >
-            <Text
-              style={[
-                styles.toggleButtonText,
-                formToggle ? styles.toggleButtonTextActive : undefined,
-              ]}
-            >
+            <ToggleButtonText theme={theme} active={formToggle}>
               Entre
-            </Text>
-          </TouchableOpacity>
+            </ToggleButtonText>
+          </ToggleButton>
 
-          <TouchableOpacity
-            style={[
-              styles.toggleButton,
-              formToggle ? undefined : styles.toggleButtonActive,
-            ]}
+          <ToggleButton
+            theme={theme}
+            active={!formToggle}
             onPress={() => setFormToggle(false)}
           >
-            <Text
-              style={[
-                styles.toggleButtonText,
-                formToggle ? undefined : styles.toggleButtonTextActive,
-              ]}
-            >
+            <ToggleButtonText theme={theme} active={!formToggle}>
               Cadastre-se
-            </Text>
-          </TouchableOpacity>
-        </View>
+            </ToggleButtonText>
+          </ToggleButton>
+        </FormToggle>
         <Formik
           initialValues={{
             email: '',
@@ -115,10 +114,8 @@ const Login: React.FC = () => {
             errors,
             touched,
           }) => (
-            <View
-              style={[styles.form, formToggle ? styles.formActive : undefined]}
-            >
-              <View style={styles.inputGroup}>
+            <Form active={formToggle}>
+              <InputGroup>
                 <Input
                   value={values.email}
                   onChangeText={handleChange('email')}
@@ -127,13 +124,13 @@ const Login: React.FC = () => {
                   autoCapitalize="none"
                 />
                 {errors.email && touched.email ? (
-                  <View style={styles.errorField}>
-                    <Text style={styles.errorFieldText}>{errors.email}</Text>
-                  </View>
+                  <ErrorField>
+                    <ErrorFieldText>{errors.email}</ErrorFieldText>
+                  </ErrorField>
                 ) : null}
-              </View>
+              </InputGroup>
 
-              <View style={styles.inputGroup}>
+              <InputGroup>
                 <Input
                   value={values.password}
                   onChangeText={handleChange('password')}
@@ -142,27 +139,22 @@ const Login: React.FC = () => {
                   secureTextEntry
                 />
                 {errors.password && touched.password ? (
-                  <View style={styles.errorField}>
-                    <Text style={styles.errorFieldText}>{errors.password}</Text>
-                  </View>
+                  <ErrorField>
+                    <ErrorFieldText>{errors.password}</ErrorFieldText>
+                  </ErrorField>
                 ) : null}
-              </View>
+              </InputGroup>
 
-              <View style={styles.inputGroup}>
-                <TouchableOpacity
+              <InputGroup>
+                <ConfirmButton
                   onPress={() => handleSubmit()}
                   disabled={loginButtonDisabled}
-                  style={[
-                    styles.confirmButton,
-                    loginButtonDisabled
-                      ? styles.confirmButtonDisabled
-                      : undefined,
-                  ]}
+                  theme={theme}
                 >
-                  <Text style={styles.confirmButtonText}>Entrar</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+                  <ConfirmButtonText theme={theme}>Entrar</ConfirmButtonText>
+                </ConfirmButton>
+              </InputGroup>
+            </Form>
           )}
         </Formik>
 
@@ -205,10 +197,8 @@ const Login: React.FC = () => {
             errors,
             touched,
           }) => (
-            <View
-              style={[styles.form, formToggle ? undefined : styles.formActive]}
-            >
-              <View style={styles.inputGroup}>
+            <Form active={!formToggle}>
+              <InputGroup>
                 <Input
                   value={values.firstname}
                   onChangeText={handleChange('firstname')}
@@ -217,15 +207,13 @@ const Login: React.FC = () => {
                   autoCapitalize="words"
                 />
                 {errors.firstname && touched.firstname ? (
-                  <View style={styles.errorField}>
-                    <Text style={styles.errorFieldText}>
-                      {errors.firstname}
-                    </Text>
-                  </View>
+                  <ErrorField>
+                    <ErrorFieldText>{errors.firstname}</ErrorFieldText>
+                  </ErrorField>
                 ) : null}
-              </View>
+              </InputGroup>
 
-              <View style={styles.inputGroup}>
+              <InputGroup>
                 <Input
                   value={values.lastname}
                   onChangeText={handleChange('lastname')}
@@ -234,13 +222,13 @@ const Login: React.FC = () => {
                   autoCapitalize="words"
                 />
                 {errors.lastname && touched.lastname ? (
-                  <View style={styles.errorField}>
-                    <Text style={styles.errorFieldText}>{errors.lastname}</Text>
-                  </View>
+                  <ErrorField>
+                    <ErrorFieldText>{errors.lastname}</ErrorFieldText>
+                  </ErrorField>
                 ) : null}
-              </View>
+              </InputGroup>
 
-              <View style={styles.inputGroup}>
+              <InputGroup>
                 <Input
                   value={values.email}
                   onChangeText={handleChange('email')}
@@ -249,13 +237,13 @@ const Login: React.FC = () => {
                   autoCapitalize="none"
                 />
                 {errors.email && touched.email ? (
-                  <View style={styles.errorField}>
-                    <Text style={styles.errorFieldText}>{errors.email}</Text>
-                  </View>
+                  <ErrorField>
+                    <ErrorFieldText>{errors.email}</ErrorFieldText>
+                  </ErrorField>
                 ) : null}
-              </View>
+              </InputGroup>
 
-              <View style={styles.inputGroup}>
+              <InputGroup>
                 <Input
                   value={values.password}
                   onChangeText={handleChange('password')}
@@ -264,13 +252,13 @@ const Login: React.FC = () => {
                   secureTextEntry
                 />
                 {errors.password && touched.password ? (
-                  <View style={styles.errorField}>
-                    <Text style={styles.errorFieldText}>{errors.password}</Text>
-                  </View>
+                  <ErrorField>
+                    <ErrorFieldText>{errors.password}</ErrorFieldText>
+                  </ErrorField>
                 ) : null}
-              </View>
+              </InputGroup>
 
-              <View style={styles.inputGroup}>
+              <InputGroup>
                 <Input
                   value={values.confirmPassword}
                   onChangeText={handleChange('confirmPassword')}
@@ -279,33 +267,26 @@ const Login: React.FC = () => {
                   secureTextEntry
                 />
                 {errors.confirmPassword && touched.confirmPassword ? (
-                  <View style={styles.errorField}>
-                    <Text style={styles.errorFieldText}>
-                      {errors.confirmPassword}
-                    </Text>
-                  </View>
+                  <ErrorField>
+                    <ErrorFieldText>{errors.confirmPassword}</ErrorFieldText>
+                  </ErrorField>
                 ) : null}
-              </View>
+              </InputGroup>
 
-              <View style={styles.inputGroup}>
-                <TouchableOpacity
+              <InputGroup>
+                <ConfirmButton
                   onPress={() => handleSubmit()}
                   disabled={signupButtonDisabled}
-                  style={[
-                    styles.confirmButton,
-                    signupButtonDisabled
-                      ? styles.confirmButtonDisabled
-                      : undefined,
-                  ]}
+                  theme={theme}
                 >
-                  <Text style={styles.confirmButtonText}>Cadastrar</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+                  <ConfirmButtonText theme={theme}>Cadastrar</ConfirmButtonText>
+                </ConfirmButton>
+              </InputGroup>
+            </Form>
           )}
         </Formik>
-      </View>
-    </ScrollView>
+      </Container>
+    </HomePage>
   );
 };
 
