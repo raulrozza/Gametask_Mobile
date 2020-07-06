@@ -1,4 +1,6 @@
 declare module 'authorization' {
+  import { Achievement } from 'game';
+
   export interface User {
     token: string;
     firstname: string;
@@ -9,6 +11,7 @@ declare module 'authorization' {
     currentTitle: {
       name: string;
     };
+    achievements: Achievement[];
     [key: string]: string;
   }
 

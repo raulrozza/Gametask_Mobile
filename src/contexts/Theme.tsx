@@ -78,7 +78,9 @@ const Theme: React.FC = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, defaultTheme, changeTheme, fillPallete }}
+    >
       {children}
     </ThemeContext.Provider>
   );

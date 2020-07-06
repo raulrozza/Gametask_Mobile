@@ -40,7 +40,8 @@
         "rules": {
           "no-unused-vars": ["off"],
           "no-undef": ["off"],
-          "react/display-name": ["off"]
+          "react/display-name": ["off"],
+          "camelcase":"off"
         }
       }
     ]

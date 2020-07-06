@@ -19,6 +19,8 @@ declare module 'theme' {
 
   export interface ThemeHook {
     theme: ColorPallete;
+    defaultTheme: ColorPallete;
     changeTheme: Function;
+    fillPallete: Function;
   }
 }
