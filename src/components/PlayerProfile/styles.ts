@@ -1,9 +1,12 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { ColorPallete } from 'theme';
 
 interface Props {
   theme: ColorPallete;
+}
+
+interface AchievementProps {
+  obtained: boolean;
 }
 
 export const Container = styled.ScrollView.attrs(() => ({
@@ -88,15 +91,39 @@ export const AchievementsContainer = styled.View<Props>`
   padding: 8px;
   margin-top: 16px;
   background-color: ${({ theme }) => theme.primary};
-  background-color: blue;
   flex-direction: row;
   flex-wrap: wrap;
 `;
 
+export const AchievementsTitle = styled.Text<Props>`
+  width: 100%;
+  text-align: center;
+  color: ${({ theme }) => theme.primaryContrast};
+  font-weight: bold;
+  font-size: 36px;
+  margin: 8px 0;
+`;
+
 export const Achievement = {
-  Container: styled.View``,
+  Container: styled.View<AchievementProps>`
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding: 8px;
+    ${({ obtained }) =>
+      !obtained &&
+      css`
+        opacity: 0.3;
+      `}
+  `,
   Image: styled.Image`
     height: 96px;
     width: 96px;
+    border-radius: 48px;
+    margin-bottom: 8px;
+  `,
+  Text: styled.Text<Props>`
+    font-weight: bold;
+    color: ${({ theme }) => theme.secondary};
   `,
 };

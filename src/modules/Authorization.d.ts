@@ -12,6 +12,8 @@ declare module 'authorization' {
       name: string;
     };
     achievements: Achievement[];
+    image?: string;
+    profile_url: string;
     [key: string]: string;
   }
 

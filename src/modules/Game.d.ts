@@ -25,12 +25,19 @@ declare module 'game' {
     theme: colorPallete;
   }
 
+  export interface Title {
+    _id: string;
+    name: string;
+  }
+
   export interface Achievement {
     id: string;
     name: string;
     description: string;
     image: string | undefined;
     image_url: string;
+    title?: Title;
+    obtained?: boolean;
   }
 
   export interface GameHook {

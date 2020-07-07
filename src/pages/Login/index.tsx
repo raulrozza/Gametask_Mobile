@@ -62,7 +62,7 @@ const Login: React.FC = () => {
     <HomePage theme={theme}>
       <TitleContainer>
         <Title theme={theme}>
-          <TitleText theme={theme}>Gamification App</TitleText>
+          <TitleText theme={theme}>GAMETASK</TitleText>
         </Title>
       </TitleContainer>
 

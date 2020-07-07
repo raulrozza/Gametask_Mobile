@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { GameRank, GameLevelInfo } from 'game';
 import { ColorPallete } from 'theme';
 
@@ -16,6 +17,7 @@ import {
   NextLevelContainer,
   NextLevelText,
   AchievementsContainer,
+  AchievementsTitle,
   Achievement,
 } from './styles';
 
@@ -36,6 +38,7 @@ const PlayerProfile: React.FC = () => {
   const { user, signOut } = useAuth();
   const { theme, defaultTheme, fillPallete } = useTheme();
   const { game, achievements: defaultAchievements } = useGame();
+  const { navigate } = useNavigation();
 
   const [rankPallete, setRankPallete] = useState<ColorPallete>(defaultTheme);
   const [userMeta, setUserMeta] = useState<UserMeta>({
@@ -86,7 +89,7 @@ const PlayerProfile: React.FC = () => {
         <UserImage
           theme={rankPallete}
           source={
-            user.profile_url
+            user.image
               ? {
                   uri: user.profile_url,
                 }
@@ -120,17 +123,29 @@ const PlayerProfile: React.FC = () => {
         )}
 
         <AchievementsContainer theme={theme}>
+          <AchievementsTitle theme={theme}>Conquistas</AchievementsTitle>
           {achievements.map(achievement => (
-            <Achievement.Container key={achievement.id}>
+            <Achievement.Container
+              key={achievement.id}
+              obtained={achievement.obtained || false}
+              onTouchEnd={() =>
+                navigate('achievementDetails', {
+                  achievement,
+                })
+              }
+            >
               <Achievement.Image
                 source={
                   achievement.image
                     ? {
                         uri: achievement.image_url,
                       }
-                    : require('../../assets/img/users/placeholder.png')
+                    : require('../../assets/img/achievements/placeholder.png')
                 }
               />
+              <Achievement.Text theme={theme}>
+                {achievement.name}
+              </Achievement.Text>
             </Achievement.Container>
           ))}
         </AchievementsContainer>
