@@ -30,6 +30,13 @@ declare module 'game' {
     name: string;
   }
 
+  export interface Activity {
+    _id: string;
+    name: string;
+    experience: number;
+    description: string;
+  }
+
   export interface Achievement {
     id: string;
     name: string;
