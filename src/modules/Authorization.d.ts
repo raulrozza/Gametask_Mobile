@@ -2,6 +2,7 @@ declare module 'authorization' {
   import { Achievement } from 'game';
 
   export interface User {
+    _id: string;
     token: string;
     firstname: string;
     lastname: string;

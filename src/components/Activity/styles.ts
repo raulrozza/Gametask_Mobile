@@ -1,8 +1,16 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { ColorPallete } from 'theme';
 
 interface Props {
   theme: ColorPallete;
+}
+
+interface ButtonProps extends Props {
+  disabled: boolean;
+}
+
+interface DateText extends Props {
+  date: boolean;
 }
 
 export const Container = styled.ScrollView.attrs(() => ({
@@ -33,6 +41,14 @@ export const Paragraph = styled.Text<Props>`
   padding: 0 16px;
 `;
 
+export const Info = styled.Text<Props>`
+  text-align: center;
+  color: ${({ theme }) => theme.primaryContrast};
+  width: 100%;
+  padding: 0 16px;
+  font-style: italic;
+`;
+
 export const Form = {
   Container: styled.View`
     width: 100%;
@@ -40,6 +56,22 @@ export const Form = {
   `,
   InputGroup: styled.View`
     margin-bottom: 8px;
+  `,
+};
+
+export const DateInput = {
+  View: styled.View<Props>`
+    width: 100%;
+    border-radius: 5px;
+    padding: 12px;
+    ${({ theme }) => css`
+      background-color: ${theme.primary};
+      border: 1px solid ${theme.primaryShade};
+    `}
+  `,
+  Text: styled.Text<DateText>`
+    color: ${({ theme, date }) =>
+      date ? theme.primaryContrast : theme.primaryShade};
   `,
 };
 
@@ -74,10 +106,11 @@ export const Footer = {
   BackText: styled.Text<Props>`
     color: ${({ theme }) => theme.secondary};
   `,
-  Confirm: styled.TouchableOpacity<Props>`
+  Confirm: styled.TouchableOpacity<ButtonProps>`
     padding: 10px;
     border-radius: 5px;
-    background-color: ${({ theme }) => theme.secondary};
+    background-color: ${({ theme, disabled }) =>
+      disabled ? theme.secondaryTransparent : theme.secondary};
     width: 100px;
     align-items: center;
   `,

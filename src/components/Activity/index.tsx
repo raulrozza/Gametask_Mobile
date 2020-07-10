@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
+import DatePicker from '@react-native-community/datetimepicker';
+
+// Contexts
+import { useAuth } from '../../contexts/Authorization';
 import { useTheme } from '../../contexts/Theme';
+import { useGame } from '../../contexts/Game';
+
+// Modules
 import { Activity } from 'game';
 
 // Styles
-import { Container, Title, Paragraph, Form, Errors, Footer } from './styles';
+import {
+  Container,
+  Title,
+  Paragraph,
+  Info,
+  Form,
+  DateInput,
+  Errors,
+  Footer,
+} from './styles';
 
 // Formik
 import { Formik } from 'formik';
@@ -24,10 +40,12 @@ type ParamList = {
 
 type ActivityRouteProps = RouteProp<ParamList, 'activity'>;
 
+const showDate = (date: Date) => {
+  return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
+};
+
 const RegisterSchema = Yup.object().shape({
-  requestDate: Yup.date()
-    .required('Informe a data, por favor')
-    .typeError('Formato de data inválido!'),
+  date: Yup.date().required('Informe a data'),
   information: Yup.string().required('Digite sua senha'),
 });
 
@@ -36,7 +54,19 @@ const ActivityInfo: React.FC = () => {
     params: { activity },
   } = useRoute<ActivityRouteProps>();
   const { goBack } = useNavigation();
+  const { user } = useAuth();
   const { theme } = useTheme();
+  const { game } = useGame();
+
+  // State
+  const [confirmDisabled, setConfirmDisabled] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+
+  const handleDateChange = (date: Date | undefined) => {
+    setShowDatePicker(false);
+    setSelectedDate(date);
+  };
 
   return (
     <Container theme={theme}>
@@ -47,14 +77,34 @@ const ActivityInfo: React.FC = () => {
         {activity.experience} XP? Preencha as informações abaixo, por favor.
       </Paragraph>
 
+      <Info theme={theme}>{activity.description}</Info>
+
       <Formik
         initialValues={{
-          requestDate: '',
+          date: undefined,
           information: '',
         }}
         validationSchema={RegisterSchema}
         onSubmit={async values => {
-          console.log(values);
+          setConfirmDisabled(true);
+
+          try {
+            const data = {
+              requester: user._id,
+              activity: activity._id,
+              requestDate: new Date(),
+              completionDate: selectedDate,
+              information: values.information,
+              gameId: game.id,
+            };
+
+            await api.post('/activityRegister', data);
+
+            goBack();
+          } catch (error) {
+            console.error(error);
+            setConfirmDisabled(false);
+          }
         }}
       >
         {({
@@ -82,18 +132,31 @@ const ActivityInfo: React.FC = () => {
             </Form.InputGroup>
 
             <Form.InputGroup>
-              <Input
-                value={values.requestDate}
-                onChangeText={handleChange('requestDate')}
-                onBlur={handleBlur('requestDate')}
-                placeholder="Data da conclusão"
-                keyboardType="numbers-and-punctuation"
-              />
-              {errors.requestDate && touched.requestDate ? (
+              <DateInput.View
+                theme={theme}
+                onTouchEnd={() => {
+                  setShowDatePicker(true);
+                }}
+              >
+                <DateInput.Text theme={theme} date={!!selectedDate}>
+                  {selectedDate ? showDate(selectedDate) : 'Data da conclusão'}
+                </DateInput.Text>
+              </DateInput.View>
+              {errors.date && touched.date ? (
                 <Errors.Field>
-                  <Errors.Text>{errors.requestDate}</Errors.Text>
+                  <Errors.Text>{errors.date}</Errors.Text>
                 </Errors.Field>
               ) : null}
+              {showDatePicker && (
+                <DatePicker
+                  value={selectedDate || new Date()}
+                  onChange={(_, date) => {
+                    handleDateChange(date);
+                    handleChange('date')(date ? date.toLocaleString() : '');
+                  }}
+                  maximumDate={new Date()}
+                />
+              )}
             </Form.InputGroup>
 
             <Footer.Container>
@@ -101,7 +164,11 @@ const ActivityInfo: React.FC = () => {
                 <Footer.BackText theme={theme}>Voltar</Footer.BackText>
               </Footer.Back>
 
-              <Footer.Confirm theme={theme}>
+              <Footer.Confirm
+                disabled={confirmDisabled}
+                theme={theme}
+                onPress={() => handleSubmit()}
+              >
                 <Footer.ConfirmText theme={theme}>Confirmar</Footer.ConfirmText>
               </Footer.Confirm>
             </Footer.Container>
