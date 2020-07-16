@@ -26,6 +26,11 @@ const Game: React.FC = ({ children }) => {
       try {
         const { data: game } = await api.get('/game/5ebc0a1e1da3fa28f4a455a7');
 
+        api.defaults.headers['X-Game-ID'] = '5ebc0a1e1da3fa28f4a455a7';
+
+        const { data } = await api.get('/achievements');
+
+        setAchievements(data);
         setGame(game);
         changeTheme(game.theme);
         setLoading(false);
@@ -43,18 +48,6 @@ const Game: React.FC = ({ children }) => {
       }
     })();
   }, []);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await api.get('/achievements');
-
-        setAchievements(data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [game]);
 
   return (
     <GameContext.Provider value={{ game, loading, achievements }}>
