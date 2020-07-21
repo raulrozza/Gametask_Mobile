@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components/native';
 import { ColorPallete } from 'theme';
 
+// Icons
+import { Feather } from '@expo/vector-icons';
+
 interface Props {
   theme: ColorPallete;
 }
@@ -90,6 +93,7 @@ export const AchievementsContainer = styled.View<Props>`
   border-radius: 5px;
   padding: 8px;
   margin-top: 16px;
+  margin-bottom: 8px;
   background-color: ${({ theme }) => theme.primary};
   flex-direction: row;
   flex-wrap: wrap;
@@ -125,5 +129,30 @@ export const Achievement = {
   Text: styled.Text<Props>`
     font-weight: bold;
     color: ${({ theme }) => theme.secondary};
+  `,
+};
+
+export const BottomOption = {
+  Button: styled.TouchableOpacity<Props>`
+    width: 100%;
+    height: 48px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    ${({ theme }) => css`
+      background-color: ${theme.primaryLowShade};
+      border-top-width: 1px;
+      border-color: ${theme.primaryShade};
+    `}
+  `,
+  Icon: styled(Feather)<Props>`
+    color: ${({ theme }) => theme.secondaryIntense};
+    font-size: 24px;
+    font-weight: bold;
+  `,
+  Text: styled.Text<Props>`
+    color: ${({ theme }) => theme.secondaryIntense};
+    font-size: 24px;
+    font-weight: bold;
   `,
 };

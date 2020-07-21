@@ -1,55 +1,55 @@
 declare module 'game' {
   import { colorPallete } from '../contexts/Theme';
 
-  export interface GameRank {
+  export interface IRank {
     color: string;
     level: number;
     name: string;
     tag: string;
   }
 
-  export interface GameLevelInfo {
+  export interface ILevelInfo {
     level: number;
     requiredExperience: number;
     title: string;
   }
 
-  export interface GameObject {
+  export interface IGame {
     id: string;
     name: string;
     description: string;
     image_url: string;
     weeklyRanking: Array;
-    ranks: GameRank[];
-    levelInfo: GameLevelInfo[];
+    ranks: IRank[];
+    levelInfo: ILevelInfo[];
     theme: colorPallete;
   }
 
-  export interface Title {
+  export interface ITitle {
     _id: string;
     name: string;
   }
 
-  export interface Activity {
+  export interface IActivity {
     _id: string;
     name: string;
     experience: number;
     description: string;
   }
 
-  export interface Achievement {
+  export interface IAchievement {
     id: string;
     name: string;
     description: string;
     image: string | undefined;
     image_url: string;
-    title?: Title;
+    title?: ITitle;
     obtained?: boolean;
   }
 
   export interface GameHook {
-    game: GameObject;
+    game: IGame;
     loading: boolean;
-    achievements: Achievement[];
+    achievements: IAchievement[];
   }
 }

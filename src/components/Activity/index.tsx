@@ -8,7 +8,7 @@ import { useTheme } from '../../contexts/Theme';
 import { useGame } from '../../contexts/Game';
 
 // Modules
-import { Activity } from 'game';
+import { IActivity } from 'game';
 
 // Styles
 import {
@@ -35,7 +35,7 @@ import Input from '../Input';
 import api from '../../services/api';
 
 type ParamList = {
-  activity: { activity: Activity };
+  activity: { activity: IActivity };
 };
 
 type ActivityRouteProps = RouteProp<ParamList, 'activity'>;

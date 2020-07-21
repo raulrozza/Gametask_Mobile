@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Types
-import { GameHook, Achievement } from 'game';
+import { GameHook, IAchievement } from 'game';
 
 // Contexts
 import { useAuth } from './Authorization';
@@ -14,8 +14,8 @@ const GameContext = createContext({});
 
 const Game: React.FC = ({ children }) => {
   const [game, setGame] = useState(null);
-  const [achievements, setAchievements] = useState<Achievement[]>(
-    [] as Achievement[],
+  const [achievements, setAchievements] = useState<IAchievement[]>(
+    [] as IAchievement[],
   );
   const [loading, setLoading] = useState(true);
   const { signOut } = useAuth();

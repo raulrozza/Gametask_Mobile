@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { AsyncStorage } from 'react-native';
-import { User, Auth } from 'authorization';
+import { IUser, Auth } from 'authorization';
 
 // Contexts
 import { useTheme } from './Theme';
@@ -12,7 +12,7 @@ import api from '../services/api';
 const AuthorizationContext = createContext({});
 
 const Authorization: React.FC = ({ children }) => {
-  const [user, setUser] = useState<User>({} as User);
+  const [user, setUser] = useState<IUser>({} as IUser);
   const [logged, setLogged] = useState(false);
   const [loading, setLoading] = useState(true);
   const { changeTheme } = useTheme();
@@ -31,7 +31,7 @@ const Authorization: React.FC = ({ children }) => {
     })();
   }, []);
 
-  const signIn = async (user: User) => {
+  const signIn = async (user: IUser) => {
     await AsyncStorage.setItem('loggedUser', JSON.stringify(user));
     api.defaults.headers.Authorization = 'Bearer ' + user.token;
     setUser(user);
@@ -40,7 +40,7 @@ const Authorization: React.FC = ({ children }) => {
 
   const signOut = async () => {
     await AsyncStorage.clear();
-    setUser({} as User);
+    setUser({} as IUser);
     setLogged(false);
   };
 

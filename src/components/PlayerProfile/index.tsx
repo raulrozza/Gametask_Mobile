@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { GameRank, GameLevelInfo } from 'game';
+import { IRank, ILevelInfo } from 'game';
 import { ColorPallete } from 'theme';
 
 // Styles
@@ -19,6 +19,7 @@ import {
   AchievementsContainer,
   AchievementsTitle,
   Achievement,
+  BottomOption,
 } from './styles';
 
 // Contexts
@@ -30,8 +31,8 @@ import { useAuth } from '../../contexts/Authorization';
 import ProgressBar from '../ProgressBar';
 
 interface UserMeta {
-  rank: GameRank | undefined;
-  nextLevel: GameLevelInfo | undefined;
+  rank: IRank | undefined;
+  nextLevel: ILevelInfo | undefined;
 }
 
 const PlayerProfile: React.FC = () => {
@@ -51,7 +52,7 @@ const PlayerProfile: React.FC = () => {
     const { ranks, levelInfo } = game;
     const nextLevel = levelInfo
       .sort((a, b) => a.level - b.level)
-      .find(info => user.level <= info.level);
+      .find(info => user.level < info.level);
     const currentRank = ranks
       .sort((a, b) => b.level - a.level)
       .find(info => user.level >= info.level);
@@ -77,7 +78,10 @@ const PlayerProfile: React.FC = () => {
     <SafeAreaView>
       <Container theme={rankPallete}>
         <Header theme={rankPallete}>
-          <Title theme={rankPallete}>{user.firstname}</Title>
+          <Title theme={rankPallete}>
+            {userMeta.rank?.name ? `${userMeta.rank?.name} ` : ''}
+            {user.firstname}
+          </Title>
         </Header>
         {user.currentTitle && (
           <Text>
@@ -108,11 +112,13 @@ const PlayerProfile: React.FC = () => {
             fillColor={theme.secondary}
             borderColor={rankPallete.primaryShade}
             progress={
-              userMeta.nextLevel &&
-              user.experience / userMeta.nextLevel.requiredExperience
+              userMeta.nextLevel
+                ? user.experience / userMeta.nextLevel.requiredExperience
+                : 1
             }
           />
         </BarContainer>
+
         {userMeta.nextLevel && (
           <NextLevelContainer>
             <NextLevelText theme={rankPallete}>
@@ -150,9 +156,10 @@ const PlayerProfile: React.FC = () => {
           ))}
         </AchievementsContainer>
 
-        <TouchableOpacity onPress={() => signOut()}>
-          <Text>Sair</Text>
-        </TouchableOpacity>
+        <BottomOption.Button theme={theme} onPress={() => signOut()}>
+          <BottomOption.Icon theme={theme} name="log-out" />
+          <BottomOption.Text theme={theme}> Sair</BottomOption.Text>
+        </BottomOption.Button>
       </Container>
     </SafeAreaView>
   );

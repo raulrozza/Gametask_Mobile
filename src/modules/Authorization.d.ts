@@ -1,7 +1,7 @@
 declare module 'authorization' {
-  import { Achievement } from 'game';
+  import { IAchievement } from 'game';
 
-  export interface User {
+  export interface IUser {
     _id: string;
     token: string;
     firstname: string;
@@ -12,14 +12,14 @@ declare module 'authorization' {
     currentTitle: {
       name: string;
     };
-    achievements: Achievement[];
+    achievements: IAchievement[];
     image?: string;
     profile_url: string;
     [key: string]: string;
   }
 
   export interface Auth {
-    user: User;
+    user: IUser;
     logged: boolean;
     loading: boolean;
     signIn: Function;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { useTheme } from '../../contexts/Theme';
-import { Achievement } from 'game';
+import { IAchievement } from 'game';
 
 import {
   Container,
@@ -13,7 +13,7 @@ import {
 } from './styles';
 
 type ParamList = {
-  achievementDetails: { achievement: Achievement };
+  achievementDetails: { achievement: IAchievement };
 };
 
 type AchievementRouteProps = RouteProp<ParamList, 'achievementDetails'>;
