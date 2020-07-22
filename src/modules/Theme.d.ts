@@ -22,5 +22,6 @@ declare module 'theme' {
     defaultTheme: ColorPallete;
     changeTheme: Function;
     fillPallete: Function;
+    getTextColor: Function;
   }
 }

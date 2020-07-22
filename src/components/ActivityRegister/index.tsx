@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { IActivity } from 'game';
 import {
   Container,
@@ -15,7 +16,6 @@ import { useTheme } from '../../contexts/Theme';
 
 // Services
 import api from '../../services/api';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const ActivityRegister: React.FC = () => {
   const { theme } = useTheme();

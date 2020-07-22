@@ -30,6 +30,9 @@ import { useAuth } from '../../contexts/Authorization';
 // Components
 import ProgressBar from '../ProgressBar';
 
+// Utils
+import getUserRanks from '../../utils/getUserRank';
+
 interface UserMeta {
   rank: IRank | undefined;
   nextLevel: ILevelInfo | undefined;
@@ -53,9 +56,7 @@ const PlayerProfile: React.FC = () => {
     const nextLevel = levelInfo
       .sort((a, b) => a.level - b.level)
       .find(info => user.level < info.level);
-    const currentRank = ranks
-      .sort((a, b) => b.level - a.level)
-      .find(info => user.level >= info.level);
+    const currentRank = getUserRanks(ranks, user);
 
     if (currentRank) setRankPallete(fillPallete('primary', currentRank.color));
 

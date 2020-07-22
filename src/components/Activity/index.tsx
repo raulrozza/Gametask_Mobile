@@ -34,15 +34,14 @@ import Input from '../Input';
 // Services
 import api from '../../services/api';
 
+// Utils
+import showDate from '../../utils/showDate';
+
 type ParamList = {
   activity: { activity: IActivity };
 };
 
 type ActivityRouteProps = RouteProp<ParamList, 'activity'>;
-
-const showDate = (date: Date) => {
-  return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
-};
 
 const RegisterSchema = Yup.object().shape({
   date: Yup.date().required('Informe a data'),
