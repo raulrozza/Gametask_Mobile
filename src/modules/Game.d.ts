@@ -1,4 +1,5 @@
 declare module 'game' {
+  import { IUser } from 'authorization';
   import { colorPallete } from '../contexts/Theme';
 
   export interface IRank {
@@ -14,12 +15,17 @@ declare module 'game' {
     title: string;
   }
 
+  export interface IRankingItem {
+    currentExperience: number;
+    user: IUser;
+  }
+
   export interface IGame {
     id: string;
     name: string;
     description: string;
     image_url: string;
-    weeklyRanking: Array;
+    weeklyRanking: IRankingItem[];
     ranks: IRank[];
     levelInfo: ILevelInfo[];
     theme: colorPallete;
