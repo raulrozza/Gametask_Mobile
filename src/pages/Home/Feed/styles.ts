@@ -1,22 +1,12 @@
-import styled, { css } from 'styled-components/native';
-import { ColorPallete } from 'theme';
+import styled from 'styled-components/native';
 
-interface Props {
-  theme: ColorPallete;
-}
-
-interface RankProps {
-  background: string;
-  text: string;
-}
-
-export const Container = styled.SafeAreaView<Props>`
+export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.primaryShade};
 `;
 
 export const FeedItem = {
-  Container: styled.View<Props>`
+  Container: styled.View`
     margin: 8px;
     padding: 8px;
     border-radius: 8px;
@@ -43,36 +33,26 @@ export const FeedItem = {
     flex-direction: row;
     justify-content: flex-end;
   `,
-  MetaText: styled.Text<Props>`
+  MetaText: styled.Text`
     color: ${({ theme }) => theme.primaryShade};
     font-style: italic;
   `,
 };
 
 export const FeedText = {
-  Rank: styled.Text<RankProps>`
-    padding: 4px;
-    border-radius: 8px;
-    ${({ background, text }) => css`
-      background-color: ${background};
-      color: ${text};
-    `}
-    margin-right: 4px;
-    font-weight: bold;
-  `,
-  Name: styled.Text<Props>`
+  Name: styled.Text`
     color: ${({ theme }) => theme.secondaryLowShade};
     font-weight: bold;
   `,
-  Activity: styled.Text<Props>`
+  Activity: styled.Text`
     color: ${({ theme }) => theme.secondary};
     font-weight: bold;
     text-transform: uppercase;
   `,
-  Text: styled.Text<Props>`
+  Text: styled.Text`
     color: ${({ theme }) => theme.primaryContrast};
   `,
-  Bold: styled.Text<Props>`
+  Bold: styled.Text`
     color: ${({ theme }) => theme.primaryContrast};
     font-weight: bold;
   `,

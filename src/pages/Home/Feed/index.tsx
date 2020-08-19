@@ -3,41 +3,25 @@ import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 // Contexts
-import { useGame } from '../../contexts/Game';
-import { useTheme } from '../../contexts/Theme';
+import { getTextColor } from '../../../contexts/Theme';
 
 // Types
-import { IUser } from 'authorization';
-import { IActivity, IAchievement, ILevelInfo, IRank } from 'game';
+import { IFeed } from '../types';
+import { IThemedComponent, themeProps } from 'theme';
 
 // Services
-import api from '../../services/api';
+import api from '../../../services/api';
 
 // Utils
-import getUserRanks from '../../utils/getUserRank';
-import showDate from '../../utils/showDate';
+import showDate from '../../../utils/showDate';
 
+// Styles
+import Rank from '../../../styles/Rank';
 import { Container, FeedItem, FeedText } from './styles';
 
-interface IFeed {
-  _id: string;
-  user: IUser;
-  type: 'achievement' | 'activity' | 'level' | 'rank';
-  activity?: IActivity;
-  achievement?: IAchievement;
-  level?: ILevelInfo;
-  rank?: IRank;
-  date: Date;
-}
-
-const Feed: React.FC = () => {
+const Feed: React.FC<IThemedComponent> = ({ theme }) => {
   const [feed, setFeed] = useState<IFeed[]>([]);
   const [refreshing, setRefreshing] = useState(false);
-  // Hooks
-  const { theme, getTextColor } = useTheme();
-  const {
-    game: { ranks },
-  } = useGame();
 
   const updateFeed = async () => {
     try {
@@ -62,7 +46,7 @@ const Feed: React.FC = () => {
   }, []);
 
   return (
-    <Container theme={theme}>
+    <Container>
       <FlatList
         refreshControl={
           <RefreshControl
@@ -75,110 +59,106 @@ const Feed: React.FC = () => {
         data={feed}
         keyExtractor={feedItem => feedItem._id}
         renderItem={({ item }) => (
-          <FeedItem.Container theme={theme}>
+          <FeedItem.Container>
             <FeedItem.Content>
               <FeedItem.Image
                 source={
-                  item.user.image
+                  item.player.user.image
                     ? {
-                        uri: item.user.profile_url,
+                        uri: item.player.user.profile_url,
                       }
                     : require('../../assets/img/users/placeholder.png')
                 }
               />
+
               <FeedItem.Info>
                 {(() => {
-                  const userRank = getUserRanks(ranks, item.user);
-
                   switch (item.type) {
                     case 'activity':
                       return (
                         <FeedItem.Row>
-                          {userRank && (
-                            <FeedText.Rank
-                              background={userRank.color}
-                              text={getTextColor(userRank.color)}
+                          {item.player.rank && (
+                            <Rank
+                              background={item.player.rank.color}
+                              text={getTextColor(item.player.rank.color)}
                             >
-                              {userRank.tag}
-                            </FeedText.Rank>
+                              {item.player.rank.tag}
+                            </Rank>
                           )}
 
-                          <FeedText.Name theme={theme}>
-                            {item.user.firstname}
-                            {item.user.lastname && ` ${item.user.lastname}`}
+                          <FeedText.Name>
+                            {item.player.user.firstname}
+                            {item.player.user.lastname &&
+                              ` ${item.player.user.lastname}`}
                           </FeedText.Name>
 
-                          <FeedText.Text theme={theme}> ganhou </FeedText.Text>
+                          <FeedText.Text> ganhou </FeedText.Text>
 
-                          <FeedText.Bold theme={theme}>
+                          <FeedText.Bold>
                             {item.activity?.experience} XP
                           </FeedText.Bold>
 
-                          <FeedText.Text theme={theme}> por </FeedText.Text>
+                          <FeedText.Text> por </FeedText.Text>
 
-                          <FeedText.Activity theme={theme}>
+                          <FeedText.Activity>
                             {item.activity?.name}
                           </FeedText.Activity>
 
-                          <FeedText.Text theme={theme}>!</FeedText.Text>
+                          <FeedText.Text>!</FeedText.Text>
                         </FeedItem.Row>
                       );
+
                     case 'level':
                       return (
                         <FeedItem.Row>
-                          {userRank && (
-                            <FeedText.Rank
-                              background={userRank.color}
-                              text={getTextColor(userRank.color)}
+                          {item.player.rank && (
+                            <Rank
+                              background={item.player.rank.color}
+                              text={getTextColor(item.player.rank.color)}
                             >
-                              {userRank.tag}
-                            </FeedText.Rank>
+                              {item.player.rank.tag}
+                            </Rank>
                           )}
 
-                          <FeedText.Name theme={theme}>
-                            {item.user.firstname}
-                            {item.user.lastname && ` ${item.user.lastname}`}
+                          <FeedText.Name>
+                            {item.player.user.firstname}
+                            {item.player.user.lastname &&
+                              ` ${item.player.user.lastname}`}
                           </FeedText.Name>
 
-                          <FeedText.Text theme={theme}>
-                            {' '}
-                            atingiu o{' '}
-                          </FeedText.Text>
+                          <FeedText.Text> atingiu o </FeedText.Text>
 
                           {item.level?.title ? (
                             <>
-                              <FeedText.Text theme={theme}>
-                                nível de{' '}
-                              </FeedText.Text>
-                              <FeedText.Activity theme={theme}>
+                              <FeedText.Text>nível de </FeedText.Text>
+                              <FeedText.Activity>
                                 {item.level.title}
                               </FeedText.Activity>
-                              <FeedText.Text theme={theme}>!</FeedText.Text>
+                              <FeedText.Text>!</FeedText.Text>
                             </>
                           ) : (
                             <>
-                              <FeedText.Activity theme={theme}>
+                              <FeedText.Activity>
                                 {item.level?.level}º nível
                               </FeedText.Activity>
-                              <FeedText.Text theme={theme}>!</FeedText.Text>
+                              <FeedText.Text>!</FeedText.Text>
                             </>
                           )}
                         </FeedItem.Row>
                       );
+
                     case 'rank':
                       return (
                         <FeedItem.Row>
-                          <FeedText.Name theme={theme}>
-                            {item.user.firstname}
-                            {item.user.lastname && ` ${item.user.lastname}`}
+                          <FeedText.Name>
+                            {item.player.user.firstname}
+                            {item.player.user.lastname &&
+                              ` ${item.player.user.lastname}`}
                           </FeedText.Name>
 
-                          <FeedText.Text theme={theme}>
-                            {' '}
-                            conseguiu a patente{' '}
-                          </FeedText.Text>
+                          <FeedText.Text> conseguiu a patente </FeedText.Text>
 
-                          <FeedText.Rank
+                          <Rank
                             background={
                               item.rank?.color || theme.primaryContrast
                             }
@@ -187,9 +167,9 @@ const Feed: React.FC = () => {
                             )}
                           >
                             {item.rank?.tag}
-                          </FeedText.Rank>
+                          </Rank>
 
-                          <FeedText.Text theme={theme}>!</FeedText.Text>
+                          <FeedText.Text>!</FeedText.Text>
                         </FeedItem.Row>
                       );
                     default:
@@ -198,8 +178,9 @@ const Feed: React.FC = () => {
                 })()}
               </FeedItem.Info>
             </FeedItem.Content>
+
             <FeedItem.Meta>
-              <FeedItem.MetaText theme={theme}>
+              <FeedItem.MetaText>
                 {showDate(new Date(item.date))}
               </FeedItem.MetaText>
             </FeedItem.Meta>
@@ -208,6 +189,10 @@ const Feed: React.FC = () => {
       />
     </Container>
   );
+};
+
+Feed.propTypes = {
+  theme: themeProps,
 };
 
 export default Feed;

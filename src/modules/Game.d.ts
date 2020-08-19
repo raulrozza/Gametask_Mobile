@@ -9,28 +9,6 @@ declare module 'game' {
     tag: string;
   }
 
-  export interface ILevelInfo {
-    level: number;
-    requiredExperience: number;
-    title: string;
-  }
-
-  export interface IRankingItem {
-    currentExperience: number;
-    user: IUser;
-  }
-
-  export interface IGame {
-    id: string;
-    name: string;
-    description: string;
-    image_url: string;
-    weeklyRanking: IRankingItem[];
-    ranks: IRank[];
-    levelInfo: ILevelInfo[];
-    theme: colorPallete;
-  }
-
   export interface ITitle {
     _id: string;
     name: string;
@@ -53,9 +31,48 @@ declare module 'game' {
     obtained?: boolean;
   }
 
-  export interface GameHook {
+  export interface IPlayer {
+    _id: string;
+    experience: number;
+    level: number;
+    currentTitle: {
+      name: string;
+    };
+    achievements: IAchievement[];
+    rank: IRank;
+    user: IUser;
+    [key: string]: string;
+  }
+
+  export interface ILevelInfo {
+    level: number;
+    requiredExperience: number;
+    title: string;
+  }
+
+  export interface IRankingItem {
+    currentExperience: number;
+    player: IPlayer;
+  }
+
+  export interface IGame {
+    _id: string;
+    id: string;
+    name: string;
+    description: string;
+    image?: string;
+    image_url: string;
+    weeklyRanking: IRankingItem[];
+    ranks: IRank[];
+    levelInfo: ILevelInfo[];
+    theme: colorPallete;
+  }
+
+  export interface IGameHook {
     game: IGame;
+    player: IPlayer;
     loading: boolean;
     achievements: IAchievement[];
+    switchGame: (game?: IGame) => void;
   }
 }

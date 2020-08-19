@@ -1,27 +1,19 @@
 import styled, { css } from 'styled-components/native';
-import { ColorPallete } from 'theme';
 
 // Icons
 import { Feather } from '@expo/vector-icons';
-
-interface Props {
-  theme: ColorPallete;
-}
-
-interface AchievementProps {
-  obtained: boolean;
-}
+import { AchievementProps } from '../types';
 
 export const Container = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
     alignItems: 'center',
   },
-}))<Props>`
+}))`
   background-color: ${({ theme }) => theme.primaryIntense};
   min-height: 100%;
 `;
 
-export const Header = styled.View<Props>`
+export const Header = styled.View`
   width: 100%;
   background-color: ${({ theme }) => theme.primary};
   border-style: solid;
@@ -29,7 +21,7 @@ export const Header = styled.View<Props>`
   border-bottom-color: ${({ theme }) => theme.primaryShade};
 `;
 
-export const Title = styled.Text<Props>`
+export const Title = styled.Text`
   width: 100%;
   padding: 15px;
   color: ${({ theme }) => theme.primaryContrast};
@@ -37,7 +29,7 @@ export const Title = styled.Text<Props>`
   font-size: 24px;
 `;
 
-export const UserImage = styled.Image<Props>`
+export const UserImage = styled.Image`
   border-radius: 75px;
   border-width: 6px;
   border-color: ${({ theme }) => theme.primaryShade};
@@ -46,67 +38,69 @@ export const UserImage = styled.Image<Props>`
   margin-top: 12px;
 `;
 
-export const LevelInfo = styled.View`
-  min-width: 64px;
-  max-width: 128px;
-  margin-top: 16px;
-  background-color: gold;
-  border-width: 6px;
-  border-top-color: darkgoldenrod;
-  border-left-color: darkgoldenrod;
-  border-bottom-color: goldenrod;
-  border-right-color: goldenrod;
-  padding: 4px;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const LevelInfoText = styled.Text`
-  color: goldenrod;
-  font-weight: bold;
-  font-family: Roboto;
-  font-size: 36px;
-`;
-
-export const LevelInfoExp = styled.Text`
-  text-align: center;
-`;
+export const LevelInfo = {
+  View: styled.View`
+    min-width: 64px;
+    max-width: 128px;
+    margin-top: 16px;
+    background-color: gold;
+    border-width: 6px;
+    border-top-color: darkgoldenrod;
+    border-left-color: darkgoldenrod;
+    border-bottom-color: goldenrod;
+    border-right-color: goldenrod;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+  `,
+  Text: styled.Text`
+    color: goldenrod;
+    font-weight: bold;
+    font-family: Roboto;
+    font-size: 36px;
+  `,
+  Exp: styled.Text`
+    text-align: center;
+  `,
+};
 
 export const BarContainer = styled.View`
   margin-top: 16px;
   width: 80%;
 `;
 
-export const NextLevelContainer = styled.View`
-  width: 80%;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding: 0 12px;
-`;
+export const NextLevel = {
+  Container: styled.View`
+    width: 80%;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0 12px;
+  `,
+  Text: styled.Text`
+    color: ${({ theme }) => theme.primaryContrast};
+  `,
+};
 
-export const NextLevelText = styled.Text<Props>`
-  color: ${({ theme }) => theme.primaryContrast};
-`;
-
-export const AchievementsContainer = styled.View<Props>`
-  width: 80%;
-  border-radius: 5px;
-  padding: 8px;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  background-color: ${({ theme }) => theme.primary};
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
-export const AchievementsTitle = styled.Text<Props>`
-  width: 100%;
-  text-align: center;
-  color: ${({ theme }) => theme.primaryContrast};
-  font-weight: bold;
-  font-size: 36px;
-  margin: 8px 0;
-`;
+export const AchievementsList = {
+  Container: styled.View`
+    width: 80%;
+    border-radius: 5px;
+    padding: 8px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    background-color: ${({ theme }) => theme.primary};
+    flex-direction: row;
+    flex-wrap: wrap;
+  `,
+  Text: styled.Text`
+    width: 100%;
+    text-align: center;
+    color: ${({ theme }) => theme.primaryContrast};
+    font-weight: bold;
+    font-size: 36px;
+    margin: 8px 0;
+  `,
+};
 
 export const Achievement = {
   Container: styled.View<AchievementProps>`
@@ -126,14 +120,14 @@ export const Achievement = {
     border-radius: 48px;
     margin-bottom: 8px;
   `,
-  Text: styled.Text<Props>`
+  Text: styled.Text`
     font-weight: bold;
     color: ${({ theme }) => theme.secondary};
   `,
 };
 
 export const BottomOption = {
-  Button: styled.TouchableOpacity<Props>`
+  Button: styled.TouchableOpacity`
     width: 100%;
     height: 48px;
     flex-direction: row;
@@ -145,12 +139,12 @@ export const BottomOption = {
       border-color: ${theme.primaryShade};
     `}
   `,
-  Icon: styled(Feather)<Props>`
+  Icon: styled(Feather)`
     color: ${({ theme }) => theme.secondaryIntense};
     font-size: 24px;
     font-weight: bold;
   `,
-  Text: styled.Text<Props>`
+  Text: styled.Text`
     color: ${({ theme }) => theme.secondaryIntense};
     font-size: 24px;
     font-weight: bold;

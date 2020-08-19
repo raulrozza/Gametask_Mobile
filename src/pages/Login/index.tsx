@@ -5,7 +5,6 @@ import Input from '../../components/Input';
 
 // Contexts
 import { useAuth } from '../../contexts/Authorization';
-import { useTheme } from '../../contexts/Theme';
 
 // Formik
 import { Formik } from 'formik';
@@ -16,22 +15,19 @@ import * as Yup from 'yup';
 // Services
 import api from '../../services/api';
 
+// Styles
 import {
   HomePage,
   TitleContainer,
   Title,
-  TitleText,
   FormContainer,
   Container,
   FormToggle,
   ToggleButton,
-  ToggleButtonText,
   Form,
   InputGroup,
   ErrorField,
-  ErrorFieldText,
-  ConfirmButton,
-  ConfirmButtonText,
+  Confirm,
 } from './styles';
 
 const LoginSchema = Yup.object().shape({
@@ -55,39 +51,33 @@ const Login: React.FC = () => {
   const [formToggle, setFormToggle] = useState(true);
   // Auth
   const { signIn } = useAuth();
-  // Theme
-  const { theme } = useTheme();
 
   return (
-    <HomePage theme={theme}>
+    <HomePage>
       <TitleContainer>
-        <Title theme={theme}>
-          <TitleText theme={theme}>GAMETASK</TitleText>
-        </Title>
+        <Title.View>
+          <Title.Text>GAMETASK</Title.Text>
+        </Title.View>
       </TitleContainer>
 
       <FormContainer>
-        <Container theme={theme}>
+        <Container>
           <FormToggle>
-            <ToggleButton
-              theme={theme}
+            <ToggleButton.Button
               active={formToggle}
               onPress={() => setFormToggle(true)}
             >
-              <ToggleButtonText theme={theme} active={formToggle}>
-                Entre
-              </ToggleButtonText>
-            </ToggleButton>
+              <ToggleButton.Text active={formToggle}>Entre</ToggleButton.Text>
+            </ToggleButton.Button>
 
-            <ToggleButton
-              theme={theme}
+            <ToggleButton.Button
               active={!formToggle}
               onPress={() => setFormToggle(false)}
             >
-              <ToggleButtonText theme={theme} active={!formToggle}>
+              <ToggleButton.Text active={!formToggle}>
                 Cadastre-se
-              </ToggleButtonText>
-            </ToggleButton>
+              </ToggleButton.Text>
+            </ToggleButton.Button>
           </FormToggle>
           <Formik
             initialValues={{
@@ -130,9 +120,9 @@ const Login: React.FC = () => {
                     autoCapitalize="none"
                   />
                   {errors.email && touched.email ? (
-                    <ErrorField>
-                      <ErrorFieldText>{errors.email}</ErrorFieldText>
-                    </ErrorField>
+                    <ErrorField.View>
+                      <ErrorField.Text>{errors.email}</ErrorField.Text>
+                    </ErrorField.View>
                   ) : null}
                 </InputGroup>
 
@@ -146,20 +136,19 @@ const Login: React.FC = () => {
                     secureTextEntry
                   />
                   {errors.password && touched.password ? (
-                    <ErrorField>
-                      <ErrorFieldText>{errors.password}</ErrorFieldText>
-                    </ErrorField>
+                    <ErrorField.View>
+                      <ErrorField.Text>{errors.password}</ErrorField.Text>
+                    </ErrorField.View>
                   ) : null}
                 </InputGroup>
 
                 <InputGroup>
-                  <ConfirmButton
+                  <Confirm.Button
                     onPress={() => handleSubmit()}
                     disabled={loginButtonDisabled}
-                    theme={theme}
                   >
-                    <ConfirmButtonText theme={theme}>Entrar</ConfirmButtonText>
-                  </ConfirmButton>
+                    <Confirm.Text>Entrar</Confirm.Text>
+                  </Confirm.Button>
                 </InputGroup>
               </Form>
             )}
@@ -185,7 +174,7 @@ const Login: React.FC = () => {
 
               // Post user in the API
               try {
-                await api.post('/signup', values);
+                await api.post('/user/signup', values);
 
                 setFormToggle(true);
               } catch (error) {
@@ -215,9 +204,9 @@ const Login: React.FC = () => {
                     autoCapitalize="words"
                   />
                   {errors.firstname && touched.firstname ? (
-                    <ErrorField>
-                      <ErrorFieldText>{errors.firstname}</ErrorFieldText>
-                    </ErrorField>
+                    <ErrorField.View>
+                      <ErrorField.Text>{errors.firstname}</ErrorField.Text>
+                    </ErrorField.View>
                   ) : null}
                 </InputGroup>
 
@@ -231,9 +220,9 @@ const Login: React.FC = () => {
                     autoCapitalize="words"
                   />
                   {errors.lastname && touched.lastname ? (
-                    <ErrorField>
-                      <ErrorFieldText>{errors.lastname}</ErrorFieldText>
-                    </ErrorField>
+                    <ErrorField.View>
+                      <ErrorField.Text>{errors.lastname}</ErrorField.Text>
+                    </ErrorField.View>
                   ) : null}
                 </InputGroup>
 
@@ -248,9 +237,9 @@ const Login: React.FC = () => {
                     autoCapitalize="none"
                   />
                   {errors.email && touched.email ? (
-                    <ErrorField>
-                      <ErrorFieldText>{errors.email}</ErrorFieldText>
-                    </ErrorField>
+                    <ErrorField.View>
+                      <ErrorField.Text>{errors.email}</ErrorField.Text>
+                    </ErrorField.View>
                   ) : null}
                 </InputGroup>
 
@@ -264,9 +253,9 @@ const Login: React.FC = () => {
                     secureTextEntry
                   />
                   {errors.password && touched.password ? (
-                    <ErrorField>
-                      <ErrorFieldText>{errors.password}</ErrorFieldText>
-                    </ErrorField>
+                    <ErrorField.View>
+                      <ErrorField.Text>{errors.password}</ErrorField.Text>
+                    </ErrorField.View>
                   ) : null}
                 </InputGroup>
 
@@ -280,22 +269,21 @@ const Login: React.FC = () => {
                     secureTextEntry
                   />
                   {errors.confirmPassword && touched.confirmPassword ? (
-                    <ErrorField>
-                      <ErrorFieldText>{errors.confirmPassword}</ErrorFieldText>
-                    </ErrorField>
+                    <ErrorField.View>
+                      <ErrorField.Text>
+                        {errors.confirmPassword}
+                      </ErrorField.Text>
+                    </ErrorField.View>
                   ) : null}
                 </InputGroup>
 
                 <InputGroup>
-                  <ConfirmButton
+                  <Confirm.Button
                     onPress={() => handleSubmit()}
                     disabled={signupButtonDisabled}
-                    theme={theme}
                   >
-                    <ConfirmButtonText theme={theme}>
-                      Cadastrar
-                    </ConfirmButtonText>
-                  </ConfirmButton>
+                    <Confirm.Text>Cadastrar</Confirm.Text>
+                  </Confirm.Button>
                 </InputGroup>
               </Form>
             )}

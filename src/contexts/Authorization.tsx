@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { AsyncStorage } from 'react-native';
-import { IUser, Auth } from 'authorization';
+import { IUser, IAuth } from 'authorization';
 
 // Contexts
 import { useTheme } from './Theme';
@@ -41,6 +41,7 @@ const Authorization: React.FC = ({ children }) => {
   const signOut = async () => {
     await AsyncStorage.clear();
     setUser({} as IUser);
+    changeTheme({});
     setLogged(false);
   };
 
@@ -53,8 +54,8 @@ const Authorization: React.FC = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
-  const auth = useContext(AuthorizationContext) as Auth;
+export const useAuth: () => IAuth = () => {
+  const auth = useContext(AuthorizationContext) as IAuth;
 
   return auth;
 };

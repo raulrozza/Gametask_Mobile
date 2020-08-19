@@ -1,76 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { IRank, ILevelInfo } from 'game';
-import { ColorPallete } from 'theme';
+
+// Contexts
+import { useGame } from '../../../contexts/Game';
+import { defaultTheme, fillPallete } from '../../../contexts/Theme';
+import { useAuth } from '../../../contexts/Authorization';
+
+// Components
+import ProgressBar from '../../../components/ProgressBar';
 
 // Styles
+import { withTheme } from 'styled-components';
 import {
   Container,
   Header,
   Title,
   UserImage,
   LevelInfo,
-  LevelInfoText,
-  LevelInfoExp,
   BarContainer,
-  NextLevelContainer,
-  NextLevelText,
-  AchievementsContainer,
-  AchievementsTitle,
+  NextLevel,
+  AchievementsList,
   Achievement,
   BottomOption,
 } from './styles';
 
-// Contexts
-import { useGame } from '../../contexts/Game';
-import { useTheme } from '../../contexts/Theme';
-import { useAuth } from '../../contexts/Authorization';
+// Types
+import { IColorPallete, IThemedComponent, themeProps } from 'theme';
+import { IUserMeta } from '../types';
 
-// Components
-import ProgressBar from '../ProgressBar';
-
-// Utils
-import getUserRanks from '../../utils/getUserRank';
-
-interface UserMeta {
-  rank: IRank | undefined;
-  nextLevel: ILevelInfo | undefined;
-}
-
-const PlayerProfile: React.FC = () => {
+const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   const { user, signOut } = useAuth();
-  const { theme, defaultTheme, fillPallete } = useTheme();
-  const { game, achievements: defaultAchievements } = useGame();
+  const { game, player, achievements: defaultAchievements } = useGame();
   const { navigate } = useNavigation();
 
-  const [rankPallete, setRankPallete] = useState<ColorPallete>(defaultTheme);
-  const [userMeta, setUserMeta] = useState<UserMeta>({
+  const [rankPallete, setRankPallete] = useState<IColorPallete>(defaultTheme);
+  const [userMeta, setUserMeta] = useState<IUserMeta>({
     rank: undefined,
     nextLevel: undefined,
   });
   const [achievements, setAchievements] = useState(defaultAchievements);
 
   useEffect(() => {
-    const { ranks, levelInfo } = game;
+    const { levelInfo } = game;
     const nextLevel = levelInfo
       .sort((a, b) => a.level - b.level)
-      .find(info => user.level < info.level);
-    const currentRank = getUserRanks(ranks, user);
+      .find(info => player.level < info.level);
 
-    if (currentRank) setRankPallete(fillPallete('primary', currentRank.color));
+    if (player.rank) setRankPallete(fillPallete('primary', player.rank.color));
 
     setAchievements(
       achievements.map(achievement => {
         return {
           ...achievement,
-          obtained: user.achievements.includes(achievement),
+          obtained: player.achievements.includes(achievement),
         };
       }),
     );
 
     setUserMeta({
-      rank: currentRank,
+      rank: player.rank,
       nextLevel: nextLevel,
     });
   }, [game]);
@@ -86,8 +75,8 @@ const PlayerProfile: React.FC = () => {
         </Header>
         {user.currentTitle && (
           <Text>
-            {user.currentTitle && `${user.currentTitle} `}
-            {user.currentTitle.name}
+            {player.currentTitle && `${player.currentTitle} `}
+            {player.currentTitle.name}
           </Text>
         )}
 
@@ -102,10 +91,10 @@ const PlayerProfile: React.FC = () => {
           }
         />
 
-        <LevelInfo>
-          <LevelInfoText>{user.level}</LevelInfoText>
-          <LevelInfoExp>{user.experience} XP</LevelInfoExp>
-        </LevelInfo>
+        <LevelInfo.View>
+          <LevelInfo.Text>{user.level}</LevelInfo.Text>
+          <LevelInfo.Exp>{user.experience} XP</LevelInfo.Exp>
+        </LevelInfo.View>
 
         <BarContainer>
           <ProgressBar
@@ -114,23 +103,23 @@ const PlayerProfile: React.FC = () => {
             borderColor={rankPallete.primaryShade}
             progress={
               userMeta.nextLevel
-                ? user.experience / userMeta.nextLevel.requiredExperience
+                ? player.experience / userMeta.nextLevel.requiredExperience
                 : 1
             }
           />
         </BarContainer>
 
         {userMeta.nextLevel && (
-          <NextLevelContainer>
-            <NextLevelText theme={rankPallete}>
-              Faltam {userMeta.nextLevel.requiredExperience - user.experience}{' '}
+          <NextLevel.Container>
+            <NextLevel.Text theme={rankPallete}>
+              Faltam {userMeta.nextLevel.requiredExperience - player.experience}{' '}
               XP
-            </NextLevelText>
-          </NextLevelContainer>
+            </NextLevel.Text>
+          </NextLevel.Container>
         )}
 
-        <AchievementsContainer theme={theme}>
-          <AchievementsTitle theme={theme}>Conquistas</AchievementsTitle>
+        <AchievementsList.Container>
+          <AchievementsList.Text>Conquistas</AchievementsList.Text>
           {achievements.map(achievement => (
             <Achievement.Container
               key={achievement.id}
@@ -150,20 +139,22 @@ const PlayerProfile: React.FC = () => {
                     : require('../../assets/img/achievements/placeholder.png')
                 }
               />
-              <Achievement.Text theme={theme}>
-                {achievement.name}
-              </Achievement.Text>
+              <Achievement.Text>{achievement.name}</Achievement.Text>
             </Achievement.Container>
           ))}
-        </AchievementsContainer>
+        </AchievementsList.Container>
 
-        <BottomOption.Button theme={theme} onPress={() => signOut()}>
-          <BottomOption.Icon theme={theme} name="log-out" />
-          <BottomOption.Text theme={theme}> Sair</BottomOption.Text>
+        <BottomOption.Button onPress={() => signOut()}>
+          <BottomOption.Icon name="log-out" />
+          <BottomOption.Text> Sair</BottomOption.Text>
         </BottomOption.Button>
       </Container>
     </SafeAreaView>
   );
 };
 
-export default PlayerProfile;
+PlayerProfile.propTypes = {
+  theme: themeProps,
+};
+
+export default withTheme(PlayerProfile);

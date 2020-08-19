@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Components
-import PlayerProfile from '../../components/PlayerProfile';
+import PlayerProfile from './PlayerProfile';
 import Achievement from '../../components/Achievement';
 
 const Stack = createStackNavigator();

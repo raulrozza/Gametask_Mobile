@@ -13,65 +13,77 @@ import { useGame } from '../contexts/Game';
 
 // Pages
 import Home from '../pages/Home';
+import Lobby from '../pages/Lobby';
 import Profile from '../pages/Profile';
 import Register from '../pages/Register';
 
-// Utils
-import { useTheme } from '../contexts/Theme';
+// Styles
+import { withTheme } from 'styled-components';
+
+// Types
+import { IThemedComponent, themeProps } from 'theme';
 
 const Tab = createBottomTabNavigator();
 
-const GameRoutes: React.FC = () => {
-  const { theme } = useTheme();
-  const { loading } = useGame();
+const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
+  const { game, loading } = useGame();
 
   if (loading) return <AppLoading />;
 
-  return (
-    <>
-      <NavigationContainer>
-        <Tab.Navigator
-          tabBarOptions={{
-            style: {
-              backgroundColor: theme.primary,
-              borderTopColor: theme.secondaryLowShade,
-            },
-            activeTintColor: theme.secondaryShade,
-            inactiveTintColor: theme.primaryContrast,
-          }}
-        >
-          <Tab.Screen
-            options={{
-              title: 'Principal',
-              tabBarIcon: props => <Feather name="list" {...props} />,
+  if (game)
+    return (
+      <>
+        <NavigationContainer>
+          <Tab.Navigator
+            tabBarOptions={{
+              style: {
+                backgroundColor: theme.primary,
+                borderTopColor: theme.secondaryLowShade,
+              },
+              activeTintColor: theme.secondaryShade,
+              inactiveTintColor: theme.primaryContrast,
             }}
-            name="Home"
-            component={Home}
-          />
-          <Tab.Screen
-            options={{
-              title: 'Atividades',
-              tabBarIcon: props => (
-                <MaterialCommunityIcons name="trophy-award" {...props} />
-              ),
-            }}
-            name="Register"
-            component={Register}
-          />
-          <Tab.Screen
-            options={{
-              title: 'Perfil',
-              tabBarIcon: props => (
-                <FontAwesome name="user-circle-o" {...props} />
-              ),
-            }}
-            name="Profile"
-            component={Profile}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </>
-  );
+          >
+            <Tab.Screen
+              options={{
+                title: 'Principal',
+                tabBarIcon: props => <Feather name="list" {...props} />,
+              }}
+              name="Home"
+              component={Home}
+            />
+
+            <Tab.Screen
+              options={{
+                title: 'Atividades',
+                tabBarIcon: props => (
+                  <MaterialCommunityIcons name="trophy-award" {...props} />
+                ),
+              }}
+              name="Register"
+              component={Register}
+            />
+
+            <Tab.Screen
+              options={{
+                title: 'Perfil',
+                tabBarIcon: props => (
+                  <FontAwesome name="user-circle-o" {...props} />
+                ),
+              }}
+              name="Profile"
+              component={Profile}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </>
+    );
+
+  return <Lobby />;
 };
 
-export default GameRoutes;
+GameRoutes.propTypes = {
+  theme: themeProps,
+};
+
+export default withTheme(GameRoutes);

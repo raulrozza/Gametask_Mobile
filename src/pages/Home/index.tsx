@@ -2,17 +2,18 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 // Pages
-import Feed from '../../components/Feed';
-import Ranking from '../../components/Ranking';
+import Feed from './Feed';
+import Ranking from './Ranking';
 
-// Contexts
-import { useTheme } from '../../contexts/Theme';
+// Styles
+import { withTheme } from 'styled-components';
+
+// Types
+import { IThemedComponent, themeProps } from 'theme';
 
 const Tab = createMaterialTopTabNavigator();
 
-const Home: React.FC = () => {
-  const { theme } = useTheme();
-
+const Home: React.FC<IThemedComponent> = ({ theme }) => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -33,4 +34,8 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+Home.propTypes = {
+  theme: themeProps,
+};
+
+export default withTheme(Home);

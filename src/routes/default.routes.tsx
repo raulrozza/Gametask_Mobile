@@ -7,7 +7,7 @@ const DefaultRoutes: React.FC = () => {
   const { changeTheme } = useTheme();
 
   useEffect(() => {
-    changeTheme();
+    changeTheme({});
   }, []);
 
   return <Login />;

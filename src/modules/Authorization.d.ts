@@ -6,23 +6,17 @@ declare module 'authorization' {
     token: string;
     firstname: string;
     lastname: string;
-    experience: number;
-    level: number;
     email: string;
-    currentTitle: {
-      name: string;
-    };
-    achievements: IAchievement[];
     image?: string;
     profile_url: string;
     [key: string]: string;
   }
 
-  export interface Auth {
+  export interface IAuth {
     user: IUser;
     logged: boolean;
     loading: boolean;
-    signIn: Function;
-    signOut: Function;
+    signIn: (user: IUser) => void;
+    signOut: () => void;
   }
 }
