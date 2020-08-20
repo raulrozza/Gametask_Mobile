@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Styles
 import { BarContainer, Progress } from './styles';
 
-interface Props {
-  unfilledColor: string;
-  borderColor: string;
-  fillColor: string;
-  progress?: number;
-}
+// Types
+import { IProgressBar } from './types';
 
-const ProgressBar: React.FC<Props> = ({
+const ProgressBar: React.FC<IProgressBar> = ({
   unfilledColor,
   fillColor,
   borderColor,
