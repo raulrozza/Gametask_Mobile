@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components/native';
-import { DateText, ButtonProps } from '../types';
+import { IDateInputText, IFooterConfirm } from '../types';
 
 export const Container = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
@@ -57,7 +57,7 @@ export const DateInput = {
       border: 1px solid ${theme.primaryShade};
     `}
   `,
-  Text: styled.Text<DateText>`
+  Text: styled.Text<IDateInputText>`
     color: ${({ theme, date }) =>
       date ? theme.primaryContrast : theme.primaryShade};
   `,
@@ -94,7 +94,7 @@ export const Footer = {
   BackText: styled.Text`
     color: ${({ theme }) => theme.secondary};
   `,
-  Confirm: styled.TouchableOpacity<ButtonProps>`
+  Confirm: styled.TouchableOpacity<IFooterConfirm>`
     padding: 10px;
     border-radius: 5px;
     background-color: ${({ theme, disabled }) =>

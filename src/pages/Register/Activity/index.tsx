@@ -19,7 +19,7 @@ import Input from '../../../components/Input';
 import api from '../../../services/api';
 
 // Types
-import { ActivityRouteProps } from '../types';
+import { ActivityRouteProp } from '../types';
 
 // Styles
 import {
@@ -44,7 +44,7 @@ const RegisterSchema = Yup.object().shape({
 const ActivityInfo: React.FC = () => {
   const {
     params: { activity },
-  } = useRoute<ActivityRouteProps>();
+  } = useRoute<ActivityRouteProp>();
   const { goBack } = useNavigation();
   const { user } = useAuth();
   const { game } = useGame();

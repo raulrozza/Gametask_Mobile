@@ -5,13 +5,13 @@ type ParamList = {
   achievementDetails: { achievement: IAchievement };
 };
 
-export type AchievementRouteProps = RouteProp<ParamList, 'achievementDetails'>;
+export type AchievementRouteProp = RouteProp<ParamList, 'achievementDetails'>;
 
 export interface IUserMeta {
   rank: IRank | undefined;
   nextLevel: ILevelInfo | undefined;
 }
 
-export interface AchievementProps {
+export interface IAchievementStyle {
   obtained: boolean;
 }

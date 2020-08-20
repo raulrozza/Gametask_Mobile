@@ -11,6 +11,6 @@ export interface IFeed {
   date: Date;
 }
 
-export interface IconProps {
+export interface IRankingTextIcon {
   index: number;
 }

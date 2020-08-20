@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components/native';
 
 // Icons
 import { Feather } from '@expo/vector-icons';
-import { AchievementProps } from '../types';
+import { IAchievementStyle } from '../types';
 
 export const Container = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
@@ -103,7 +103,7 @@ export const AchievementsList = {
 };
 
 export const Achievement = {
-  Container: styled.View<AchievementProps>`
+  Container: styled.View<IAchievementStyle>`
     justify-content: center;
     align-items: center;
     width: 50%;

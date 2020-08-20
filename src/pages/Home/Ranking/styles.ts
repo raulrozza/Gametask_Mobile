@@ -1,11 +1,6 @@
 import styled from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
-import { IconProps } from '../types';
-
-interface RankProps {
-  background: string;
-  text: string;
-}
+import { IRankingTextIcon } from '../types';
 
 const trophyColor = ['gold', 'silver', 'bronze'];
 
@@ -41,7 +36,7 @@ export const RankingText = {
     font-weight: bold;
     font-size: 24px;
   `,
-  Icon: styled(FontAwesome)<IconProps>`
+  Icon: styled(FontAwesome)<IRankingTextIcon>`
     margin-right: 4px;
     font-size: 24px;
     color: ${({ index }) => trophyColor[index]};

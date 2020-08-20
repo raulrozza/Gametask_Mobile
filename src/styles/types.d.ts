@@ -1,4 +1,4 @@
-export interface RankProps {
+export interface IRankStyle {
   background: string;
   text: string;
 }
