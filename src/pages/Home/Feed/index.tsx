@@ -7,7 +7,8 @@ import { getTextColor } from '../../../contexts/Theme';
 
 // Types
 import { IFeed } from '../types';
-import { IThemedComponent, themeProps } from 'theme';
+import { IThemedComponent } from 'theme';
+import { themeProps } from '../../../modules/PropTypes';
 
 // Services
 import api from '../../../services/api';
@@ -67,7 +68,7 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
                     ? {
                         uri: item.player.user.profile_url,
                       }
-                    : require('../../assets/img/users/placeholder.png')
+                    : require('../../../assets/img/users/placeholder.png')
                 }
               />
 

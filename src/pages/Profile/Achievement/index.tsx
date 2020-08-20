@@ -28,7 +28,7 @@ const AchievementDetails: React.FC = () => {
             ? {
                 uri: achievement.image_url,
               }
-            : require('../../assets/img/achievements/placeholder.png')
+            : require('../../../assets/img/achievements/placeholder.png')
         }
       />
       <Name>{achievement.name}</Name>

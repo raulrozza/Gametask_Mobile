@@ -26,8 +26,9 @@ import {
 } from './styles';
 
 // Types
-import { IColorPallete, IThemedComponent, themeProps } from 'theme';
+import { IColorPallete, IThemedComponent } from 'theme';
 import { IUserMeta } from '../types';
+import { themeProps } from '../../../modules/PropTypes';
 
 const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   const { user, signOut } = useAuth();
@@ -87,7 +88,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
               ? {
                   uri: user.profile_url,
                 }
-              : require('../../assets/img/users/placeholder.png')
+              : require('../../../assets/img/users/placeholder.png')
           }
         />
 
@@ -136,7 +137,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
                     ? {
                         uri: achievement.image_url,
                       }
-                    : require('../../assets/img/achievements/placeholder.png')
+                    : require('../../../assets/img/achievements/placeholder.png')
                 }
               />
               <Achievement.Text>{achievement.name}</Achievement.Text>

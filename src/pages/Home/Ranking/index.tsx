@@ -29,7 +29,7 @@ const Ranking: React.FC = () => {
                   ? {
                       uri: item.player.user.profile_url,
                     }
-                  : require('../../assets/img/users/placeholder.png')
+                  : require('../../../assets/img/users/placeholder.png')
               }
             />
 

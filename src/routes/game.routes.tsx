@@ -21,7 +21,8 @@ import Register from '../pages/Register/index.routes';
 import { withTheme } from 'styled-components';
 
 // Types
-import { IThemedComponent, themeProps } from 'theme';
+import { IThemedComponent } from 'theme';
+import { themeProps } from '../modules/PropTypes';
 
 const Tab = createBottomTabNavigator();
 

@@ -9,7 +9,8 @@ import Ranking from './Ranking';
 import { withTheme } from 'styled-components';
 
 // Types
-import { IThemedComponent, themeProps } from 'theme';
+import { IThemedComponent } from 'theme';
+import { themeProps } from '../../modules/PropTypes';
 
 const Tab = createMaterialTopTabNavigator();
 
