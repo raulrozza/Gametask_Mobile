@@ -12,10 +12,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useGame } from '../contexts/Game';
 
 // Pages
-import Home from '../pages/Home';
+import Home from '../pages/Home/index.routes';
 import Lobby from '../pages/Lobby';
 import Profile from '../pages/Profile';
-import Register from '../pages/Register';
+import Register from '../pages/Register/index.routes';
 
 // Styles
 import { withTheme } from 'styled-components';

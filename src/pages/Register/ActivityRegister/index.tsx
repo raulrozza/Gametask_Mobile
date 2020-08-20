@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+// Types
 import { IActivity } from 'game';
+
+// Styles
 import {
   Container,
   PageTitle,
@@ -11,14 +15,10 @@ import {
   StyledActivity,
 } from './styles';
 
-// Contexts
-import { useTheme } from '../../contexts/Theme';
-
 // Services
-import api from '../../services/api';
+import api from '../../../services/api';
 
 const ActivityRegister: React.FC = () => {
-  const { theme } = useTheme();
   const { navigate } = useNavigation();
   // States
   const [activities, setActivities] = useState<IActivity[]>([]);
@@ -37,36 +37,31 @@ const ActivityRegister: React.FC = () => {
 
   return (
     <SafeAreaProvider>
-      <Container theme={theme}>
-        <PageTitle theme={theme}>Registrar Atividades</PageTitle>
-        <Description theme={theme}>
+      <Container>
+        <PageTitle>Registrar Atividades</PageTitle>
+        <Description>
           Completou alguma atividade? Informe aos moderadores para ganhar XP!
         </Description>
         <ActivityContainer.View>
-          <ActivityContainer.Title theme={theme}>
-            Atividades
-          </ActivityContainer.Title>
+          <ActivityContainer.Title>Atividades</ActivityContainer.Title>
 
           <FlatList
             keyExtractor={activity => activity._id}
             data={activities}
             renderItem={({ item: activity }) => (
               <StyledActivity.Container
-                theme={theme}
                 onTouchEnd={() => navigate('activity', { activity })}
               >
                 <StyledActivity.InfoContainer>
-                  <StyledActivity.Title theme={theme}>
-                    {activity.name}
-                  </StyledActivity.Title>
+                  <StyledActivity.Title>{activity.name}</StyledActivity.Title>
 
-                  <StyledActivity.Description theme={theme}>
+                  <StyledActivity.Description>
                     {activity.description}
                   </StyledActivity.Description>
                 </StyledActivity.InfoContainer>
 
                 <StyledActivity.ExperienceContainer>
-                  <StyledActivity.ExperienceText theme={theme}>
+                  <StyledActivity.ExperienceText>
                     {activity.experience} XP
                   </StyledActivity.ExperienceText>
                 </StyledActivity.ExperienceContainer>

@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
-import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import DatePicker from '@react-native-community/datetimepicker';
 
 // Contexts
-import { useAuth } from '../../contexts/Authorization';
-import { useTheme } from '../../contexts/Theme';
-import { useGame } from '../../contexts/Game';
+import { useAuth } from '../../../contexts/Authorization';
+import { useGame } from '../../../contexts/Game';
 
-// Modules
-import { IActivity } from 'game';
+// Formik
+import { Formik } from 'formik';
+
+// Yup
+import * as Yup from 'yup';
+
+// Components
+import Input from '../../../components/Input';
+
+// Services
+import api from '../../../services/api';
+
+// Types
+import { ActivityRouteProps } from '../types';
 
 // Styles
 import {
@@ -22,26 +33,8 @@ import {
   Footer,
 } from './styles';
 
-// Formik
-import { Formik } from 'formik';
-
-// Yup
-import * as Yup from 'yup';
-
-// Components
-import Input from '../Input';
-
-// Services
-import api from '../../services/api';
-
 // Utils
-import showDate from '../../utils/showDate';
-
-type ParamList = {
-  activity: { activity: IActivity };
-};
-
-type ActivityRouteProps = RouteProp<ParamList, 'activity'>;
+import showDate from '../../../utils/showDate';
 
 const RegisterSchema = Yup.object().shape({
   date: Yup.date().required('Informe a data'),
@@ -54,7 +47,6 @@ const ActivityInfo: React.FC = () => {
   } = useRoute<ActivityRouteProps>();
   const { goBack } = useNavigation();
   const { user } = useAuth();
-  const { theme } = useTheme();
   const { game } = useGame();
 
   // State
@@ -68,15 +60,15 @@ const ActivityInfo: React.FC = () => {
   };
 
   return (
-    <Container theme={theme}>
-      <Title theme={theme}>Registrar Atividade</Title>
-      <Title theme={theme}>{activity.name}</Title>
-      <Paragraph theme={theme}>
+    <Container>
+      <Title>Registrar Atividade</Title>
+      <Title>{activity.name}</Title>
+      <Paragraph>
         Então você completou esta atividade e quer ganhar seus merecidos{' '}
         {activity.experience} XP? Preencha as informações abaixo, por favor.
       </Paragraph>
 
-      <Info theme={theme}>{activity.description}</Info>
+      <Info>{activity.description}</Info>
 
       <Formik
         initialValues={{
@@ -132,12 +124,11 @@ const ActivityInfo: React.FC = () => {
 
             <Form.InputGroup>
               <DateInput.View
-                theme={theme}
                 onTouchEnd={() => {
                   setShowDatePicker(true);
                 }}
               >
-                <DateInput.Text theme={theme} date={!!selectedDate}>
+                <DateInput.Text date={!!selectedDate}>
                   {selectedDate ? showDate(selectedDate) : 'Data da conclusão'}
                 </DateInput.Text>
               </DateInput.View>
@@ -159,16 +150,15 @@ const ActivityInfo: React.FC = () => {
             </Form.InputGroup>
 
             <Footer.Container>
-              <Footer.Back onPress={() => goBack()} theme={theme}>
-                <Footer.BackText theme={theme}>Voltar</Footer.BackText>
+              <Footer.Back onPress={() => goBack()}>
+                <Footer.BackText>Voltar</Footer.BackText>
               </Footer.Back>
 
               <Footer.Confirm
                 disabled={confirmDisabled}
-                theme={theme}
                 onPress={() => handleSubmit()}
               >
-                <Footer.ConfirmText theme={theme}>Confirmar</Footer.ConfirmText>
+                <Footer.ConfirmText>Confirmar</Footer.ConfirmText>
               </Footer.Confirm>
             </Footer.Container>
           </Form.Container>

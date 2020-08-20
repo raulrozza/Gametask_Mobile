@@ -1,11 +1,6 @@
 import styled from 'styled-components/native';
-import { ColorPallete } from 'theme';
 
-interface Props {
-  theme: ColorPallete;
-}
-
-export const Container = styled.SafeAreaView<Props>`
+export const Container = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.primary};
   flex: 1;
   padding: 12px;
@@ -14,7 +9,7 @@ export const Container = styled.SafeAreaView<Props>`
   padding-bottom: 46px;
 `;
 
-export const PageTitle = styled.Text<Props>`
+export const PageTitle = styled.Text`
   color: ${({ theme }) => theme.primaryContrast};
   font-weight: bold;
   font-size: 24px;
@@ -22,7 +17,7 @@ export const PageTitle = styled.Text<Props>`
   width: 100%;
 `;
 
-export const Description = styled.Text<Props>`
+export const Description = styled.Text`
   color: ${({ theme }) => theme.primaryContrast};
   margin: 16px 0;
   text-align: center;
@@ -32,7 +27,7 @@ export const ActivityContainer = {
   View: styled.View`
     width: 100%;
   `,
-  Title: styled.Text<Props>`
+  Title: styled.Text`
     color: ${({ theme }) => theme.secondary};
     font-weight: bold;
     text-align: center;
@@ -41,7 +36,7 @@ export const ActivityContainer = {
 };
 
 export const StyledActivity = {
-  Container: styled.View<Props>`
+  Container: styled.View`
     padding: 8px;
     flex-direction: row;
     margin-bottom: 16px;
@@ -53,14 +48,14 @@ export const StyledActivity = {
   InfoContainer: styled.View`
     width: 80%;
   `,
-  Title: styled.Text<Props>`
+  Title: styled.Text`
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 8px;
     color: ${({ theme }) => theme.primaryContrast};
     text-transform: uppercase;
   `,
-  Description: styled.Text<Props>`
+  Description: styled.Text`
     color: ${({ theme }) => theme.primaryContrast};
   `,
   ExperienceContainer: styled.View`
@@ -69,7 +64,7 @@ export const StyledActivity = {
     align-items: center;
     margin: 0 4px;
   `,
-  ExperienceText: styled.Text<Props>`
+  ExperienceText: styled.Text`
     font-weight: bold;
     font-size: 18px;
     text-align: center;

@@ -1,29 +1,17 @@
 import styled, { css } from 'styled-components/native';
-import { ColorPallete } from 'theme';
-
-interface Props {
-  theme: ColorPallete;
-}
-
-interface ButtonProps extends Props {
-  disabled: boolean;
-}
-
-interface DateText extends Props {
-  date: boolean;
-}
+import { DateText, ButtonProps } from '../types';
 
 export const Container = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-}))<Props>`
+}))`
   flex: 1;
   background-color: ${({ theme }) => theme.primary};
 `;
 
-export const Title = styled.Text<Props>`
+export const Title = styled.Text`
   font-weight: bold;
   font-size: 24px;
   color: ${({ theme }) => theme.secondary};
@@ -33,7 +21,7 @@ export const Title = styled.Text<Props>`
   text-transform: capitalize;
 `;
 
-export const Paragraph = styled.Text<Props>`
+export const Paragraph = styled.Text`
   text-align: center;
   color: ${({ theme }) => theme.primaryContrast};
   width: 100%;
@@ -41,7 +29,7 @@ export const Paragraph = styled.Text<Props>`
   padding: 0 16px;
 `;
 
-export const Info = styled.Text<Props>`
+export const Info = styled.Text`
   text-align: center;
   color: ${({ theme }) => theme.primaryContrast};
   width: 100%;
@@ -60,7 +48,7 @@ export const Form = {
 };
 
 export const DateInput = {
-  View: styled.View<Props>`
+  View: styled.View`
     width: 100%;
     border-radius: 5px;
     padding: 12px;
@@ -95,7 +83,7 @@ export const Footer = {
     justify-content: space-around;
     margin-top: 8px;
   `,
-  Back: styled.TouchableOpacity<Props>`
+  Back: styled.TouchableOpacity`
     border-width: 1px;
     padding: 8px;
     border-radius: 5px;
@@ -103,7 +91,7 @@ export const Footer = {
     width: 100px;
     align-items: center;
   `,
-  BackText: styled.Text<Props>`
+  BackText: styled.Text`
     color: ${({ theme }) => theme.secondary};
   `,
   Confirm: styled.TouchableOpacity<ButtonProps>`
@@ -114,7 +102,7 @@ export const Footer = {
     width: 100px;
     align-items: center;
   `,
-  ConfirmText: styled.Text<Props>`
+  ConfirmText: styled.Text`
     color: ${({ theme }) => theme.secondaryContrast};
   `,
 };
