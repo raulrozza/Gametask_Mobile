@@ -1,13 +1,7 @@
 import styled, { css } from 'styled-components/native';
-import { ColorPallete } from 'theme';
+import { IStyledInput } from './types';
 
-interface Props {
-  theme: ColorPallete;
-  focused: boolean;
-  multiline?: boolean;
-}
-
-export const StyledInput = styled.TextInput<Props>`
+export const StyledInput = styled.TextInput<IStyledInput>`
   width: 100%;
   border-radius: 5px;
   padding: 0 12px;

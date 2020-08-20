@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { TextInputProps } from 'react-native';
 
-// Contexts
-import { useTheme } from '../../contexts/Theme';
-
+// Styles
+import { withTheme } from 'styled-components';
 import { StyledInput } from './styles';
 
-const Input: React.FC<TextInputProps> = ({ onBlur, ...props }) => {
+// Types
+import { IInput } from './types';
+import { themeProps } from 'theme';
+
+const Input: React.FC<IInput> = ({ theme, onBlur, ...props }) => {
   const [focused, setFocus] = useState(false);
-  const { theme } = useTheme();
 
   return (
     <StyledInput
@@ -19,7 +20,6 @@ const Input: React.FC<TextInputProps> = ({ onBlur, ...props }) => {
       }}
       onFocus={() => setFocus(true)}
       focused={focused}
-      theme={theme}
       placeholderTextColor={theme.primaryShade}
       {...props}
     />
@@ -27,7 +27,8 @@ const Input: React.FC<TextInputProps> = ({ onBlur, ...props }) => {
 };
 
 Input.propTypes = {
+  theme: themeProps,
   onBlur: PropTypes.func,
 };
 
-export default Input;
+export default withTheme(Input);
