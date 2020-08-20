@@ -1,11 +1,6 @@
 import styled from 'styled-components/native';
-import { ColorPallete } from 'theme';
 
-interface Props {
-  theme: ColorPallete;
-}
-
-export const Container = styled.View<Props>`
+export const Container = styled.View`
   justify-content: center;
   align-items: center;
   flex: 1;
@@ -20,7 +15,7 @@ export const Picture = styled.Image`
   margin-bottom: 8px;
 `;
 
-export const Name = styled.Text<Props>`
+export const Name = styled.Text`
   font-size: 36px;
   font-weight: bold;
   color: ${({ theme }) => theme.secondary};
@@ -28,7 +23,7 @@ export const Name = styled.Text<Props>`
   text-align: center;
 `;
 
-export const Title = styled.Text<Props>`
+export const Title = styled.Text`
   font-size: 22px;
   font-weight: bold;
   color: ${({ theme }) => theme.primaryShade};
@@ -36,7 +31,7 @@ export const Title = styled.Text<Props>`
   text-align: center;
 `;
 
-export const Description = styled.Text<Props>`
+export const Description = styled.Text`
   font-size: 18px;
   color: ${({ theme }) => theme.primaryContrast};
   text-align: center;
@@ -46,7 +41,7 @@ export const BackButton = {
   Button: styled.TouchableOpacity`
     margin: 16px 0;
   `,
-  Text: styled.Text<Props>`
+  Text: styled.Text`
     color: ${({ theme }) => theme.secondary};
   `,
 };

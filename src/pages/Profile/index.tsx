@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // Components
 import PlayerProfile from './PlayerProfile';
-import Achievement from '../../components/Achievement';
+import Achievement from './Achievement';
 
 const Stack = createStackNavigator();
 

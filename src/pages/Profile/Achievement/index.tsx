@@ -1,8 +1,10 @@
 import React from 'react';
-import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import { useTheme } from '../../contexts/Theme';
-import { IAchievement } from 'game';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
+// Types
+import { AchievementRouteProps } from '../types';
+
+// Styles
 import {
   Container,
   Picture,
@@ -12,21 +14,14 @@ import {
   BackButton,
 } from './styles';
 
-type ParamList = {
-  achievementDetails: { achievement: IAchievement };
-};
-
-type AchievementRouteProps = RouteProp<ParamList, 'achievementDetails'>;
-
 const AchievementDetails: React.FC = () => {
   const {
     params: { achievement },
   } = useRoute<AchievementRouteProps>();
   const { goBack } = useNavigation();
-  const { theme } = useTheme();
 
   return (
-    <Container theme={theme}>
+    <Container>
       <Picture
         source={
           achievement.image
@@ -36,13 +31,13 @@ const AchievementDetails: React.FC = () => {
             : require('../../assets/img/achievements/placeholder.png')
         }
       />
-      <Name theme={theme}>{achievement.name}</Name>
+      <Name>{achievement.name}</Name>
       {achievement.title && (
-        <Title theme={theme}>Garante o Título: {achievement.title.name}</Title>
+        <Title>Garante o Título: {achievement.title.name}</Title>
       )}
-      <Description theme={theme}>{achievement.description}</Description>
+      <Description>{achievement.description}</Description>
       <BackButton.Button onPress={() => goBack()}>
-        <BackButton.Text theme={theme}>Voltar</BackButton.Text>
+        <BackButton.Text>Voltar</BackButton.Text>
       </BackButton.Button>
     </Container>
   );
