@@ -20,7 +20,7 @@ import Theme from './src/contexts/Theme';
 // Routes
 import Routes from './src/routes/index.routes';
 
-export default function App() {
+const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_500Medium,
@@ -39,4 +39,6 @@ export default function App() {
       </Authorization>
     </Theme>
   );
-}
+};
+
+export default App;

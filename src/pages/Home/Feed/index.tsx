@@ -193,7 +193,7 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
 };
 
 Feed.propTypes = {
-  theme: themeProps,
+  theme: themeProps.isRequired,
 };
 
 export default Feed;

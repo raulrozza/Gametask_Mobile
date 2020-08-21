@@ -31,19 +31,6 @@ declare module 'game' {
     obtained?: boolean;
   }
 
-  export interface IPlayer {
-    _id: string;
-    experience: number;
-    level: number;
-    currentTitle: {
-      name: string;
-    };
-    achievements: IAchievement[];
-    rank: IRank;
-    user: IUser;
-    [key: string]: string;
-  }
-
   export interface ILevelInfo {
     level: number;
     requiredExperience: number;
@@ -66,6 +53,20 @@ declare module 'game' {
     ranks: IRank[];
     levelInfo: ILevelInfo[];
     theme: colorPallete;
+  }
+
+  export interface IPlayer {
+    _id: string;
+    experience: number;
+    level: number;
+    currentTitle: {
+      name: string;
+    };
+    achievements: IAchievement[];
+    rank: IRank;
+    user: IUser;
+    game: IGame;
+    [key: string]: string;
   }
 
   export interface IGameHook {

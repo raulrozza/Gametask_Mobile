@@ -125,6 +125,10 @@ const Game: React.FC = ({ children }) => {
       }
 
       setLoading(false);
+
+      return async () => {
+        await AsyncStorage.removeItem('storedGame');
+      };
     })();
   }, [changeTheme, resetGame, getGameInfo, verifiedGameAuthenticity, game]);
 

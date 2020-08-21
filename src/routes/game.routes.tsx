@@ -84,7 +84,7 @@ const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
 };
 
 GameRoutes.propTypes = {
-  theme: themeProps,
+  theme: themeProps.isRequired,
 };
 
 export default withTheme(GameRoutes);

@@ -23,7 +23,7 @@ export const defaultTheme: IColorPallete = {
   secondaryShade: '#c651bf',
   secondaryExtraShade: '#df9edb',
   secondaryContrast: '#FFFFFF',
-  statusBar: 'light-content',
+  statusBar: 'dark-content',
 };
 
 export const fillPallete: (key: string, value: string) => IColorPallete = (

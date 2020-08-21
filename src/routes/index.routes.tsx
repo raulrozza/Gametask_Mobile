@@ -37,7 +37,7 @@ const Routes: React.FC<IThemedComponent> = ({ theme }) => {
 };
 
 Routes.propTypes = {
-  theme: themeProps,
+  theme: themeProps.isRequired,
 };
 
 export default withTheme(Routes);

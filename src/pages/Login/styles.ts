@@ -112,20 +112,8 @@ export const ErrorField = {
   `,
 };
 
-export const Confirm = {
-  Button: styled.TouchableOpacity<ConfirmProps>`
-    background-color: ${({ theme }) => theme.secondary};
-    border-radius: 2px;
-    padding: 8px 12px;
-    ${({ disabled }) =>
-      disabled &&
-      css`
-        opacity: 0.9;
-      `}
-  `,
-  Text: styled.Text`
-    color: ${({ theme }) => theme.secondaryContrast};
-    line-height: 24px;
-    font-size: 16px;
-  `,
-};
+export const ConfirmText = styled.Text`
+  color: ${({ theme }) => theme.secondaryContrast};
+  line-height: 24px;
+  font-size: 16px;
+`;

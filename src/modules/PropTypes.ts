@@ -22,4 +22,4 @@ export const themeProps = PropTypes.shape({
     'dark-content' as const,
     'default' as const,
   ]).isRequired,
-}).isRequired;
+});

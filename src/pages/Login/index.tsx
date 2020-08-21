@@ -27,8 +27,9 @@ import {
   Form,
   InputGroup,
   ErrorField,
-  Confirm,
+  ConfirmText,
 } from './styles';
+import Button from '../../components/Button';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -143,12 +144,12 @@ const Login: React.FC = () => {
                 </InputGroup>
 
                 <InputGroup>
-                  <Confirm.Button
+                  <Button
                     onPress={() => handleSubmit()}
                     disabled={loginButtonDisabled}
                   >
-                    <Confirm.Text>Entrar</Confirm.Text>
-                  </Confirm.Button>
+                    <ConfirmText>Entrar</ConfirmText>
+                  </Button>
                 </InputGroup>
               </Form>
             )}
@@ -278,12 +279,12 @@ const Login: React.FC = () => {
                 </InputGroup>
 
                 <InputGroup>
-                  <Confirm.Button
+                  <Button
                     onPress={() => handleSubmit()}
                     disabled={signupButtonDisabled}
                   >
-                    <Confirm.Text>Cadastrar</Confirm.Text>
-                  </Confirm.Button>
+                    <ConfirmText>Cadastrar</ConfirmText>
+                  </Button>
                 </InputGroup>
               </Form>
             )}

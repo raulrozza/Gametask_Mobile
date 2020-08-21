@@ -36,7 +36,7 @@ const Home: React.FC<IThemedComponent> = ({ theme }) => {
 };
 
 Home.propTypes = {
-  theme: themeProps,
+  theme: themeProps.isRequired,
 };
 
 export default withTheme(Home);

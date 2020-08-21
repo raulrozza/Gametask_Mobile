@@ -155,7 +155,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
 };
 
 PlayerProfile.propTypes = {
-  theme: themeProps,
+  theme: themeProps.isRequired,
 };
 
 export default withTheme(PlayerProfile);

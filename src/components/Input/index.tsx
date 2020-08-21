@@ -27,7 +27,7 @@ const Input: React.FC<IInput> = ({ theme, onBlur, ...props }) => {
 };
 
 Input.propTypes = {
-  theme: themeProps,
+  theme: themeProps.isRequired,
   onBlur: PropTypes.func,
 };
 
