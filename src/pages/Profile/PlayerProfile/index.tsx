@@ -9,6 +9,7 @@ import { useAuth } from '../../../contexts/Authorization';
 
 // Components
 import ProgressBar from '../../../components/ProgressBar';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Styles
 import { withTheme } from 'styled-components';
@@ -32,7 +33,12 @@ import { themeProps } from '../../../modules/PropTypes';
 
 const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   const { user, signOut } = useAuth();
-  const { game, player, achievements: defaultAchievements } = useGame();
+  const {
+    game,
+    player,
+    achievements: defaultAchievements,
+    switchGame,
+  } = useGame();
   const { navigate } = useNavigation();
 
   const [rankPallete, setRankPallete] = useState<IColorPallete>(defaultTheme);
@@ -93,8 +99,8 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
         />
 
         <LevelInfo.View>
-          <LevelInfo.Text>{user.level}</LevelInfo.Text>
-          <LevelInfo.Exp>{user.experience} XP</LevelInfo.Exp>
+          <LevelInfo.Text>{player.level}</LevelInfo.Text>
+          <LevelInfo.Exp>{player.experience} XP</LevelInfo.Exp>
         </LevelInfo.View>
 
         <BarContainer>
@@ -145,6 +151,13 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
           ))}
         </AchievementsList.Container>
 
+        <BottomOption.Button onPress={() => switchGame()}>
+          <BottomOption.Icon
+            as={MaterialCommunityIcons}
+            name="swap-horizontal-bold"
+          />
+          <BottomOption.Text thin> Trocar Jogo</BottomOption.Text>
+        </BottomOption.Button>
         <BottomOption.Button onPress={() => signOut()}>
           <BottomOption.Icon name="log-out" />
           <BottomOption.Text> Sair</BottomOption.Text>

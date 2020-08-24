@@ -12,11 +12,13 @@ import { IPlayer } from 'game';
 
 // Style
 import { Container, Title, Game, Footer } from './styles';
+import { useGame } from '../../contexts/Game';
 
 const Lobby: React.FC = () => {
   const [createdPlayers, setCreatedPlayers] = useState<IPlayer[]>([]);
 
   const { signOut } = useAuth();
+  const { switchGame } = useGame();
 
   useEffect(() => {
     (async () => {
@@ -52,8 +54,12 @@ const Lobby: React.FC = () => {
             />
             <Game.Info>
               <Game.Title>{player.game.name} </Game.Title>
+
               <Game.Description>{player.game.description} </Game.Description>
-              <Game.Button outline>Entrar</Game.Button>
+
+              <Game.Button outline onPress={() => switchGame(player)}>
+                Entrar
+              </Game.Button>
             </Game.Info>
           </Game.Container>
         )}

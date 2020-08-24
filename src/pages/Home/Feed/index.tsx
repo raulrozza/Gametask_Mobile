@@ -19,12 +19,13 @@ import showDate from '../../../utils/showDate';
 // Styles
 import Rank from '../../../styles/Rank';
 import { Container, FeedItem, FeedText } from './styles';
+import { withTheme } from 'styled-components';
 
 const Feed: React.FC<IThemedComponent> = ({ theme }) => {
   const [feed, setFeed] = useState<IFeed[]>([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  const updateFeed = async () => {
+  const updateFeed = useCallback(async () => {
     try {
       const response = await api.get('/feed');
 
@@ -32,7 +33,7 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
@@ -196,4 +197,4 @@ Feed.propTypes = {
   theme: themeProps.isRequired,
 };
 
-export default Feed;
+export default withTheme(Feed);

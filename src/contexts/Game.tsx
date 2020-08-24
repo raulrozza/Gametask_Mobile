@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { AsyncStorage } from 'react-native';
 import PropTypes from 'prop-types';
+import assert from 'assert';
 
 // Contexts
 import { useAuth } from './Authorization';
@@ -16,34 +17,13 @@ import { useTheme } from './Theme';
 import api from '../services/api';
 
 // Types
-import { IGameHook, IAchievement, IGame, IPlayer } from 'game';
+import { IGameHook, IAchievement, IPlayer, UnknownObject } from 'game';
 
-function isEqual(object1: IGame | null, object2: IGame | null) {
-  if ((object1 && !object2) || (!object1 && object2)) return false;
-
-  if (typeof object1 !== 'object' || typeof object2 !== 'object') return false;
-
-  if (object1 && object2) {
-    const keys1 = Object.keys(object1);
-    const keys2 = Object.keys(object2);
-
-    if (keys1.length !== keys2.length) return false;
-
-    const values1 = Object.values(object1);
-    const values2 = Object.values(object2);
-
-    for (const index in keys1) {
-      if (keys1[index] !== keys2[index]) return false;
-
-      if (
-        typeof values1[index] !== 'object' &&
-        typeof values2[index] !== 'object'
-      ) {
-        if (values1[index] !== values2[index]) return false;
-      } else {
-        if (!isEqual(values1[index], values2[index])) return false;
-      }
-    }
+function isEqual(object1: UnknownObject | null, object2: UnknownObject | null) {
+  try {
+    assert.deepStrictEqual(object1, object2);
+  } catch (error) {
+    return false;
   }
 
   return true;
@@ -52,8 +32,7 @@ function isEqual(object1: IGame | null, object2: IGame | null) {
 const GameContext = createContext({});
 
 const Game: React.FC = ({ children }) => {
-  const [game, setGame] = useState<IGame | null>(null);
-  const [player, setPlayer] = useState<IPlayer>({} as IPlayer);
+  const [player, setPlayer] = useState<IPlayer | null>(null);
   const [achievements, setAchievements] = useState<IAchievement[]>(
     [] as IAchievement[],
   );
@@ -65,28 +44,27 @@ const Game: React.FC = ({ children }) => {
   const { changeTheme } = useTheme();
 
   const resetGame = useCallback(async () => {
+    await AsyncStorage.removeItem('storedPlayer');
+    setPlayer(null);
     changeTheme({});
-    await AsyncStorage.removeItem('storedGame');
-    setGame(null);
   }, [changeTheme]);
 
   const getGameInfo = useCallback(
-    async (gameId: string) => {
+    async (playerId: string) => {
       try {
-        const { data: game } = await api.get(`/game/${gameId}`);
+        const { data: player } = await api.get(`/gameplay/${playerId}`);
 
-        localStorage.setItem('storedGame', JSON.stringify(game));
+        await AsyncStorage.setItem('storedPlayer', JSON.stringify(player));
 
-        const { data } = await api.get('/achievements');
+        const { data } = await api.get('/achievement');
 
         setAchievements(data);
 
         setVerifiedGameAuthenticity(true);
-        setPlayer({} as IPlayer);
-        setGame(game);
-        changeTheme(game.theme);
+        setPlayer(player);
+        changeTheme(player.game.theme);
       } catch (error) {
-        console.error(error);
+        console.error('Error getting player info', error);
         if (!error.response) return;
         const {
           response: { data },
@@ -103,43 +81,43 @@ const Game: React.FC = ({ children }) => {
   useEffect(() => {
     (async () => {
       // Get the local storage info
-      const storedGame = await AsyncStorage.getItem('storedGame');
+      const storedPlayer = await AsyncStorage.getItem('storedPlayer');
 
-      if (!storedGame) resetGame();
+      if (!storedPlayer) resetGame();
       else {
-        const parsedGame = JSON.parse(storedGame);
+        const parsedPlayer = JSON.parse(storedPlayer);
 
-        if (!parsedGame) resetGame();
+        if (!parsedPlayer || !parsedPlayer.game) resetGame();
         else {
           // Check if the game in state is equal to the one stored in the local storage.
           // If they are, DO NOT CHANGE THE STATE because it causes infinite re-renderings
-          api.defaults.headers['X-Game-ID'] = parsedGame._id;
+          api.defaults.headers['X-Game-ID'] = parsedPlayer.game._id;
 
-          if (!isEqual(game, parsedGame)) {
-            setGame(parsedGame);
-            changeTheme(parsedGame.theme);
+          if (!isEqual(player, parsedPlayer)) {
+            setPlayer(parsedPlayer);
+            changeTheme(parsedPlayer.game.theme);
           }
 
-          if (!verifiedGameAuthenticity) getGameInfo(parsedGame._id);
+          if (!verifiedGameAuthenticity) getGameInfo(parsedPlayer._id);
         }
       }
 
       setLoading(false);
 
       return async () => {
-        await AsyncStorage.removeItem('storedGame');
+        await AsyncStorage.removeItem('storedPlayer');
       };
     })();
-  }, [changeTheme, resetGame, getGameInfo, verifiedGameAuthenticity, game]);
+  }, [changeTheme, resetGame, getGameInfo, verifiedGameAuthenticity, player]);
 
-  const switchGame = async (game?: IGame) => {
+  const switchGame = async (player?: IPlayer) => {
     setLoading(true);
 
-    if (game) {
-      await AsyncStorage.setItem('storedGame', JSON.stringify(game));
+    if (player) {
+      await AsyncStorage.setItem('storedPlayer', JSON.stringify(player));
 
-      setGame(game);
-      changeTheme(game.theme);
+      setPlayer(player);
+      changeTheme(player.game.theme);
     } else resetGame();
 
     setLoading(false);
@@ -147,7 +125,7 @@ const Game: React.FC = ({ children }) => {
 
   return (
     <GameContext.Provider
-      value={{ game, player, loading, achievements, switchGame }}
+      value={{ game: player?.game, player, loading, achievements, switchGame }}
     >
       {children}
     </GameContext.Provider>

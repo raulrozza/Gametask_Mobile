@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components/native';
 
 // Icons
 import { Feather } from '@expo/vector-icons';
-import { IAchievementStyle } from '../types';
+import { IAchievementStyle, IBottomOptions } from '../types';
 
 export const Container = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
@@ -144,9 +144,14 @@ export const BottomOption = {
     font-size: 24px;
     font-weight: bold;
   `,
-  Text: styled.Text`
-    color: ${({ theme }) => theme.secondaryIntense};
-    font-size: 24px;
-    font-weight: bold;
+  Text: styled.Text<IBottomOptions>`
+    ${({ theme, thin = false }) => css`
+      color: ${theme.secondaryIntense};
+      font-size: ${thin ? '18px' : '24px'};
+      ${!thin &&
+      css`
+        font-weight: bold;
+      `}
+    `}
   `,
 };

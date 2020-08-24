@@ -15,3 +15,7 @@ export interface IUserMeta {
 export interface IAchievementStyle {
   obtained: boolean;
 }
+
+export interface IBottomOptions {
+  thin?: boolean;
+}

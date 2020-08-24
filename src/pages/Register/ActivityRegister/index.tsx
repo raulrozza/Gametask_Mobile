@@ -26,7 +26,7 @@ const ActivityRegister: React.FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await api.get('/activities');
+        const response = await api.get('/activity');
 
         setActivities(response.data);
       } catch (error) {

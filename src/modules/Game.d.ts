@@ -2,6 +2,10 @@ declare module 'game' {
   import { IUser } from 'authorization';
   import { colorPallete } from '../contexts/Theme';
 
+  export interface UnknownObject {
+    [key: string]: unknown;
+  }
+
   export interface IRank {
     color: string;
     level: number;
@@ -74,6 +78,6 @@ declare module 'game' {
     player: IPlayer;
     loading: boolean;
     achievements: IAchievement[];
-    switchGame: (game?: IGame) => void;
+    switchGame: (player?: IPlayer) => void;
   }
 }
