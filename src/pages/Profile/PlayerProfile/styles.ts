@@ -75,6 +75,7 @@ export const NextLevel = {
     flex-direction: row;
     justify-content: flex-end;
     padding: 0 12px;
+    margin-bottom: 8px;
   `,
   Text: styled.Text`
     color: ${({ theme }) => theme.primaryContrast};
@@ -86,7 +87,7 @@ export const AchievementsList = {
     width: 80%;
     border-radius: 5px;
     padding: 8px;
-    margin-top: 16px;
+    margin-top: 8px;
     margin-bottom: 8px;
     background-color: ${({ theme }) => theme.primary};
     flex-direction: row;

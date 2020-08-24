@@ -54,4 +54,9 @@ export const RankingText = {
     font-size: 18px;
     margin-right: 4px;
   `,
+  Empty: styled.Text`
+    color: ${({ theme }) => theme.primaryContrast};
+    margin: 8px 0;
+    text-align: center;
+  `,
 };

@@ -59,6 +59,17 @@ export const Game = {
   `,
 };
 
+export const EmptyList = {
+  Container: styled.View`
+    padding: 16px 0;
+  `,
+  Text: styled.Text`
+    color: ${({ theme }) => theme.primaryContrast};
+    font-size: 18px;
+    text-align: center;
+  `,
+};
+
 export const Footer = {
   Row: styled.View`
     flex-direction: column;

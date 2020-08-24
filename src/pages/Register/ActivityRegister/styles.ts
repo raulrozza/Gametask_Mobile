@@ -71,3 +71,20 @@ export const StyledActivity = {
     color: ${({ theme }) => theme.secondaryIntense};
   `,
 };
+
+export const EmptyList = {
+  Container: styled.View`
+    padding: 8px;
+    flex-direction: row;
+    margin-bottom: 16px;
+    border-width: 2px;
+    margin: 4px;
+    border-radius: 16px;
+    background-color: ${({ theme }) => theme.secondaryShade};
+  `,
+  Text: styled.Text`
+    color: ${({ theme }) => theme.secondaryContrast};
+    text-align: center;
+    margin: 8px 0;
+  `,
+};

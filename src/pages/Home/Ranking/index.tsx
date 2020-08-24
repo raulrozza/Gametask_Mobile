@@ -21,6 +21,14 @@ const Ranking: React.FC = () => {
         }}
         data={game.weeklyRanking}
         keyExtractor={item => item.player._id}
+        ListEmptyComponent={() => (
+          <RankingItem.Container>
+            <RankingText.Empty>
+              Opa... parece que não temos nenhum pontuador ainda. Que tal ser o
+              primeiro?
+            </RankingText.Empty>
+          </RankingItem.Container>
+        )}
         renderItem={({ item, index }) => (
           <RankingItem.Container>
             <RankingItem.Image

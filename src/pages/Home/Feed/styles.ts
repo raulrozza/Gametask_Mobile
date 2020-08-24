@@ -56,4 +56,9 @@ export const FeedText = {
     color: ${({ theme }) => theme.primaryContrast};
     font-weight: bold;
   `,
+  Empty: styled.Text`
+    color: ${({ theme }) => theme.primaryContrast};
+    margin: 8px 0;
+    text-align: center;
+  `,
 };

@@ -13,6 +13,7 @@ import {
   Description,
   ActivityContainer,
   StyledActivity,
+  EmptyList,
 } from './styles';
 
 // Services
@@ -48,6 +49,14 @@ const ActivityRegister: React.FC = () => {
           <FlatList
             keyExtractor={activity => activity._id}
             data={activities}
+            ListEmptyComponent={() => (
+              <EmptyList.Container>
+                <EmptyList.Text>
+                  Não há nenhuma atividade cadastrada. Fale com os
+                  administradores para que você possa começar a pontuar!
+                </EmptyList.Text>
+              </EmptyList.Container>
+            )}
             renderItem={({ item: activity }) => (
               <StyledActivity.Container
                 onTouchEnd={() => navigate('activity', { activity })}

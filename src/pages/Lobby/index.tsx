@@ -11,11 +11,12 @@ import api from '../../services/api';
 import { IPlayer } from 'game';
 
 // Style
-import { Container, Title, Game, Footer } from './styles';
+import { Container, Title, Game, Footer, EmptyList } from './styles';
 import { useGame } from '../../contexts/Game';
 
 const Lobby: React.FC = () => {
   const [createdPlayers, setCreatedPlayers] = useState<IPlayer[]>([]);
+  const [loadingData, setLoadingData] = useState(true);
 
   const { signOut } = useAuth();
   const { switchGame } = useGame();
@@ -31,6 +32,8 @@ const Lobby: React.FC = () => {
           signOut();
         }
         console.error(error);
+      } finally {
+        setLoadingData(false);
       }
     })();
   }, []);
@@ -41,6 +44,14 @@ const Lobby: React.FC = () => {
       <FlatList
         data={createdPlayers}
         keyExtractor={item => item._id}
+        refreshing={loadingData}
+        ListEmptyComponent={() => (
+          <EmptyList.Container>
+            <EmptyList.Text>
+              Você ainda não está cadastrado em nenhum jogo.
+            </EmptyList.Text>
+          </EmptyList.Container>
+        )}
         renderItem={({ item: player }) => (
           <Game.Container>
             <Game.Image

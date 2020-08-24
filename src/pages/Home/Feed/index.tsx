@@ -60,6 +60,13 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
         }
         data={feed}
         keyExtractor={feedItem => feedItem._id}
+        ListEmptyComponent={() => (
+          <FeedItem.Container>
+            <FeedText.Empty>
+              Parece que ninguém realizou nenhuma atividade ainda...
+            </FeedText.Empty>
+          </FeedItem.Container>
+        )}
         renderItem={({ item }) => (
           <FeedItem.Container>
             <FeedItem.Content>

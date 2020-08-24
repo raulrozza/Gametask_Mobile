@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 // Contexts
 import { useGame } from '../../../contexts/Game';
-import { defaultTheme, fillPallete } from '../../../contexts/Theme';
+import { fillPallete } from '../../../contexts/Theme';
 import { useAuth } from '../../../contexts/Authorization';
 
 // Components
@@ -41,7 +41,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   } = useGame();
   const { navigate } = useNavigation();
 
-  const [rankPallete, setRankPallete] = useState<IColorPallete>(defaultTheme);
+  const [rankPallete, setRankPallete] = useState<IColorPallete>(theme);
   const [userMeta, setUserMeta] = useState<IUserMeta>({
     rank: undefined,
     nextLevel: undefined,
@@ -125,31 +125,33 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
           </NextLevel.Container>
         )}
 
-        <AchievementsList.Container>
-          <AchievementsList.Text>Conquistas</AchievementsList.Text>
-          {achievements.map(achievement => (
-            <Achievement.Container
-              key={achievement.id}
-              obtained={achievement.obtained || false}
-              onTouchEnd={() =>
-                navigate('achievementDetails', {
-                  achievement,
-                })
-              }
-            >
-              <Achievement.Image
-                source={
-                  achievement.image
-                    ? {
-                        uri: achievement.image_url,
-                      }
-                    : require('../../../assets/img/achievements/placeholder.png')
+        {achievements.length > 0 && (
+          <AchievementsList.Container>
+            <AchievementsList.Text>Conquistas</AchievementsList.Text>
+            {achievements.map(achievement => (
+              <Achievement.Container
+                key={achievement.id}
+                obtained={achievement.obtained || false}
+                onTouchEnd={() =>
+                  navigate('achievementDetails', {
+                    achievement,
+                  })
                 }
-              />
-              <Achievement.Text>{achievement.name}</Achievement.Text>
-            </Achievement.Container>
-          ))}
-        </AchievementsList.Container>
+              >
+                <Achievement.Image
+                  source={
+                    achievement.image
+                      ? {
+                          uri: achievement.image_url,
+                        }
+                      : require('../../../assets/img/achievements/placeholder.png')
+                  }
+                />
+                <Achievement.Text>{achievement.name}</Achievement.Text>
+              </Achievement.Container>
+            ))}
+          </AchievementsList.Container>
+        )}
 
         <BottomOption.Button onPress={() => switchGame()}>
           <BottomOption.Icon
