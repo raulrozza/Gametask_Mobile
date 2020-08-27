@@ -3,7 +3,7 @@ import { IStyledButton } from './types';
 import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled(RectButton)<IStyledButton>`
-  ${({ theme, outline, disabled = false }) => css`
+  ${({ theme, outline, enabled = true }) => css`
     ${outline
       ? css`
           background-color: ${theme.primary};
@@ -20,7 +20,7 @@ export const Container = styled(RectButton)<IStyledButton>`
 
     align-items: stretch;
 
-    ${disabled &&
+    ${!enabled &&
     css`
       opacity: 0.3;
     `}

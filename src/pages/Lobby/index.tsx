@@ -13,10 +13,13 @@ import { IPlayer } from 'game';
 // Style
 import { Container, Title, Game, Footer, EmptyList } from './styles';
 import { useGame } from '../../contexts/Game';
+import { Modal } from 'react-native';
+import ModalContent from './ModalContent';
 
 const Lobby: React.FC = () => {
   const [createdPlayers, setCreatedPlayers] = useState<IPlayer[]>([]);
   const [loadingData, setLoadingData] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const { signOut } = useAuth();
   const { switchGame } = useGame();
@@ -79,11 +82,24 @@ const Lobby: React.FC = () => {
         }}
       />
       <Footer.Row>
+        <Footer.Button onPress={() => setModalVisible(true)}>
+          <Footer.ButtonIcon name="plus" />
+          <Footer.ButtonText>Novo</Footer.ButtonText>
+        </Footer.Button>
         <Footer.Button>
           <Footer.ButtonIcon name="sign-out" onPress={signOut} />
           <Footer.ButtonText>Sair</Footer.ButtonText>
         </Footer.Button>
       </Footer.Row>
+
+      <Modal
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={() => setModalVisible(false)}
+        transparent
+      >
+        <ModalContent />
+      </Modal>
     </Container>
   );
 };

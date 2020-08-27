@@ -4,7 +4,7 @@ import { ReactNativeStyledInterface } from 'styled-components/native';
 
 export interface IStyledButton {
   outline: boolean;
-  disabled?: boolean;
+  enabled?: boolean;
 }
 
 export interface IButton extends RectButtonProperties {

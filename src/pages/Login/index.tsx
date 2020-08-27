@@ -93,12 +93,13 @@ const Login: React.FC = () => {
               try {
                 const response = await api.post('/login', values);
 
-                signIn(response.data);
+                return signIn(response.data);
               } catch (error) {
                 console.error(error, error.response?.data);
                 alert('Houve um problema ao entrar.');
               }
-              setLoginButtonDisabled(false);
+
+              return setLoginButtonDisabled(false);
             }}
           >
             {({
@@ -147,6 +148,7 @@ const Login: React.FC = () => {
                   <Button
                     onPress={() => handleSubmit()}
                     disabled={loginButtonDisabled}
+                    id="login"
                   >
                     <ConfirmText>Entrar</ConfirmText>
                   </Button>

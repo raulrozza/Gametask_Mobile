@@ -72,9 +72,9 @@ export const EmptyList = {
 
 export const Footer = {
   Row: styled.View`
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 
     height: 48px;
 
