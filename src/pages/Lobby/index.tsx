@@ -98,7 +98,7 @@ const Lobby: React.FC = () => {
         onRequestClose={() => setModalVisible(false)}
         transparent
       >
-        <ModalContent />
+        <ModalContent closeModal={() => setModalVisible(false)} />
       </Modal>
     </Container>
   );

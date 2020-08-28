@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components/native';
 
 // Components
 import { MaterialIcons } from '@expo/vector-icons';
-import { RectButton } from 'react-native-gesture-handler';
+import Title from '../../../styles/Title';
 
 export const Wrapper = styled.View`
   flex: 1;
@@ -20,18 +20,26 @@ export const Container = styled.View`
   justify-content: center;
 `;
 
+export const PageTitle = styled(Title)`
+  color: ${({ theme }) => theme.secondary};
+  margin-bottom: 48px;
+`;
+
 export const PasteGroup = {
   Container: styled.View`
     flex-direction: row;
     align-items: stretch;
 
-    height: 36px;
+    height: 48px;
     width: 80%;
     max-width: 300px;
 
     overflow: hidden;
 
     border: 1px solid ${({ theme }) => theme.secondary};
+    border-radius: 4px;
+
+    margin-bottom: 48px;
   `,
   Input: styled.TextInput`
     padding: 0 12px;
@@ -41,6 +49,15 @@ export const PasteGroup = {
       color: ${theme.primaryContrast};
     `}
   `,
-  Button: styled(RectButton)``,
-  Icon: styled(MaterialIcons)``,
+  Button: styled.TouchableOpacity`
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({ theme }) => theme.primary};
+  `,
+  Icon: styled(MaterialIcons)`
+    font-size: 24px;
+    color: ${({ theme }) => theme.secondary};
+  `,
 };

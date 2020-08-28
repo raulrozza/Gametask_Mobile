@@ -1,6 +1,7 @@
 import { RectButtonProperties } from 'react-native-gesture-handler';
 import { ReactNode } from 'react';
 import { ReactNativeStyledInterface } from 'styled-components/native';
+import { TouchableOpacity } from 'react-native';
 
 export interface IStyledButton {
   outline: boolean;
@@ -8,6 +9,7 @@ export interface IStyledButton {
 }
 
 export interface IButton extends RectButtonProperties {
+  as?: typeof TouchableOpacity;
   outline?: boolean;
   style?: ReactNativeStyledInterface;
   disabled?: boolean;

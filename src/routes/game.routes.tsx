@@ -1,17 +1,23 @@
 import React from 'react';
 import { AppLoading } from 'expo';
+
+// Icons
 import {
   FontAwesome,
   Feather,
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
+
+// Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
 // Contexts
 import { useGame } from '../contexts/Game';
 
 // Pages
+import GameInvite from '../pages/GameInvite';
 import Home from '../pages/Home/index.routes';
 import Lobby from '../pages/Lobby';
 import Profile from '../pages/Profile';
@@ -25,6 +31,7 @@ import { IThemedComponent } from 'theme';
 import { themeProps } from '../modules/PropTypes';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
   const { game, loading } = useGame();
@@ -80,7 +87,14 @@ const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
       </>
     );
 
-  return <Lobby />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator headerMode="none">
+        <Stack.Screen name="Lobby" component={Lobby} />
+        <Stack.Screen name="GameInvite" component={GameInvite} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 GameRoutes.propTypes = {
