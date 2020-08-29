@@ -7,17 +7,28 @@ import { Container, Text } from './styles';
 
 // Types
 import { IButton } from './types';
+import { themeProps } from '../../modules/PropTypes';
+import { withTheme } from 'styled-components';
 
 const Button: React.FC<IButton> = ({
   outline = false,
   disabled = false,
   style,
   children,
+  theme,
   ...rest
 }) => {
   return (
-    <Container outline={outline} enabled={!disabled} style={style} {...rest}>
-      <Text outline={outline}>{children}</Text>
+    <Container
+      outline={outline}
+      enabled={!disabled}
+      style={style}
+      theme={theme}
+      {...rest}
+    >
+      <Text outline={outline} theme={theme}>
+        {children}
+      </Text>
     </Container>
   );
 };
@@ -27,6 +38,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   style: ViewPropTypes.style,
   children: PropTypes.node,
+  theme: themeProps.isRequired,
 };
 
-export default Button;
+export default withTheme(Button);

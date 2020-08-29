@@ -47,6 +47,7 @@ const Game: React.FC = ({ children }) => {
     await AsyncStorage.removeItem('storedPlayer');
     setPlayer(null);
     changeTheme({});
+    delete api.defaults.headers['X-Game-ID'];
   }, [changeTheme]);
 
   const getGameInfo = useCallback(
@@ -116,10 +117,13 @@ const Game: React.FC = ({ children }) => {
     if (player) {
       await AsyncStorage.setItem('storedPlayer', JSON.stringify(player));
 
+      api.defaults.headers['X-Game-ID'] = player.game._id;
+
       setPlayer(player);
       changeTheme(player.game.theme);
     } else resetGame();
 
+    setVerifiedGameAuthenticity(false);
     setLoading(false);
   };
 

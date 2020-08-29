@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
+
+// Components
+import ModalContent from './ModalContent';
 
 // Contexts
 import { useAuth } from '../../contexts/Authorization';
+
+// Libs
+import { useRoute } from '@react-navigation/native';
 
 // Services
 import api from '../../services/api';
 
 // Types
 import { IPlayer } from 'game';
+import { ILobbyRoute } from './types';
 
 // Style
 import { Container, Title, Game, Footer, EmptyList } from './styles';
 import { useGame } from '../../contexts/Game';
 import { Modal } from 'react-native';
-import ModalContent from './ModalContent';
 
 const Lobby: React.FC = () => {
   const [createdPlayers, setCreatedPlayers] = useState<IPlayer[]>([]);
@@ -23,6 +29,7 @@ const Lobby: React.FC = () => {
 
   const { signOut } = useAuth();
   const { switchGame } = useGame();
+  const { params } = useRoute<ILobbyRoute>();
 
   useEffect(() => {
     (async () => {
@@ -39,7 +46,7 @@ const Lobby: React.FC = () => {
         setLoadingData(false);
       }
     })();
-  }, []);
+  }, [params]);
 
   return (
     <Container>

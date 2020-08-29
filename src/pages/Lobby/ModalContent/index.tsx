@@ -14,7 +14,8 @@ import Button from '../../../components/Button';
 import api from '../../../services/api';
 
 // Types
-import { IInviteData, IModalContent } from '../types';
+import { IInviteData } from 'game';
+import { IModalContent } from '../types';
 
 const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
   const [code, setCode] = useState('');
@@ -59,6 +60,8 @@ const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
         inviteData,
       });
     } catch (error) {
+      closeModal();
+
       console.error(error);
     }
   };

@@ -18,6 +18,8 @@ export const Container = styled(RectButton)<IStyledButton>`
     line-height: 24px;
     font-size: 16px;
 
+    border-color: ${theme.secondary};
+
     align-items: stretch;
 
     ${!enabled &&

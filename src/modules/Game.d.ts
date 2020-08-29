@@ -73,6 +73,11 @@ declare module 'game' {
     [key: string]: string;
   }
 
+  export interface IInviteData {
+    gameId: string;
+    inviter: string;
+  }
+
   export interface IGameHook {
     game: IGame;
     player: IPlayer;
