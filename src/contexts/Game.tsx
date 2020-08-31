@@ -17,7 +17,7 @@ import { useTheme } from './Theme';
 import api from '../services/api';
 
 // Types
-import { IGameHook, IAchievement, IPlayer, UnknownObject } from 'game';
+import { IGameHook, IPlayer, UnknownObject } from 'game';
 
 // Utils
 import handleErrors from '../utils/handleErrors';
@@ -36,9 +36,6 @@ const GameContext = createContext({});
 
 const Game: React.FC = ({ children }) => {
   const [player, setPlayer] = useState<IPlayer | null>(null);
-  const [achievements, setAchievements] = useState<IAchievement[]>(
-    [] as IAchievement[],
-  );
   const [verifiedGameAuthenticity, setVerifiedGameAuthenticity] = useState(
     false,
   );
@@ -59,10 +56,6 @@ const Game: React.FC = ({ children }) => {
         const { data: player } = await api.get(`/gameplay/${playerId}`);
 
         await AsyncStorage.setItem('storedPlayer', JSON.stringify(player));
-
-        const { data } = await api.get('/achievement');
-
-        setAchievements(data);
 
         setVerifiedGameAuthenticity(true);
         setPlayer(player);
@@ -120,7 +113,7 @@ const Game: React.FC = ({ children }) => {
 
   return (
     <GameContext.Provider
-      value={{ game: player?.game, player, loading, achievements, switchGame }}
+      value={{ game: player?.game, player, loading, switchGame }}
     >
       {children}
     </GameContext.Provider>

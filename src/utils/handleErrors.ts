@@ -6,6 +6,7 @@ import { AxiosError } from 'axios';
  *
  * 100: User already exists
  * 101: Player already exists
+ * 102: Achievement register already exists
  * 200: User and password don't match
  * 300: Missing parameters
  *
@@ -54,6 +55,12 @@ const handleErrors: (
           case 101:
             return showMessage({
               message: 'Você já está cadastrado neste jogo.',
+              type: 'danger',
+            });
+
+          case 102:
+            return showMessage({
+              message: 'Você já requisitou esta conquista.',
               type: 'danger',
             });
 

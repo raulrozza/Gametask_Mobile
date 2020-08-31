@@ -26,6 +26,7 @@ declare module 'game' {
   }
 
   export interface IAchievement {
+    _id: string;
     id: string;
     name: string;
     description: string;
@@ -82,7 +83,6 @@ declare module 'game' {
     game: IGame;
     player: IPlayer;
     loading: boolean;
-    achievements: IAchievement[];
     switchGame: (player?: IPlayer) => void;
   }
 }

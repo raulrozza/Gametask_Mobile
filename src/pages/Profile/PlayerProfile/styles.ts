@@ -75,7 +75,7 @@ export const NextLevel = {
     flex-direction: row;
     justify-content: flex-end;
     padding: 0 12px;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   `,
   Text: styled.Text`
     color: ${({ theme }) => theme.primaryContrast};
@@ -131,9 +131,11 @@ export const BottomOption = {
   Button: styled.TouchableOpacity`
     width: 100%;
     height: 48px;
+
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
     ${({ theme }) => css`
       background-color: ${theme.primaryLowShade};
       border-top-width: 1px;

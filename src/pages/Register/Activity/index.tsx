@@ -38,7 +38,7 @@ import handleErrors from '../../../utils/handleErrors';
 
 const RegisterSchema = Yup.object().shape({
   date: Yup.date().required('Informe a data'),
-  information: Yup.string().required('Digite sua senha'),
+  information: Yup.string().required('Conte como concluiu a atividade'),
 });
 
 const ActivityInfo: React.FC = () => {

@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import Button from '../../../components/Button';
 
 export const Container = styled.View`
   justify-content: center;
@@ -35,6 +36,10 @@ export const Description = styled.Text`
   font-size: 18px;
   color: ${({ theme }) => theme.primaryContrast};
   text-align: center;
+`;
+
+export const RequestButton = styled(Button)`
+  margin-top: 8px;
 `;
 
 export const BackButton = {

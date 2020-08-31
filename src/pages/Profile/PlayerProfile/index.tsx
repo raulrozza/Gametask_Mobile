@@ -27,18 +27,18 @@ import {
 } from './styles';
 
 // Types
+import { IAchievement } from 'game';
 import { IColorPallete, IThemedComponent } from 'theme';
 import { IUserMeta } from '../types';
 import { themeProps } from '../../../modules/PropTypes';
 
+// Utils
+import handleErrors from '../../../utils/handleErrors';
+import api from '../../../services/api';
+
 const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   const { user, signOut } = useAuth();
-  const {
-    game,
-    player,
-    achievements: defaultAchievements,
-    switchGame,
-  } = useGame();
+  const { game, player, switchGame } = useGame();
   const { navigate } = useNavigation();
 
   const [rankPallete, setRankPallete] = useState<IColorPallete>(theme);
@@ -46,7 +46,26 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
     rank: undefined,
     nextLevel: undefined,
   });
-  const [achievements, setAchievements] = useState(defaultAchievements);
+  const [achievements, setAchievements] = useState<IAchievement[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data: achievements } = await api.get('/achievement');
+
+        setAchievements(
+          achievements.map((achievement: IAchievement) => {
+            return {
+              ...achievement,
+              obtained: player.achievements.includes(achievement),
+            };
+          }),
+        );
+      } catch (error) {
+        handleErrors(error);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     const { levelInfo } = game;
@@ -55,15 +74,6 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
       .find(info => player.level < info.level);
 
     if (player.rank) setRankPallete(fillPallete('primary', player.rank.color));
-
-    setAchievements(
-      achievements.map(achievement => {
-        return {
-          ...achievement,
-          obtained: player.achievements.includes(achievement),
-        };
-      }),
-    );
 
     setUserMeta({
       rank: player.rank,
@@ -116,15 +126,15 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
           />
         </BarContainer>
 
-        {userMeta.nextLevel &&
-          userMeta.nextLevel.requiredExperience - player.experience !== 0 && (
-            <NextLevel.Container>
+        <NextLevel.Container>
+          {userMeta.nextLevel &&
+            userMeta.nextLevel.requiredExperience - player.experience !== 0 && (
               <NextLevel.Text theme={rankPallete}>
                 Faltam{' '}
                 {userMeta.nextLevel.requiredExperience - player.experience} XP
               </NextLevel.Text>
-            </NextLevel.Container>
-          )}
+            )}
+        </NextLevel.Container>
 
         {achievements.length > 0 && (
           <AchievementsList.Container>
