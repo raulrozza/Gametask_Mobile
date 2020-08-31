@@ -4,6 +4,7 @@ import { Clipboard, TouchableOpacity } from 'react-native';
 
 // Libs
 import { useNavigation } from '@react-navigation/native';
+import { showMessage } from 'react-native-flash-message';
 import crypto from 'react-native-crypto-js';
 
 // Styles
@@ -16,6 +17,9 @@ import api from '../../../services/api';
 // Types
 import { IInviteData } from 'game';
 import { IModalContent } from '../types';
+
+// Utils
+import handleErrors from '../../../utils/handleErrors';
 
 const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
   const [code, setCode] = useState('');
@@ -39,7 +43,7 @@ const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
       setCode(clipboardText);
       setInviteData({ gameId, inviter });
     } catch (error) {
-      console.error('Code in incorrect format', error);
+      showMessage({ message: 'Código de jogo inválido.', type: 'danger' });
       setCode('');
       setInviteData(null);
     }
@@ -62,7 +66,7 @@ const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
     } catch (error) {
       closeModal();
 
-      console.error(error);
+      handleErrors(error);
     }
   };
 

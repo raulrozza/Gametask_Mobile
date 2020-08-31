@@ -116,14 +116,15 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
           />
         </BarContainer>
 
-        {userMeta.nextLevel && (
-          <NextLevel.Container>
-            <NextLevel.Text theme={rankPallete}>
-              Faltam {userMeta.nextLevel.requiredExperience - player.experience}{' '}
-              XP
-            </NextLevel.Text>
-          </NextLevel.Container>
-        )}
+        {userMeta.nextLevel &&
+          userMeta.nextLevel.requiredExperience - player.experience !== 0 && (
+            <NextLevel.Container>
+              <NextLevel.Text theme={rankPallete}>
+                Faltam{' '}
+                {userMeta.nextLevel.requiredExperience - player.experience} XP
+              </NextLevel.Text>
+            </NextLevel.Container>
+          )}
 
         {achievements.length > 0 && (
           <AchievementsList.Container>

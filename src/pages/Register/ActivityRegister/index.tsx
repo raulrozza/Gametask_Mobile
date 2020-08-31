@@ -19,6 +19,9 @@ import {
 // Services
 import api from '../../../services/api';
 
+// Utils
+import handleErrors from '../../../utils/handleErrors';
+
 const ActivityRegister: React.FC = () => {
   const { navigate } = useNavigation();
   // States
@@ -31,7 +34,7 @@ const ActivityRegister: React.FC = () => {
 
         setActivities(response.data);
       } catch (error) {
-        console.error(error);
+        handleErrors(error);
       }
     })();
   }, []);

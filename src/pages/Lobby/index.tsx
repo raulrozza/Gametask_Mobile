@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 
 // Components
@@ -22,6 +22,9 @@ import { Container, Title, Game, Footer, EmptyList } from './styles';
 import { useGame } from '../../contexts/Game';
 import { Modal } from 'react-native';
 
+// Utils
+import handleErrors from '../../utils/handleErrors';
+
 const Lobby: React.FC = () => {
   const [createdPlayers, setCreatedPlayers] = useState<IPlayer[]>([]);
   const [loadingData, setLoadingData] = useState(true);
@@ -38,10 +41,7 @@ const Lobby: React.FC = () => {
 
         setCreatedPlayers(data);
       } catch (error) {
-        if (error.response && error.response.status === 403) {
-          signOut();
-        }
-        console.error(error);
+        handleErrors(error, signOut);
       } finally {
         setLoadingData(false);
       }

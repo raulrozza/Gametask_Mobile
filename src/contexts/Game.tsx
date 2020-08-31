@@ -19,6 +19,9 @@ import api from '../services/api';
 // Types
 import { IGameHook, IAchievement, IPlayer, UnknownObject } from 'game';
 
+// Utils
+import handleErrors from '../utils/handleErrors';
+
 function isEqual(object1: UnknownObject | null, object2: UnknownObject | null) {
   try {
     assert.deepStrictEqual(object1, object2);
@@ -65,15 +68,7 @@ const Game: React.FC = ({ children }) => {
         setPlayer(player);
         changeTheme(player.game.theme);
       } catch (error) {
-        console.error('Error getting player info', error);
-        if (!error.response) return;
-        const {
-          response: { data },
-        } = error;
-
-        if (data.error === 'TokenExpiredError: jwt expired') {
-          signOut();
-        }
+        handleErrors(error, signOut);
       }
     },
     [signOut, changeTheme],
@@ -104,10 +99,6 @@ const Game: React.FC = ({ children }) => {
       }
 
       setLoading(false);
-
-      return async () => {
-        await AsyncStorage.removeItem('storedPlayer');
-      };
     })();
   }, [changeTheme, resetGame, getGameInfo, verifiedGameAuthenticity, player]);
 

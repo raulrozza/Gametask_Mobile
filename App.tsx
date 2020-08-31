@@ -2,6 +2,8 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { AppLoading } from 'expo';
+
+// Fonts
 import {
   Roboto_400Regular,
   Roboto_500Medium,
@@ -12,6 +14,9 @@ import {
   OpenSans_700Bold,
   useFonts,
 } from '@expo-google-fonts/open-sans';
+
+// Libs
+import FlashMessage from 'react-native-flash-message';
 
 // Contexts
 import Authorization from './src/contexts/Authorization';
@@ -37,6 +42,7 @@ const App: React.FC = () => {
       <Authorization>
         <Routes />
       </Authorization>
+      <FlashMessage position="bottom" />
     </Theme>
   );
 };

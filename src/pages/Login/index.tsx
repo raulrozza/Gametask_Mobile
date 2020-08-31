@@ -6,11 +6,10 @@ import Input from '../../components/Input';
 // Contexts
 import { useAuth } from '../../contexts/Authorization';
 
-// Formik
+// Libs
 import { Formik } from 'formik';
-
-// Yup
 import * as Yup from 'yup';
+import { showMessage } from 'react-native-flash-message';
 
 // Services
 import api from '../../services/api';
@@ -30,6 +29,9 @@ import {
   ConfirmText,
 } from './styles';
 import Button from '../../components/Button';
+
+// Utils
+import handleErrors from '../../utils/handleErrors';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -95,8 +97,7 @@ const Login: React.FC = () => {
 
                 return signIn(response.data);
               } catch (error) {
-                console.error(error, error.response?.data);
-                alert('Houve um problema ao entrar.');
+                handleErrors(error);
               }
 
               return setLoginButtonDisabled(false);
@@ -180,9 +181,12 @@ const Login: React.FC = () => {
                 await api.post('/user/signup', values);
 
                 setFormToggle(true);
+                showMessage({
+                  message: 'Cadastro efetuado com sucesso!',
+                  type: 'success',
+                });
               } catch (error) {
-                console.error(error);
-                alert('Houve um problema ao cadastrar.');
+                handleErrors(error);
               }
 
               setSignupButtonDisabled(false);

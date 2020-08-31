@@ -9,6 +9,7 @@ import {
 
 // Libs
 import { useRoute, useNavigation } from '@react-navigation/native';
+import { showMessage } from 'react-native-flash-message';
 
 // Styles
 import { Container, InviteTitle, GameContainer } from './styles';
@@ -20,6 +21,9 @@ import { IColorPallete } from 'theme';
 
 // Services
 import api from '../../services/api';
+
+// Utils
+import handleErrors from '../../utils/handleErrors';
 
 const GameInvite: React.FC = () => {
   // Navigation
@@ -47,9 +51,10 @@ const GameInvite: React.FC = () => {
         const { data } = await api.get(`/user/${params.inviteData.inviter}`);
 
         setInviter(data);
+
         return setLoading(false);
       } catch (error) {
-        console.error(error);
+        handleErrors(error);
         goBack();
       }
     })();
@@ -63,10 +68,13 @@ const GameInvite: React.FC = () => {
         game: params.inviteData.gameId,
       });
 
+      showMessage({ message: 'Jogo adicionado!', type: 'success' });
+
+      setBtnDisabled(false);
+
       navigate('Lobby', { newGame: data });
     } catch (error) {
-      console.error(error);
-    } finally {
+      handleErrors(error);
       setBtnDisabled(false);
     }
   };

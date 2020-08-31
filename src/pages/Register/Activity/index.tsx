@@ -6,11 +6,10 @@ import DatePicker from '@react-native-community/datetimepicker';
 import { useAuth } from '../../../contexts/Authorization';
 import { useGame } from '../../../contexts/Game';
 
-// Formik
+// Libs
 import { Formik } from 'formik';
-
-// Yup
 import * as Yup from 'yup';
+import { showMessage } from 'react-native-flash-message';
 
 // Components
 import Input from '../../../components/Input';
@@ -35,6 +34,7 @@ import {
 
 // Utils
 import showDate from '../../../utils/showDate';
+import handleErrors from '../../../utils/handleErrors';
 
 const RegisterSchema = Yup.object().shape({
   date: Yup.date().required('Informe a data'),
@@ -91,9 +91,10 @@ const ActivityInfo: React.FC = () => {
 
             await api.post('/activityRegister', data);
 
+            showMessage({ message: 'Atividade registrada!', type: 'success' });
             goBack();
           } catch (error) {
-            console.error(error);
+            handleErrors(error);
             setConfirmDisabled(false);
           }
         }}

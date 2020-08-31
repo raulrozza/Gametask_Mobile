@@ -41,8 +41,8 @@ const Authorization: React.FC = ({ children }) => {
   const signOut = async () => {
     await AsyncStorage.clear();
     setUser({} as IUser);
-    changeTheme({});
     setLogged(false);
+    changeTheme({});
   };
 
   return (

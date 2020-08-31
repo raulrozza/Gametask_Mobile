@@ -15,6 +15,7 @@ import api from '../../../services/api';
 
 // Utils
 import showDate from '../../../utils/showDate';
+import handleErrors from '../../../utils/handleErrors';
 
 // Styles
 import Rank from '../../../styles/Rank';
@@ -31,7 +32,7 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
 
       setFeed(response.data);
     } catch (error) {
-      console.error(error);
+      handleErrors(error);
     }
   }, []);
 
