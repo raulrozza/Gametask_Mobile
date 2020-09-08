@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Contexts
-import { useAuth } from '../../../contexts/Authorization';
 import { useGame } from '../../../contexts/Game';
 
 // Libs
@@ -34,8 +33,7 @@ const AchievementRegister: React.FC = () => {
     params: { achievement },
   } = useRoute<AchievementRegisterRouteProp>();
   const { goBack } = useNavigation();
-  const { user } = useAuth();
-  const { game } = useGame();
+  const { game, player } = useGame();
 
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);
@@ -55,7 +53,7 @@ const AchievementRegister: React.FC = () => {
 
           try {
             const data = {
-              requester: user._id,
+              requester: player._id,
               achievement: achievement._id,
               requestDate: new Date(),
               information: values.information,

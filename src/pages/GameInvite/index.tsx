@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 // Contexts
 import {
@@ -60,7 +60,7 @@ const GameInvite: React.FC = () => {
     })();
   }, []);
 
-  const handleAcceptInvitation = async () => {
+  const handleAcceptInvitation = useCallback(async () => {
     setBtnDisabled(true);
 
     try {
@@ -77,7 +77,7 @@ const GameInvite: React.FC = () => {
       handleErrors(error);
       setBtnDisabled(false);
     }
-  };
+  }, []);
 
   if (loading) return null;
 

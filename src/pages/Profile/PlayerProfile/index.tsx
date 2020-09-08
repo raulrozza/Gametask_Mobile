@@ -73,7 +73,8 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
       .sort((a, b) => a.level - b.level)
       .find(info => player.level < info.level);
 
-    if (player.rank) setRankPallete(fillPallete('primary', player.rank.color));
+    if (player.rank && player.rank.color)
+      setRankPallete(fillPallete('primary', player.rank.color));
 
     setUserMeta({
       rank: player.rank,

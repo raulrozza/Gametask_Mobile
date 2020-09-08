@@ -5,22 +5,22 @@ import { FlatList } from 'react-native-gesture-handler';
 // Contexts
 import { getTextColor } from '../../../contexts/Theme';
 
-// Types
-import { IFeed } from '../types';
-import { IThemedComponent } from 'theme';
-import { themeProps } from '../../../modules/PropTypes';
-
 // Services
 import api from '../../../services/api';
-
-// Utils
-import showDate from '../../../utils/showDate';
-import handleErrors from '../../../utils/handleErrors';
 
 // Styles
 import Rank from '../../../styles/Rank';
 import { Container, FeedItem, FeedText } from './styles';
 import { withTheme } from 'styled-components';
+
+// Types
+import { IFeed } from '../types';
+import { IThemedComponent } from 'theme';
+import { themeProps } from '../../../modules/PropTypes';
+
+// Utils
+import showDate from '../../../utils/showDate';
+import handleErrors from '../../../utils/handleErrors';
 
 const Feed: React.FC<IThemedComponent> = ({ theme }) => {
   const [feed, setFeed] = useState<IFeed[]>([]);
@@ -29,6 +29,8 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
   const updateFeed = useCallback(async () => {
     try {
       const response = await api.get('/feed');
+
+      console.log(response.data);
 
       setFeed(response.data);
     } catch (error) {

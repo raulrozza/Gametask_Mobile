@@ -3,7 +3,6 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import DatePicker from '@react-native-community/datetimepicker';
 
 // Contexts
-import { useAuth } from '../../../contexts/Authorization';
 import { useGame } from '../../../contexts/Game';
 
 // Libs
@@ -46,8 +45,7 @@ const ActivityInfo: React.FC = () => {
     params: { activity },
   } = useRoute<ActivityRouteProp>();
   const { goBack } = useNavigation();
-  const { user } = useAuth();
-  const { game } = useGame();
+  const { game, player } = useGame();
 
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);
@@ -81,7 +79,7 @@ const ActivityInfo: React.FC = () => {
 
           try {
             const data = {
-              requester: user._id,
+              requester: player._id,
               activity: activity._id,
               requestDate: new Date(),
               completionDate: selectedDate,

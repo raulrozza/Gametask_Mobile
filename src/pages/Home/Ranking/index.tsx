@@ -20,7 +20,9 @@ const Ranking: React.FC = () => {
           width: '100%',
         }}
         data={game.weeklyRanking}
-        keyExtractor={item => item.player._id}
+        keyExtractor={item =>
+          typeof item.player === 'string' ? item.player : item.player._id
+        }
         ListEmptyComponent={() => (
           <RankingItem.Container>
             <RankingText.Empty>
