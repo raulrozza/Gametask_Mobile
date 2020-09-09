@@ -23,7 +23,7 @@ import { IColorPallete } from 'theme';
 import api from '../../services/api';
 
 // Utils
-import handleErrors from '../../utils/handleErrors';
+import handleApiErrors from '../../utils/handleApiErrors';
 
 const GameInvite: React.FC = () => {
   // Navigation
@@ -54,7 +54,7 @@ const GameInvite: React.FC = () => {
 
         return setLoading(false);
       } catch (error) {
-        handleErrors(error);
+        handleApiErrors(error);
         goBack();
       }
     })();
@@ -74,7 +74,7 @@ const GameInvite: React.FC = () => {
 
       navigate('Lobby', { newGame: data });
     } catch (error) {
-      handleErrors(error);
+      handleApiErrors(error);
       setBtnDisabled(false);
     }
   }, []);

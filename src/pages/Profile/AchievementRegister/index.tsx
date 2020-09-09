@@ -22,7 +22,7 @@ import { AchievementRegisterRouteProp } from '../types';
 import { Container, Title, Form, Errors, Footer } from './styles';
 
 // Utils
-import handleErrors from '../../../utils/handleErrors';
+import handleApiErrors from '../../../utils/handleApiErrors';
 
 const RegisterSchema = Yup.object().shape({
   information: Yup.string().required('Conte como desbloqueou a conquista.'),
@@ -65,7 +65,7 @@ const AchievementRegister: React.FC = () => {
             showMessage({ message: 'Conquista requisitada!', type: 'success' });
             goBack();
           } catch (error) {
-            handleErrors(error);
+            handleApiErrors(error);
             setConfirmDisabled(false);
           }
         }}

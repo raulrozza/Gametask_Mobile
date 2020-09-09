@@ -19,7 +19,7 @@ import { IInviteData } from 'game';
 import { IModalContent } from '../types';
 
 // Utils
-import handleErrors from '../../../utils/handleErrors';
+import handleApiErrors from '../../../utils/handleApiErrors';
 
 const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
   const [code, setCode] = useState('');
@@ -66,7 +66,7 @@ const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
     } catch (error) {
       closeModal();
 
-      handleErrors(error);
+      handleApiErrors(error);
     }
   };
 

@@ -31,7 +31,7 @@ import {
 import Button from '../../components/Button';
 
 // Utils
-import handleErrors from '../../utils/handleErrors';
+import handleApiErrors from '../../utils/handleApiErrors';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -97,7 +97,7 @@ const Login: React.FC = () => {
 
                 return signIn(response.data);
               } catch (error) {
-                handleErrors(error);
+                handleApiErrors(error);
               }
 
               return setLoginButtonDisabled(false);
@@ -186,7 +186,7 @@ const Login: React.FC = () => {
                   type: 'success',
                 });
               } catch (error) {
-                handleErrors(error);
+                handleApiErrors(error);
               }
 
               setSignupButtonDisabled(false);

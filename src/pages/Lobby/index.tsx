@@ -23,7 +23,7 @@ import { useGame } from '../../contexts/Game';
 import { Modal } from 'react-native';
 
 // Utils
-import handleErrors from '../../utils/handleErrors';
+import handleApiErrors from '../../utils/handleApiErrors';
 
 const Lobby: React.FC = () => {
   const [createdPlayers, setCreatedPlayers] = useState<IPlayer[]>([]);
@@ -41,7 +41,7 @@ const Lobby: React.FC = () => {
 
         setCreatedPlayers(data);
       } catch (error) {
-        handleErrors(error, signOut);
+        handleApiErrors(error, signOut);
       } finally {
         setLoadingData(false);
       }

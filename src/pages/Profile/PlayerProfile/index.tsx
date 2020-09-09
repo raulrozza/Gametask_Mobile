@@ -33,7 +33,7 @@ import { IUserMeta } from '../types';
 import { themeProps } from '../../../modules/PropTypes';
 
 // Utils
-import handleErrors from '../../../utils/handleErrors';
+import handleApiErrors from '../../../utils/handleApiErrors';
 import api from '../../../services/api';
 
 const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
@@ -62,7 +62,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
           }),
         );
       } catch (error) {
-        handleErrors(error);
+        handleApiErrors(error);
       }
     })();
   }, []);

@@ -20,7 +20,7 @@ import {
 import api from '../../../services/api';
 
 // Utils
-import handleErrors from '../../../utils/handleErrors';
+import handleApiErrors from '../../../utils/handleApiErrors';
 
 const ActivityRegister: React.FC = () => {
   const { navigate } = useNavigation();
@@ -34,7 +34,7 @@ const ActivityRegister: React.FC = () => {
 
         setActivities(response.data);
       } catch (error) {
-        handleErrors(error);
+        handleApiErrors(error);
       }
     })();
   }, []);

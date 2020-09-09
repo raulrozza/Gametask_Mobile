@@ -20,7 +20,7 @@ import api from '../services/api';
 import { IGameHook, IPlayer, UnknownObject } from 'game';
 
 // Utils
-import handleErrors from '../utils/handleErrors';
+import handleApiErrors from '../utils/handleApiErrors';
 
 function isEqual(object1: UnknownObject | null, object2: UnknownObject | null) {
   try {
@@ -61,7 +61,7 @@ const Game: React.FC = ({ children }) => {
         setPlayer(player);
         changeTheme(player.game.theme);
       } catch (error) {
-        handleErrors(error, signOut);
+        handleApiErrors(error, signOut);
       }
     },
     [signOut, changeTheme],

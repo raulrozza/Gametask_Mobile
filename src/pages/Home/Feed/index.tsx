@@ -20,7 +20,7 @@ import { themeProps } from '../../../modules/PropTypes';
 
 // Utils
 import showDate from '../../../utils/showDate';
-import handleErrors from '../../../utils/handleErrors';
+import handleApiErrors from '../../../utils/handleApiErrors';
 
 const Feed: React.FC<IThemedComponent> = ({ theme }) => {
   const [feed, setFeed] = useState<IFeed[]>([]);
@@ -34,7 +34,7 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
 
       setFeed(response.data);
     } catch (error) {
-      handleErrors(error);
+      handleApiErrors(error);
     }
   }, []);
 

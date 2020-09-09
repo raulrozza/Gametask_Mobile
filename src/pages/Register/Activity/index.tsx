@@ -33,7 +33,7 @@ import {
 
 // Utils
 import showDate from '../../../utils/showDate';
-import handleErrors from '../../../utils/handleErrors';
+import handleApiErrors from '../../../utils/handleApiErrors';
 
 const RegisterSchema = Yup.object().shape({
   date: Yup.date().required('Informe a data'),
@@ -92,7 +92,7 @@ const ActivityInfo: React.FC = () => {
             showMessage({ message: 'Atividade registrada!', type: 'success' });
             goBack();
           } catch (error) {
-            handleErrors(error);
+            handleApiErrors(error);
             setConfirmDisabled(false);
           }
         }}
