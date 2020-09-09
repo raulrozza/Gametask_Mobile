@@ -30,7 +30,6 @@ import {
 import { IAchievement } from 'game';
 import { IColorPallete, IThemedComponent } from 'theme';
 import { IUserMeta } from '../types';
-import { themeProps } from '../../../modules/PropTypes';
 
 // Utils
 import handleApiErrors from '../../../utils/handleApiErrors';
@@ -91,12 +90,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
             {user.firstname}
           </Title>
         </Header>
-        {user.currentTitle && (
-          <Text>
-            {player.currentTitle && `${player.currentTitle} `}
-            {player.currentTitle.name}
-          </Text>
-        )}
+        {player.currentTitle && <Text>{player.currentTitle.name}</Text>}
 
         <UserImage
           theme={rankPallete}
@@ -179,10 +173,6 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
       </Container>
     </SafeAreaView>
   );
-};
-
-PlayerProfile.propTypes = {
-  theme: themeProps.isRequired,
 };
 
 export default withTheme(PlayerProfile);

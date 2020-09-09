@@ -40,6 +40,10 @@ export const FeedItem = {
 };
 
 export const FeedText = {
+  Text: styled.Text`
+    color: ${({ theme }) => theme.primaryContrast};
+    line-height: 24px;
+  `,
   Name: styled.Text`
     color: ${({ theme }) => theme.secondaryLowShade};
     font-weight: bold;
@@ -49,11 +53,7 @@ export const FeedText = {
     font-weight: bold;
     text-transform: uppercase;
   `,
-  Text: styled.Text`
-    color: ${({ theme }) => theme.primaryContrast};
-  `,
   Bold: styled.Text`
-    color: ${({ theme }) => theme.primaryContrast};
     font-weight: bold;
   `,
   Empty: styled.Text`

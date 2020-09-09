@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback, useState } from 'react';
 import { Clipboard, TouchableOpacity } from 'react-native';
 
 // Libs
@@ -27,7 +26,7 @@ const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
 
   const { navigate } = useNavigation();
 
-  const handleCodePaste = async () => {
+  const handleCodePaste = useCallback(async () => {
     const clipboardText = await Clipboard.getString();
     const SECRET = process.env.REACT_NATIVE_SECRET || '';
 
@@ -47,9 +46,9 @@ const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
       setCode('');
       setInviteData(null);
     }
-  };
+  }, []);
 
-  const handleSubmitInvitation = async () => {
+  const handleSubmitInvitation = useCallback(async () => {
     if (code === '' || !inviteData) return;
 
     try {
@@ -68,7 +67,7 @@ const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
 
       handleApiErrors(error);
     }
-  };
+  }, []);
 
   return (
     <Wrapper>
@@ -92,10 +91,6 @@ const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
       </Container>
     </Wrapper>
   );
-};
-
-ModalContent.propTypes = {
-  closeModal: PropTypes.func.isRequired,
 };
 
 export default ModalContent;

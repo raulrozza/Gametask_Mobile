@@ -21,6 +21,7 @@ import { themeProps } from '../../../modules/PropTypes';
 // Utils
 import showDate from '../../../utils/showDate';
 import handleApiErrors from '../../../utils/handleApiErrors';
+import ActivityFeed from './ActivityFeed';
 
 const Feed: React.FC<IThemedComponent> = ({ theme }) => {
   const [feed, setFeed] = useState<IFeed[]>([]);
@@ -29,8 +30,6 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
   const updateFeed = useCallback(async () => {
     try {
       const response = await api.get('/feed');
-
-      console.log(response.data);
 
       setFeed(response.data);
     } catch (error) {
@@ -87,38 +86,7 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
                 {(() => {
                   switch (item.type) {
                     case 'activity':
-                      return (
-                        <FeedItem.Row>
-                          {item.player.rank && (
-                            <Rank
-                              background={item.player.rank.color}
-                              text={getTextColor(item.player.rank.color)}
-                            >
-                              {item.player.rank.tag}
-                            </Rank>
-                          )}
-
-                          <FeedText.Name>
-                            {item.player.user.firstname}
-                            {item.player.user.lastname &&
-                              ` ${item.player.user.lastname}`}
-                          </FeedText.Name>
-
-                          <FeedText.Text> ganhou </FeedText.Text>
-
-                          <FeedText.Bold>
-                            {item.activity?.experience} XP
-                          </FeedText.Bold>
-
-                          <FeedText.Text> por </FeedText.Text>
-
-                          <FeedText.Activity>
-                            {item.activity?.name}
-                          </FeedText.Activity>
-
-                          <FeedText.Text>!</FeedText.Text>
-                        </FeedItem.Row>
-                      );
+                      return <ActivityFeed item={item} />;
 
                     case 'level':
                       return (

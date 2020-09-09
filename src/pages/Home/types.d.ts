@@ -14,3 +14,7 @@ export interface IFeed {
 export interface IRankingTextIcon {
   index: number;
 }
+
+export interface IFeedItem {
+  item: IFeed;
+}

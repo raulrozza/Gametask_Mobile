@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList } from 'react-native-gesture-handler';
 
 // Components
+import { FlatList } from 'react-native-gesture-handler';
 import ModalContent from './ModalContent';
 
 // Contexts
@@ -13,14 +13,14 @@ import { useRoute } from '@react-navigation/native';
 // Services
 import api from '../../services/api';
 
-// Types
-import { IPlayer } from 'game';
-import { ILobbyRoute } from './types';
-
 // Style
 import { Container, Title, Game, Footer, EmptyList } from './styles';
 import { useGame } from '../../contexts/Game';
 import { Modal } from 'react-native';
+
+// Types
+import { IPlayer } from 'game';
+import { ILobbyRoute } from './types';
 
 // Utils
 import handleApiErrors from '../../utils/handleApiErrors';
@@ -73,6 +73,7 @@ const Lobby: React.FC = () => {
                   : require('../../assets/img/games/placeholder.png')
               }
             />
+
             <Game.Info>
               <Game.Title>{player.game.name} </Game.Title>
 
@@ -91,10 +92,13 @@ const Lobby: React.FC = () => {
       <Footer.Row>
         <Footer.Button onPress={() => setModalVisible(true)}>
           <Footer.ButtonIcon name="plus" />
+
           <Footer.ButtonText>Novo</Footer.ButtonText>
         </Footer.Button>
+
         <Footer.Button>
           <Footer.ButtonIcon name="sign-out" onPress={signOut} />
+
           <Footer.ButtonText>Sair</Footer.ButtonText>
         </Footer.Button>
       </Footer.Row>

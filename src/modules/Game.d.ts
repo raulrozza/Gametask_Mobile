@@ -62,9 +62,7 @@ declare module 'game' {
     _id: string;
     experience: number;
     level: number;
-    currentTitle?: {
-      name: string;
-    };
+    currentTitle?: ITitle;
     achievements: IAchievement[];
     rank: IRank;
     user: IUser;

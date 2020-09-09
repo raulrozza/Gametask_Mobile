@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+
+// Components
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-// Types
-import { IActivity } from 'game';
+// Libs
+import { useNavigation } from '@react-navigation/native';
 
 // Styles
 import {
@@ -18,6 +19,9 @@ import {
 
 // Services
 import api from '../../../services/api';
+
+// Types
+import { IActivity } from 'game';
 
 // Utils
 import handleApiErrors from '../../../utils/handleApiErrors';

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import React, { useState, useCallback } from 'react';
+
+// Components
+import Input from '../../../components/Input';
 
 // Contexts
 import { useGame } from '../../../contexts/Game';
@@ -8,18 +10,16 @@ import { useGame } from '../../../contexts/Game';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { showMessage } from 'react-native-flash-message';
-
-// Components
-import Input from '../../../components/Input';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Services
 import api from '../../../services/api';
 
-// Types
-import { AchievementRegisterRouteProp } from '../types';
-
 // Styles
 import { Container, Title, Form, Errors, Footer } from './styles';
+
+// Types
+import { AchievementRegisterRouteProp } from '../types';
 
 // Utils
 import handleApiErrors from '../../../utils/handleApiErrors';
@@ -29,6 +29,11 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const AchievementRegister: React.FC = () => {
+  const initialValues = {
+    information: '',
+  };
+
+  // Hooks
   const {
     params: { achievement },
   } = useRoute<AchievementRegisterRouteProp>();
@@ -38,37 +43,37 @@ const AchievementRegister: React.FC = () => {
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);
 
+  const onSubmit = useCallback(async values => {
+    setConfirmDisabled(true);
+
+    try {
+      const data = {
+        requester: player._id,
+        achievement: achievement._id,
+        requestDate: new Date(),
+        information: values.information,
+        gameId: game.id,
+      };
+
+      await api.post('/achievementRegister', data);
+
+      showMessage({ message: 'Conquista requisitada!', type: 'success' });
+      goBack();
+    } catch (error) {
+      handleApiErrors(error);
+      setConfirmDisabled(false);
+    }
+  }, []);
+
   return (
     <Container>
       <Title>Requisitar Conquista</Title>
       <Title>{achievement.name}</Title>
 
       <Formik
-        initialValues={{
-          information: '',
-        }}
+        initialValues={initialValues}
         validationSchema={RegisterSchema}
-        onSubmit={async values => {
-          setConfirmDisabled(true);
-
-          try {
-            const data = {
-              requester: player._id,
-              achievement: achievement._id,
-              requestDate: new Date(),
-              information: values.information,
-              gameId: game.id,
-            };
-
-            await api.post('/achievementRegister', data);
-
-            showMessage({ message: 'Conquista requisitada!', type: 'success' });
-            goBack();
-          } catch (error) {
-            handleApiErrors(error);
-            setConfirmDisabled(false);
-          }
-        }}
+        onSubmit={onSubmit}
       >
         {({
           handleSubmit,

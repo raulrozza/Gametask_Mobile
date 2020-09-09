@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import React, { useCallback, useState } from 'react';
+
+// Components
 import DatePicker from '@react-native-community/datetimepicker';
+import Input from '../../../components/Input';
 
 // Contexts
 import { useGame } from '../../../contexts/Game';
@@ -9,15 +11,10 @@ import { useGame } from '../../../contexts/Game';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { showMessage } from 'react-native-flash-message';
-
-// Components
-import Input from '../../../components/Input';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Services
 import api from '../../../services/api';
-
-// Types
-import { ActivityRouteProp } from '../types';
 
 // Styles
 import {
@@ -31,6 +28,9 @@ import {
   Footer,
 } from './styles';
 
+// Types
+import { ActivityRouteProp } from '../types';
+
 // Utils
 import showDate from '../../../utils/showDate';
 import handleApiErrors from '../../../utils/handleApiErrors';
@@ -41,6 +41,12 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const ActivityInfo: React.FC = () => {
+  const initialValues = {
+    date: undefined,
+    information: '',
+  };
+
+  // Hooks
   const {
     params: { activity },
   } = useRoute<ActivityRouteProp>();
@@ -52,10 +58,33 @@ const ActivityInfo: React.FC = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 
-  const handleDateChange = (date: Date | undefined) => {
+  const handleDateChange = useCallback((date: Date | undefined) => {
     setShowDatePicker(false);
     setSelectedDate(date);
-  };
+  }, []);
+
+  const onSubmit = useCallback(async values => {
+    setConfirmDisabled(true);
+
+    try {
+      const data = {
+        requester: player._id,
+        activity: activity._id,
+        requestDate: new Date(),
+        completionDate: selectedDate,
+        information: values.information,
+        gameId: game.id,
+      };
+
+      await api.post('/activityRegister', data);
+
+      showMessage({ message: 'Atividade registrada!', type: 'success' });
+      goBack();
+    } catch (error) {
+      handleApiErrors(error);
+      setConfirmDisabled(false);
+    }
+  }, []);
 
   return (
     <Container>
@@ -69,33 +98,9 @@ const ActivityInfo: React.FC = () => {
       <Info>{activity.description}</Info>
 
       <Formik
-        initialValues={{
-          date: undefined,
-          information: '',
-        }}
+        initialValues={initialValues}
         validationSchema={RegisterSchema}
-        onSubmit={async values => {
-          setConfirmDisabled(true);
-
-          try {
-            const data = {
-              requester: player._id,
-              activity: activity._id,
-              requestDate: new Date(),
-              completionDate: selectedDate,
-              information: values.information,
-              gameId: game.id,
-            };
-
-            await api.post('/activityRegister', data);
-
-            showMessage({ message: 'Atividade registrada!', type: 'success' });
-            goBack();
-          } catch (error) {
-            handleApiErrors(error);
-            setConfirmDisabled(false);
-          }
-        }}
+        onSubmit={onSubmit}
       >
         {({
           handleSubmit,
