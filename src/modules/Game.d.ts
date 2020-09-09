@@ -1,10 +1,5 @@
 declare module 'game' {
   import { IUser } from 'authorization';
-  import { colorPallete } from '../contexts/Theme';
-
-  export interface UnknownObject {
-    [key: string]: unknown;
-  }
 
   export interface IRank {
     color: string;
@@ -57,20 +52,24 @@ declare module 'game' {
     weeklyRanking: IRankingItem[];
     ranks: IRank[];
     levelInfo: ILevelInfo[];
-    theme: colorPallete;
+    theme: {
+      primary: string;
+      secondary: string;
+    };
   }
 
   export interface IPlayer {
     _id: string;
     experience: number;
     level: number;
-    currentTitle: {
+    currentTitle?: {
       name: string;
     };
     achievements: IAchievement[];
     rank: IRank;
     user: IUser;
     game: IGame;
+    titles: ITitle[];
     [key: string]: string;
   }
 

@@ -1,7 +1,10 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import PropTypes from 'prop-types';
+
+// Libs
 import { ThemeProvider } from 'styled-components';
 import tinyColor from 'tinycolor2';
+
+// Types
 import { IColorPallete, ChangeThemeProps, ITheme } from 'theme';
 
 const ThemeContext = createContext({});
@@ -26,10 +29,7 @@ export const defaultTheme: IColorPallete = {
   statusBar: 'dark-content',
 };
 
-export const fillPallete: (key: string, value: string) => IColorPallete = (
-  key: string,
-  value: string,
-) => {
+export const fillPallete = (key: string, value: string): IColorPallete => {
   const color = tinyColor(value);
   const pallete = {} as IColorPallete;
 
@@ -55,16 +55,16 @@ export const fillPallete: (key: string, value: string) => IColorPallete = (
   return pallete;
 };
 
-export const getTextColor: (color: string) => string = (color: string) => {
+export const getTextColor = (color: string): string => {
   const colorObj = tinyColor(color);
 
   if (colorObj.isLight()) return '#1F1F1F';
   return '#FFF';
 };
 
-export const getStatusBarColor: (
+export const getStatusBarColor = (
   color: string,
-) => 'dark-content' | 'light-content' = (color: string) => {
+): 'dark-content' | 'light-content' => {
   const colorObj = tinyColor(color);
 
   if (colorObj.isLight()) return 'dark-content';
@@ -96,10 +96,6 @@ const Theme: React.FC = ({ children }) => {
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );
-};
-
-Theme.propTypes = {
-  children: PropTypes.node,
 };
 
 export const useTheme: () => ITheme = () => {

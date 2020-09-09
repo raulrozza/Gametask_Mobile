@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Styles
 import { BarContainer, Progress } from './styles';
@@ -18,13 +17,6 @@ const ProgressBar: React.FC<IProgressBar> = ({
       <Progress backgroundColor={fillColor} width={progress * 100} />
     </BarContainer>
   );
-};
-
-ProgressBar.propTypes = {
-  unfilledColor: PropTypes.string.isRequired,
-  borderColor: PropTypes.string.isRequired,
-  fillColor: PropTypes.string.isRequired,
-  progress: PropTypes.number,
 };
 
 export default ProgressBar;

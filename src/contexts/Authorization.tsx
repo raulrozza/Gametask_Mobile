@@ -1,13 +1,20 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { AsyncStorage } from 'react-native';
-import { IUser, IAuth } from 'authorization';
 
 // Contexts
 import { useTheme } from './Theme';
 
 // Services
-import api from '../services/api';
+import { addApiHeader } from '../services/api';
+
+// Types
+import { IUser, IAuth } from 'authorization';
 
 const AuthorizationContext = createContext({});
 
@@ -23,7 +30,7 @@ const Authorization: React.FC = ({ children }) => {
       if (!storedUser) setLogged(false);
       else {
         const parsedUser = JSON.parse(storedUser);
-        api.defaults.headers.Authorization = 'Bearer ' + parsedUser.token;
+        addApiHeader('Authorization', `Bearer ${parsedUser.token}`);
         setUser(parsedUser);
         setLogged(true);
       }
@@ -31,19 +38,19 @@ const Authorization: React.FC = ({ children }) => {
     })();
   }, []);
 
-  const signIn = async (user: IUser) => {
+  const signIn = useCallback(async (user: IUser) => {
     await AsyncStorage.setItem('loggedUser', JSON.stringify(user));
-    api.defaults.headers.Authorization = 'Bearer ' + user.token;
+    addApiHeader('Authorization', `Bearer ${user.token}`);
     setUser(user);
     setLogged(true);
-  };
+  }, []);
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     await AsyncStorage.clear();
     setUser({} as IUser);
     setLogged(false);
     changeTheme({});
-  };
+  }, []);
 
   return (
     <AuthorizationContext.Provider
@@ -58,10 +65,6 @@ export const useAuth: () => IAuth = () => {
   const auth = useContext(AuthorizationContext) as IAuth;
 
   return auth;
-};
-
-Authorization.propTypes = {
-  children: PropTypes.node,
 };
 
 export default Authorization;

@@ -9,7 +9,9 @@
         "standard",
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
-        "prettier/react"
+        "prettier/react",
+        "prettier/standard",
+        "prettier/@typescript-eslint"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -33,7 +35,8 @@
             "trailingComma": "all",
             "arrowParens": "avoid"
         }
-      ]
+      ],
+      "react/prop-types": 0
     },
     "overrides": [
       {

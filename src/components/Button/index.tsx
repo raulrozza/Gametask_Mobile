@@ -1,13 +1,10 @@
 import React from 'react';
-import { ViewPropTypes } from 'react-native';
-import PropTypes from 'prop-types';
 
 // Styles
 import { Container, Text } from './styles';
 
 // Types
 import { IButton } from './types';
-import { themeProps } from '../../modules/PropTypes';
 import { withTheme } from 'styled-components';
 
 const Button: React.FC<IButton> = ({
@@ -31,14 +28,6 @@ const Button: React.FC<IButton> = ({
       </Text>
     </Container>
   );
-};
-
-Button.propTypes = {
-  outline: PropTypes.bool,
-  disabled: PropTypes.bool,
-  style: ViewPropTypes.style,
-  children: PropTypes.node,
-  theme: themeProps.isRequired,
 };
 
 export default withTheme(Button);

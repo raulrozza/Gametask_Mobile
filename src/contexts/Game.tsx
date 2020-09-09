@@ -6,31 +6,20 @@ import React, {
   useState,
 } from 'react';
 import { AsyncStorage } from 'react-native';
-import PropTypes from 'prop-types';
-import assert from 'assert';
 
 // Contexts
 import { useAuth } from './Authorization';
 import { useTheme } from './Theme';
 
 // Services
-import api from '../services/api';
+import api, { removeApiHeader, addApiHeader } from '../services/api';
 
 // Types
-import { IGameHook, IPlayer, UnknownObject } from 'game';
+import { IGameHook, IPlayer } from 'game';
 
 // Utils
 import handleApiErrors from '../utils/handleApiErrors';
-
-function isEqual(object1: UnknownObject | null, object2: UnknownObject | null) {
-  try {
-    assert.deepStrictEqual(object1, object2);
-  } catch (error) {
-    return false;
-  }
-
-  return true;
-}
+import isEqual from '../utils/isEqual';
 
 const GameContext = createContext({});
 
@@ -47,7 +36,7 @@ const Game: React.FC = ({ children }) => {
     await AsyncStorage.removeItem('storedPlayer');
     setPlayer(null);
     changeTheme({});
-    delete api.defaults.headers['X-Game-ID'];
+    removeApiHeader('X-Game-ID');
   }, [changeTheme]);
 
   const getGameInfo = useCallback(
@@ -80,7 +69,7 @@ const Game: React.FC = ({ children }) => {
         else {
           // Check if the game in state is equal to the one stored in the local storage.
           // If they are, DO NOT CHANGE THE STATE because it causes infinite re-renderings
-          api.defaults.headers['X-Game-ID'] = parsedPlayer.game._id;
+          addApiHeader('X-Game-ID', parsedPlayer.game._id);
 
           if (!isEqual(player, parsedPlayer)) {
             setPlayer(parsedPlayer);
@@ -95,21 +84,24 @@ const Game: React.FC = ({ children }) => {
     })();
   }, [changeTheme, resetGame, getGameInfo, verifiedGameAuthenticity, player]);
 
-  const switchGame = async (player?: IPlayer) => {
-    setLoading(true);
+  const switchGame = useCallback(
+    async (player?: IPlayer) => {
+      setLoading(true);
 
-    if (player) {
-      await AsyncStorage.setItem('storedPlayer', JSON.stringify(player));
+      if (player) {
+        await AsyncStorage.setItem('storedPlayer', JSON.stringify(player));
 
-      api.defaults.headers['X-Game-ID'] = player.game._id;
+        addApiHeader('X-Game-ID', player.game._id);
 
-      setPlayer(player);
-      changeTheme(player.game.theme);
-    } else resetGame();
+        setPlayer(player);
+        changeTheme(player.game.theme);
+      } else resetGame();
 
-    setVerifiedGameAuthenticity(false);
-    setLoading(false);
-  };
+      setVerifiedGameAuthenticity(false);
+      setLoading(false);
+    },
+    [changeTheme],
+  );
 
   return (
     <GameContext.Provider
@@ -124,10 +116,6 @@ export const useGame: () => IGameHook = () => {
   const game = useContext(GameContext) as IGameHook;
 
   return game;
-};
-
-Game.propTypes = {
-  children: PropTypes.node,
 };
 
 export default Game;
