@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components/native';
-import { IBarContainer, IProgress } from './types';
 
-export const BarContainer = styled.View<IBarContainer>`
+// Types
+import { BarContainerProps, ProgressProps } from './types';
+
+export const BarContainer = styled.View<BarContainerProps>`
   height: 48px;
   width: 100%;
   border-width: 3px;
@@ -13,7 +15,7 @@ export const BarContainer = styled.View<IBarContainer>`
   `}
 `;
 
-export const Progress = styled.View<IProgress>`
+export const Progress = styled.View<ProgressProps>`
   width: 100%;
   height: 100%;
   ${({ backgroundColor, width }) => css`

@@ -1,13 +1,13 @@
 import React from 'react';
 
 // Styles
+import { withTheme } from 'styled-components';
 import { Container, Text } from './styles';
 
 // Types
-import { IButton } from './types';
-import { withTheme } from 'styled-components';
+import { ButtonProps } from './types';
 
-const Button: React.FC<IButton> = ({
+const Button: React.FC<ButtonProps> = ({
   outline = false,
   disabled = false,
   style,

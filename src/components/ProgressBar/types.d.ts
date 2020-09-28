@@ -1,16 +1,16 @@
-export interface IProgressBar {
+export interface ProgressBarProps {
   unfilledColor: string;
   borderColor: string;
   fillColor: string;
   progress?: number;
 }
 
-export interface IBarContainer {
+export interface BarContainerProps {
   backgroundColor: string;
   borderColor: string;
 }
 
-export interface IProgress {
+export interface ProgressProps {
   backgroundColor: string;
   width: number;
 }

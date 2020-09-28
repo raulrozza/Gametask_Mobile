@@ -5,9 +5,9 @@ import { withTheme } from 'styled-components';
 import { StyledInput } from './styles';
 
 // Types
-import { IInput } from './types';
+import { InputProps } from './types';
 
-const Input: React.FC<IInput> = ({ theme, onBlur, ...props }) => {
+const Input: React.FC<InputProps> = ({ theme, onBlur, ...props }) => {
   const [focused, setFocus] = useState(false);
 
   return (

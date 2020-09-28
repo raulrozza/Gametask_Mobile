@@ -2,9 +2,9 @@
 import { TextInputProps } from 'react-native';
 import { IThemedComponent } from 'theme';
 
-export interface IInput extends TextInputProps, IThemedComponent {}
+export interface InputProps extends TextInputProps, IThemedComponent {}
 
-export interface IStyledInput {
+export interface StyledInputProps {
   focused: boolean;
   multiline?: boolean;
 }

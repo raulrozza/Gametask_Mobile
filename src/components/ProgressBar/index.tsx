@@ -4,9 +4,9 @@ import React from 'react';
 import { BarContainer, Progress } from './styles';
 
 // Types
-import { IProgressBar } from './types';
+import { ProgressBarProps } from './types';
 
-const ProgressBar: React.FC<IProgressBar> = ({
+const ProgressBar: React.FC<ProgressBarProps> = ({
   unfilledColor,
   fillColor,
   borderColor,

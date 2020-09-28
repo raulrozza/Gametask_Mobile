@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components/native';
-import { IStyledInput } from './types';
 
-export const StyledInput = styled.TextInput<IStyledInput>`
+// Types
+import { StyledInputProps } from './types';
+
+export const StyledInput = styled.TextInput<StyledInputProps>`
   width: 100%;
   border-radius: 5px;
   padding: 0 12px;

@@ -1,8 +1,12 @@
 import styled, { css } from 'styled-components/native';
-import { IStyledButton } from './types';
+
+// Libs
 import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled(RectButton)<IStyledButton>`
+// Types
+import { StyledButtonProps } from './types';
+
+export const Container = styled(RectButton)<StyledButtonProps>`
   ${({ theme, outline, enabled = true }) => css`
     ${outline
       ? css`
@@ -29,7 +33,7 @@ export const Container = styled(RectButton)<IStyledButton>`
   `}
 `;
 
-export const Text = styled.Text<IStyledButton>`
+export const Text = styled.Text<StyledButtonProps>`
   padding: 8px 12px;
   text-align: center;
   border-radius: 2px;

@@ -4,12 +4,12 @@ import { ReactNativeStyledInterface } from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 import { IColorPallete } from 'theme';
 
-export interface IStyledButton {
+export interface StyledButtonProps {
   outline: boolean;
   enabled?: boolean;
 }
 
-export interface IButton extends RectButtonProperties {
+export interface ButtonProps extends RectButtonProperties {
   as?: typeof TouchableOpacity;
   outline?: boolean;
   style?: ReactNativeStyledInterface;
