@@ -9,7 +9,7 @@ import { FeedText } from '../styles';
 // Types
 import { IFeedItem } from '../../types';
 
-const ActivityFeed: React.FC<IFeedItem> = ({ item }) => {
+const AchievementFeed: React.FC<IFeedItem> = ({ item }) => {
   return (
     <FeedText.Text>
       <Rank player={item.player} />{' '}
@@ -17,10 +17,17 @@ const ActivityFeed: React.FC<IFeedItem> = ({ item }) => {
         {item.player.user.firstname}
         {item.player.user.lastname && ` ${item.player.user.lastname}`}
       </FeedText.Name>{' '}
-      ganhou <FeedText.Bold>{item.activity?.experience} XP</FeedText.Bold> por{' '}
-      <FeedText.Activity>{item.activity?.name}</FeedText.Activity>!
+      desbloqueou a conquista{' '}
+      <FeedText.Activity>{item.achievement?.name}</FeedText.Activity>
+      {item.achievement?.title?.name && (
+        <>
+          , recebendo o título{' '}
+          <FeedText.Bold>{item.achievement.title.name}</FeedText.Bold>
+        </>
+      )}
+      !
     </FeedText.Text>
   );
 };
 
-export default ActivityFeed;
+export default AchievementFeed;

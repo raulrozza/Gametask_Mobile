@@ -9,7 +9,7 @@ import { FeedText } from '../styles';
 // Types
 import { IFeedItem } from '../../types';
 
-const ActivityFeed: React.FC<IFeedItem> = ({ item }) => {
+const LevelUpFeed: React.FC<IFeedItem> = ({ item }) => {
   return (
     <FeedText.Text>
       <Rank player={item.player} />{' '}
@@ -17,10 +17,18 @@ const ActivityFeed: React.FC<IFeedItem> = ({ item }) => {
         {item.player.user.firstname}
         {item.player.user.lastname && ` ${item.player.user.lastname}`}
       </FeedText.Name>{' '}
-      ganhou <FeedText.Bold>{item.activity?.experience} XP</FeedText.Bold> por{' '}
-      <FeedText.Activity>{item.activity?.name}</FeedText.Activity>!
+      atingiu o{' '}
+      {item.level?.title ? (
+        <>
+          nível <FeedText.Activity>{item.level.title}</FeedText.Activity>!
+        </>
+      ) : (
+        <>
+          <FeedText.Activity>{item.level?.level}º nível</FeedText.Activity>!
+        </>
+      )}
     </FeedText.Text>
   );
 };
 
-export default ActivityFeed;
+export default LevelUpFeed;

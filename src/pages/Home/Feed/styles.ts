@@ -11,9 +11,11 @@ export const FeedItem = {
     padding: 8px;
     border-radius: 8px;
     background-color: ${({ theme }) => theme.primary};
+    overflow: hidden;
   `,
   Content: styled.View`
     flex-direction: row;
+    justify-content: flex-start;
   `,
   Image: styled.Image`
     height: 48px;
@@ -21,11 +23,11 @@ export const FeedItem = {
     border-radius: 24px;
     margin-right: 8px;
   `,
-  Info: styled.View``,
+  Info: styled.View`
+    background-color: blue;
+  `,
   Row: styled.View`
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+    flex: 1;
   `,
   Meta: styled.View`
     width: 100%;
@@ -43,6 +45,7 @@ export const FeedText = {
   Text: styled.Text`
     color: ${({ theme }) => theme.primaryContrast};
     line-height: 24px;
+    flex-wrap: wrap;
   `,
   Name: styled.Text`
     color: ${({ theme }) => theme.secondaryLowShade};
@@ -52,6 +55,7 @@ export const FeedText = {
     color: ${({ theme }) => theme.secondary};
     font-weight: bold;
     text-transform: uppercase;
+    flex-wrap: wrap;
   `,
   Bold: styled.Text`
     font-weight: bold;

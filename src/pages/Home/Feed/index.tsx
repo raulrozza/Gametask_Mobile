@@ -2,26 +2,24 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-// Contexts
-import { getTextColor } from '../../../contexts/Theme';
-
 // Services
 import api from '../../../services/api';
 
 // Styles
-import Rank from '../../../styles/Rank';
 import { Container, FeedItem, FeedText } from './styles';
 import { withTheme } from 'styled-components';
 
 // Types
 import { IFeed } from '../types';
 import { IThemedComponent } from 'theme';
-import { themeProps } from '../../../modules/PropTypes';
 
 // Utils
 import showDate from '../../../utils/showDate';
 import handleApiErrors from '../../../utils/handleApiErrors';
 import ActivityFeed from './ActivityFeed';
+import LevelUpFeed from './LevelUpFeed';
+import RankFeed from './RankFeed';
+import AchievementFeed from './AchievementFeed';
 
 const Feed: React.FC<IThemedComponent> = ({ theme }) => {
   const [feed, setFeed] = useState<IFeed[]>([]);
@@ -82,81 +80,26 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
                 }
               />
 
-              <FeedItem.Info>
+              <FeedItem.Row>
                 {(() => {
                   switch (item.type) {
                     case 'activity':
                       return <ActivityFeed item={item} />;
 
                     case 'level':
-                      return (
-                        <FeedItem.Row>
-                          {item.player.rank && (
-                            <Rank
-                              background={item.player.rank.color}
-                              text={getTextColor(item.player.rank.color)}
-                            >
-                              {item.player.rank.tag}
-                            </Rank>
-                          )}
-
-                          <FeedText.Name>
-                            {item.player.user.firstname}
-                            {item.player.user.lastname &&
-                              ` ${item.player.user.lastname}`}
-                          </FeedText.Name>
-
-                          <FeedText.Text> atingiu o </FeedText.Text>
-
-                          {item.level?.title ? (
-                            <>
-                              <FeedText.Text>nível de </FeedText.Text>
-                              <FeedText.Activity>
-                                {item.level.title}
-                              </FeedText.Activity>
-                              <FeedText.Text>!</FeedText.Text>
-                            </>
-                          ) : (
-                            <>
-                              <FeedText.Activity>
-                                {item.level?.level}º nível
-                              </FeedText.Activity>
-                              <FeedText.Text>!</FeedText.Text>
-                            </>
-                          )}
-                        </FeedItem.Row>
-                      );
+                      return <LevelUpFeed item={item} />;
 
                     case 'rank':
-                      return (
-                        <FeedItem.Row>
-                          <FeedText.Name>
-                            {item.player.user.firstname}
-                            {item.player.user.lastname &&
-                              ` ${item.player.user.lastname}`}
-                          </FeedText.Name>
+                      return <RankFeed item={item} />;
 
-                          <FeedText.Text> conseguiu a patente </FeedText.Text>
+                    case 'achievement':
+                      return <AchievementFeed item={item} />;
 
-                          <Rank
-                            background={
-                              item.rank?.color || theme.primaryContrast
-                            }
-                            text={getTextColor(
-                              item.rank?.color || theme.primary,
-                            )}
-                          >
-                            {item.rank?.tag}
-                          </Rank>
-
-                          <FeedText.Text>!</FeedText.Text>
-                        </FeedItem.Row>
-                      );
                     default:
                       return <></>;
                   }
                 })()}
-              </FeedItem.Info>
+              </FeedItem.Row>
             </FeedItem.Content>
 
             <FeedItem.Meta>
@@ -169,10 +112,6 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
       />
     </Container>
   );
-};
-
-Feed.propTypes = {
-  theme: themeProps.isRequired,
 };
 
 export default withTheme(Feed);
