@@ -28,7 +28,6 @@ import { withTheme } from 'styled-components';
 
 // Types
 import { IThemedComponent } from 'theme';
-import { themeProps } from '../modules/PropTypes';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -95,10 +94,6 @@ const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
-
-GameRoutes.propTypes = {
-  theme: themeProps.isRequired,
 };
 
 export default withTheme(GameRoutes);

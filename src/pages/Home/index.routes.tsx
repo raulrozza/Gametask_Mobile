@@ -10,7 +10,6 @@ import { withTheme } from 'styled-components';
 
 // Types
 import { IThemedComponent } from 'theme';
-import { themeProps } from '../../modules/PropTypes';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -33,10 +32,6 @@ const Home: React.FC<IThemedComponent> = ({ theme }) => {
       <Tab.Screen name="Ranking" component={Ranking} />
     </Tab.Navigator>
   );
-};
-
-Home.propTypes = {
-  theme: themeProps.isRequired,
 };
 
 export default withTheme(Home);

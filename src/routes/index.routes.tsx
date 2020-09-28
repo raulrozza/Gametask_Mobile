@@ -15,7 +15,6 @@ import GameRoutes from './game.routes';
 
 // Types
 import { IThemedComponent } from 'theme';
-import { themeProps } from '../modules/PropTypes';
 
 const Routes: React.FC<IThemedComponent> = ({ theme }) => {
   const { logged, loading } = useAuth();
@@ -34,10 +33,6 @@ const Routes: React.FC<IThemedComponent> = ({ theme }) => {
       )}
     </>
   );
-};
-
-Routes.propTypes = {
-  theme: themeProps.isRequired,
 };
 
 export default withTheme(Routes);
