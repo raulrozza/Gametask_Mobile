@@ -8,8 +8,10 @@ import React, {
 import { AsyncStorage } from 'react-native';
 
 // Contexts
-import { useAuth } from './Authorization';
 import { useTheme } from './Theme';
+
+// Hooks
+import { useAuth } from '../hooks/contexts/useAuth';
 
 // Services
 import api, { removeApiHeader, addApiHeader } from '../services/api';

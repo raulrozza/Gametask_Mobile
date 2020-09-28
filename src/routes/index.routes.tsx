@@ -3,8 +3,10 @@ import { AppLoading } from 'expo';
 import { StatusBar } from 'react-native';
 
 // Contexts
-import { useAuth } from '../contexts/Authorization';
 import Game from '../contexts/Game';
+
+// Hooks
+import { useAuth } from '../hooks/contexts/useAuth';
 
 // Styles
 import { withTheme } from 'styled-components';

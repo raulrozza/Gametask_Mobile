@@ -1,25 +1,18 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AsyncStorage } from 'react-native';
 
 // Contexts
+import { AuthorizationContext } from './rawContexts';
 import { useTheme } from './Theme';
 
 // Services
 import { addApiHeader } from '../services/api';
 
 // Types
-import { IUser, IAuth } from 'authorization';
-
-const AuthorizationContext = createContext({});
+import { IUser } from '../interfaces/api/User';
 
 const Authorization: React.FC = ({ children }) => {
-  const [user, setUser] = useState<IUser>({} as IUser);
+  const [user, setUser] = useState<IUser | null>(null);
   const [logged, setLogged] = useState(false);
   const [loading, setLoading] = useState(true);
   const { changeTheme } = useTheme();
@@ -47,7 +40,7 @@ const Authorization: React.FC = ({ children }) => {
 
   const signOut = useCallback(async () => {
     await AsyncStorage.clear();
-    setUser({} as IUser);
+    setUser(null);
     setLogged(false);
     changeTheme({});
   }, []);
@@ -59,12 +52,6 @@ const Authorization: React.FC = ({ children }) => {
       {children}
     </AuthorizationContext.Provider>
   );
-};
-
-export const useAuth: () => IAuth = () => {
-  const auth = useContext(AuthorizationContext) as IAuth;
-
-  return auth;
 };
 
 export default Authorization;

@@ -5,11 +5,13 @@ import { useNavigation } from '@react-navigation/native';
 // Contexts
 import { useGame } from '../../../contexts/Game';
 import { fillPallete } from '../../../contexts/Theme';
-import { useAuth } from '../../../contexts/Authorization';
 
 // Components
 import ProgressBar from '../../../components/ProgressBar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+// Hooks
+import { useAuth } from '../../../hooks/contexts/useAuth';
 
 // Styles
 import { withTheme } from 'styled-components';
@@ -80,6 +82,8 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
       nextLevel: nextLevel,
     });
   }, [game]);
+
+  if (!user) return null;
 
   return (
     <SafeAreaView>

@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import ModalContent from './ModalContent';
 
-// Contexts
-import { useAuth } from '../../contexts/Authorization';
+// Hooks
+import { useAuth } from '../../hooks/contexts/useAuth';
 
 // Libs
 import { useRoute } from '@react-navigation/native';

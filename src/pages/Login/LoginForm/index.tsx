@@ -3,8 +3,8 @@ import React, { useCallback, useState } from 'react';
 // Components
 import Input from '../../../components/Input';
 
-// Contexts
-import { useAuth } from '../../../contexts/Authorization';
+// Hooks
+import { useAuth } from '../../../hooks/contexts/useAuth';
 
 // Libs
 import { Formik } from 'formik';
