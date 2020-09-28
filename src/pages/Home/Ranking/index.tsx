@@ -14,6 +14,8 @@ import { Container, RankingItem, RankingText } from './styles';
 const Ranking: React.FC = () => {
   const { game } = useGameData();
 
+  if (!game) return null;
+
   return (
     <Container>
       <FlatList
