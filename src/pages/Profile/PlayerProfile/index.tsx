@@ -56,7 +56,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
           achievements.map((achievement: IAchievement) => {
             return {
               ...achievement,
-              obtained: player.achievements.includes(achievement),
+              obtained: player.achievements.includes(achievement._id),
             };
           }),
         );
