@@ -1,13 +1,8 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AsyncStorage } from 'react-native';
 
 // Contexts
+import { GameContext } from './rawContexts';
 import { useTheme } from './Theme';
 
 // Hooks
@@ -17,13 +12,11 @@ import { useAuth } from '../hooks/contexts/useAuth';
 import api, { removeApiHeader, addApiHeader } from '../services/api';
 
 // Types
-import { IGameHook, IPlayer } from 'game';
+import { IPlayer } from '../interfaces/api/Player';
 
 // Utils
 import handleApiErrors from '../utils/handleApiErrors';
 import isEqual from '../utils/isEqual';
-
-const GameContext = createContext({});
 
 const Game: React.FC = ({ children }) => {
   const [player, setPlayer] = useState<IPlayer | null>(null);
@@ -107,17 +100,11 @@ const Game: React.FC = ({ children }) => {
 
   return (
     <GameContext.Provider
-      value={{ game: player?.game, player, loading, switchGame }}
+      value={{ game: player?.game || null, player, loading, switchGame }}
     >
       {children}
     </GameContext.Provider>
   );
-};
-
-export const useGame: () => IGameHook = () => {
-  const game = useContext(GameContext) as IGameHook;
-
-  return game;
 };
 
 export default Game;

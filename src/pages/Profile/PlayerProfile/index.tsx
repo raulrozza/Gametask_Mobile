@@ -3,7 +3,6 @@ import { SafeAreaView, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // Contexts
-import { useGame } from '../../../contexts/Game';
 import { fillPallete } from '../../../contexts/Theme';
 
 // Components
@@ -12,6 +11,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Hooks
 import { useAuth } from '../../../hooks/contexts/useAuth';
+import { useGameData } from '../../../hooks/contexts/useGameData';
 
 // Styles
 import { withTheme } from 'styled-components';
@@ -29,7 +29,7 @@ import {
 } from './styles';
 
 // Types
-import { IAchievement } from 'game';
+import { IAchievement } from '../../../interfaces/api/Achievement';
 import { IColorPallete, IThemedComponent } from 'theme';
 import { IUserMeta } from '../types';
 
@@ -39,7 +39,7 @@ import api from '../../../services/api';
 
 const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   const { user, signOut } = useAuth();
-  const { game, player, switchGame } = useGame();
+  const { game, player, switchGame } = useGameData();
   const { navigate } = useNavigation();
 
   const [rankPallete, setRankPallete] = useState<IColorPallete>(theme);
@@ -48,6 +48,8 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
     nextLevel: undefined,
   });
   const [achievements, setAchievements] = useState<IAchievement[]>([]);
+
+  if (!game || !player) return null;
 
   useEffect(() => {
     (async () => {
@@ -58,7 +60,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
           achievements.map((achievement: IAchievement) => {
             return {
               ...achievement,
-              obtained: player.achievements.includes(achievement._id),
+              obtained: player.achievements.includes(achievement._id) || false,
             };
           }),
         );

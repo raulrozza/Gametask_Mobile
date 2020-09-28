@@ -6,6 +6,7 @@ import ModalContent from './ModalContent';
 
 // Hooks
 import { useAuth } from '../../hooks/contexts/useAuth';
+import { useGameData } from '../../hooks/contexts/useGameData';
 
 // Libs
 import { useRoute } from '@react-navigation/native';
@@ -15,11 +16,10 @@ import api from '../../services/api';
 
 // Style
 import { Container, Title, Game, Footer, EmptyList } from './styles';
-import { useGame } from '../../contexts/Game';
 import { Modal } from 'react-native';
 
 // Types
-import { IPlayer } from 'game';
+import { IPlayer } from '../../interfaces/api/Player';
 import { ILobbyRoute } from './types';
 
 // Utils
@@ -31,7 +31,7 @@ const Lobby: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const { signOut } = useAuth();
-  const { switchGame } = useGame();
+  const { switchGame } = useGameData();
   const { params } = useRoute<ILobbyRoute>();
 
   useEffect(() => {

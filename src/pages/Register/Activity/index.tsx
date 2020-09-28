@@ -4,14 +4,14 @@ import React, { useCallback, useState } from 'react';
 import DatePicker from '@react-native-community/datetimepicker';
 import Input from '../../../components/Input';
 
-// Contexts
-import { useGame } from '../../../contexts/Game';
+// Hooks
+import { useGameData } from '../../../hooks/contexts/useGameData';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Libs
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { showMessage } from 'react-native-flash-message';
-import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Services
 import api from '../../../services/api';
@@ -51,7 +51,9 @@ const ActivityInfo: React.FC = () => {
     params: { activity },
   } = useRoute<ActivityRouteProp>();
   const { goBack } = useNavigation();
-  const { game, player } = useGame();
+  const { game, player } = useGameData();
+
+  if (!game || !player) return null;
 
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);

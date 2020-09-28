@@ -1,5 +1,5 @@
 import { RouteProp } from '@react-navigation/native';
-import { IActivity } from 'game';
+import { IActivity } from '../../interfaces/api/Activity';
 
 type ParamList = {
   activity: { activity: IActivity };

@@ -1,4 +1,8 @@
-import { IActivity, IAchievement, ILevelInfo, IRank, IPlayer } from 'game';
+import { IAchievement } from '../../interfaces/api/Achievement';
+import { IActivity } from '../../interfaces/api/Activity';
+import { ILevelInfo } from '../../interfaces/api/LevelInfo';
+import { IPlayer } from '../../interfaces/api/Player';
+import { IRank } from '../../interfaces/api/Rank';
 
 export interface IFeed {
   _id: string;

@@ -1,6 +1,9 @@
 import React from 'react';
 import { AppLoading } from 'expo';
 
+// Hooks
+import { useGameData } from '../hooks/contexts/useGameData';
+
 // Icons
 import {
   FontAwesome,
@@ -12,9 +15,6 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-
-// Contexts
-import { useGame } from '../contexts/Game';
 
 // Pages
 import GameInvite from '../pages/GameInvite';
@@ -33,7 +33,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
-  const { game, loading } = useGame();
+  const { game, loading } = useGameData();
 
   if (loading) return <AppLoading />;
 

@@ -1,9 +1,9 @@
 import { RouteProp } from '@react-navigation/native';
-import { IInviteData } from 'game';
+import { IInvitationData } from '../../interfaces/api/InvitationData';
 
 type ParamList = {
   GameInvite: {
-    inviteData: IInviteData;
+    inviteData: IInvitationData;
     gameData: {
       _id: string;
       description: string;

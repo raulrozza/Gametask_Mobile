@@ -1,5 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
-import { IRank, ILevelInfo, IAchievement } from 'game';
+import { IAchievement } from '../../interfaces/api/Achievement';
+import { ILevelInfo } from '../../interfaces/api/LevelInfo';
+import { IRank } from '../../interfaces/api/Rank';
 
 type ParamList = {
   achievementDetails: { achievement: IAchievement };

@@ -14,7 +14,7 @@ import Button from '../../../components/Button';
 import api from '../../../services/api';
 
 // Types
-import { IInviteData } from 'game';
+import { IInvitationData } from '../../../interfaces/api/InvitationData';
 import { IModalContent } from '../types';
 
 // Utils
@@ -22,7 +22,7 @@ import handleApiErrors from '../../../utils/handleApiErrors';
 
 const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
   const [code, setCode] = useState('');
-  const [inviteData, setInviteData] = useState<IInviteData | null>(null);
+  const [inviteData, setInviteData] = useState<IInvitationData | null>(null);
 
   const { navigate } = useNavigation();
 

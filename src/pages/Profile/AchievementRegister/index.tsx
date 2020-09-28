@@ -3,8 +3,8 @@ import React, { useState, useCallback } from 'react';
 // Components
 import Input from '../../../components/Input';
 
-// Contexts
-import { useGame } from '../../../contexts/Game';
+// Hooks
+import { useGameData } from '../../../hooks/contexts/useGameData';
 
 // Libs
 import { Formik } from 'formik';
@@ -38,7 +38,9 @@ const AchievementRegister: React.FC = () => {
     params: { achievement },
   } = useRoute<AchievementRegisterRouteProp>();
   const { goBack } = useNavigation();
-  const { game, player } = useGame();
+  const { game, player } = useGameData();
+
+  if (!game || !player) return null;
 
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);

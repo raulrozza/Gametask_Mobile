@@ -21,7 +21,7 @@ import {
 import api from '../../../services/api';
 
 // Types
-import { IActivity } from 'game';
+import { IActivity } from '../../../interfaces/api/Activity';
 
 // Utils
 import handleApiErrors from '../../../utils/handleApiErrors';

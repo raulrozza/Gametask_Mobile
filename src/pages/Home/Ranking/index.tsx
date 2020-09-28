@@ -2,15 +2,17 @@ import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 
 // Contexts
-import { useGame } from '../../../contexts/Game';
 import { getTextColor } from '../../../contexts/Theme';
+
+// Hooks
+import { useGameData } from '../../../hooks/contexts/useGameData';
 
 // Styles
 import Rank from '../../../styles/Rank';
 import { Container, RankingItem, RankingText } from './styles';
 
 const Ranking: React.FC = () => {
-  const { game } = useGame();
+  const { game } = useGameData();
 
   return (
     <Container>
