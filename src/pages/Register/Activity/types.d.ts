@@ -5,12 +5,12 @@ type ParamList = {
   activity: { activity: IActivity };
 };
 
-export type ActivityRouteProp = RouteProp<ParamList, 'activity'>;
+export type ActivityParams = RouteProp<ParamList, 'activity'>;
 
-export interface IFooterConfirm {
+export interface FooterConfirmProps {
   disabled: boolean;
 }
 
-export interface IDateInputText {
+export interface DateInputTextProps {
   date: boolean;
 }

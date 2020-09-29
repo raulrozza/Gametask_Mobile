@@ -10,8 +10,10 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Libs
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { showMessage } from 'react-native-flash-message';
+
+// Schemas
+import { RegisterSchema } from './schemas';
 
 // Services
 import api from '../../../services/api';
@@ -29,16 +31,11 @@ import {
 } from './styles';
 
 // Types
-import { ActivityRouteProp } from '../types';
+import { ActivityParams } from './types';
 
 // Utils
 import showDate from '../../../utils/showDate';
 import handleApiErrors from '../../../utils/handleApiErrors';
-
-const RegisterSchema = Yup.object().shape({
-  date: Yup.date().required('Informe a data'),
-  information: Yup.string().required('Conte como concluiu a atividade'),
-});
 
 const ActivityInfo: React.FC = () => {
   const initialValues = {
@@ -49,7 +46,7 @@ const ActivityInfo: React.FC = () => {
   // Hooks
   const {
     params: { activity },
-  } = useRoute<ActivityRouteProp>();
+  } = useRoute<ActivityParams>();
   const { goBack } = useNavigation();
   const { game, player } = useGameData();
 

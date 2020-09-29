@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
 
 // Components
+import { FlatList } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Libs
