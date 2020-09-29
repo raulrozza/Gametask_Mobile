@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
-import Login from '../pages/Login';
 
-import { useTheme } from '../contexts/Theme';
+// Hooks
+import { useTheme } from '../hooks/contexts/useTheme';
+
+// Pages
+import Login from '../pages/Login';
 
 const DefaultRoutes: React.FC = () => {
   const { changeTheme } = useTheme();

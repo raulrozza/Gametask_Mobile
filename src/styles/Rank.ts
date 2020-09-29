@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components/native';
-import { IRankStyle } from './types';
 
-const Rank = styled.Text<IRankStyle>`
+// Types
+import { RankProps } from './types';
+
+const Rank = styled.Text<RankProps>`
   padding: 4px;
   border-radius: 8px;
   ${({ background, text }) => css`

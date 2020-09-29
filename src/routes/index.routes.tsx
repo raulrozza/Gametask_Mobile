@@ -16,7 +16,7 @@ import DefaultRoutes from './default.routes';
 import GameRoutes from './game.routes';
 
 // Types
-import { IThemedComponent } from 'theme';
+import { IThemedComponent } from '../interfaces/theme/ThemedComponent';
 
 const Routes: React.FC<IThemedComponent> = ({ theme }) => {
   const { logged, loading } = useAuth();
