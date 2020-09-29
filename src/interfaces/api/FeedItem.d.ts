@@ -4,7 +4,7 @@ import { ILevelInfo } from '../../interfaces/api/LevelInfo';
 import { IPlayer } from '../../interfaces/api/Player';
 import { IRank } from '../../interfaces/api/Rank';
 
-export interface IFeed {
+export interface IFeedItem {
   _id: string;
   player: IPlayer;
   type: 'achievement' | 'activity' | 'level' | 'rank';
@@ -13,12 +13,4 @@ export interface IFeed {
   level?: ILevelInfo;
   rank?: IRank;
   date: Date;
-}
-
-export interface IRankingTextIcon {
-  index: number;
-}
-
-export interface IFeedItem {
-  item: IFeed;
 }

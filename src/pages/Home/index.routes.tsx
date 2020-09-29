@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Navigation
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 // Pages
@@ -9,7 +11,7 @@ import Ranking from './Ranking';
 import { withTheme } from 'styled-components';
 
 // Types
-import { IThemedComponent } from 'theme';
+import { IThemedComponent } from '../../interfaces/theme/ThemedComponent';
 
 const Tab = createMaterialTopTabNavigator();
 

@@ -1,18 +1,17 @@
 import React from 'react';
 
-// Contexts
-import { getTextColor } from '../../../../contexts/Theme';
-
 // Styles
 import { withTheme } from 'styled-components';
 import Rank from '../../../../styles/Rank';
 import { FeedText } from '../styles';
 
 // Types
-import { IFeedItem } from '../../types';
-import { IThemedComponent } from 'theme';
+import { FeedProps } from '../types';
 
-const RankFeed: React.FC<IFeedItem & IThemedComponent> = ({ item, theme }) => {
+// Utils
+import { getTextColor } from '../../../../utils/theme/getTextColor';
+
+const RankFeed: React.FC<FeedProps> = ({ item, theme }) => {
   return (
     <FeedText.Text>
       <FeedText.Name>

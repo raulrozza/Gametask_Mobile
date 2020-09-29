@@ -1,4 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
+
+// Components
+import ActivityFeed from './ActivityFeed';
+import LevelUpFeed from './LevelUpFeed';
+import RankFeed from './RankFeed';
+import AchievementFeed from './AchievementFeed';
+
+// Libs
 import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -10,19 +18,15 @@ import { Container, FeedItem, FeedText } from './styles';
 import { withTheme } from 'styled-components';
 
 // Types
-import { IFeed } from '../types';
-import { IThemedComponent } from 'theme';
+import { IFeedItem } from '../../../interfaces/api/FeedItem';
+import { IThemedComponent } from '../../../interfaces/theme/ThemedComponent';
 
 // Utils
 import showDate from '../../../utils/showDate';
 import handleApiErrors from '../../../utils/handleApiErrors';
-import ActivityFeed from './ActivityFeed';
-import LevelUpFeed from './LevelUpFeed';
-import RankFeed from './RankFeed';
-import AchievementFeed from './AchievementFeed';
 
 const Feed: React.FC<IThemedComponent> = ({ theme }) => {
-  const [feed, setFeed] = useState<IFeed[]>([]);
+  const [feed, setFeed] = useState<IFeedItem[]>([]);
   const [refreshing, setRefreshing] = useState(false);
 
   const updateFeed = useCallback(async () => {

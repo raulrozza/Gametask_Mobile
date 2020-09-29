@@ -7,9 +7,9 @@ import Rank from '../../../../components/Rank';
 import { FeedText } from '../styles';
 
 // Types
-import { IFeedItem } from '../../types';
+import { FeedProps } from '../types';
 
-const AchievementFeed: React.FC<IFeedItem> = ({ item }) => {
+const AchievementFeed: React.FC<FeedProps> = ({ item }) => {
   return (
     <FeedText.Text>
       <Rank player={item.player} />{' '}
