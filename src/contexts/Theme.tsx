@@ -1,78 +1,23 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
+
+// Config
+import { defaultTheme } from '../config/defaultTheme';
+
+// Contexts
+import { ThemeContext } from './rawContexts';
 
 // Libs
-import { ThemeProvider } from 'styled-components';
-import tinyColor from 'tinycolor2';
+import { DefaultTheme, ThemeProvider } from 'styled-components';
 
 // Types
-import { IColorPallete, ChangeThemeProps, ITheme } from 'theme';
+import { ChangeThemeProps } from '../interfaces/hooks/UseTheme';
 
-const ThemeContext = createContext({});
-
-export const defaultTheme: IColorPallete = {
-  primary: '#FFFFFF',
-  primaryTransparent: '#FFFFFF88',
-  primaryIntense: '#FFFFFF',
-  primaryExtraIntense: '#FFFFFF',
-  primaryLowShade: '#e6e6e6',
-  primaryShade: '#cccccc',
-  primaryExtraShade: '#999999',
-  primaryContrast: '#1F1F1F',
-  secondary: '#852c80',
-  secondaryTransparent: '#852c8088',
-  secondaryIntense: '#5f1f5b',
-  secondaryExtraIntense: '#381336',
-  secondaryLowShade: '#ab39a5',
-  secondaryShade: '#c651bf',
-  secondaryExtraShade: '#df9edb',
-  secondaryContrast: '#FFFFFF',
-  statusBar: 'dark-content',
-};
-
-export const fillPallete = (key: string, value: string): IColorPallete => {
-  const color = tinyColor(value);
-  const pallete = {} as IColorPallete;
-
-  pallete[`${key}`] = color.toHexString();
-  pallete[`${key}Contrast`] = color.isLight() ? '#1F1F1F' : '#FFF';
-  pallete[`${key}LowShade`] = color.isLight()
-    ? tinyColor(value).darken(10).toHexString()
-    : tinyColor(value).lighten(10).toHexString();
-  pallete[`${key}Shade`] = color.isLight()
-    ? tinyColor(value).darken(20).toHexString()
-    : tinyColor(value).lighten(20).toHexString();
-  pallete[`${key}ExtraShade`] = color.isLight()
-    ? tinyColor(value).darken(40).toHexString()
-    : tinyColor(value).lighten(40).toHexString();
-  pallete[`${key}Intense`] = color.isDark()
-    ? tinyColor(value).darken(10).toHexString()
-    : tinyColor(value).lighten(10).toHexString();
-  pallete[`${key}ExtraIntense`] = color.isDark()
-    ? tinyColor(value).darken(20).toHexString()
-    : tinyColor(value).lighten(20).toHexString();
-  pallete[`${key}Transparent`] = tinyColor(value).setAlpha(0.53).toHex8String();
-
-  return pallete;
-};
-
-export const getTextColor = (color: string): string => {
-  const colorObj = tinyColor(color);
-
-  if (colorObj.isLight()) return '#1F1F1F';
-  return '#FFF';
-};
-
-export const getStatusBarColor = (
-  color: string,
-): 'dark-content' | 'light-content' => {
-  const colorObj = tinyColor(color);
-
-  if (colorObj.isLight()) return 'dark-content';
-  return 'light-content';
-};
+// Utils
+import { getStatusBarColor } from '../utils/theme/getStatusBarColor';
+import { fillTheme } from '../utils/theme/fillTheme';
 
 const Theme: React.FC = ({ children }) => {
-  const [theme, setTheme] = useState<IColorPallete>(defaultTheme);
+  const [theme, setTheme] = useState<DefaultTheme>(defaultTheme);
 
   const changeTheme = useCallback(
     ({ primary, secondary }: ChangeThemeProps) => {
@@ -80,8 +25,8 @@ const Theme: React.FC = ({ children }) => {
 
       if (primary && secondary) {
         newTheme = {
-          ...fillPallete('primary', primary),
-          ...fillPallete('secondary', secondary),
+          ...fillTheme('primary', primary),
+          ...fillTheme('secondary', secondary),
           statusBar: getStatusBarColor(primary),
         };
       }
@@ -92,16 +37,10 @@ const Theme: React.FC = ({ children }) => {
   );
 
   return (
-    <ThemeContext.Provider value={{ changeTheme, fillPallete }}>
+    <ThemeContext.Provider value={{ changeTheme }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );
-};
-
-export const useTheme: () => ITheme = () => {
-  const theme = useContext(ThemeContext) as ITheme;
-
-  return theme;
 };
 
 export default Theme;
