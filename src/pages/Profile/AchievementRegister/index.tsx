@@ -8,9 +8,11 @@ import { useGameData } from '../../../hooks/contexts/useGameData';
 
 // Libs
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { showMessage } from 'react-native-flash-message';
 import { useRoute, useNavigation } from '@react-navigation/native';
+
+// Schemas
+import { RegisterSchema } from './schemas';
 
 // Services
 import api from '../../../services/api';
@@ -19,14 +21,10 @@ import api from '../../../services/api';
 import { Container, Title, Form, Errors, Footer } from './styles';
 
 // Types
-import { AchievementRegisterRouteProp } from '../types';
+import { AchievementRegisterParams } from './types';
 
 // Utils
 import handleApiErrors from '../../../utils/handleApiErrors';
-
-const RegisterSchema = Yup.object().shape({
-  information: Yup.string().required('Conte como desbloqueou a conquista.'),
-});
 
 const AchievementRegister: React.FC = () => {
   const initialValues = {
@@ -36,7 +34,7 @@ const AchievementRegister: React.FC = () => {
   // Hooks
   const {
     params: { achievement },
-  } = useRoute<AchievementRegisterRouteProp>();
+  } = useRoute<AchievementRegisterParams>();
   const { goBack } = useNavigation();
   const { game, player } = useGameData();
 

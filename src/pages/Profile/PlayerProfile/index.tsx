@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
-// Contexts
-import { fillPallete } from '../../../contexts/Theme';
 
 // Components
 import ProgressBar from '../../../components/ProgressBar';
+
+// Icons
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Hooks
 import { useAuth } from '../../../hooks/contexts/useAuth';
 import { useGameData } from '../../../hooks/contexts/useGameData';
+import { useNavigation } from '@react-navigation/native';
+
+// Libs
+import { SafeAreaView, Text } from 'react-native';
+
+// Services
+import api from '../../../services/api';
 
 // Styles
-import { withTheme } from 'styled-components';
+import { DefaultTheme, withTheme } from 'styled-components';
 import {
   Container,
   Header,
@@ -30,19 +34,19 @@ import {
 
 // Types
 import { IAchievement } from '../../../interfaces/api/Achievement';
-import { IColorPallete, IThemedComponent } from 'theme';
-import { IUserMeta } from '../types';
+import { IUserMeta } from './types';
+import { IThemedComponent } from '../../../interfaces/theme/ThemedComponent';
 
 // Utils
 import handleApiErrors from '../../../utils/handleApiErrors';
-import api from '../../../services/api';
+import { fillTheme } from '../../../utils/theme/fillTheme';
 
 const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   const { user, signOut } = useAuth();
   const { game, player, switchGame } = useGameData();
   const { navigate } = useNavigation();
 
-  const [rankPallete, setRankPallete] = useState<IColorPallete>(theme);
+  const [rankPallete, setRankPallete] = useState<DefaultTheme>(theme);
   const [userMeta, setUserMeta] = useState<IUserMeta>({
     rank: undefined,
     nextLevel: undefined,
@@ -77,7 +81,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
       .find(info => player.level < info.level);
 
     if (player.rank && player.rank.color)
-      setRankPallete(fillPallete('primary', player.rank.color));
+      setRankPallete(fillTheme('primary', player.rank.color));
 
     setUserMeta({
       rank: player.rank,

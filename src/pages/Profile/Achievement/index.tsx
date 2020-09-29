@@ -2,7 +2,7 @@ import React from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Types
-import { AchievementRouteProp } from '../types';
+import { AchievementParams } from './types';
 
 // Styles
 import {
@@ -18,7 +18,7 @@ import {
 const AchievementDetails: React.FC = () => {
   const {
     params: { achievement },
-  } = useRoute<AchievementRouteProp>();
+  } = useRoute<AchievementParams>();
   const { goBack, navigate } = useNavigation();
 
   return (

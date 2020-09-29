@@ -20,14 +20,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import GameInvite from '../pages/GameInvite';
 import Home from '../pages/Home/index.routes';
 import Lobby from '../pages/Lobby';
-import Profile from '../pages/Profile';
+import Profile from '../pages/Profile/index.routes';
 import Register from '../pages/Register/index.routes';
 
 // Styles
 import { withTheme } from 'styled-components';
 
 // Types
-import { IThemedComponent } from 'theme';
+import { IThemedComponent } from '../interfaces/theme/ThemedComponent';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
