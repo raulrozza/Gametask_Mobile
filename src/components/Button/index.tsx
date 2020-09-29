@@ -13,7 +13,7 @@ const Button: React.FC<ButtonProps> = ({
   style,
   children,
   theme,
-  ...rest
+  onPress,
 }) => {
   return (
     <Container
@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
       enabled={!disabled}
       style={style}
       theme={theme}
-      {...rest}
+      onPress={onPress}
     >
       <Text outline={outline} theme={theme}>
         {children}

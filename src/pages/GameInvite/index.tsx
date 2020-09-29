@@ -1,29 +1,27 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-// Contexts
-import {
-  defaultTheme,
-  fillPallete,
-  getStatusBarColor,
-} from '../../contexts/Theme';
+// Config
+import { defaultTheme } from '../../config/defaultTheme';
 
 // Libs
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { showMessage } from 'react-native-flash-message';
 
+// Services
+import api from '../../services/api';
+
 // Styles
 import { Container, InviteTitle, GameContainer } from './styles';
 
 // Types
+import { DefaultTheme } from 'styled-components';
 import { IGameInviteRoute } from './types';
-import { IUser } from 'authorization';
-import { IColorPallete } from 'theme';
-
-// Services
-import api from '../../services/api';
+import { IUser } from '../../interfaces/api/User';
 
 // Utils
 import handleApiErrors from '../../utils/handleApiErrors';
+import { fillTheme } from '../../utils/theme/fillTheme';
+import { getStatusBarColor } from '../../utils/theme/getStatusBarColor';
 
 const GameInvite: React.FC = () => {
   // Navigation
@@ -32,15 +30,15 @@ const GameInvite: React.FC = () => {
 
   // Data
   const [inviter, setInviter] = useState<IUser | null>(null);
-  const [gameTheme, setGameTheme] = useState<IColorPallete>(defaultTheme);
+  const [gameTheme, setGameTheme] = useState<DefaultTheme>(defaultTheme);
 
   const [loading, setLoading] = useState(true);
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   useEffect(() => {
     setGameTheme({
-      ...fillPallete('primary', params.gameData.theme.primary),
-      ...fillPallete('secondary', params.gameData.theme.secondary),
+      ...fillTheme('primary', params.gameData.theme.primary),
+      ...fillTheme('secondary', params.gameData.theme.secondary),
       statusBar: getStatusBarColor(params.gameData.theme.primary),
     });
   }, []);
