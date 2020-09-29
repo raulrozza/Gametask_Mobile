@@ -1,13 +1,13 @@
 import React from 'react';
 
-// Contexts
-import { getTextColor } from '../../contexts/Theme';
-
 // Styles
 import StyledRank from '../../styles/Rank';
 
 // Types
 import { RankProps } from './types';
+
+// Utils
+import { getTextColor } from '../../utils/theme/getTextColor';
 
 const Rank: React.FC<RankProps> = ({ player }) => {
   if (player.rank)

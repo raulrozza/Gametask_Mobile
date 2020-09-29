@@ -1,21 +1,18 @@
 import { RectButton } from 'react-native-gesture-handler';
 import { ReactNode } from 'react';
-import {
-  DefaultTheme,
-  ReactNativeStyledInterface,
-} from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
+import { ReactNativeStyledInterface } from 'styled-components/native';
+import { IThemedComponent } from '../../interfaces/theme/ThemedComponent';
 
 export interface StyledButtonProps {
   outline: boolean;
   enabled?: boolean;
 }
 
-export interface ButtonProps extends RectButton {
+export interface ButtonProps extends RectButton, IThemedComponent {
   as?: typeof TouchableOpacity;
   outline?: boolean;
   style?: ReactNativeStyledInterface;
   disabled?: boolean;
   children: ReactNode;
-  theme: DefaultTheme;
 }
