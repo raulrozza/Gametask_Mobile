@@ -3,10 +3,10 @@ import { AsyncStorage } from 'react-native';
 
 // Contexts
 import { GameContext } from './rawContexts';
-import { useTheme } from './Theme';
 
 // Hooks
 import { useAuth } from '../hooks/contexts/useAuth';
+import { useTheme } from '../hooks/contexts/useTheme';
 
 // Services
 import api, { removeApiHeader, addApiHeader } from '../services/api';

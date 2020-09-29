@@ -3,7 +3,9 @@ import { AsyncStorage } from 'react-native';
 
 // Contexts
 import { AuthorizationContext } from './rawContexts';
-import { useTheme } from './Theme';
+
+// Hooks
+import { useTheme } from '../hooks/contexts/useTheme';
 
 // Services
 import { addApiHeader } from '../services/api';
