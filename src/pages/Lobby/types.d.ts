@@ -6,8 +6,4 @@ type ParamList = {
   };
 };
 
-export type ILobbyRoute = RouteProp<ParamList, 'Lobby'>;
-
-export interface IModalContent {
-  closeModal: () => void;
-}
+export type LobbyParams = RouteProp<ParamList, 'Lobby'>;

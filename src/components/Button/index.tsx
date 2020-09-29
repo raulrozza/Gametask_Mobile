@@ -14,6 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   theme,
   onPress,
+  activeOpacity,
 }) => {
   return (
     <Container
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
       style={style}
       theme={theme}
       onPress={onPress}
+      activeOpacity={activeOpacity}
     >
       <Text outline={outline} theme={theme}>
         {children}

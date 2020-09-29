@@ -13,6 +13,7 @@ export interface ButtonProps extends IThemedComponent {
   outline?: boolean;
   style?: ReactNativeStyledInterface;
   disabled?: boolean;
+  activeOpacity?: number;
   onPress?: () => void;
   children: ReactNode;
 }

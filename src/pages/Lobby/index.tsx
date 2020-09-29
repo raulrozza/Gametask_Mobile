@@ -20,7 +20,7 @@ import { Modal } from 'react-native';
 
 // Types
 import { IPlayer } from '../../interfaces/api/Player';
-import { ILobbyRoute } from './types';
+import { LobbyParams } from './types';
 
 // Utils
 import handleApiErrors from '../../utils/handleApiErrors';
@@ -32,7 +32,7 @@ const Lobby: React.FC = () => {
 
   const { signOut } = useAuth();
   const { switchGame } = useGameData();
-  const { params } = useRoute<ILobbyRoute>();
+  const { params } = useRoute<LobbyParams>();
 
   useEffect(() => {
     (async () => {

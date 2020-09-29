@@ -15,12 +15,12 @@ import api from '../../../services/api';
 
 // Types
 import { IInvitationData } from '../../../interfaces/api/InvitationData';
-import { IModalContent } from '../types';
+import { ModalContentProps } from './types';
 
 // Utils
 import handleApiErrors from '../../../utils/handleApiErrors';
 
-const ModalContent: React.FC<IModalContent> = ({ closeModal }) => {
+const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const [code, setCode] = useState('');
   const [inviteData, setInviteData] = useState<IInvitationData | null>(null);
 
