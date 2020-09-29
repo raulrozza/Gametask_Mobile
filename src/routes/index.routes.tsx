@@ -13,7 +13,7 @@ import { withTheme } from 'styled-components';
 
 // Routes
 import DefaultRoutes from './default.routes';
-import GameRoutes from './game.routes';
+import LoggedRoutes from './logged.routes';
 
 // Types
 import { IThemedComponent } from '../interfaces/theme/ThemedComponent';
@@ -28,7 +28,7 @@ const Routes: React.FC<IThemedComponent> = ({ theme }) => {
       <StatusBar barStyle={theme.statusBar} backgroundColor={theme.primary} />
       {logged ? (
         <Game>
-          <GameRoutes />
+          <LoggedRoutes />
         </Game>
       ) : (
         <DefaultRoutes />

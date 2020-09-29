@@ -4,8 +4,8 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 // Pages
-import Feed from './Feed';
-import Ranking from './Ranking';
+import Feed from '../../pages/Home/Feed';
+import Ranking from '../../pages/Home/Ranking';
 
 // Styles
 import { withTheme } from 'styled-components';
