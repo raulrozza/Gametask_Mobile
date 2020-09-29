@@ -8,29 +8,24 @@ import { useAuth } from '../../../hooks/contexts/useAuth';
 
 // Libs
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 
 // Services
 import api from '../../../services/api';
+
+// Schemas
+import { LoginSchema } from './schemas';
 
 // Styles
 import { Form, InputGroup, ErrorField, ConfirmText } from '../styles';
 import Button from '../../../components/Button';
 
 // Types
-import { IForm } from '../types';
+import { FormProps } from '../types';
 
 // Utils
 import handleApiErrors from '../../../utils/handleApiErrors';
 
-const LoginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Digite um e-mail válido')
-    .required('Digite seu email'),
-  password: Yup.string().required('Digite sua senha'),
-});
-
-const LoginForm: React.FC<IForm> = ({ active }) => {
+const LoginForm: React.FC<FormProps> = ({ active }) => {
   const initialValues = {
     email: '',
     password: '',
@@ -106,11 +101,7 @@ const LoginForm: React.FC<IForm> = ({ active }) => {
           </InputGroup>
 
           <InputGroup>
-            <Button
-              onPress={() => handleSubmit()}
-              disabled={buttonDisabled}
-              id="login"
-            >
+            <Button onPress={() => handleSubmit()} disabled={buttonDisabled}>
               <ConfirmText>Entrar</ConfirmText>
             </Button>
           </InputGroup>

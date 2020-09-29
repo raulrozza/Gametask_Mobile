@@ -5,31 +5,25 @@ import Input from '../../../components/Input';
 
 // Libs
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { showMessage } from 'react-native-flash-message';
 
 // Services
 import api from '../../../services/api';
+
+// Schemas
+import { SignupSchema } from './schemas';
 
 // Styles
 import { Form, InputGroup, ErrorField, ConfirmText } from '../styles';
 import Button from '../../../components/Button';
 
 // Types
-import { IForm } from '../types';
+import { FormProps } from '../types';
 
 // Utils
 import handleApiErrors from '../../../utils/handleApiErrors';
 
-const SignupSchema = Yup.object().shape({
-  firstname: Yup.string().required('Digite seu nome'),
-  lastname: Yup.string(),
-  email: Yup.string().email('E-mail inválido').required('Digite um e-mail'),
-  password: Yup.string().required('Digite uma senha'),
-  confirmPassword: Yup.string().required('Repita sua senha'),
-});
-
-const SignupForm: React.FC<IForm> = ({ active }) => {
+const SignupForm: React.FC<FormProps> = ({ active }) => {
   const initialValues = {
     firstname: '',
     lastname: '',

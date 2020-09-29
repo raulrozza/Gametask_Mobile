@@ -1,12 +1,7 @@
 import styled, { css } from 'styled-components/native';
 
-interface ActiveItemProps {
-  active: boolean;
-}
-
-interface ConfirmProps {
-  disabled: boolean;
-}
+// Types
+import { ActiveItemProps } from './types';
 
 export const HomePage = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
