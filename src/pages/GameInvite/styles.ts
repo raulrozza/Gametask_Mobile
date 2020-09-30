@@ -1,5 +1,8 @@
 import styled from 'styled-components/native';
+
+// Components
 import Button from '../../components/Button';
+import GameImage from '../../components/GameImage';
 
 export const Container = styled.View`
   flex: 1;
@@ -40,7 +43,7 @@ export const GameContainer = {
 
     align-items: center;
   `,
-  Image: styled.Image`
+  Image: styled(GameImage)`
     height: 96px;
     width: 96px;
     border-radius: 48px;

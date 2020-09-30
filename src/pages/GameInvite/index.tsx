@@ -13,9 +13,8 @@ import { IGameInviteRoute } from './types';
 import { IUser } from '../../interfaces/api/User';
 
 // Utils
-import { fillTheme } from '../../utils/theme/fillTheme';
-import { getStatusBarColor } from '../../utils/theme/getStatusBarColor';
 import displaySuccessMessage from '../../utils/displaySuccessMessage';
+import { getGameTheme } from './utils';
 
 const GameInvite: React.FC = () => {
   // Hooks
@@ -27,13 +26,7 @@ const GameInvite: React.FC = () => {
   );
 
   // Data
-  const gameTheme = useMemo(() => {
-    return {
-      ...fillTheme('primary', params.gameData.theme.primary),
-      ...fillTheme('secondary', params.gameData.theme.secondary),
-      statusBar: getStatusBarColor(params.gameData.theme.primary),
-    };
-  }, []);
+  const gameTheme = useMemo(() => getGameTheme(params.gameData.theme), []);
 
   const [btnDisabled, setBtnDisabled] = useState(false);
 
@@ -67,16 +60,7 @@ const GameInvite: React.FC = () => {
       </InviteTitle.Text>
 
       <GameContainer.Wrapper theme={gameTheme}>
-        <GameContainer.Image
-          theme={gameTheme}
-          source={
-            params.gameData.image
-              ? {
-                  uri: params.gameData.image_url,
-                }
-              : require('../../assets/img/games/placeholder.png')
-          }
-        />
+        <GameContainer.Image theme={gameTheme} game={params.gameData} />
 
         <GameContainer.Description theme={gameTheme}>
           {params.gameData.description}
