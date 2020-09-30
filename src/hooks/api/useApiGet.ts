@@ -9,7 +9,7 @@ import api from '../../services/api';
 // Types
 import { ApiGet } from '../../interfaces/hooks/UseApiGet';
 
-export function useApiGet<T>(): ApiGet<T> {
+export function useApiGet<T = unknown>(): ApiGet<T> {
   const handleApiErrors = useErrorHandling();
 
   const apiGet = useCallback(async (URL: string) => {

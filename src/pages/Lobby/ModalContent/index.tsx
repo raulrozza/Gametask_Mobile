@@ -1,30 +1,28 @@
 import React, { useCallback, useState } from 'react';
-import { Clipboard, TouchableOpacity } from 'react-native';
+
+// Hooks
+import { useApiGet } from '../../../hooks/api/useApiGet';
+import { useNavigation } from '@react-navigation/native';
 
 // Libs
-import { useNavigation } from '@react-navigation/native';
 import { showMessage } from 'react-native-flash-message';
 import crypto from 'react-native-crypto-js';
+import { Clipboard, TouchableOpacity } from 'react-native';
 
 // Styles
 import { Container, Wrapper, PasteGroup, PageTitle } from './styles';
 import Button from '../../../components/Button';
 
-// Services
-import api from '../../../services/api';
-
 // Types
 import { IInvitationData } from '../../../interfaces/api/InvitationData';
 import { ModalContentProps } from './types';
-
-// Utils
-import handleApiErrors from '../../../utils/handleApiErrors';
 
 const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const [code, setCode] = useState('');
   const [inviteData, setInviteData] = useState<IInvitationData | null>(null);
 
   const { navigate } = useNavigation();
+  const apiGet = useApiGet();
 
   const handleCodePaste = useCallback(async () => {
     const clipboardText = await Clipboard.getString();
@@ -51,22 +49,17 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const handleSubmitInvitation = useCallback(async () => {
     if (code === '' || !inviteData) return;
 
-    try {
-      const { data } = await api.get(
-        `/invite/${inviteData.gameId}/${inviteData.inviter}`,
-      );
+    const data = await apiGet(
+      `/invite/${inviteData.gameId}/${inviteData.inviter}`,
+    );
 
-      closeModal();
+    closeModal();
 
+    if (data)
       return navigate('GameInvite', {
         gameData: data,
         inviteData,
       });
-    } catch (error) {
-      closeModal();
-
-      handleApiErrors(error);
-    }
   }, []);
 
   return (
