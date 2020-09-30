@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { AsyncStorage } from 'react-native';
 
 // Contexts
 import { GameContext } from './rawContexts';
@@ -11,6 +10,7 @@ import { useApiGet } from '../hooks/api/useApiGet';
 
 // Services
 import { removeApiHeader, addApiHeader } from '../services/api';
+import { getData, removeData, saveData } from '../services/storage';
 
 // Types
 import { IPlayer } from '../interfaces/api/Player';
@@ -30,7 +30,7 @@ const Game: React.FC = ({ children }) => {
   const apiGet = useApiGet<IPlayer>();
 
   const resetGame = useCallback(async () => {
-    await AsyncStorage.removeItem('storedPlayer');
+    await removeData('storedPlayer');
     setPlayer(null);
     changeTheme({});
     removeApiHeader('X-Game-ID');
@@ -42,7 +42,7 @@ const Game: React.FC = ({ children }) => {
 
       if (!player) return;
 
-      await AsyncStorage.setItem('storedPlayer', JSON.stringify(player));
+      await saveData('storedPlayer', player);
 
       setVerifiedGameAuthenticity(true);
       setPlayer(player);
@@ -54,25 +54,20 @@ const Game: React.FC = ({ children }) => {
   useEffect(() => {
     (async () => {
       // Get the local storage info
-      const storedPlayer = await AsyncStorage.getItem('storedPlayer');
+      const storedPlayer = await getData<IPlayer>('storedPlayer');
 
-      if (!storedPlayer) resetGame();
+      if (!storedPlayer || !storedPlayer.game) resetGame();
       else {
-        const parsedPlayer = JSON.parse(storedPlayer);
+        // Check if the game in state is equal to the one stored in the local storage.
+        // If they are, DO NOT CHANGE THE STATE because it causes infinite re-renderings
+        addApiHeader('X-Game-ID', storedPlayer.game._id);
 
-        if (!parsedPlayer || !parsedPlayer.game) resetGame();
-        else {
-          // Check if the game in state is equal to the one stored in the local storage.
-          // If they are, DO NOT CHANGE THE STATE because it causes infinite re-renderings
-          addApiHeader('X-Game-ID', parsedPlayer.game._id);
-
-          if (!isEqual(player, parsedPlayer)) {
-            setPlayer(parsedPlayer);
-            changeTheme(parsedPlayer.game.theme);
-          }
-
-          if (!verifiedGameAuthenticity) getGameInfo(parsedPlayer._id);
+        if (!isEqual(player, storedPlayer)) {
+          setPlayer(storedPlayer);
+          changeTheme(storedPlayer.game.theme);
         }
+
+        if (!verifiedGameAuthenticity) getGameInfo(storedPlayer._id);
       }
 
       setLoading(false);
@@ -84,7 +79,7 @@ const Game: React.FC = ({ children }) => {
       setLoading(true);
 
       if (player) {
-        await AsyncStorage.setItem('storedPlayer', JSON.stringify(player));
+        await saveData('storedPlayer', player);
 
         addApiHeader('X-Game-ID', player.game._id);
 

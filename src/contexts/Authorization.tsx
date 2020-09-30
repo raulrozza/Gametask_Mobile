@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { AsyncStorage } from 'react-native';
 
 // Contexts
 import { AuthorizationContext } from './rawContexts';
@@ -9,6 +8,7 @@ import { useTheme } from '../hooks/contexts/useTheme';
 
 // Services
 import { addApiHeader } from '../services/api';
+import { clearData, getData, saveData } from '../services/storage';
 
 // Types
 import { IUser } from '../interfaces/api/User';
@@ -21,12 +21,11 @@ const Authorization: React.FC = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const storedUser = await AsyncStorage.getItem('loggedUser');
+      const storedUser = await getData<IUser>('loggedUser');
       if (!storedUser) setLogged(false);
       else {
-        const parsedUser = JSON.parse(storedUser);
-        addApiHeader('Authorization', `Bearer ${parsedUser.token}`);
-        setUser(parsedUser);
+        addApiHeader('Authorization', `Bearer ${storedUser.token}`);
+        setUser(storedUser);
         setLogged(true);
       }
       setLoading(false);
@@ -34,14 +33,14 @@ const Authorization: React.FC = ({ children }) => {
   }, []);
 
   const signIn = useCallback(async (user: IUser) => {
-    await AsyncStorage.setItem('loggedUser', JSON.stringify(user));
+    await saveData('loggedUser', user);
     addApiHeader('Authorization', `Bearer ${user.token}`);
     setUser(user);
     setLogged(true);
   }, []);
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.clear();
+    await clearData();
     setUser(null);
     setLogged(false);
     changeTheme({});
