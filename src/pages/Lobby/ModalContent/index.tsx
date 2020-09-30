@@ -1,18 +1,18 @@
 import React, { useCallback, useState } from 'react';
 
+// Components
+import Button from '../../../components/Button';
+import { Clipboard, TouchableOpacity } from 'react-native';
+
 // Hooks
 import { useApiGet } from '../../../hooks/api/useApiGet';
 import { useNavigation } from '@react-navigation/native';
-
-// Libs
-import { Clipboard, TouchableOpacity } from 'react-native';
 
 // Services
 import { decrypt } from '../../../services/encrypting';
 
 // Styles
 import { Container, Wrapper, PasteGroup, PageTitle } from './styles';
-import Button from '../../../components/Button';
 
 // Types
 import { IInvitationData } from '../../../interfaces/api/InvitationData';
