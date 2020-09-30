@@ -5,8 +5,10 @@ import { useApiGet } from '../../../hooks/api/useApiGet';
 import { useNavigation } from '@react-navigation/native';
 
 // Libs
-import crypto from 'react-native-crypto-js';
 import { Clipboard, TouchableOpacity } from 'react-native';
+
+// Services
+import { decrypt } from '../../../services/encrypting';
 
 // Styles
 import { Container, Wrapper, PasteGroup, PageTitle } from './styles';
@@ -28,24 +30,18 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
 
   const handleCodePaste = useCallback(async () => {
     const clipboardText = await Clipboard.getString();
-    const SECRET = process.env.REACT_NATIVE_SECRET || '';
+    const SECRET = process.env.REACT_NATIVE_SECRET;
 
-    try {
-      const decryptedCode = crypto.AES.decrypt(clipboardText, SECRET);
+    const decrypted = decrypt<IInvitationData>(clipboardText, SECRET);
 
-      const { gameId, inviter } = JSON.parse(
-        decryptedCode.toString(crypto.enc.Utf8),
-      );
-
-      if (!gameId || !inviter) throw new Error('Incorrect keys');
-
-      setCode(clipboardText);
-      setInviteData({ gameId, inviter });
-    } catch (error) {
+    if (!decrypted || !decrypted.gameId || !decrypted.inviter) {
       displayErrorMessage('Código de jogo inválido.');
       setCode('');
-      setInviteData(null);
+      return setInviteData(null);
     }
+
+    setCode(clipboardText);
+    return setInviteData(decrypted);
   }, []);
 
   const handleSubmitInvitation = useCallback(async () => {
