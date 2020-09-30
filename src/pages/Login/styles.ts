@@ -94,19 +94,6 @@ export const InputGroup = styled.View`
   margin-bottom: 8px;
 `;
 
-export const ErrorField = {
-  View: styled.View`
-    background-color: 'rgb(253, 57, 57)';
-    padding: 7px 5px 2px;
-    margin: -5px 0 10px;
-    border-radius: 5px;
-    z-index: -5;
-  `,
-  Text: styled.Text`
-    color: #fff;
-  `,
-};
-
 export const ConfirmText = styled.Text`
   color: ${({ theme }) => theme.secondaryContrast};
   line-height: 24px;

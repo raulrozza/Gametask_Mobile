@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 // Components
+import ErrorField from '../../../components/ErrorField';
 import Input from '../../../components/Input';
 
 // Hooks
@@ -13,7 +14,7 @@ import { Formik } from 'formik';
 import { SignupSchema } from './schemas';
 
 // Styles
-import { Form, InputGroup, ErrorField, ConfirmText } from '../styles';
+import { Form, InputGroup, ConfirmText } from '../styles';
 import Button from '../../../components/Button';
 
 // Types
@@ -80,9 +81,7 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
               autoCapitalize="words"
             />
             {errors.firstname && touched.firstname ? (
-              <ErrorField.View>
-                <ErrorField.Text>{errors.firstname}</ErrorField.Text>
-              </ErrorField.View>
+              <ErrorField message={errors.firstname} />
             ) : null}
           </InputGroup>
 
@@ -96,9 +95,7 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
               autoCapitalize="words"
             />
             {errors.lastname && touched.lastname ? (
-              <ErrorField.View>
-                <ErrorField.Text>{errors.lastname}</ErrorField.Text>
-              </ErrorField.View>
+              <ErrorField message={errors.lastname} />
             ) : null}
           </InputGroup>
 
@@ -113,9 +110,7 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
               autoCapitalize="none"
             />
             {errors.email && touched.email ? (
-              <ErrorField.View>
-                <ErrorField.Text>{errors.email}</ErrorField.Text>
-              </ErrorField.View>
+              <ErrorField message={errors.email} />
             ) : null}
           </InputGroup>
 
@@ -129,9 +124,7 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
               secureTextEntry
             />
             {errors.password && touched.password ? (
-              <ErrorField.View>
-                <ErrorField.Text>{errors.password}</ErrorField.Text>
-              </ErrorField.View>
+              <ErrorField message={errors.password} />
             ) : null}
           </InputGroup>
 
@@ -145,9 +138,7 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
               secureTextEntry
             />
             {errors.confirmPassword && touched.confirmPassword ? (
-              <ErrorField.View>
-                <ErrorField.Text>{errors.confirmPassword}</ErrorField.Text>
-              </ErrorField.View>
+              <ErrorField message={errors.confirmPassword} />
             ) : null}
           </InputGroup>
 

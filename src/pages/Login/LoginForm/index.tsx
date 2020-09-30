@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 // Components
 import Input from '../../../components/Input';
+import ErrorField from '../../../components/ErrorField';
 
 // Hooks
 import { useAuth } from '../../../hooks/contexts/useAuth';
@@ -14,7 +15,7 @@ import { Formik } from 'formik';
 import { LoginSchema } from './schemas';
 
 // Styles
-import { Form, InputGroup, ErrorField, ConfirmText } from '../styles';
+import { Form, InputGroup, ConfirmText } from '../styles';
 import Button from '../../../components/Button';
 
 // Types
@@ -70,9 +71,7 @@ const LoginForm: React.FC<FormProps> = ({ active }) => {
               autoCapitalize="none"
             />
             {errors.email && touched.email ? (
-              <ErrorField.View>
-                <ErrorField.Text>{errors.email}</ErrorField.Text>
-              </ErrorField.View>
+              <ErrorField message={errors.email} />
             ) : null}
           </InputGroup>
 
@@ -86,9 +85,7 @@ const LoginForm: React.FC<FormProps> = ({ active }) => {
               secureTextEntry
             />
             {errors.password && touched.password ? (
-              <ErrorField.View>
-                <ErrorField.Text>{errors.password}</ErrorField.Text>
-              </ErrorField.View>
+              <ErrorField message={errors.password} />
             ) : null}
           </InputGroup>
 
