@@ -11,7 +11,6 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Libs
 import { Formik } from 'formik';
-import { showMessage } from 'react-native-flash-message';
 
 // Schemas
 import { RegisterSchema } from './schemas';
@@ -33,6 +32,7 @@ import { ActivityParams } from './types';
 
 // Utils
 import showDate from '../../../utils/showDate';
+import displaySuccessMessage from '../../../utils/displaySuccessMessage';
 
 const ActivityInfo: React.FC = () => {
   const initialValues = {
@@ -75,7 +75,7 @@ const ActivityInfo: React.FC = () => {
     const result = await apiPost('/activityRegister', body);
 
     if (result !== null) {
-      showMessage({ message: 'Atividade registrada!', type: 'success' });
+      displaySuccessMessage('Atividade registrada!');
       return goBack();
     }
 

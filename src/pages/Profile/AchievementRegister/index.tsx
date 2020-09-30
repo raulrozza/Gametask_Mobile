@@ -10,7 +10,6 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Libs
 import { Formik } from 'formik';
-import { showMessage } from 'react-native-flash-message';
 
 // Schemas
 import { RegisterSchema } from './schemas';
@@ -20,6 +19,9 @@ import { Container, Title, Form, Errors, Footer } from './styles';
 
 // Types
 import { AchievementRegisterParams } from './types';
+
+// Utils
+import displaySuccessMessage from '../../../utils/displaySuccessMessage';
 
 const AchievementRegister: React.FC = () => {
   const initialValues = {
@@ -53,7 +55,7 @@ const AchievementRegister: React.FC = () => {
     const result = await apiPost('/achievementRegister', body);
 
     if (result !== null) {
-      showMessage({ message: 'Conquista requisitada!', type: 'success' });
+      displaySuccessMessage('Conquista requisitada!');
       return goBack();
     }
 

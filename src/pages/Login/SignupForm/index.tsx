@@ -8,7 +8,6 @@ import { useApiPost } from '../../../hooks/api/useApiPost';
 
 // Libs
 import { Formik } from 'formik';
-import { showMessage } from 'react-native-flash-message';
 
 // Schemas
 import { SignupSchema } from './schemas';
@@ -19,6 +18,9 @@ import Button from '../../../components/Button';
 
 // Types
 import { FormProps } from '../types';
+
+// Utils
+import displaySuccessMessage from '../../../utils/displaySuccessMessage';
 
 const SignupForm: React.FC<FormProps> = ({ active }) => {
   const initialValues = {
@@ -48,10 +50,7 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
     const response = await apiPost('/user/signup', values);
 
     if (response !== null)
-      showMessage({
-        message: 'Cadastro efetuado com sucesso!',
-        type: 'success',
-      });
+      displaySuccessMessage('Cadastro efetuado com sucesso!');
 
     setButtonDisabled(false);
   }, []);

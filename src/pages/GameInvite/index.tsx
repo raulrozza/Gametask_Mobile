@@ -5,9 +5,6 @@ import { useApiFetch } from '../../hooks/api/useApiFetch';
 import { useApiPost } from '../../hooks/api/useApiPost';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
-// Libs
-import { showMessage } from 'react-native-flash-message';
-
 // Styles
 import { Container, InviteTitle, GameContainer } from './styles';
 
@@ -18,6 +15,7 @@ import { IUser } from '../../interfaces/api/User';
 // Utils
 import { fillTheme } from '../../utils/theme/fillTheme';
 import { getStatusBarColor } from '../../utils/theme/getStatusBarColor';
+import displaySuccessMessage from '../../utils/displaySuccessMessage';
 
 const GameInvite: React.FC = () => {
   // Hooks
@@ -49,7 +47,7 @@ const GameInvite: React.FC = () => {
     setBtnDisabled(false);
 
     if (data) {
-      showMessage({ message: 'Jogo adicionado!', type: 'success' });
+      displaySuccessMessage('Jogo adicionado!');
 
       navigate('Lobby', { newGame: data });
     }

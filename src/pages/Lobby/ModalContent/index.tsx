@@ -5,7 +5,6 @@ import { useApiGet } from '../../../hooks/api/useApiGet';
 import { useNavigation } from '@react-navigation/native';
 
 // Libs
-import { showMessage } from 'react-native-flash-message';
 import crypto from 'react-native-crypto-js';
 import { Clipboard, TouchableOpacity } from 'react-native';
 
@@ -16,6 +15,9 @@ import Button from '../../../components/Button';
 // Types
 import { IInvitationData } from '../../../interfaces/api/InvitationData';
 import { ModalContentProps } from './types';
+
+// Utils
+import displayErrorMessage from '../../../utils/displayErrorMessage';
 
 const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const [code, setCode] = useState('');
@@ -40,7 +42,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
       setCode(clipboardText);
       setInviteData({ gameId, inviter });
     } catch (error) {
-      showMessage({ message: 'Código de jogo inválido.', type: 'danger' });
+      displayErrorMessage('Código de jogo inválido.');
       setCode('');
       setInviteData(null);
     }
