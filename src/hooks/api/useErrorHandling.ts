@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 // Hooks
 import { useAuth } from '../contexts/useAuth';
 
@@ -16,7 +18,7 @@ import { isAxiosError } from '../../utils/errors/isAxiosError';
 export function useErrorHandling(): HandleApiErrors {
   const { signOut } = useAuth();
 
-  const handleApiErrors: HandleApiErrors = error => {
+  const handleApiErrors: HandleApiErrors = useCallback(error => {
     if (isAxiosError(error)) {
       const response = error.response;
 
@@ -36,7 +38,7 @@ export function useErrorHandling(): HandleApiErrors {
           return handleDefaultError();
       }
     } else handleUnknownError();
-  };
+  }, []);
 
   return handleApiErrors;
 }

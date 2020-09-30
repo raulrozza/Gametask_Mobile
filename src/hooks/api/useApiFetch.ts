@@ -1,15 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 
-// Services
-import api from '../../services/api';
+// Hooks
+import { useApiGet } from './useApiGet';
 
 // Types
 import { IFetchReturn } from '../../interfaces/hooks/UseApiFetch';
 
-// Utils
-import handleApiErrors from '../../utils/handleApiErrors';
-
 export function useApiFetch<T = unknown>(URL: string): IFetchReturn<T> {
+  const apiGet = useApiGet<T>();
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState(false);
@@ -18,16 +16,11 @@ export function useApiFetch<T = unknown>(URL: string): IFetchReturn<T> {
     setLoading(true);
     setErrors(false);
 
-    try {
-      const response = await api.get<T>(URL);
+    const result = await apiGet(URL);
+    if (!result) setErrors(true);
 
-      setData(response.data);
-    } catch (error) {
-      handleApiErrors(error);
-      setErrors(true);
-    } finally {
-      setLoading(false);
-    }
+    setData(result);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
