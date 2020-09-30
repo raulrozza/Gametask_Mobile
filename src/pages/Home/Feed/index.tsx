@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 
 // Components
 import ActivityFeed from './ActivityFeed';
@@ -6,12 +6,12 @@ import LevelUpFeed from './LevelUpFeed';
 import RankFeed from './RankFeed';
 import AchievementFeed from './AchievementFeed';
 
+// Hooks
+import { useApiFetch } from '../../../hooks/api/useApiFetch';
+
 // Libs
 import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-
-// Services
-import api from '../../../services/api';
 
 // Styles
 import { Container, FeedItem, FeedText } from './styles';
@@ -23,33 +23,11 @@ import { IThemedComponent } from '../../../interfaces/theme/ThemedComponent';
 
 // Utils
 import showDate from '../../../utils/showDate';
-import handleApiErrors from '../../../utils/handleApiErrors';
 
 const Feed: React.FC<IThemedComponent> = ({ theme }) => {
-  const [feed, setFeed] = useState<IFeedItem[]>([]);
-  const [refreshing, setRefreshing] = useState(false);
-
-  const updateFeed = useCallback(async () => {
-    try {
-      const response = await api.get('/feed');
-
-      setFeed(response.data);
-    } catch (error) {
-      handleApiErrors(error);
-    }
-  }, []);
-
-  const onRefresh = useCallback(async () => {
-    setRefreshing(true);
-
-    await updateFeed();
-
-    setRefreshing(false);
-  }, []);
-
-  useEffect(() => {
-    updateFeed();
-  }, []);
+  const { data: feed, loading: refreshing, fetch } = useApiFetch<IFeedItem[]>(
+    '/feed',
+  );
 
   return (
     <Container>
@@ -57,12 +35,12 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
-            onRefresh={onRefresh}
+            onRefresh={fetch}
             colors={[theme.secondary]}
             progressBackgroundColor={theme.primaryIntense}
           />
         }
-        data={feed}
+        data={feed || []}
         keyExtractor={feedItem => feedItem._id}
         ListEmptyComponent={() => (
           <FeedItem.Container>

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 // Components
 import { FlatList } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-// Libs
+// Hooks
+import { useApiFetch } from '../../../hooks/api/useApiFetch';
 import { useNavigation } from '@react-navigation/native';
 
 // Styles
@@ -17,31 +18,12 @@ import {
   EmptyList,
 } from './styles';
 
-// Services
-import api from '../../../services/api';
-
 // Types
 import { IActivity } from '../../../interfaces/api/Activity';
 
-// Utils
-import handleApiErrors from '../../../utils/handleApiErrors';
-
 const ActivityRegister: React.FC = () => {
   const { navigate } = useNavigation();
-  // States
-  const [activities, setActivities] = useState<IActivity[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await api.get('/activity');
-
-        setActivities(response.data);
-      } catch (error) {
-        handleApiErrors(error);
-      }
-    })();
-  }, []);
+  const { data: activities } = useApiFetch<IActivity[]>('/activity');
 
   return (
     <SafeAreaProvider>
@@ -55,7 +37,7 @@ const ActivityRegister: React.FC = () => {
 
           <FlatList
             keyExtractor={activity => activity._id}
-            data={activities}
+            data={activities || []}
             ListEmptyComponent={() => (
               <EmptyList.Container>
                 <EmptyList.Text>

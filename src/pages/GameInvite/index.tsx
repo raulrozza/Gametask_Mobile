@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 
-// Config
-import { defaultTheme } from '../../config/defaultTheme';
+// Hooks
+import { useApiFetch } from '../../hooks/api/useApiFetch';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Libs
-import { useRoute, useNavigation } from '@react-navigation/native';
 import { showMessage } from 'react-native-flash-message';
 
 // Services
@@ -14,7 +14,6 @@ import api from '../../services/api';
 import { Container, InviteTitle, GameContainer } from './styles';
 
 // Types
-import { DefaultTheme } from 'styled-components';
 import { IGameInviteRoute } from './types';
 import { IUser } from '../../interfaces/api/User';
 
@@ -27,36 +26,20 @@ const GameInvite: React.FC = () => {
   // Navigation
   const { params } = useRoute<IGameInviteRoute>();
   const { goBack, navigate } = useNavigation();
+  const { data: inviter, loading, errors } = useApiFetch<IUser>(
+    `/user/${params.inviteData.inviter}`,
+  );
 
   // Data
-  const [inviter, setInviter] = useState<IUser | null>(null);
-  const [gameTheme, setGameTheme] = useState<DefaultTheme>(defaultTheme);
-
-  const [loading, setLoading] = useState(true);
-  const [btnDisabled, setBtnDisabled] = useState(false);
-
-  useEffect(() => {
-    setGameTheme({
+  const gameTheme = useMemo(() => {
+    return {
       ...fillTheme('primary', params.gameData.theme.primary),
       ...fillTheme('secondary', params.gameData.theme.secondary),
       statusBar: getStatusBarColor(params.gameData.theme.primary),
-    });
+    };
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await api.get(`/user/${params.inviteData.inviter}`);
-
-        setInviter(data);
-
-        return setLoading(false);
-      } catch (error) {
-        handleApiErrors(error);
-        goBack();
-      }
-    })();
-  }, []);
+  const [btnDisabled, setBtnDisabled] = useState(false);
 
   const handleAcceptInvitation = useCallback(async () => {
     setBtnDisabled(true);
@@ -78,6 +61,8 @@ const GameInvite: React.FC = () => {
   }, []);
 
   if (loading) return null;
+
+  if (errors) goBack();
 
   return (
     <Container>

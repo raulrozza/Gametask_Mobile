@@ -7,54 +7,40 @@ import ModalContent from './ModalContent';
 // Hooks
 import { useAuth } from '../../hooks/contexts/useAuth';
 import { useGameData } from '../../hooks/contexts/useGameData';
-
-// Libs
+import { useApiFetch } from '../../hooks/api/useApiFetch';
 import { useRoute } from '@react-navigation/native';
 
-// Services
-import api from '../../services/api';
+// Libs
+import { Modal } from 'react-native';
 
 // Style
 import { Container, Title, Game, Footer, EmptyList } from './styles';
-import { Modal } from 'react-native';
 
 // Types
 import { IPlayer } from '../../interfaces/api/Player';
 import { LobbyParams } from './types';
 
-// Utils
-import handleApiErrors from '../../utils/handleApiErrors';
-
 const Lobby: React.FC = () => {
-  const [createdPlayers, setCreatedPlayers] = useState<IPlayer[]>([]);
-  const [loadingData, setLoadingData] = useState(true);
-  const [modalVisible, setModalVisible] = useState(false);
-
   const { signOut } = useAuth();
   const { switchGame } = useGameData();
   const { params } = useRoute<LobbyParams>();
+  const { data: createdPlayers, loading, fetch } = useApiFetch<IPlayer[]>(
+    '/gameplay',
+  );
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await api.get('/gameplay');
-
-        setCreatedPlayers(data);
-      } catch (error) {
-        handleApiErrors(error, signOut);
-      } finally {
-        setLoadingData(false);
-      }
-    })();
+    fetch();
   }, [params]);
 
   return (
     <Container>
       <Title>LOBBY</Title>
       <FlatList
-        data={createdPlayers}
+        data={createdPlayers || []}
         keyExtractor={item => item._id}
-        refreshing={loadingData}
+        refreshing={loading}
         ListEmptyComponent={() => (
           <EmptyList.Container>
             <EmptyList.Text>

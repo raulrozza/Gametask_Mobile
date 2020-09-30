@@ -7,11 +7,12 @@ import { FeedText } from '../styles';
 
 // Types
 import { FeedProps } from '../types';
+import { IThemedComponent } from '../../../../interfaces/theme/ThemedComponent';
 
 // Utils
 import { getTextColor } from '../../../../utils/theme/getTextColor';
 
-const RankFeed: React.FC<FeedProps> = ({ item, theme }) => {
+const RankFeed: React.FC<FeedProps & IThemedComponent> = ({ item, theme }) => {
   return (
     <FeedText.Text>
       <FeedText.Name>

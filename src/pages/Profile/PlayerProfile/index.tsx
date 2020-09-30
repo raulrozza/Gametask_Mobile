@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 
 // Components
 import ProgressBar from '../../../components/ProgressBar';
@@ -9,16 +9,14 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 // Hooks
 import { useAuth } from '../../../hooks/contexts/useAuth';
 import { useGameData } from '../../../hooks/contexts/useGameData';
+import { useApiFetch } from '../../../hooks/api/useApiFetch';
 import { useNavigation } from '@react-navigation/native';
 
 // Libs
 import { SafeAreaView, Text } from 'react-native';
 
-// Services
-import api from '../../../services/api';
-
 // Styles
-import { DefaultTheme, withTheme } from 'styled-components';
+import { withTheme } from 'styled-components';
 import {
   Container,
   Header,
@@ -38,58 +36,49 @@ import { IUserMeta } from './types';
 import { IThemedComponent } from '../../../interfaces/theme/ThemedComponent';
 
 // Utils
-import handleApiErrors from '../../../utils/handleApiErrors';
 import { fillTheme } from '../../../utils/theme/fillTheme';
 
 const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   const { user, signOut } = useAuth();
   const { game, player, switchGame } = useGameData();
   const { navigate } = useNavigation();
+  const { data } = useApiFetch<IAchievement[]>('/achievement');
 
-  const [rankPallete, setRankPallete] = useState<DefaultTheme>(theme);
-  const [userMeta, setUserMeta] = useState<IUserMeta>({
-    rank: undefined,
-    nextLevel: undefined,
-  });
-  const [achievements, setAchievements] = useState<IAchievement[]>([]);
+  if (!game || !player || !user) return null;
 
-  if (!game || !player) return null;
+  const achievements: IAchievement[] = useMemo(() => {
+    if (!data) return [];
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data: achievements } = await api.get('/achievement');
+    return data.map((achievement: IAchievement) => {
+      return {
+        ...achievement,
+        obtained: player.achievements.includes(achievement._id) || false,
+      };
+    });
+  }, [data]);
 
-        setAchievements(
-          achievements.map((achievement: IAchievement) => {
-            return {
-              ...achievement,
-              obtained: player.achievements.includes(achievement._id) || false,
-            };
-          }),
-        );
-      } catch (error) {
-        handleApiErrors(error);
-      }
-    })();
-  }, []);
+  const [rankPallete, userMeta] = useMemo(() => {
+    let rankPallete = theme;
+    let userMeta: IUserMeta = {
+      rank: undefined,
+      nextLevel: undefined,
+    };
 
-  useEffect(() => {
     const { levelInfo } = game;
     const nextLevel = levelInfo
       .sort((a, b) => a.level - b.level)
       .find(info => player.level < info.level);
 
     if (player.rank && player.rank.color)
-      setRankPallete(fillTheme('primary', player.rank.color));
+      rankPallete = fillTheme('primary', player.rank.color);
 
-    setUserMeta({
+    userMeta = {
       rank: player.rank,
       nextLevel: nextLevel,
-    });
-  }, [game]);
+    };
 
-  if (!user) return null;
+    return [rankPallete, userMeta];
+  }, [game]);
 
   return (
     <SafeAreaView>
