@@ -2,13 +2,11 @@ import React, { useState, useCallback, useMemo } from 'react';
 
 // Hooks
 import { useApiFetch } from '../../hooks/api/useApiFetch';
+import { useApiPost } from '../../hooks/api/useApiPost';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Libs
 import { showMessage } from 'react-native-flash-message';
-
-// Services
-import api from '../../services/api';
 
 // Styles
 import { Container, InviteTitle, GameContainer } from './styles';
@@ -18,14 +16,14 @@ import { IGameInviteRoute } from './types';
 import { IUser } from '../../interfaces/api/User';
 
 // Utils
-import handleApiErrors from '../../utils/handleApiErrors';
 import { fillTheme } from '../../utils/theme/fillTheme';
 import { getStatusBarColor } from '../../utils/theme/getStatusBarColor';
 
 const GameInvite: React.FC = () => {
-  // Navigation
+  // Hooks
   const { params } = useRoute<IGameInviteRoute>();
   const { goBack, navigate } = useNavigation();
+  const apiPost = useApiPost();
   const { data: inviter, loading, errors } = useApiFetch<IUser>(
     `/user/${params.inviteData.inviter}`,
   );
@@ -44,19 +42,16 @@ const GameInvite: React.FC = () => {
   const handleAcceptInvitation = useCallback(async () => {
     setBtnDisabled(true);
 
-    try {
-      const { data } = await api.post('/player', {
-        game: params.inviteData.gameId,
-      });
+    const data = await apiPost('/player', {
+      game: params.inviteData.gameId,
+    });
 
+    setBtnDisabled(false);
+
+    if (data) {
       showMessage({ message: 'Jogo adicionado!', type: 'success' });
 
-      setBtnDisabled(false);
-
       navigate('Lobby', { newGame: data });
-    } catch (error) {
-      handleApiErrors(error);
-      setBtnDisabled(false);
     }
   }, []);
 

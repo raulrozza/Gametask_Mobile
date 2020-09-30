@@ -6,6 +6,7 @@ import Input from '../../../components/Input';
 
 // Hooks
 import { useGameData } from '../../../hooks/contexts/useGameData';
+import { useApiPost } from '../../../hooks/api/useApiPost';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Libs
@@ -14,9 +15,6 @@ import { showMessage } from 'react-native-flash-message';
 
 // Schemas
 import { RegisterSchema } from './schemas';
-
-// Services
-import api from '../../../services/api';
 
 // Styles
 import {
@@ -35,7 +33,6 @@ import { ActivityParams } from './types';
 
 // Utils
 import showDate from '../../../utils/showDate';
-import handleApiErrors from '../../../utils/handleApiErrors';
 
 const ActivityInfo: React.FC = () => {
   const initialValues = {
@@ -48,14 +45,15 @@ const ActivityInfo: React.FC = () => {
     params: { activity },
   } = useRoute<ActivityParams>();
   const { goBack } = useNavigation();
+  const apiPost = useApiPost();
   const { game, player } = useGameData();
-
-  if (!game || !player) return null;
 
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+
+  if (!game || !player) return null;
 
   const handleDateChange = useCallback((date: Date | undefined) => {
     setShowDatePicker(false);
@@ -65,24 +63,23 @@ const ActivityInfo: React.FC = () => {
   const onSubmit = useCallback(async values => {
     setConfirmDisabled(true);
 
-    try {
-      const data = {
-        requester: player._id,
-        activity: activity._id,
-        requestDate: new Date(),
-        completionDate: selectedDate,
-        information: values.information,
-        gameId: game.id,
-      };
+    const body = {
+      requester: player._id,
+      activity: activity._id,
+      requestDate: new Date(),
+      completionDate: selectedDate,
+      information: values.information,
+      gameId: game.id,
+    };
 
-      await api.post('/activityRegister', data);
+    const result = await apiPost('/activityRegister', body);
 
+    if (result !== null) {
       showMessage({ message: 'Atividade registrada!', type: 'success' });
-      goBack();
-    } catch (error) {
-      handleApiErrors(error);
-      setConfirmDisabled(false);
+      return goBack();
     }
+
+    return setConfirmDisabled(false);
   }, []);
 
   return (
@@ -140,6 +137,7 @@ const ActivityInfo: React.FC = () => {
                   <Errors.Text>{errors.date}</Errors.Text>
                 </Errors.Field>
               ) : null}
+
               {showDatePicker && (
                 <DatePicker
                   value={selectedDate || new Date()}

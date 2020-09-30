@@ -44,10 +44,8 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   const { navigate } = useNavigation();
   const { data } = useApiFetch<IAchievement[]>('/achievement');
 
-  if (!game || !player || !user) return null;
-
   const achievements: IAchievement[] = useMemo(() => {
-    if (!data) return [];
+    if (!data || !player) return [];
 
     return data.map((achievement: IAchievement) => {
       return {
@@ -64,21 +62,25 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
       nextLevel: undefined,
     };
 
-    const { levelInfo } = game;
-    const nextLevel = levelInfo
-      .sort((a, b) => a.level - b.level)
-      .find(info => player.level < info.level);
+    if (game && player) {
+      const { levelInfo } = game;
+      const nextLevel = levelInfo
+        .sort((a, b) => a.level - b.level)
+        .find(info => player.level < info.level);
 
-    if (player.rank && player.rank.color)
-      rankPallete = fillTheme('primary', player.rank.color);
+      if (player.rank && player.rank.color)
+        rankPallete = fillTheme('primary', player.rank.color);
 
-    userMeta = {
-      rank: player.rank,
-      nextLevel: nextLevel,
-    };
+      userMeta = {
+        rank: player.rank,
+        nextLevel: nextLevel,
+      };
+    }
 
     return [rankPallete, userMeta];
   }, [game]);
+
+  if (!game || !player || !user) return null;
 
   return (
     <SafeAreaView>

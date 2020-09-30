@@ -5,12 +5,10 @@ import Input from '../../../components/Input';
 
 // Hooks
 import { useAuth } from '../../../hooks/contexts/useAuth';
+import { useApiPost } from '../../../hooks/api/useApiPost';
 
 // Libs
 import { Formik } from 'formik';
-
-// Services
-import api from '../../../services/api';
 
 // Schemas
 import { LoginSchema } from './schemas';
@@ -21,9 +19,7 @@ import Button from '../../../components/Button';
 
 // Types
 import { FormProps } from '../types';
-
-// Utils
-import handleApiErrors from '../../../utils/handleApiErrors';
+import { IUser } from '../../../interfaces/api/User';
 
 const LoginForm: React.FC<FormProps> = ({ active }) => {
   const initialValues = {
@@ -31,8 +27,9 @@ const LoginForm: React.FC<FormProps> = ({ active }) => {
     password: '',
   };
 
-  // Auth
+  // Hooks
   const { signIn } = useAuth();
+  const apiPost = useApiPost<IUser>();
 
   // States
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -40,14 +37,9 @@ const LoginForm: React.FC<FormProps> = ({ active }) => {
   const onSubmit = useCallback(async values => {
     setButtonDisabled(true);
 
-    // Login
-    try {
-      const response = await api.post('/login', values);
+    const data = await apiPost('/login', values);
 
-      return signIn(response.data);
-    } catch (error) {
-      handleApiErrors(error);
-    }
+    if (data) return signIn(data);
 
     return setButtonDisabled(false);
   }, []);

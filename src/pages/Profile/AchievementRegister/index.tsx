@@ -5,26 +5,21 @@ import Input from '../../../components/Input';
 
 // Hooks
 import { useGameData } from '../../../hooks/contexts/useGameData';
+import { useApiPost } from '../../../hooks/api/useApiPost';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Libs
 import { Formik } from 'formik';
 import { showMessage } from 'react-native-flash-message';
-import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Schemas
 import { RegisterSchema } from './schemas';
-
-// Services
-import api from '../../../services/api';
 
 // Styles
 import { Container, Title, Form, Errors, Footer } from './styles';
 
 // Types
 import { AchievementRegisterParams } from './types';
-
-// Utils
-import handleApiErrors from '../../../utils/handleApiErrors';
 
 const AchievementRegister: React.FC = () => {
   const initialValues = {
@@ -36,33 +31,33 @@ const AchievementRegister: React.FC = () => {
     params: { achievement },
   } = useRoute<AchievementRegisterParams>();
   const { goBack } = useNavigation();
+  const apiPost = useApiPost();
   const { game, player } = useGameData();
-
-  if (!game || !player) return null;
 
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);
 
+  if (!game || !player) return null;
+
   const onSubmit = useCallback(async values => {
     setConfirmDisabled(true);
 
-    try {
-      const data = {
-        requester: player._id,
-        achievement: achievement._id,
-        requestDate: new Date(),
-        information: values.information,
-        gameId: game.id,
-      };
+    const body = {
+      requester: player._id,
+      achievement: achievement._id,
+      requestDate: new Date(),
+      information: values.information,
+      gameId: game.id,
+    };
 
-      await api.post('/achievementRegister', data);
+    const result = await apiPost('/achievementRegister', body);
 
+    if (result !== null) {
       showMessage({ message: 'Conquista requisitada!', type: 'success' });
-      goBack();
-    } catch (error) {
-      handleApiErrors(error);
-      setConfirmDisabled(false);
+      return goBack();
     }
+
+    return setConfirmDisabled(false);
   }, []);
 
   return (

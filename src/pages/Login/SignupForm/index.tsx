@@ -3,12 +3,12 @@ import React, { useCallback, useState } from 'react';
 // Components
 import Input from '../../../components/Input';
 
+// Hooks
+import { useApiPost } from '../../../hooks/api/useApiPost';
+
 // Libs
 import { Formik } from 'formik';
 import { showMessage } from 'react-native-flash-message';
-
-// Services
-import api from '../../../services/api';
 
 // Schemas
 import { SignupSchema } from './schemas';
@@ -20,9 +20,6 @@ import Button from '../../../components/Button';
 // Types
 import { FormProps } from '../types';
 
-// Utils
-import handleApiErrors from '../../../utils/handleApiErrors';
-
 const SignupForm: React.FC<FormProps> = ({ active }) => {
   const initialValues = {
     firstname: '',
@@ -31,6 +28,9 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
     password: '',
     confirmPassword: '',
   };
+
+  // Hooks
+  const apiPost = useApiPost();
 
   // States
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -42,19 +42,16 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
       });
       return;
     }
+
     setButtonDisabled(true);
 
-    // Post user in the API
-    try {
-      await api.post('/user/signup', values);
+    const response = await apiPost('/user/signup', values);
 
+    if (response !== null)
       showMessage({
         message: 'Cadastro efetuado com sucesso!',
         type: 'success',
       });
-    } catch (error) {
-      handleApiErrors(error);
-    }
 
     setButtonDisabled(false);
   }, []);
