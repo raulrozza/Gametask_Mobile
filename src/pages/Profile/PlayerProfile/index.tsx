@@ -4,9 +4,7 @@ import React, { useMemo } from 'react';
 import Header from './Header';
 import AchievementList from './AchievementList';
 import BasicLevelInfo from './BasicLevelInfo';
-
-// Icons
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Options from './Options';
 
 // Hooks
 import { useAuth } from '../../../hooks/contexts/useAuth';
@@ -17,7 +15,7 @@ import { SafeAreaView } from 'react-native';
 
 // Styles
 import { withTheme } from 'styled-components';
-import { Container, BottomOption } from './styles';
+import { Container } from './styles';
 
 // Types
 import { IThemedComponent } from '../../../interfaces/theme/ThemedComponent';
@@ -26,8 +24,8 @@ import { IThemedComponent } from '../../../interfaces/theme/ThemedComponent';
 import { getRankTheme } from './utils';
 
 const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
-  const { user, signOut } = useAuth();
-  const { game, player, switchGame } = useGameData();
+  const { user } = useAuth();
+  const { game, player } = useGameData();
 
   const rankTheme = useMemo(() => getRankTheme(theme, player?.rank), [player]);
 
@@ -53,18 +51,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
 
         <AchievementList player={player} />
 
-        <BottomOption.Button onPress={() => switchGame()}>
-          <BottomOption.Icon
-            as={MaterialCommunityIcons}
-            name="swap-horizontal-bold"
-          />
-          <BottomOption.Text thin> Trocar Jogo</BottomOption.Text>
-        </BottomOption.Button>
-
-        <BottomOption.Button onPress={() => signOut()}>
-          <BottomOption.Icon name="log-out" />
-          <BottomOption.Text> Sair</BottomOption.Text>
-        </BottomOption.Button>
+        <Options />
       </Container>
     </SafeAreaView>
   );
