@@ -15,13 +15,14 @@ import { Formik } from 'formik';
 import { RegisterSchema } from './schemas';
 
 // Styles
-import { Container, Title, Form, Errors, Footer } from './styles';
+import { Container, Title, Form, Footer } from './styles';
 
 // Types
 import { AchievementRegisterParams } from './types';
 
 // Utils
 import displaySuccessMessage from '../../../utils/displaySuccessMessage';
+import ErrorField from '../../../components/ErrorField';
 
 const AchievementRegister: React.FC = () => {
   const initialValues = {
@@ -89,10 +90,9 @@ const AchievementRegister: React.FC = () => {
                 placeholder="Como desbloqueou a conquista?"
                 multiline={true}
               />
+
               {errors.information && touched.information ? (
-                <Errors.Field>
-                  <Errors.Text>{errors.information}</Errors.Text>
-                </Errors.Field>
+                <ErrorField message={errors.information} />
               ) : null}
             </Form.InputGroup>
 

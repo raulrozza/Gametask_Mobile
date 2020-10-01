@@ -31,19 +31,6 @@ export const Form = {
   `,
 };
 
-export const Errors = {
-  Field: styled.View`
-    background-color: 'rgb(253, 57, 57)';
-    padding: 7px 5px 2px;
-    margin: -5px 0 10px;
-    border-radius: 5px;
-    z-index: -5;
-  `,
-  Text: styled.Text`
-    color: #fff;
-  `,
-};
-
 export const Footer = {
   Container: styled.View`
     width: 100%;
