@@ -1,5 +1,11 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
+
+// Components
+import AchievementImage from '../../../components/AchievementImage';
 import Button from '../../../components/Button';
+
+// Types
+import { PictureProps } from './types';
 
 export const Container = styled.View`
   justify-content: center;
@@ -9,11 +15,16 @@ export const Container = styled.View`
   padding: 16px;
 `;
 
-export const Picture = styled.Image`
+export const Picture = styled(AchievementImage)<PictureProps>`
   height: 150px;
   width: 150px;
   border-radius: 75px;
   margin-bottom: 8px;
+  ${({ obtained }) =>
+    !obtained &&
+    css`
+      opacity: 0.3;
+    `}
 `;
 
 export const Name = styled.Text`

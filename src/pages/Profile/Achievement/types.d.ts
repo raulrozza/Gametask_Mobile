@@ -8,3 +8,7 @@ type ParamList = {
 };
 
 export type AchievementParams = RouteProp<ParamList, 'achievementDetails'>;
+
+export interface PictureProps {
+  obtained: boolean;
+}

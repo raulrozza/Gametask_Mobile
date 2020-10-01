@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Hooks
 import { useRoute, useNavigation } from '@react-navigation/native';
 
 // Types
@@ -23,15 +25,8 @@ const AchievementDetails: React.FC = () => {
 
   return (
     <Container>
-      <Picture
-        source={
-          achievement.image
-            ? {
-                uri: achievement.image_url,
-              }
-            : require('../../../assets/img/achievements/placeholder.png')
-        }
-      />
+      <Picture achievement={achievement} obtained={achievement.obtained} />
+
       <Name>{achievement.name}</Name>
 
       {achievement.title && (
