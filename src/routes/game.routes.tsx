@@ -14,7 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // Pages
 import Home from './game/home.routes';
 import Profile from './game/profile.routes';
-import Register from './game/register.routes';
+import Activities from './game/activities.routes';
 
 // Styles
 import { withTheme } from 'styled-components';
@@ -53,8 +53,8 @@ const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
               <MaterialCommunityIcons name="trophy-award" {...props} />
             ),
           }}
-          name="Register"
-          component={Register}
+          name="Activities"
+          component={Activities}
         />
 
         <Tab.Screen

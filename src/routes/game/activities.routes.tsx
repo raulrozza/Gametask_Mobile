@@ -2,16 +2,16 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Components
-import ActivityRegister from '../../pages/Register/ActivityRegister';
-import ActivityInfo from '../../pages/Register/Activity';
+import ActivityList from '../../pages/Activities/ActivityList';
+import ActivityRegister from '../../pages/Activities/ActivityRegister';
 
 const Stack = createStackNavigator();
 
 const RegisterRoutes: React.FC = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="activityList" component={ActivityList} />
       <Stack.Screen name="activityRegister" component={ActivityRegister} />
-      <Stack.Screen name="activity" component={ActivityInfo} />
     </Stack.Navigator>
   );
 };

@@ -34,7 +34,7 @@ import { ActivityParams } from './types';
 import showDate from '../../../utils/showDate';
 import displaySuccessMessage from '../../../utils/displaySuccessMessage';
 
-const ActivityInfo: React.FC = () => {
+const ActivityRegister: React.FC = () => {
   const initialValues = {
     date: undefined,
     information: '',
@@ -169,4 +169,4 @@ const ActivityInfo: React.FC = () => {
   );
 };
 
-export default ActivityInfo;
+export default ActivityRegister;
