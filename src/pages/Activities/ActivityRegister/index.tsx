@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 // Components
 import DatePicker from '@react-native-community/datetimepicker';
 import Input from '../../../components/Input';
+import ErrorField from '../../../components/ErrorField';
 
 // Hooks
 import { useGameData } from '../../../hooks/contexts/useGameData';
@@ -23,7 +24,6 @@ import {
   Info,
   Form,
   DateInput,
-  Errors,
   Footer,
 } from './styles';
 
@@ -116,9 +116,7 @@ const ActivityRegister: React.FC = () => {
                 multiline={true}
               />
               {errors.information && touched.information ? (
-                <Errors.Field>
-                  <Errors.Text>{errors.information}</Errors.Text>
-                </Errors.Field>
+                <ErrorField message={errors.information} />
               ) : null}
             </Form.InputGroup>
 
@@ -133,9 +131,7 @@ const ActivityRegister: React.FC = () => {
                 </DateInput.Text>
               </DateInput.View>
               {errors.date && touched.date ? (
-                <Errors.Field>
-                  <Errors.Text>{errors.date}</Errors.Text>
-                </Errors.Field>
+                <ErrorField message={errors.date} />
               ) : null}
 
               {showDatePicker && (
