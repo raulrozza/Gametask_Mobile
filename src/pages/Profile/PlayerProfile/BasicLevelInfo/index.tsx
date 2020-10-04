@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 
 // Components
 import ProgressBar from '../../../../components/ProgressBar';
-import Select from 'react-native-picker-select';
 
 // Styles
 import {
@@ -11,6 +10,7 @@ import {
   LevelInfo,
   NextLevel,
   Picture,
+  TitleSelect,
 } from './styles';
 
 // Types
@@ -62,16 +62,19 @@ const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
           )}
       </NextLevel.Container>
 
-      {/* <Select
-  items={player.titles.map(title => {
-    return {
-      key: title._id,
-      label: title.name,
-      value: title.name,
-    };
-  })}
-  onValueChange={() => null}
-/> */}
+      <TitleSelect
+        items={player.titles.map(title => ({
+          key: title._id,
+          label: title.name,
+          value: title.name,
+        }))}
+        onValueChange={() => null}
+        theme={rankTheme}
+        placeholder={{
+          label: 'Selecione um título...',
+          value: null,
+        }}
+      />
     </Container>
   );
 };

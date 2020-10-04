@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import Select from '../../../../components/Select';
 import UserImage from '../../../../components/UserImage';
 
 export const Container = styled.View`
@@ -58,3 +59,8 @@ export const NextLevel = {
     color: ${({ theme }) => theme.primaryContrast};
   `,
 };
+
+export const TitleSelect = styled(Select)`
+  margin: 0 auto;
+  width: 80%;
+`;
