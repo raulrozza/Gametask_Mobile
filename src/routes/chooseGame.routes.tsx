@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // Pages
 import GameInvite from '../pages/GameInvite';
+import UserProfile from '../pages/UserProfile';
 import Lobby from '../pages/Lobby';
 
 const Stack = createStackNavigator();
@@ -16,6 +17,7 @@ const ChooseGameRoutes: React.FC = () => {
       <Stack.Navigator headerMode="none">
         <Stack.Screen name="Lobby" component={Lobby} />
         <Stack.Screen name="GameInvite" component={GameInvite} />
+        <Stack.Screen name="UserProfile" component={UserProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
