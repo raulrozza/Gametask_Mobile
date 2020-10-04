@@ -23,6 +23,7 @@ import { ITitle } from '../../../../interfaces/api/Title';
 
 // Utils
 import { getPlayerNextLevel } from '../utils';
+import { useApiPut } from '../../../../hooks/api/useApiPut';
 
 const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
   theme,
@@ -31,11 +32,14 @@ const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
   player,
   levelInfo,
 }) => {
+  const apiPut = useApiPut();
+
   const playerNextLevel = useMemo(
     () => getPlayerNextLevel(player?.level, levelInfo),
     [player],
   );
 
+  // There's a error while using only a Recoil state, so I must use both a useState and a SetRecoilState for the same value
   const [currentTitle, setCurrentTitle] = useState<ITitle | null>(
     player.currentTitle || null,
   );
@@ -44,6 +48,9 @@ const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
   const handleSelectTitle = (value: ITitle) => {
     setCurrentTitle(value);
     setTitle(value);
+    apiPut(`player/${player._id}`, {
+      currentTitle: value,
+    });
   };
 
   return (
