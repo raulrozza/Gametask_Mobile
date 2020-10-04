@@ -3,23 +3,21 @@ import React from 'react';
 // Components
 import FeedItem from './FeedItem';
 import EmptyList from './EmptyList';
+import RefreshControl from '../../../components/RefreshControl';
 
 // Hooks
 import { useApiFetch } from '../../../hooks/api/useApiFetch';
 
 // Libs
-import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 // Styles
 import { Container } from './styles';
-import { withTheme } from 'styled-components';
 
 // Types
 import { IFeedItem } from '../../../interfaces/api/FeedItem';
-import { IThemedComponent } from '../../../interfaces/theme/ThemedComponent';
 
-const Feed: React.FC<IThemedComponent> = ({ theme }) => {
+const Feed: React.FC = () => {
   const { data: feed, loading: refreshing, fetch } = useApiFetch<IFeedItem[]>(
     '/feed',
   );
@@ -28,12 +26,7 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
     <Container>
       <FlatList
         refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={fetch}
-            colors={[theme.secondary]}
-            progressBackgroundColor={theme.primaryIntense}
-          />
+          <RefreshControl refreshing={refreshing} onRefresh={fetch} />
         }
         data={feed || []}
         keyExtractor={feedItem => feedItem._id}
@@ -44,4 +37,4 @@ const Feed: React.FC<IThemedComponent> = ({ theme }) => {
   );
 };
 
-export default withTheme(Feed);
+export default Feed;
