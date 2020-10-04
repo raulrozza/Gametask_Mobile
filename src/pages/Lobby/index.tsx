@@ -6,6 +6,7 @@ import EmptyList from './EmptyList';
 import Footer from './Footer';
 import GameInfo from './GameInfo';
 import ModalContent from './ModalContent';
+import RefreshControl from '../../components/RefreshControl';
 
 // Hooks
 import { useApiFetch } from '../../hooks/api/useApiFetch';
@@ -40,7 +41,9 @@ const Lobby: React.FC = () => {
       <FlatList
         data={createdPlayers || []}
         keyExtractor={item => item._id}
-        refreshing={loading}
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={fetch} />
+        }
         ListEmptyComponent={() => <EmptyList />}
         renderItem={({ item }) => <GameInfo player={item} />}
         contentContainerStyle={{

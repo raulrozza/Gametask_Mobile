@@ -2,6 +2,7 @@ import React from 'react';
 
 // Components
 import EmptyList from './EmptyList';
+import RefreshControl from '../../../components/RefreshControl';
 import { FlatList } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -16,7 +17,9 @@ import { IActivity } from '../../../interfaces/api/Activity';
 import ActivityCard from './ActivityCard';
 
 const ActivityList: React.FC = () => {
-  const { data: activities } = useApiFetch<IActivity[]>('/activity');
+  const { data: activities, loading: refreshing, fetch } = useApiFetch<
+    IActivity[]
+  >('/activity');
 
   return (
     <SafeAreaProvider>
@@ -31,6 +34,9 @@ const ActivityList: React.FC = () => {
           <ActivityContainer.Title>Atividades</ActivityContainer.Title>
 
           <FlatList
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={fetch} />
+            }
             keyExtractor={activity => activity._id}
             data={activities || []}
             ListEmptyComponent={() => <EmptyList />}
