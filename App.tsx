@@ -17,6 +17,7 @@ import {
 
 // Libs
 import FlashMessage from 'react-native-flash-message';
+import { RecoilRoot } from 'recoil';
 
 // Contexts
 import Authorization from './src/contexts/Authorization';
@@ -38,12 +39,14 @@ const App: React.FC = () => {
     return <AppLoading />;
   }
   return (
-    <Theme>
-      <Authorization>
-        <Routes />
-      </Authorization>
-      <FlashMessage position="bottom" />
-    </Theme>
+    <RecoilRoot>
+      <Theme>
+        <Authorization>
+          <Routes />
+        </Authorization>
+        <FlashMessage position="bottom" />
+      </Theme>
+    </RecoilRoot>
   );
 };
 

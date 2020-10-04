@@ -1,7 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 // Components
 import ProgressBar from '../../../../components/ProgressBar';
+
+// Recoil
+import { useSetRecoilState } from 'recoil';
+import playerTitle from '../../../../atoms/playerTitle';
 
 // Styles
 import {
@@ -15,6 +19,7 @@ import {
 
 // Types
 import { BasicLevelInfoProps } from './types';
+import { ITitle } from '../../../../interfaces/api/Title';
 
 // Utils
 import { getPlayerNextLevel } from '../utils';
@@ -30,6 +35,16 @@ const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
     () => getPlayerNextLevel(player?.level, levelInfo),
     [player],
   );
+
+  const [currentTitle, setCurrentTitle] = useState<ITitle | null>(
+    player.currentTitle || null,
+  );
+  const setTitle = useSetRecoilState(playerTitle);
+
+  const handleSelectTitle = (value: ITitle) => {
+    setCurrentTitle(value);
+    setTitle(value);
+  };
 
   return (
     <Container>
@@ -66,9 +81,10 @@ const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
         items={player.titles.map(title => ({
           key: title._id,
           label: title.name,
-          value: title.name,
+          value: title,
         }))}
-        onValueChange={() => null}
+        value={currentTitle}
+        onValueChange={handleSelectTitle}
         theme={rankTheme}
         placeholder={{
           label: 'Selecione um título...',

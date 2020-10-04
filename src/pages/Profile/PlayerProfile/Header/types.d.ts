@@ -4,6 +4,6 @@ import { IThemedComponent } from '../../../../interfaces/theme/ThemedComponent';
 
 export interface HeaderProps extends IThemedComponent {
   firstname: string;
-  title?: ITitle;
+  title?: ITitle | null;
   rank?: IRank;
 }

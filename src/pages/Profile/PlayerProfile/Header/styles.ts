@@ -8,10 +8,15 @@ export const Container = styled.View`
   border-bottom-color: ${({ theme }) => theme.primaryShade};
 `;
 
-export const Title = styled.Text`
+export const Name = styled.Text`
   width: 100%;
   padding: 15px;
   color: ${({ theme }) => theme.primaryContrast};
   font-weight: bold;
   font-size: 24px;
+`;
+
+export const Title = styled.Text`
+  font-size: 20px;
+  color: ${({ theme }) => theme.secondary};
 `;

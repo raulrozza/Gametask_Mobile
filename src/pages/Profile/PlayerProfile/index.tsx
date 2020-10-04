@@ -22,12 +22,16 @@ import { IThemedComponent } from '../../../interfaces/theme/ThemedComponent';
 
 // Utils
 import { getRankTheme } from './utils';
+import { useRecoilValue } from 'recoil';
+import playerTitle from '../../../atoms/playerTitle';
 
 const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   const { user } = useAuth();
   const { game, player } = useGameData();
 
   const rankTheme = useMemo(() => getRankTheme(theme, player?.rank), [player]);
+
+  const currentTitle = useRecoilValue(playerTitle);
 
   if (!game || !player || !user) return null;
 
@@ -38,7 +42,7 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
           theme={rankTheme}
           firstname={user.firstname}
           rank={player.rank}
-          title={player.currentTitle}
+          title={currentTitle}
         />
 
         <BasicLevelInfo
