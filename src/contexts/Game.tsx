@@ -8,6 +8,10 @@ import { useAuth } from '../hooks/contexts/useAuth';
 import { useTheme } from '../hooks/contexts/useTheme';
 import { useApiGet } from '../hooks/api/useApiGet';
 
+// Recoil
+import { useSetRecoilState } from 'recoil';
+import playerTitle from '../atoms/playerTitle';
+
 // Services
 import { removeApiHeader, addApiHeader } from '../services/api';
 import { getData, removeData, saveData } from '../services/storage';
@@ -27,10 +31,12 @@ const Game: React.FC = ({ children }) => {
 
   const { signOut } = useAuth();
   const { changeTheme } = useTheme();
+  const setTitle = useSetRecoilState(playerTitle);
   const apiGet = useApiGet<IPlayer>();
 
   const resetGame = useCallback(async () => {
     await removeData('storedPlayer');
+    setTitle(null);
     setPlayer(null);
     changeTheme({});
     removeApiHeader('X-Game-ID');
@@ -45,6 +51,7 @@ const Game: React.FC = ({ children }) => {
       await saveData('storedPlayer', player);
 
       setVerifiedGameAuthenticity(true);
+      setTitle(player.currentTitle || null);
       setPlayer(player);
       changeTheme(player.game.theme);
     },
@@ -63,6 +70,7 @@ const Game: React.FC = ({ children }) => {
         addApiHeader('X-Game-ID', storedPlayer.game._id);
 
         if (!isEqual(player, storedPlayer)) {
+          setTitle(storedPlayer.currentTitle || null);
           setPlayer(storedPlayer);
           changeTheme(storedPlayer.game.theme);
         }
@@ -83,6 +91,7 @@ const Game: React.FC = ({ children }) => {
 
         addApiHeader('X-Game-ID', player.game._id);
 
+        setTitle(player.currentTitle || null);
         setPlayer(player);
         changeTheme(player.game.theme);
       } else resetGame();
