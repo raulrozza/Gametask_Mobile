@@ -3,3 +3,9 @@ export interface FormValues {
   lastname: string;
   image?: string | null;
 }
+
+export interface ImageFormData {
+  uri: string;
+  name: string;
+  type: string;
+}

@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 // Components
 import Button from '../../components/Button';
 import ErrorField from '../../components/ErrorField';
+import ImageInput from '../../components/ImageInput';
 import Input from '../../components/Input';
 
 // Hooks
@@ -22,10 +23,12 @@ import { Form, InputGroup } from './styles';
 import { FormValues } from './types';
 
 // Utils
+import { imageUriToFormData } from './utils';
 import displaySuccessMessage from '../../utils/displaySuccessMessage';
-import ImageInput from '../../components/ImageInput';
 
 const UserProfile: React.FC = () => {
+  const [disableButton, setDisableButton] = useState(false);
+
   // Hooks
   const apiPut = useApiPut();
   const { user } = useAuth();
@@ -39,10 +42,22 @@ const UserProfile: React.FC = () => {
   };
 
   const onSubmit = useCallback(async values => {
-    const response = await apiPut('', values);
+    setDisableButton(true);
 
-    if (response !== null)
-      displaySuccessMessage('Cadastro efetuado com sucesso!');
+    const unknownFormattedImage = imageUriToFormData(values.image) as unknown;
+
+    const data = new FormData();
+    data.append('firstname', values.firstname);
+    data.append('lastname', values.lastname);
+    data.append('avatar', unknownFormattedImage as Blob);
+
+    const response = await apiPut('/user', data, {
+      'content-type': 'multipart/form-data',
+    });
+
+    if (response !== null) displaySuccessMessage('Dados atualizados!');
+
+    setDisableButton(false);
   }, []);
 
   return (
@@ -91,7 +106,9 @@ const UserProfile: React.FC = () => {
           </InputGroup>
 
           <InputGroup>
-            <Button onPress={() => handleSubmit()}>Salvar Alterações</Button>
+            <Button onPress={() => handleSubmit()} disabled={disableButton}>
+              Salvar Alterações
+            </Button>
           </InputGroup>
         </Form>
       )}

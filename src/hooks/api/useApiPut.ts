@@ -12,16 +12,21 @@ import { ApiPut } from '../../interfaces/hooks/UseApiPut';
 export function useApiPut<T = unknown>(): ApiPut<T> {
   const handleApiErrors = useErrorHandling();
 
-  const apiPut = useCallback(async (URL: string, body: unknown) => {
-    try {
-      const response = await api.put<T>(URL, body);
+  const apiPut = useCallback(
+    async (URL: string, body: unknown, headers: unknown = {}) => {
+      try {
+        const response = await api.put<T>(URL, body, {
+          headers,
+        });
 
-      return response.data;
-    } catch (error) {
-      handleApiErrors(error);
-      return null;
-    }
-  }, []);
+        return response.data;
+      } catch (error) {
+        handleApiErrors(error);
+        return null;
+      }
+    },
+    [],
+  );
 
   return apiPut;
 }
