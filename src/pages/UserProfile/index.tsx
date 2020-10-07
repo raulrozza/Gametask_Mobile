@@ -9,6 +9,7 @@ import Input from '../../components/Input';
 // Hooks
 import { useApiPut } from '../../hooks/api/useApiPut';
 import { useAuth } from '../../hooks/contexts/useAuth';
+import { useNavigation } from '@react-navigation/native';
 
 // Libs
 import { Formik } from 'formik';
@@ -31,7 +32,8 @@ const UserProfile: React.FC = () => {
 
   // Hooks
   const apiPut = useApiPut();
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
+  const { goBack } = useNavigation();
 
   if (!user) return null;
 
@@ -44,20 +46,26 @@ const UserProfile: React.FC = () => {
   const onSubmit = useCallback(async values => {
     setDisableButton(true);
 
-    const unknownFormattedImage = imageUriToFormData(values.image) as unknown;
+    const { firstname, lastname, image } = values;
+
+    const unknownFormattedImage = imageUriToFormData(image) as unknown;
 
     const data = new FormData();
-    data.append('firstname', values.firstname);
-    data.append('lastname', values.lastname);
+    data.append('firstname', firstname);
+    data.append('lastname', lastname);
     data.append('avatar', unknownFormattedImage as Blob);
 
     const response = await apiPut('/user', data, {
       'content-type': 'multipart/form-data',
     });
 
-    if (response !== null) displaySuccessMessage('Dados atualizados!');
-
     setDisableButton(false);
+
+    if (response !== null) {
+      displaySuccessMessage('Dados atualizados!');
+      updateUser({ firstname, lastname, image });
+      goBack();
+    }
   }, []);
 
   return (

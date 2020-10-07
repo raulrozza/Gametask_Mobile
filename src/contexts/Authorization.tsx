@@ -12,6 +12,7 @@ import { clearData, getData, saveData } from '../services/storage';
 
 // Types
 import { IUser } from '../interfaces/api/User';
+import { UpdatedUser } from '../interfaces/hooks/UseAuth';
 
 const Authorization: React.FC = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);
@@ -46,9 +47,21 @@ const Authorization: React.FC = ({ children }) => {
     changeTheme({});
   }, []);
 
+  const updateUser = useCallback((updatedUser: UpdatedUser) => {
+    setUser(oldUser => {
+      if (!oldUser) return null;
+
+      return {
+        ...oldUser,
+        ...updatedUser,
+        profile_url: updatedUser.image || '',
+      };
+    });
+  }, []);
+
   return (
     <AuthorizationContext.Provider
-      value={{ user, logged, loading, signIn, signOut }}
+      value={{ user, logged, loading, signIn, signOut, updateUser }}
     >
       {children}
     </AuthorizationContext.Provider>

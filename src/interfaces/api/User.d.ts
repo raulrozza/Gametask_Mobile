@@ -4,7 +4,7 @@ export interface IUser {
   firstname: string;
   lastname: string;
   email: string;
-  image?: string;
+  image?: string | null;
   profile_url: string;
-  [key: string]: string;
+  [key: unknown]: string;
 }
