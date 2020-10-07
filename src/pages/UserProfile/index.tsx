@@ -23,6 +23,7 @@ import { FormValues } from './types';
 
 // Utils
 import displaySuccessMessage from '../../utils/displaySuccessMessage';
+import ImageInput from '../../components/ImageInput';
 
 const UserProfile: React.FC = () => {
   // Hooks
@@ -38,7 +39,7 @@ const UserProfile: React.FC = () => {
   };
 
   const onSubmit = useCallback(async values => {
-    const response = await apiPut('/user/signup', values);
+    const response = await apiPut('', values);
 
     if (response !== null)
       displaySuccessMessage('Cadastro efetuado com sucesso!');
@@ -59,6 +60,8 @@ const UserProfile: React.FC = () => {
         touched,
       }) => (
         <Form>
+          <ImageInput value={values.image} onChange={handleChange('image')} />
+
           <InputGroup>
             <Input
               textContentType="name"

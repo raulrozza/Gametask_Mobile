@@ -42,7 +42,8 @@
     "recoil": "0.0.13",
     "styled-components": "^5.1.1",
     "tinycolor2": "^1.4.1",
-    "yup": "^0.29.1"
+    "yup": "^0.29.1",
+    "expo-image-picker": "~9.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
