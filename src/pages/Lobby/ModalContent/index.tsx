@@ -41,6 +41,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
     }
 
     setCode(clipboardText);
+
     return setInviteData(decrypted);
   }, []);
 
@@ -67,6 +68,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
 
         <PasteGroup.Container>
           <PasteGroup.Input value={code} editable={false} />
+
           <PasteGroup.Button onPress={handleCodePaste} activeOpacity={0.6}>
             <PasteGroup.Icon name="content-paste" />
           </PasteGroup.Button>

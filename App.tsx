@@ -38,6 +38,7 @@ const App: React.FC = () => {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
+
   return (
     <RecoilRoot>
       <Theme>

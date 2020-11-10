@@ -19,7 +19,9 @@ const GameInfo: React.FC<GameInfoProps> = ({ player }) => {
       <Info>
         <Title>{player.game.name} </Title>
 
-        <Description>{player.game.description} </Description>
+        <Description.Container>
+          <Description.Text>{player.game.description}</Description.Text>
+        </Description.Container>
 
         <Button outline onPress={() => switchGame(player)}>
           Entrar

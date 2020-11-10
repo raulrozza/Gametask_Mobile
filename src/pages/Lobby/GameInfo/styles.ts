@@ -39,9 +39,12 @@ export const Title = styled(DefaultTitle)`
   font-size: 18px;
 `;
 
-export const Description = styled.Text`
-  font-size: 12px;
-`;
+export const Description = {
+  Container: styled.ScrollView``,
+  Text: styled.Text`
+    font-size: 12px;
+  `,
+};
 
 export const Button = styled(DefaultButton)`
   width: 80px;
