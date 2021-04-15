@@ -12,7 +12,7 @@ export const FeedText = {
     flex-wrap: wrap;
   `,
   Name: styled.Text`
-    color: ${({ theme }) => theme.secondaryLowShade};
+    color: ${({ theme }) => theme.palette.secondary.dark};
     font-weight: bold;
   `,
   Activity: styled.Text`

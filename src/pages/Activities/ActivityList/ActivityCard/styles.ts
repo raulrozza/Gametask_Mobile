@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  padding: 8px;
+  padding: ${({ theme }) => theme.layout.spacing(2)};
   flex-direction: row;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(4)};
   border-width: 2px;
-  margin: 4px;
-  border-radius: 16px;
-  border-color: ${({ theme }) => theme.secondaryShade};
+  margin: ${({ theme }) => theme.layout.spacing(1)};
+  border-radius: ${({ theme }) => theme.layout.borderRadius.medium};
+  border-color: ${({ theme }) => theme.palette.secondary.dark};
 `;
 
 export const InfoContainer = styled.View`
@@ -17,7 +17,7 @@ export const InfoContainer = styled.View`
 export const Title = styled.Text`
   font-weight: bold;
   font-size: 16px;
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
   color: ${({ theme }) => theme.palette.primary.contrast};
   text-transform: uppercase;
 `;
@@ -31,12 +31,12 @@ export const Experience = {
     width: 20%;
     justify-content: center;
     align-items: center;
-    margin: 0 4px;
+    margin: ${({ theme }) => theme.layout.spacing(0, 1)};
   `,
   Text: styled.Text`
     font-weight: bold;
     font-size: 18px;
     text-align: center;
-    color: ${({ theme }) => theme.secondaryIntense};
+    color: ${({ theme }) => theme.palette.secondary.light};
   `,
 };

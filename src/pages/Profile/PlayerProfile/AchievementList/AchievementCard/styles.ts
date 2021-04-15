@@ -10,7 +10,7 @@ export const Container = styled.View<AchievementContainerProps>`
   justify-content: center;
   align-items: center;
   width: 50%;
-  padding: 8px;
+  padding: ${({ theme }) => theme.layout.spacing(2)};
   ${({ obtained }) =>
     !obtained &&
     css`
@@ -22,7 +22,7 @@ export const Image = styled(AchievementImage)`
   height: 96px;
   width: 96px;
   border-radius: 48px;
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
 `;
 
 export const Text = styled.Text`

@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.palette.primary.main};
   flex: 1;
-  padding: 12px;
+  padding: ${({ theme }) => theme.layout.spacing(3)};
   justify-content: flex-start;
   align-items: center;
   padding-bottom: 46px;
@@ -19,7 +19,7 @@ export const PageTitle = styled.Text`
 
 export const Description = styled.Text`
   color: ${({ theme }) => theme.palette.primary.contrast};
-  margin: 16px 0;
+  margin: ${({ theme }) => theme.layout.spacing(4, 0)};
   text-align: center;
 `;
 

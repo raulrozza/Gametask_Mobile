@@ -16,7 +16,7 @@ export const Title = styled.Text`
   font-size: 24px;
   color: ${({ theme }) => theme.palette.secondary.main};
   width: 100%;
-  padding: 4px;
+  padding: ${({ theme }) => theme.layout.spacing(1)};
   text-align: center;
   text-transform: capitalize;
 `;
@@ -24,10 +24,10 @@ export const Title = styled.Text`
 export const Form = {
   Container: styled.View`
     width: 100%;
-    padding: 16px;
+    padding: ${({ theme }) => theme.layout.spacing(4)};
   `,
   InputGroup: styled.View`
-    margin-bottom: 8px;
+    margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
   `,
 };
 
@@ -36,7 +36,7 @@ export const Footer = {
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 8px;
+    margin-top: ${({ theme }) => theme.layout.spacing(2)};
   `,
   Back: styled(Button)`
     border-width: 1px;

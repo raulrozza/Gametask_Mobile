@@ -5,10 +5,10 @@ export const Form = styled.View`
   justify-content: center;
   align-items: center;
 
-  padding: 16px;
+  padding: ${({ theme }) => theme.layout.spacing(4)};
 `;
 
 export const InputGroup = styled.View`
   width: 80%;
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
 `;

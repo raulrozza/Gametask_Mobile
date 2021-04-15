@@ -1,17 +1,17 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  padding: 8px;
+  padding: ${({ theme }) => theme.layout.spacing(2)};
   flex-direction: row;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(4)};
   border-width: 2px;
-  margin: 4px;
-  border-radius: 16px;
-  background-color: ${({ theme }) => theme.secondaryShade};
+  margin: ${({ theme }) => theme.layout.spacing(1)};
+  border-radius: ${({ theme }) => theme.layout.borderRadius.small};
+  background-color: ${({ theme }) => theme.palette.secondary.dark};
 `;
 
 export const Text = styled.Text`
   color: ${({ theme }) => theme.palette.secondary.contrast};
   text-align: center;
-  margin: 8px 0;
+  margin: ${({ theme }) => theme.layout.spacing(2, 0)};
 `;

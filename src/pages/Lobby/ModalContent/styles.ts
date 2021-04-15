@@ -22,7 +22,7 @@ export const Container = styled.View`
 
 export const PageTitle = styled(Title)`
   color: ${({ theme }) => theme.palette.secondary.main};
-  margin-bottom: 48px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(12)};
 `;
 
 export const PasteGroup = {
@@ -37,15 +37,15 @@ export const PasteGroup = {
     overflow: hidden;
 
     border: 1px solid ${({ theme }) => theme.palette.secondary.main};
-    border-radius: 4px;
+    border-radius: ${({ theme }) => theme.layout.borderRadius.small};
 
     margin-bottom: 48px;
   `,
   Input: styled.TextInput`
-    padding: 0 12px;
+    padding: ${({ theme }) => theme.layout.spacing(0, 3)};
     flex: 1;
     ${({ theme }) => css`
-      background-color: ${theme.primaryLowShade};
+      background-color: ${theme.palette.primary.dark};
       color: ${theme.palette.primary.contrast};
     `}
   `,

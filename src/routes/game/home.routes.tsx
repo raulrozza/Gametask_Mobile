@@ -21,7 +21,7 @@ const Home: React.FC<IThemedComponent> = ({ theme }) => {
       tabBarOptions={{
         activeTintColor: theme.secondary,
         inactiveTintColor: theme.palette.primary.dark,
-        pressColor: theme.primaryLowShade,
+        pressColor: theme.palette.primary.dark,
         indicatorContainerStyle: {
           backgroundColor: theme.primary,
         },

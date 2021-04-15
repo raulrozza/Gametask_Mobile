@@ -10,7 +10,7 @@ export const HomePage = styled.ScrollView.attrs(() => ({
     alignItems: 'center',
   },
 }))`
-  background-color: ${({ theme }) => theme.primaryLowShade};
+  background-color: ${({ theme }) => theme.palette.primary.dark};
 `;
 
 export const TitleContainer = styled.View`
@@ -22,8 +22,8 @@ export const TitleContainer = styled.View`
 
 export const Title = {
   View: styled.View`
-    background-color: ${({ theme }) => theme.secondaryLowShade};
-    padding: 10px 20px;
+    background-color: ${({ theme }) => theme.palette.secondary.dark};
+    padding: ${({ theme }) => theme.layout.spacing(2, 5)};
     border-radius: 15px;
     width: 300px;
   `,
@@ -44,7 +44,7 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.palette.primary.main};
   border-radius: 3px;
   flex: 1;
-  margin: 0 16px 16px;
+  margin: ${({ theme }) => theme.layout.spacing(0, 4, 4)};
 `;
 
 export const FormToggle = styled.View`
@@ -56,7 +56,7 @@ export const FormToggle = styled.View`
 export const ToggleButton = {
   Button: styled.TouchableOpacity<ActiveItemProps>`
     width: 50%;
-    padding: 8px;
+    padding: ${({ theme }) => theme.layout.spacing(2)};
     justify-content: center;
     align-items: center;
     background-color: ${({ theme, active }) =>
@@ -77,7 +77,7 @@ export const Form = styled.ScrollView.attrs(() => ({
     alignItems: 'center',
   },
 }))<ActiveItemProps>`
-  margin: 16px 0;
+  margin: ${({ theme }) => theme.layout.spacing(4, 0)};
 
   ${({ active }) =>
     active
@@ -91,7 +91,7 @@ export const Form = styled.ScrollView.attrs(() => ({
 
 export const InputGroup = styled.View`
   width: 80%;
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
 `;
 
 export const ConfirmText = styled.Text`

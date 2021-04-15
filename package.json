@@ -27,6 +27,7 @@
     "expo-status-bar": "~1.0.2",
     "formik": "^2.1.4",
     "lodash": "^4.17.21",
+    "polished": "^4.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-loading": "^2.0.3",

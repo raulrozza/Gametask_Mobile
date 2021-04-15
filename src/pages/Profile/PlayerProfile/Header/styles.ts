@@ -10,7 +10,7 @@ export const Container = styled.View`
 
 export const Name = styled.Text`
   width: 100%;
-  padding: 15px;
+  padding: ${({ theme }) => theme.layout.spacing(4)};
   color: ${({ theme }) => theme.palette.primary.contrast};
   font-weight: bold;
   font-size: 24px;

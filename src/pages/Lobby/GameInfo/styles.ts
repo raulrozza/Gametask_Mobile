@@ -15,10 +15,10 @@ export const Container = styled.View`
 
   background-color: ${({ theme }) => theme.palette.primary.main};
 
-  padding: 8px;
-  margin-bottom: 8px;
+  padding: ${({ theme }) => theme.layout.spacing(2)};
+  margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
 
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.layout.borderRadius.small};
 `;
 
 export const Image = styled(GameImage)`
@@ -26,7 +26,7 @@ export const Image = styled(GameImage)`
   width: 92px;
   border-radius: 46px;
 
-  margin-right: 8px;
+  margin-right: ${({ theme }) => theme.layout.spacing(2)};
 `;
 
 export const Info = styled.View`
@@ -34,7 +34,7 @@ export const Info = styled.View`
   height: 100%;
 `;
 export const Title = styled(DefaultTitle)`
-  color: ${({ theme }) => theme.secondaryLowShade};
+  color: ${({ theme }) => theme.palette.secondary.dark};
   text-align: left;
   font-size: 18px;
 `;
@@ -48,5 +48,5 @@ export const Description = {
 
 export const Button = styled(DefaultButton)`
   width: 80px;
-  margin-top: 4px;
+  margin-top: ${({ theme }) => theme.layout.spacing(1)};
 `;

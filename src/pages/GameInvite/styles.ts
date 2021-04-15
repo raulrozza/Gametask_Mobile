@@ -8,7 +8,7 @@ export const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: ${({ theme }) => theme.layout.spacing(4)};
   background-color: ${({ theme }) => theme.palette.primary.main};
 `;
 
@@ -19,7 +19,7 @@ export const InviteTitle = {
     font-size: 16px;
     line-height: 22px;
 
-    margin-bottom: 16px;
+    margin-bottom: ${({ theme }) => theme.layout.spacing(4)};
   `,
   Inviter: styled.Text`
     color: ${({ theme }) => theme.palette.secondary.main};
@@ -36,8 +36,8 @@ export const GameContainer = {
   Wrapper: styled.View`
     background-color: ${({ theme }) => theme.palette.primary.main};
     border: 1px solid ${({ theme }) => theme.palette.secondary.main};
-    border-radius: 8px;
-    padding: 32px 16px;
+    border-radius: ${({ theme }) => theme.layout.borderRadius.small};
+    padding: ${({ theme }) => theme.layout.spacing(8, 4)};
 
     ${'elevation'}: 2;
 
@@ -48,10 +48,10 @@ export const GameContainer = {
     width: 96px;
     border-radius: 48px;
 
-    margin-bottom: 16px;
+    margin-bottom: ${({ theme }) => theme.layout.spacing(4)};
   `,
   Description: styled.Text`
-    margin-bottom: 32px;
+    margin-bottom: ${({ theme }) => theme.layout.spacing(8)};
     color: ${({ theme }) => theme.palette.secondary.main};
     font-size: 16px;
     text-align: center;

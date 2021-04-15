@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+import { transparentize } from 'polished';
 
 // Types
 import { DateInputTextProps, FooterConfirmProps } from './types';
@@ -18,7 +19,7 @@ export const Title = styled.Text`
   font-size: 24px;
   color: ${({ theme }) => theme.palette.secondary.main};
   width: 100%;
-  padding: 4px;
+  padding: ${({ theme }) => theme.layout.spacing(1)};
   text-align: center;
   text-transform: capitalize;
 `;
@@ -27,33 +28,33 @@ export const Paragraph = styled.Text`
   text-align: center;
   color: ${({ theme }) => theme.palette.primary.contrast};
   width: 100%;
-  margin: 16px 0;
-  padding: 0 16px;
+  margin: ${({ theme }) => theme.layout.spacing(4, 0)};
+  padding: ${({ theme }) => theme.layout.spacing(0, 4)};
 `;
 
 export const Info = styled.Text`
   text-align: center;
   color: ${({ theme }) => theme.palette.primary.contrast};
   width: 100%;
-  padding: 0 16px;
+  padding: ${({ theme }) => theme.layout.spacing(0, 4)};
   font-style: italic;
 `;
 
 export const Form = {
   Container: styled.View`
     width: 100%;
-    padding: 16px;
+    padding: ${({ theme }) => theme.layout.spacing(4)};
   `,
   InputGroup: styled.View`
-    margin-bottom: 8px;
+    margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
   `,
 };
 
 export const DateInput = {
   View: styled.View`
     width: 100%;
-    border-radius: 5px;
-    padding: 12px;
+    border-radius: ${({ theme }) => theme.layout.borderRadius.small};
+    padding: ${({ theme }) => theme.layout.spacing(3)};
     ${({ theme }) => css`
       background-color: ${theme.palette.primary.main};
       border: 1px solid ${theme.palette.primary.dark};
@@ -70,12 +71,12 @@ export const Footer = {
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 8px;
+    margin-top: ${({ theme }) => theme.layout.spacing(2)};
   `,
   Back: styled.TouchableOpacity`
     border-width: 1px;
-    padding: 8px;
-    border-radius: 5px;
+    padding: ${({ theme }) => theme.layout.spacing(2)};
+    border-radius: ${({ theme }) => theme.layout.borderRadius.small};
     border-color: ${({ theme }) => theme.palette.secondary.main};
     width: 100px;
     align-items: center;
@@ -84,10 +85,12 @@ export const Footer = {
     color: ${({ theme }) => theme.palette.secondary.main};
   `,
   Confirm: styled.TouchableOpacity<FooterConfirmProps>`
-    padding: 10px;
-    border-radius: 5px;
+    padding: ${({ theme }) => theme.layout.spacing(2)};
+    border-radius: ${({ theme }) => theme.layout.borderRadius.small};
     background-color: ${({ theme, disabled }) =>
-      disabled ? theme.secondaryTransparent : theme.palette.secondary.main};
+      disabled
+        ? transparentize(0.3, theme.palette.secondary.main)
+        : theme.palette.secondary.main};
     width: 100px;
     align-items: center;
   `,

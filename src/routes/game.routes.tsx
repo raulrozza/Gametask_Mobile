@@ -31,9 +31,9 @@ const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
         tabBarOptions={{
           style: {
             backgroundColor: theme.primary,
-            borderTopColor: theme.secondaryLowShade,
+            borderTopColor: theme.palette.secondary.dark,
           },
-          activeTintColor: theme.secondaryShade,
+          activeTintColor: theme.palette.secondary.dark ,
           inactiveTintColor: theme.palette.primary.contrast,
         }}
       >

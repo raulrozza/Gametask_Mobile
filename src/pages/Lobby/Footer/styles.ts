@@ -11,7 +11,7 @@ export const Row = styled.View`
 
   height: 48px;
 
-  padding: 8px 16px;
+  padding: ${({ theme }) => theme.layout.spacing(2, 4)};
 
   background-color: ${({ theme }) => theme.palette.primary.main};
 `;
@@ -20,15 +20,15 @@ export const Button = {
   Wrapper: styled(RectButton)`
     flex-direction: row;
     align-items: center;
-    padding: 4px;
+    padding: ${({ theme }) => theme.layout.spacing(1)};
   `,
   Icon: styled(FontAwesome)`
-    color: ${({ theme }) => theme.secondaryShade};
+    color: ${({ theme }) => theme.palette.secondary.dark};
     font-size: 24px;
-    margin-right: 4px;
+    margin-right: ${({ theme }) => theme.layout.spacing(1)};
   `,
   Text: styled.Text`
-    color: ${({ theme }) => theme.secondaryShade};
+    color: ${({ theme }) => theme.palette.secondary.dark};
     font-size: 18px;
   `,
 };

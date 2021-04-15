@@ -16,21 +16,21 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
 
   ${({ theme }) => css`
-    background-color: ${theme.primaryLowShade};
+    background-color: ${theme.palette.primary.dark};
     border-top-width: 1px;
     border-color: ${theme.palette.primary.dark};
   `}
 `;
 
 export const Icon = styled(Feather)`
-  color: ${({ theme }) => theme.secondaryIntense};
+  color: ${({ theme }) => theme.palette.secondary.light};
   font-size: 24px;
   font-weight: bold;
 `;
 
 export const Text = styled.Text`
   ${({ theme }) => css`
-    color: ${theme.secondaryIntense};
+    color: ${theme.palette.secondary.light};
     font-size: 24px;
     font-weight: bold;
   `}
@@ -38,7 +38,7 @@ export const Text = styled.Text`
 
 export const ThinText = styled.Text`
   ${({ theme }) => css`
-    color: ${theme.secondaryIntense};
+    color: ${theme.palette.secondary.light};
     font-size: 18px;
   `}
 `;

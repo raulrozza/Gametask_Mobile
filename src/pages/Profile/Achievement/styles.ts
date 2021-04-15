@@ -12,14 +12,14 @@ export const Container = styled.View`
   align-items: center;
   flex: 1;
   background-color: ${({ theme }) => theme.palette.primary.main};
-  padding: 16px;
+  padding: ${({ theme }) => theme.layout.spacing(4)};
 `;
 
 export const Picture = styled(AchievementImage)<PictureProps>`
   height: 150px;
   width: 150px;
   border-radius: 75px;
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
   ${({ obtained }) =>
     !obtained &&
     css`
@@ -31,7 +31,7 @@ export const Name = styled.Text`
   font-size: 36px;
   font-weight: bold;
   color: ${({ theme }) => theme.palette.secondary.main};
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
   text-align: center;
 `;
 
@@ -39,7 +39,7 @@ export const Title = styled.Text`
   font-size: 22px;
   font-weight: bold;
   color: ${({ theme }) => theme.palette.primary.dark};
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
   text-align: center;
 `;
 
@@ -50,12 +50,12 @@ export const Description = styled.Text`
 `;
 
 export const RequestButton = styled(Button)`
-  margin-top: 8px;
+  margin-top: ${({ theme }) => theme.layout.spacing(2)};
 `;
 
 export const BackButton = {
   Button: styled.TouchableOpacity`
-    margin: 16px 0;
+    margin: ${({ theme }) => theme.layout.spacing(4, 0)};
   `,
   Text: styled.Text`
     color: ${({ theme }) => theme.palette.secondary.main};
