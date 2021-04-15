@@ -26,6 +26,7 @@
     "expo-image-picker": "~9.1.0",
     "expo-status-bar": "~1.0.2",
     "formik": "^2.1.4",
+    "lodash": "^4.17.21",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-loading": "^2.0.3",
@@ -48,6 +49,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@types/crypto-js": "^3.1.47",
+    "@types/lodash": "^4.14.168",
     "@types/node": "^14.0.14",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
