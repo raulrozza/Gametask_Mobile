@@ -10,19 +10,19 @@ export const Container = styled(RectButton)<StyledButtonProps>`
   ${({ theme, outline, enabled = true }) => css`
     ${outline
       ? css`
-          background-color: ${theme.primary};
-          color: ${theme.secondary};
+          background-color: ${theme.palette.primary.main};
+          color: ${theme.palette.secondary.main};
         `
       : css`
-          background-color: ${theme.secondary};
-          color: ${theme.secondaryContrast};
+          background-color: ${theme.palette.secondary.main};
+          color: ${theme.palette.secondary.contrast};
         `}
 
-    border-radius: 2px;
+    border-radius: ${theme.layout.borderRadius.small};
     line-height: 24px;
     font-size: 16px;
 
-    border-color: ${theme.secondary};
+    border-color: ${theme.palette.secondary.main};
 
     align-items: stretch;
 
@@ -34,12 +34,15 @@ export const Container = styled(RectButton)<StyledButtonProps>`
 `;
 
 export const Text = styled.Text<StyledButtonProps>`
-  padding: 8px 12px;
-  text-align: center;
-  border-radius: 2px;
+  ${({ theme, outline }) => css`
+    padding: ${theme.layout.spacing(2, 3)};
+    text-align: center;
+    border-radius: ${theme.layout.borderRadius.small};
 
-  color: ${({ theme, outline }) =>
-    outline ? theme.secondary : theme.secondaryContrast};
-  border-width: 1px;
-  border-color: ${({ theme }) => theme.secondary};
+    color: ${outline
+      ? theme.palette.secondary.main
+      : theme.palette.secondary.contrast};
+    border-width: 1px;
+    border-color: ${theme.palette.secondary.main};
+  `}
 `;

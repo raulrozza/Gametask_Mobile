@@ -5,12 +5,14 @@ import { StyledInputProps } from './types';
 
 export const StyledInput = styled.TextInput<StyledInputProps>`
   width: 100%;
-  border-radius: 5px;
-  padding: 0 12px;
   ${({ theme, focused, multiline }) => css`
-    background-color: ${theme.primary};
-    border: 1px solid ${focused ? theme.secondary : theme.primaryShade};
-    color: ${theme.primaryContrast};
+    border-radius: ${theme.layout.borderRadius.small};
+    padding: ${theme.layout.spacing(0, 3)};
+
+    background-color: ${theme.palette.primary.main};
+    border: 1px solid
+      ${focused ? theme.palette.secondary.main : theme.palette.primary.dark};
+    color: ${theme.palette.primary.contrast};
     height: ${multiline ? '72px' : '36px '};
   `}
 `;

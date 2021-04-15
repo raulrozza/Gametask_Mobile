@@ -27,5 +27,5 @@ export const Image = styled(AchievementImage)`
 
 export const Text = styled.Text`
   font-weight: bold;
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.palette.secondary.main};
 `;

@@ -6,7 +6,7 @@ export const Container = styled.View`
   padding: 8px;
   margin-top: 8px;
   margin-bottom: 8px;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   flex-direction: row;
   flex-wrap: wrap;
 `;
@@ -14,7 +14,7 @@ export const Container = styled.View`
 export const Title = styled.Text`
   width: 100%;
   text-align: center;
-  color: ${({ theme }) => theme.primaryContrast};
+  color: ${({ theme }) => theme.palette.primary.contrast};
   font-weight: bold;
   font-size: 36px;
   margin: 8px 0;

@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const Title = styled(DefaultTitle)`
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.palette.secondary.main};
   text-align: center;
   margin-bottom: 16px;
 `;

@@ -10,7 +10,7 @@ export const Container = styled.View`
 export const Picture = styled(UserImage)`
   border-radius: 75px;
   border-width: 6px;
-  border-color: ${({ theme }) => theme.primaryShade};
+  border-color: ${({ theme }) => theme.palette.primary.dark};
   width: 150px;
   height: 150px;
   margin-top: 12px;
@@ -56,7 +56,7 @@ export const NextLevel = {
     margin-bottom: 16px;
   `,
   Text: styled.Text`
-    color: ${({ theme }) => theme.primaryContrast};
+    color: ${({ theme }) => theme.palette.primary.contrast};
   `,
 };
 

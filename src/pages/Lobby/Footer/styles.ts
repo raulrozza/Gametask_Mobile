@@ -13,7 +13,7 @@ export const Row = styled.View`
 
   padding: 8px 16px;
 
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const Button = {

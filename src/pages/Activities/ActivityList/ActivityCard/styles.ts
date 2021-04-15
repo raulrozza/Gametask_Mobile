@@ -18,12 +18,12 @@ export const Title = styled.Text`
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 8px;
-  color: ${({ theme }) => theme.primaryContrast};
+  color: ${({ theme }) => theme.palette.primary.contrast};
   text-transform: uppercase;
 `;
 
 export const Description = styled.Text`
-  color: ${({ theme }) => theme.primaryContrast};
+  color: ${({ theme }) => theme.palette.primary.contrast};
 `;
 
 export const Experience = {

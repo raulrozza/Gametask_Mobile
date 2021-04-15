@@ -11,7 +11,7 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
   flex: 1;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   padding: 16px;
 `;
 
@@ -30,7 +30,7 @@ export const Picture = styled(AchievementImage)<PictureProps>`
 export const Name = styled.Text`
   font-size: 36px;
   font-weight: bold;
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.palette.secondary.main};
   margin-bottom: 8px;
   text-align: center;
 `;
@@ -38,14 +38,14 @@ export const Name = styled.Text`
 export const Title = styled.Text`
   font-size: 22px;
   font-weight: bold;
-  color: ${({ theme }) => theme.primaryShade};
+  color: ${({ theme }) => theme.palette.primary.dark};
   margin-bottom: 8px;
   text-align: center;
 `;
 
 export const Description = styled.Text`
   font-size: 18px;
-  color: ${({ theme }) => theme.primaryContrast};
+  color: ${({ theme }) => theme.palette.primary.contrast};
   text-align: center;
 `;
 
@@ -58,6 +58,6 @@ export const BackButton = {
     margin: 16px 0;
   `,
   Text: styled.Text`
-    color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.palette.secondary.main};
   `,
 };

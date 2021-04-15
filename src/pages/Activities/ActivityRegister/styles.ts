@@ -10,13 +10,13 @@ export const Container = styled.ScrollView.attrs(() => ({
   },
 }))`
   flex: 1;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const Title = styled.Text`
   font-weight: bold;
   font-size: 24px;
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.palette.secondary.main};
   width: 100%;
   padding: 4px;
   text-align: center;
@@ -25,7 +25,7 @@ export const Title = styled.Text`
 
 export const Paragraph = styled.Text`
   text-align: center;
-  color: ${({ theme }) => theme.primaryContrast};
+  color: ${({ theme }) => theme.palette.primary.contrast};
   width: 100%;
   margin: 16px 0;
   padding: 0 16px;
@@ -33,7 +33,7 @@ export const Paragraph = styled.Text`
 
 export const Info = styled.Text`
   text-align: center;
-  color: ${({ theme }) => theme.primaryContrast};
+  color: ${({ theme }) => theme.palette.primary.contrast};
   width: 100%;
   padding: 0 16px;
   font-style: italic;
@@ -55,13 +55,13 @@ export const DateInput = {
     border-radius: 5px;
     padding: 12px;
     ${({ theme }) => css`
-      background-color: ${theme.primary};
-      border: 1px solid ${theme.primaryShade};
+      background-color: ${theme.palette.primary.main};
+      border: 1px solid ${theme.palette.primary.dark};
     `}
   `,
   Text: styled.Text<DateInputTextProps>`
     color: ${({ theme, date }) =>
-      date ? theme.primaryContrast : theme.primaryShade};
+      date ? theme.palette.primary.contrast : theme.palette.primary.dark};
   `,
 };
 
@@ -76,22 +76,22 @@ export const Footer = {
     border-width: 1px;
     padding: 8px;
     border-radius: 5px;
-    border-color: ${({ theme }) => theme.secondary};
+    border-color: ${({ theme }) => theme.palette.secondary.main};
     width: 100px;
     align-items: center;
   `,
   BackText: styled.Text`
-    color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.palette.secondary.main};
   `,
   Confirm: styled.TouchableOpacity<FooterConfirmProps>`
     padding: 10px;
     border-radius: 5px;
     background-color: ${({ theme, disabled }) =>
-      disabled ? theme.secondaryTransparent : theme.secondary};
+      disabled ? theme.secondaryTransparent : theme.palette.secondary.main};
     width: 100px;
     align-items: center;
   `,
   ConfirmText: styled.Text`
-    color: ${({ theme }) => theme.secondaryContrast};
+    color: ${({ theme }) => theme.palette.secondary.contrast};
   `,
 };

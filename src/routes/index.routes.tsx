@@ -25,7 +25,7 @@ const Routes: React.FC<IThemedComponent> = ({ theme }) => {
 
   return (
     <>
-      <StatusBar barStyle={theme.statusBar} backgroundColor={theme.primary} />
+      <StatusBar barStyle={theme.statusBar} backgroundColor={theme.palette.primary.main} />
       {logged ? (
         <Game>
           <LoggedRoutes />

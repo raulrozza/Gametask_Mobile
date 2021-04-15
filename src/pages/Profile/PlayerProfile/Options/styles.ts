@@ -18,7 +18,7 @@ export const Button = styled.TouchableOpacity`
   ${({ theme }) => css`
     background-color: ${theme.primaryLowShade};
     border-top-width: 1px;
-    border-color: ${theme.primaryShade};
+    border-color: ${theme.palette.primary.dark};
   `}
 `;
 

@@ -39,7 +39,7 @@ export const Text = {
     font-size: 16px;
   `,
   Bold: styled.Text`
-    color: ${({ theme }) => theme.primaryContrast};
+    color: ${({ theme }) => theme.palette.primary.contrast};
     font-weight: bold;
     font-size: 18px;
     margin-right: 4px;

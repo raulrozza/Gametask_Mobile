@@ -34,7 +34,7 @@ const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
             borderTopColor: theme.secondaryLowShade,
           },
           activeTintColor: theme.secondaryShade,
-          inactiveTintColor: theme.primaryContrast,
+          inactiveTintColor: theme.palette.primary.contrast,
         }}
       >
         <Tab.Screen

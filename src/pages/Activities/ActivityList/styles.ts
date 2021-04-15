@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   flex: 1;
   padding: 12px;
   justify-content: flex-start;
@@ -10,7 +10,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const PageTitle = styled.Text`
-  color: ${({ theme }) => theme.primaryContrast};
+  color: ${({ theme }) => theme.palette.primary.contrast};
   font-weight: bold;
   font-size: 24px;
   height: 32px;
@@ -18,7 +18,7 @@ export const PageTitle = styled.Text`
 `;
 
 export const Description = styled.Text`
-  color: ${({ theme }) => theme.primaryContrast};
+  color: ${({ theme }) => theme.palette.primary.contrast};
   margin: 16px 0;
   text-align: center;
 `;
@@ -28,7 +28,7 @@ export const ActivityContainer = {
     width: 100%;
   `,
   Title: styled.Text`
-    color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.palette.secondary.main};
     font-weight: bold;
     text-align: center;
     font-size: 18px;

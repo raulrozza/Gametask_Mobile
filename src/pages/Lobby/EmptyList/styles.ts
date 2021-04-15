@@ -5,7 +5,7 @@ export const Container = styled.View`
 `;
 
 export const Text = styled.Text`
-  color: ${({ theme }) => theme.primaryContrast};
+  color: ${({ theme }) => theme.palette.primary.contrast};
   font-size: 18px;
   text-align: center;
 `;

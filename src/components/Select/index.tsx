@@ -32,7 +32,7 @@ const Select: React.FC<SelectProps> = ({ style, theme, ...rest }) => {
       style={{
         inputAndroid: inputStyle,
         inputIOS: inputStyle,
-        placeholder: { color: theme.primaryShade },
+        placeholder: { color: theme.palette.primary.dark },
         headlessAndroidContainer: generalContainerStyles,
         inputAndroidContainer: generalContainerStyles,
       }}

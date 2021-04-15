@@ -18,7 +18,7 @@ const Input: React.FC<InputProps> = ({ theme, onBlur, ...props }) => {
       }}
       onFocus={() => setFocus(true)}
       focused={focused}
-      placeholderTextColor={theme.primaryShade}
+      placeholderTextColor={theme.palette.primary.dark}
       {...props}
     />
   );

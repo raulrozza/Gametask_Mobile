@@ -7,7 +7,7 @@ export const Container = styled.View`
   margin: 8px;
   padding: 8px;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   overflow: hidden;
 `;
 
@@ -39,7 +39,7 @@ export const Meta = {
     justify-content: flex-end;
   `,
   Text: styled.Text`
-    color: ${({ theme }) => theme.primaryShade};
+    color: ${({ theme }) => theme.palette.primary.dark};
     font-style: italic;
   `,
 };

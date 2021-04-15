@@ -2,9 +2,9 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   background-color: 'rgb(253, 57, 57)';
-  padding: 7px 5px 2px;
-  margin: -5px 0 10px;
-  border-radius: 5px;
+  padding: ${({ theme }) => theme.layout.spacing(2, 1, 0.5)};
+  margin: ${({ theme }) => theme.layout.spacing(-1, 0, 2)};
+  border-radius: ${({ theme }) => theme.layout.borderRadius.small};
   z-index: -5;
 `;
 

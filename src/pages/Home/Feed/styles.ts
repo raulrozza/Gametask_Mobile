@@ -2,12 +2,12 @@ import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({ theme }) => theme.primaryShade};
+  background-color: ${({ theme }) => theme.palette.primary.dark};
 `;
 
 export const FeedText = {
   Text: styled.Text`
-    color: ${({ theme }) => theme.primaryContrast};
+    color: ${({ theme }) => theme.palette.primary.contrast};
     line-height: 24px;
     flex-wrap: wrap;
   `,
@@ -16,7 +16,7 @@ export const FeedText = {
     font-weight: bold;
   `,
   Activity: styled.Text`
-    color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.palette.secondary.main};
     font-weight: bold;
     text-transform: uppercase;
     flex-wrap: wrap;

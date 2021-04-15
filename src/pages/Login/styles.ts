@@ -29,7 +29,7 @@ export const Title = {
   `,
   Text: styled.Text`
     text-align: center;
-    color: ${({ theme }) => theme.secondaryContrast};
+    color: ${({ theme }) => theme.palette.secondary.contrast};
     font-family: OpenSans_700Bold;
     font-weight: bold;
     font-size: 24px;
@@ -41,7 +41,7 @@ export const FormContainer = styled.View`
 `;
 
 export const Container = styled.View`
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   border-radius: 3px;
   flex: 1;
   margin: 0 16px 16px;
@@ -60,14 +60,14 @@ export const ToggleButton = {
     justify-content: center;
     align-items: center;
     background-color: ${({ theme, active }) =>
-      active ? theme.primary : theme.secondary};
+      active ? theme.palette.primary.main : theme.palette.secondary.main};
   `,
   Text: styled.Text<ActiveItemProps>`
     font-size: 20px;
     font-family: Roboto;
     font-weight: bold;
     color: ${({ theme, active }) =>
-      active ? theme.secondary : theme.secondaryContrast};
+      active ? theme.palette.secondary.main : theme.palette.secondary.contrast};
   `,
 };
 
@@ -95,7 +95,7 @@ export const InputGroup = styled.View`
 `;
 
 export const ConfirmText = styled.Text`
-  color: ${({ theme }) => theme.secondaryContrast};
+  color: ${({ theme }) => theme.palette.secondary.contrast};
   line-height: 24px;
   font-size: 16px;
 `;

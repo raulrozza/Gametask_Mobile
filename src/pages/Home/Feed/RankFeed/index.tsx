@@ -22,7 +22,7 @@ const RankFeed: React.FC<FeedProps & IThemedComponent> = ({ item, theme }) => (
     <FeedText.Text> conseguiu a patente </FeedText.Text>
 
     <Rank
-      background={item.rank?.color || theme.primaryContrast}
+      background={item.rank?.color || theme.palette.primary.contrast}
       text={getTextColor(item.rank?.color || theme.primary)}
     >
       {' '}

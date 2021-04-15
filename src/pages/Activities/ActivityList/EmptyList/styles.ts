@@ -11,7 +11,7 @@ export const Container = styled.View`
 `;
 
 export const Text = styled.Text`
-  color: ${({ theme }) => theme.secondaryContrast};
+  color: ${({ theme }) => theme.palette.secondary.contrast};
   text-align: center;
   margin: 8px 0;
 `;

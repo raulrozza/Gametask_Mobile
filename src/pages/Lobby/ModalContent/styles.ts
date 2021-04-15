@@ -10,7 +10,7 @@ export const Wrapper = styled.View`
 `;
 
 export const Container = styled.View`
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   width: 100%;
   height: 60%;
   border-top-left-radius: 16px;
@@ -21,7 +21,7 @@ export const Container = styled.View`
 `;
 
 export const PageTitle = styled(Title)`
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.palette.secondary.main};
   margin-bottom: 48px;
 `;
 
@@ -36,7 +36,7 @@ export const PasteGroup = {
 
     overflow: hidden;
 
-    border: 1px solid ${({ theme }) => theme.secondary};
+    border: 1px solid ${({ theme }) => theme.palette.secondary.main};
     border-radius: 4px;
 
     margin-bottom: 48px;
@@ -46,7 +46,7 @@ export const PasteGroup = {
     flex: 1;
     ${({ theme }) => css`
       background-color: ${theme.primaryLowShade};
-      color: ${theme.primaryContrast};
+      color: ${theme.palette.primary.contrast};
     `}
   `,
   Button: styled.TouchableOpacity`
@@ -54,10 +54,10 @@ export const PasteGroup = {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.palette.primary.main};
   `,
   Icon: styled(MaterialIcons)`
     font-size: 24px;
-    color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.palette.secondary.main};
   `,
 };

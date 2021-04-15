@@ -1,8 +1,7 @@
 import styled from 'styled-components/native';
 
 const Title = styled.Text`
-  font-family: OpenSans_700Bold;
-  font-weight: bold;
+  font-family: ${({ theme }) => theme.typography.family.title.bold};
   font-size: 24px;
 `;
 

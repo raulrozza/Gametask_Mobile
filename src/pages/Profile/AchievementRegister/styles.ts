@@ -8,13 +8,13 @@ export const Container = styled.ScrollView.attrs(() => ({
   },
 }))`
   flex: 1;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const Title = styled.Text`
   font-weight: bold;
   font-size: 24px;
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.palette.secondary.main};
   width: 100%;
   padding: 4px;
   text-align: center;

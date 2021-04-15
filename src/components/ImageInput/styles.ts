@@ -6,5 +6,5 @@ export const Image = styled.Image`
 
   border-radius: 60px;
 
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing(4)};
 `;

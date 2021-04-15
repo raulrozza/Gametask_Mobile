@@ -4,14 +4,14 @@ import styled, { css } from 'styled-components/native';
 import { RankProps } from './types';
 
 const Rank = styled.Text<RankProps>`
-  padding: 4px;
-  border-radius: 8px;
-  ${({ background, text }) => css`
+  ${({ theme, background, text }) => css`
+    padding: ${theme.layout.spacing(1)};
+    margin-right: ${theme.layout.spacing(1)};
+    border-radius: ${theme.layout.borderRadius.small};
     background-color: ${background};
     color: ${text};
+    font-weight: bold;
   `}
-  margin-right: 4px;
-  font-weight: bold;
 `;
 
 export default Rank;

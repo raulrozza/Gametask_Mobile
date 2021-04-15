@@ -13,7 +13,7 @@ export const Container = styled.View`
   flex-direction: row;
   align-items: center;
 
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.palette.primary.main};
 
   padding: 8px;
   margin-bottom: 8px;
