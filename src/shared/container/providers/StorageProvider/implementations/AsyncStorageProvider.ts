@@ -1,16 +1,17 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import IStorageProvider from 'shared/container/providers/StorageProvider/models/IStorageProvider';
 
-export default class LocalStorageProvider implements IStorageProvider {
+export default class AsyncStorageProvider implements IStorageProvider {
   public async clear(): Promise<void> {
-    localStorage.clear();
+    return AsyncStorage.clear();
   }
 
   public async delete(key: string): Promise<void> {
-    localStorage.removeItem(key);
+    return AsyncStorage.removeItem(key);
   }
 
   public async get<T = unknown>(key: string): Promise<T | null> {
-    const stringifiedData = localStorage.getItem(key);
+    const stringifiedData = await AsyncStorage.getItem(key);
 
     if (!stringifiedData) return null;
 
@@ -20,6 +21,6 @@ export default class LocalStorageProvider implements IStorageProvider {
   public async store(key: string, data: unknown): Promise<void> {
     const stringifiedData = JSON.stringify(data);
 
-    localStorage.setItem(key, stringifiedData);
+    return AsyncStorage.setItem(key, stringifiedData);
   }
 }

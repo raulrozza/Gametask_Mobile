@@ -1,7 +1,7 @@
 import tinyColor from 'tinycolor2';
 import { DefaultTheme } from 'styled-components';
 
-import defaultPalette from 'config/theme/palette';
+import defaultPalette from 'shared/theme/palette';
 
 import { ISwitchThemeArgs } from 'shared/container/contexts/ThemeContext/models/IThemeContext';
 
@@ -48,6 +48,13 @@ const getGrayScale = (primary: string): Palette['gray'] => {
   return newScale;
 };
 
+const getStatusBarColor = (color: string): 'dark-content' | 'light-content' => {
+  const colorObj = tinyColor(color);
+
+  if (colorObj.isLight()) return 'dark-content';
+  return 'light-content';
+};
+
 export default function getNewPalette(theme: ISwitchThemeArgs): Palette {
   const primary = getPaletteRangeFromColor(theme.primary);
   const secondary = getPaletteRangeFromColor(theme.secondary);
@@ -58,5 +65,6 @@ export default function getNewPalette(theme: ISwitchThemeArgs): Palette {
     primary,
     secondary,
     gray,
+    statusBar: getStatusBarColor(theme.primary),
   };
 }

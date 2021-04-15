@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import IThemeContext from '@shared/container/contexts/ThemeContext/models/IThemeContext';
+import IThemeContext from 'shared/container/contexts/ThemeContext/models/IThemeContext';
 
 export const ThemeContextProvider = createContext<IThemeContext>(
   {} as IThemeContext,

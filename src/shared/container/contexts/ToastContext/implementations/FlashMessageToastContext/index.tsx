@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { ToastContextProvider } from '@shared/container/contexts/ToastContext/contexts/useToastContext';
-import IToastContext from '@shared/container/contexts/ToastContext/models/IToastContext';
+import { ToastContextProvider } from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import IToastContext from 'shared/container/contexts/ToastContext/models/IToastContext';
 
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 

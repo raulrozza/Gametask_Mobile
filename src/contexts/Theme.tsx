@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 // Config
-import { defaultTheme } from '../config/defaultTheme';
+import defaultTheme from 'config/theme';
 
 // Contexts
 import { ThemeContext } from './rawContexts';
@@ -13,7 +13,6 @@ import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { ChangeThemeProps } from '../interfaces/hooks/UseTheme';
 
 // Utils
-import { getStatusBarColor } from '../utils/theme/getStatusBarColor';
 import { fillTheme } from '../utils/theme/fillTheme';
 
 const Theme: React.FC = ({ children }) => {
@@ -25,9 +24,12 @@ const Theme: React.FC = ({ children }) => {
 
       if (primary && secondary) {
         newTheme = {
-          ...fillTheme('primary', primary),
-          ...fillTheme('secondary', secondary),
-          statusBar: getStatusBarColor(primary),
+          typography: defaultTheme.typography,
+          layout: defaultTheme.layout,
+          palette: fillTheme({
+            primary,
+            secondary,
+          }),
         };
       }
 

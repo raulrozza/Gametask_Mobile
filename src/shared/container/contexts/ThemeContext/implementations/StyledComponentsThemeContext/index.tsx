@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import lodash from 'lodash';
 
-import defaultTheme from '@config/theme';
+import defaultTheme from 'shared/theme';
 import { getNewPalette, setMobileThemeColor } from './helpers';
 import IThemeContext, {
   ISwitchThemeArgs,
-} from '@shared/container/contexts/ThemeContext/models/IThemeContext';
-import { ThemeContextProvider } from '@shared/container/contexts/ThemeContext/contexts/useThemeContext';
-import { makeStorageProvider } from '@shared/container/providers';
+} from 'shared/container/contexts/ThemeContext/models/IThemeContext';
+import { ThemeContextProvider } from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+import { makeStorageProvider } from 'shared/container/providers';
 
 const THEME_STORAGE = '@GameTask/GameTheme';
 

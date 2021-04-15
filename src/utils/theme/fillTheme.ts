@@ -1,37 +1,64 @@
 import tinyColor from 'tinycolor2';
-
-// Types
 import { DefaultTheme } from 'styled-components';
 
-export const fillTheme = (key: string, value: string): DefaultTheme => {
-  const color = tinyColor(value);
-  const pallete = {} as DefaultTheme;
+import defaultPalette from 'config/theme/palette';
 
-  pallete[`${key}`] = color.toHexString();
+import { ISwitchThemeArgs } from 'shared/container/contexts/ThemeContext/models/IThemeContext';
+import { getStatusBarColor } from '../../utils/theme/getStatusBarColor';
 
-  pallete[`${key}Contrast`] = color.isLight() ? '#1F1F1F' : '#FFF';
+type Palette = DefaultTheme['palette'];
 
-  pallete[`${key}LowShade`] = color.isLight()
-    ? tinyColor(value).darken(10).toHexString()
-    : tinyColor(value).lighten(10).toHexString();
-
-  pallete[`${key}Shade`] = color.isLight()
-    ? tinyColor(value).darken(20).toHexString()
-    : tinyColor(value).lighten(20).toHexString();
-
-  pallete[`${key}ExtraShade`] = color.isLight()
-    ? tinyColor(value).darken(40).toHexString()
-    : tinyColor(value).lighten(40).toHexString();
-
-  pallete[`${key}Intense`] = color.isDark()
-    ? tinyColor(value).darken(10).toHexString()
-    : tinyColor(value).lighten(10).toHexString();
-
-  pallete[`${key}ExtraIntense`] = color.isDark()
-    ? tinyColor(value).darken(20).toHexString()
-    : tinyColor(value).lighten(20).toHexString();
-
-  pallete[`${key}Transparent`] = tinyColor(value).setAlpha(0.53).toHex8String();
-
-  return pallete;
+const textContrasts = {
+  light: '#1F1F1F',
+  dark: '#F5F5F5',
 };
+
+const defaultGrayScale = defaultPalette.gray;
+
+const getPaletteRangeFromColor = (color: string): Palette['primary'] => {
+  const colorObject = tinyColor(color);
+
+  return {
+    light: colorObject.isLight()
+      ? tinyColor(color).lighten(20).toHexString()
+      : tinyColor(color).darken(20).toHexString(),
+    main: colorObject.toHexString(),
+    contrast: colorObject.isLight() ? textContrasts.light : textContrasts.dark,
+    dark: colorObject.isLight()
+      ? tinyColor(color).darken(20).toHexString()
+      : tinyColor(color).lighten(20).toHexString(),
+  };
+};
+
+const getGrayScale = (primary: string): Palette['gray'] => {
+  const primaryColorObject = tinyColor(primary);
+
+  const scaleKeys = Object.keys(defaultGrayScale);
+  const scaleValues = primaryColorObject.isLight()
+    ? Object.values(defaultGrayScale)
+    : Object.values(defaultGrayScale).reverse();
+
+  const newScale: Palette['gray'] = scaleKeys.reduce(
+    (accumulatedScale, key, index) => ({
+      ...accumulatedScale,
+      [key]: scaleValues[index],
+    }),
+    {} as Palette['gray'],
+  );
+
+  return newScale;
+};
+
+export function fillTheme(theme: ISwitchThemeArgs): Palette {
+  const primary = getPaletteRangeFromColor(theme.primary);
+  const secondary = getPaletteRangeFromColor(theme.secondary);
+  const gray = getGrayScale(theme.primary);
+
+  return {
+    ...defaultPalette,
+    primary,
+    secondary,
+    gray,
+    statusBar: getStatusBarColor(theme.primary),
+  };
+}
