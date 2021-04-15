@@ -8,6 +8,14 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@config/*": ["./src/config/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@shared/*": ["./src/shared/*"]
+    },
+
     "outDir": "./dist",
     "experimentalDecorators": true,
     "typeRoots" : [
