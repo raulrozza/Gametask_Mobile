@@ -6,6 +6,6 @@ export const Container = styled.ScrollView.attrs(() => ({
     justifyContent: 'space-between',
   },
 }))`
-  background-color: ${({ theme }) => theme.primaryIntense};
+  background-color: ${({ theme }) => theme.palette.primary.dark};
   min-height: 100%;
 `;

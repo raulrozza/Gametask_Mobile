@@ -11,8 +11,8 @@ import { RefreshControlProps } from './types';
 
 const RefreshControl: React.FC<RefreshControlProps> = ({ theme, ...props }) => (
   <RNRefresh
-    colors={[theme.secondary]}
-    progressBackgroundColor={theme.primaryIntense}
+    colors={[theme.palette.primary.main]}
+    progressBackgroundColor={theme.palette.primary.dark}
     {...props}
   />
 );

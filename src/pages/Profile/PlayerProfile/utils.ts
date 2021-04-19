@@ -30,9 +30,13 @@ export function getRankTheme(
 ): DefaultTheme {
   if (!rank || !rank.color) return defaultTheme;
 
-  const rankTheme = fillTheme('primary', rank.color);
-
-  return rankTheme;
+  return {
+    ...defaultTheme,
+    palette: fillTheme({
+      primary: rank.color,
+      secondary: defaultTheme.palette.secondary.main,
+    }),
+  };
 }
 
 export function getPlayerNextLevel(

@@ -66,7 +66,7 @@ const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
         <ProgressBar
           unfilledColor={theme.palette.primary.main}
           fillColor={theme.palette.secondary.main}
-          borderColor={ranktheme.palette.primary.dark}
+          borderColor={rankTheme.palette.primary.dark}
           progress={
             playerNextLevel
               ? player.experience / playerNextLevel.requiredExperience

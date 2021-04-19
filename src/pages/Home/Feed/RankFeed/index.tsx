@@ -23,7 +23,7 @@ const RankFeed: React.FC<FeedProps & IThemedComponent> = ({ item, theme }) => (
 
     <Rank
       background={item.rank?.color || theme.palette.primary.contrast}
-      text={getTextColor(item.rank?.color || theme.primary)}
+      text={getTextColor(item.rank?.color || theme.palette.primary.main)}
     >
       {' '}
       {item.rank?.tag}{' '}
