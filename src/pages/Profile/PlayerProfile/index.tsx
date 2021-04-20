@@ -10,6 +10,7 @@ import Options from './Options';
 import { useGameData } from '../../../hooks/contexts/useGameData';
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+import { useRecoilValue } from 'recoil';
 
 // Libs
 import { SafeAreaView } from 'react-native';
@@ -19,7 +20,6 @@ import { Container } from './styles';
 
 // Utils
 import { getRankTheme } from './utils';
-import { useRecoilValue } from 'recoil';
 import playerTitle from '../../../atoms/playerTitle';
 
 const PlayerProfile: React.FC = () => {

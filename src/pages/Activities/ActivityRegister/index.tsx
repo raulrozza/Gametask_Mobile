@@ -10,6 +10,7 @@ import { useGameData } from '../../../hooks/contexts/useGameData';
 import { useApiPost } from '../../../hooks/api/useApiPost';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // Libs
 import { Formik } from 'formik';
@@ -46,7 +47,8 @@ const ActivityRegister: React.FC = () => {
   } = useRoute<ActivityParams>();
   const { goBack } = useNavigation();
   const apiPost = useApiPost();
-  const { game, player } = useGameData();
+  const { player } = useGameData();
+  const session = useSessionContext();
   const toast = useToastContext();
 
   // State
@@ -54,7 +56,7 @@ const ActivityRegister: React.FC = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 
-  if (!game || !player) return null;
+  if (!player) return null;
 
   const handleDateChange = useCallback((date: Date | undefined) => {
     setShowDatePicker(false);
@@ -70,7 +72,7 @@ const ActivityRegister: React.FC = () => {
       requestDate: new Date(),
       completionDate: selectedDate,
       information: values.information,
-      gameId: game.id,
+      gameId: session.selectedGame,
     };
 
     const result = await apiPost('/activityRegister', body);

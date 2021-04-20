@@ -1,10 +1,15 @@
-import { useContext } from 'react';
+import { createContext, useContext } from 'react';
+import { IGame } from 'src/interfaces/api/Game';
+import { IPlayer } from 'src/interfaces/api/Player';
 
-// Contexts
-import { GameContext } from '../../contexts/rawContexts';
+const GameContext = createContext({} as IGameData);
 
-// Types
-import { IGameData } from '../../interfaces/hooks/UseGameData';
+export interface IGameData {
+  game: IGame | null;
+  player: IPlayer | null;
+  loading: boolean;
+  switchGame: (player?: IPlayer) => void;
+}
 
 export function useGameData(): IGameData {
   const game = useContext(GameContext);

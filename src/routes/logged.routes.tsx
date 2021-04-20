@@ -2,18 +2,18 @@ import React from 'react';
 import { AppLoading } from 'expo';
 
 // Hooks
-import { useGameData } from '../hooks/contexts/useGameData';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // Routes
 import ChooseGameRoutes from './chooseGame.routes';
 import GameRoutes from './game.routes';
 
 const LoggedRoutes: React.FC = () => {
-  const { game, loading } = useGameData();
+  const { selectedGame, loading } = useSessionContext();
 
   if (loading) return <AppLoading />;
 
-  if (game) return <GameRoutes />;
+  if (selectedGame) return <GameRoutes />;
 
   return <ChooseGameRoutes />;
 };

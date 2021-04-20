@@ -8,6 +8,7 @@ import { useGameData } from '../../../hooks/contexts/useGameData';
 import { useApiPost } from '../../../hooks/api/useApiPost';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // Libs
 import { Formik } from 'formik';
@@ -35,13 +36,14 @@ const AchievementRegister: React.FC = () => {
   } = useRoute<AchievementRegisterParams>();
   const { goBack } = useNavigation();
   const apiPost = useApiPost();
-  const { game, player } = useGameData();
+  const { player } = useGameData();
+  const session = useSessionContext();
   const toast = useToastContext();
 
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);
 
-  if (!game || !player) return null;
+  if (!player) return null;
 
   const onSubmit = useCallback(async values => {
     setConfirmDisabled(true);
@@ -51,7 +53,7 @@ const AchievementRegister: React.FC = () => {
       achievement: achievement._id,
       requestDate: new Date(),
       information: values.information,
-      gameId: game.id,
+      gameId: session.selectedGame,
     };
 
     const result = await apiPost('/achievementRegister', body);

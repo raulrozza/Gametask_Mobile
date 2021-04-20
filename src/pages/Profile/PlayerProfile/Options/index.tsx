@@ -2,7 +2,6 @@ import React from 'react';
 
 // Hooks
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import { useGameData } from '../../../../hooks/contexts/useGameData';
 
 // Icons
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -11,8 +10,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Button, Container, Icon, ThinText } from './styles';
 
 const Options: React.FC = () => {
-  const { logout } = useSessionContext();
-  const { switchGame } = useGameData();
+  const { logout, switchGame } = useSessionContext();
 
   return (
     <Container>
