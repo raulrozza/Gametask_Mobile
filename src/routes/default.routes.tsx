@@ -1,19 +1,8 @@
-import React, { useEffect } from 'react';
-
-// Hooks
-import { useTheme } from '../hooks/contexts/useTheme';
+import React from 'react';
 
 // Pages
 import Login from '../pages/Login';
 
-const DefaultRoutes: React.FC = () => {
-  const { changeTheme } = useTheme();
-
-  useEffect(() => {
-    changeTheme({});
-  }, []);
-
-  return <Login />;
-};
+const DefaultRoutes: React.FC = () => <Login />;
 
 export default DefaultRoutes;

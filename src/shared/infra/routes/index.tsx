@@ -7,8 +7,8 @@ import useSessionContext from 'shared/container/contexts/SessionContext/contexts
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Routes
-import LoggedRoutes from 'src/routes/logged.routes';
-import DefaultRoutes from 'src/routes/default.routes';
+import LoggedRoutes from '../../../routes/logged.routes';
+import DefaultRoutes from '../../../routes/default.routes';
 
 const Routes: React.FC = () => {
   const { userToken, loading } = useSessionContext();
