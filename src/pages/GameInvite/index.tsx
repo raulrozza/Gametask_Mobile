@@ -4,6 +4,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { useApiFetch } from '../../hooks/api/useApiFetch';
 import { useApiPost } from '../../hooks/api/useApiPost';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Styles
 import { Container, InviteTitle, GameContainer } from './styles';
@@ -13,7 +14,6 @@ import { IGameInviteRoute } from './types';
 import { IUser } from '../../interfaces/api/User';
 
 // Utils
-import displaySuccessMessage from '../../utils/displaySuccessMessage';
 import { getGameTheme } from './utils';
 
 const GameInvite: React.FC = () => {
@@ -24,6 +24,7 @@ const GameInvite: React.FC = () => {
   const { data: inviter, loading, errors } = useApiFetch<IUser>(
     `/user/${params.inviteData.inviter}`,
   );
+  const toast = useToastContext();
 
   // Data
   const gameTheme = useMemo(() => getGameTheme(params.gameData.theme), []);
@@ -40,7 +41,7 @@ const GameInvite: React.FC = () => {
     setBtnDisabled(false);
 
     if (data) {
-      displaySuccessMessage('Jogo adicionado!');
+      toast.showSuccess('Jogo adicionado!');
 
       navigate('Lobby', { newGame: data });
     }

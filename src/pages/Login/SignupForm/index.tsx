@@ -6,6 +6,7 @@ import Input from '../../../components/Input';
 
 // Hooks
 import { useApiPost } from '../../../hooks/api/useApiPost';
+import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Libs
 import { Formik } from 'formik';
@@ -20,9 +21,6 @@ import Button from '../../../components/Button';
 // Types
 import { FormProps } from '../types';
 
-// Utils
-import displaySuccessMessage from '../../../utils/displaySuccessMessage';
-
 const SignupForm: React.FC<FormProps> = ({ active }) => {
   const initialValues = {
     firstname: '',
@@ -34,6 +32,7 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
 
   // Hooks
   const apiPost = useApiPost();
+  const toast = useToastContext();
 
   // States
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -50,8 +49,7 @@ const SignupForm: React.FC<FormProps> = ({ active }) => {
 
     const response = await apiPost('/user/signup', values);
 
-    if (response !== null)
-      displaySuccessMessage('Cadastro efetuado com sucesso!');
+    if (response !== null) toast.showSuccess('Cadastro efetuado com sucesso!');
 
     setButtonDisabled(false);
   }, []);

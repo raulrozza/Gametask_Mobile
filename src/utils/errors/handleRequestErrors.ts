@@ -6,13 +6,16 @@ import { errorCodesToToastIds } from '../../config/errors/errorCodesToToastIds';
 import { ErrorCode } from '../../interfaces/errors/ErrorCode';
 
 // Utils
-import displayErrorMessage from '../displayErrorMessage';
 import { handleDefaultError } from './handleDefaultError';
+import { showMessage } from 'react-native-flash-message';
 
 export function handleRequestErrors(errorCode: ErrorCode): void {
   const messageCode = errorCodesToToastIds[errorCode];
   if (messageCode)
-    return displayErrorMessage(toastMessages[messageCode], messageCode);
+    showMessage({
+      message: toastMessages[messageCode],
+      type: 'danger',
+    });
 
   handleDefaultError();
 }

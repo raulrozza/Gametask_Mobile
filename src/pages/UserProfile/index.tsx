@@ -10,6 +10,7 @@ import Input from '../../components/Input';
 import { useApiPut } from '../../hooks/api/useApiPut';
 import { useAuth } from '../../hooks/contexts/useAuth';
 import { useNavigation } from '@react-navigation/native';
+import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Libs
 import { Formik } from 'formik';
@@ -25,7 +26,6 @@ import { FormValues } from './types';
 
 // Utils
 import { imageUriToFormData } from './utils';
-import displaySuccessMessage from '../../utils/displaySuccessMessage';
 
 const UserProfile: React.FC = () => {
   const [disableButton, setDisableButton] = useState(false);
@@ -34,6 +34,7 @@ const UserProfile: React.FC = () => {
   const apiPut = useApiPut();
   const { user, updateUser } = useAuth();
   const { goBack } = useNavigation();
+  const toast = useToastContext();
 
   if (!user) return null;
 
@@ -62,7 +63,7 @@ const UserProfile: React.FC = () => {
     setDisableButton(false);
 
     if (response !== null) {
-      displaySuccessMessage('Dados atualizados!');
+      toast.showSuccess('Dados atualizados!');
       updateUser({ firstname, lastname, image });
       goBack();
     }

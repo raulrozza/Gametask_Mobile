@@ -7,6 +7,7 @@ import Input from '../../../components/Input';
 import { useGameData } from '../../../hooks/contexts/useGameData';
 import { useApiPost } from '../../../hooks/api/useApiPost';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Libs
 import { Formik } from 'formik';
@@ -21,7 +22,6 @@ import { Container, Title, Form, Footer } from './styles';
 import { AchievementRegisterParams } from './types';
 
 // Utils
-import displaySuccessMessage from '../../../utils/displaySuccessMessage';
 import ErrorField from '../../../components/ErrorField';
 
 const AchievementRegister: React.FC = () => {
@@ -36,6 +36,7 @@ const AchievementRegister: React.FC = () => {
   const { goBack } = useNavigation();
   const apiPost = useApiPost();
   const { game, player } = useGameData();
+  const toast = useToastContext();
 
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);
@@ -56,7 +57,7 @@ const AchievementRegister: React.FC = () => {
     const result = await apiPost('/achievementRegister', body);
 
     if (result !== null) {
-      displaySuccessMessage('Conquista requisitada!');
+      toast.showSuccess('Conquista requisitada!');
       return goBack();
     }
 

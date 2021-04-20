@@ -7,6 +7,7 @@ import { Clipboard, TouchableOpacity } from 'react-native';
 // Hooks
 import { useApiGet } from '../../../hooks/api/useApiGet';
 import { useNavigation } from '@react-navigation/native';
+import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Services
 import { decrypt } from '../../../services/encrypting';
@@ -18,14 +19,12 @@ import { Container, Wrapper, PasteGroup, PageTitle } from './styles';
 import { IInvitationData } from '../../../interfaces/api/InvitationData';
 import { ModalContentProps } from './types';
 
-// Utils
-import displayErrorMessage from '../../../utils/displayErrorMessage';
-
 const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const [code, setCode] = useState('');
   const [inviteData, setInviteData] = useState<IInvitationData | null>(null);
 
   const { navigate } = useNavigation();
+  const toast = useToastContext();
   const apiGet = useApiGet();
 
   const handleCodePaste = useCallback(async () => {
@@ -35,7 +34,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
     const decrypted = decrypt<IInvitationData>(clipboardText, SECRET);
 
     if (!decrypted || !decrypted.gameId || !decrypted.inviter) {
-      displayErrorMessage('Código de jogo inválido.');
+      toast.showError('Código de jogo inválido.');
       setCode('');
       return setInviteData(null);
     }

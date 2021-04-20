@@ -3,6 +3,9 @@ import React, { useEffect } from 'react';
 // Components
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+// Hooks
+import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+
 // Libs
 import * as ImagePicker from 'expo-image-picker';
 
@@ -12,16 +15,15 @@ import { Image } from './styles';
 // Types
 import { ImageInputProps } from './types';
 
-// Utils
-import displayErrorMessage from '../../utils/displayErrorMessage';
-
 const ImageInput: React.FC<ImageInputProps> = ({ value = null, onChange }) => {
+  const toast = useToastContext();
+
   useEffect(() => {
     (async () => {
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
 
       if (status !== 'granted')
-        displayErrorMessage('É necessária permissão para acessar a câmera.');
+        toast.showError('É necessária permissão para acessar a câmera.');
     })();
   }, []);
 

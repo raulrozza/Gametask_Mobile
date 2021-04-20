@@ -9,6 +9,7 @@ import ErrorField from '../../../components/ErrorField';
 import { useGameData } from '../../../hooks/contexts/useGameData';
 import { useApiPost } from '../../../hooks/api/useApiPost';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Libs
 import { Formik } from 'formik';
@@ -32,7 +33,6 @@ import { ActivityParams } from './types';
 
 // Utils
 import showDate from '../../../utils/showDate';
-import displaySuccessMessage from '../../../utils/displaySuccessMessage';
 
 const ActivityRegister: React.FC = () => {
   const initialValues = {
@@ -47,6 +47,7 @@ const ActivityRegister: React.FC = () => {
   const { goBack } = useNavigation();
   const apiPost = useApiPost();
   const { game, player } = useGameData();
+  const toast = useToastContext();
 
   // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);
@@ -75,7 +76,7 @@ const ActivityRegister: React.FC = () => {
     const result = await apiPost('/activityRegister', body);
 
     if (result !== null) {
-      displaySuccessMessage('Atividade registrada!');
+      toast.showSuccess('Atividade registrada!');
       return goBack();
     }
 

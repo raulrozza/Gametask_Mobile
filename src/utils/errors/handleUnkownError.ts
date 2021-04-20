@@ -1,10 +1,11 @@
 // Constants
+import { showMessage } from 'react-native-flash-message';
 import { toastIds } from '../../config/errors/toastIds';
 import { toastMessages } from '../../config/errors/toastMessages';
 
-// Utils
-import displayErrorMessage from '../displayErrorMessage';
-
 export function handleUnknownError(): void {
-  displayErrorMessage(toastMessages[toastIds.UNKNOWN], toastIds.UNKNOWN);
+  showMessage({
+    message: toastMessages[toastIds.UNKNOWN],
+    type: 'danger',
+  });
 }

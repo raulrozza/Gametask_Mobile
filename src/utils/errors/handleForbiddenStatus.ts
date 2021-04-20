@@ -1,11 +1,12 @@
 // Constants
+import { showMessage } from 'react-native-flash-message';
 import { toastIds } from '../../config/errors/toastIds';
 import { toastMessages } from '../../config/errors/toastMessages';
 
-// Utils
-import displayErrorMessage from '../displayErrorMessage';
-
 export function handleForbiddenStatus(signOut: () => void): void {
-  displayErrorMessage(toastMessages[toastIds.FORBIDDEN], toastIds.FORBIDDEN);
+  showMessage({
+    message: toastMessages[toastIds.FORBIDDEN],
+    type: 'danger',
+  });
   signOut();
 }
