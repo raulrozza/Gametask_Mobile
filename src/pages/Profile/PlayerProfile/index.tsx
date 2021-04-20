@@ -44,7 +44,6 @@ const PlayerProfile: React.FC = () => {
         />
 
         <BasicLevelInfo
-          theme={theme}
           rankTheme={rankTheme}
           user={user}
           player={player}

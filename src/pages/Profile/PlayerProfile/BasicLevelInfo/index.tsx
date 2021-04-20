@@ -3,6 +3,9 @@ import React, { useMemo, useState } from 'react';
 // Components
 import ProgressBar from '../../../../components/ProgressBar';
 
+// Hooks
+import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+
 // Recoil
 import { useSetRecoilState } from 'recoil';
 import playerTitle from '../../../../atoms/playerTitle';
@@ -26,13 +29,13 @@ import { getPlayerNextLevel } from '../utils';
 import { useApiPut } from '../../../../hooks/api/useApiPut';
 
 const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
-  theme,
   rankTheme,
   user,
   player,
   levelInfo,
 }) => {
   const apiPut = useApiPut();
+  const { theme } = useThemeContext();
 
   const playerNextLevel = useMemo(
     () => getPlayerNextLevel(player?.level, levelInfo),
@@ -55,7 +58,7 @@ const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
 
   return (
     <Container>
-      <Picture theme={theme} user={user} />
+      <Picture user={user} />
 
       <LevelInfo.View>
         <LevelInfo.Text>{player.level}</LevelInfo.Text>
