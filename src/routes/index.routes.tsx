@@ -6,7 +6,7 @@ import { StatusBar } from 'react-native';
 import Game from '../contexts/Game';
 
 // Hooks
-import { useAuth } from '../hooks/contexts/useAuth';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Routes
@@ -14,7 +14,7 @@ import DefaultRoutes from './default.routes';
 import LoggedRoutes from './logged.routes';
 
 const Routes: React.FC = () => {
-  const { logged, loading } = useAuth();
+  const { userToken, loading } = useSessionContext();
   const { theme } = useThemeContext();
 
   if (loading) return <AppLoading />;
@@ -25,7 +25,7 @@ const Routes: React.FC = () => {
         barStyle={theme.palette.statusBar}
         backgroundColor={theme.palette.primary.main}
       />
-      {logged ? (
+      {userToken ? (
         <Game>
           <LoggedRoutes />
         </Game>

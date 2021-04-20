@@ -5,7 +5,7 @@ import Input from '../../../components/Input';
 import ErrorField from '../../../components/ErrorField';
 
 // Hooks
-import { useAuth } from '../../../hooks/contexts/useAuth';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import { useApiPost } from '../../../hooks/api/useApiPost';
 
 // Libs
@@ -20,7 +20,6 @@ import Button from '../../../components/Button';
 
 // Types
 import { FormProps } from '../types';
-import { IUser } from '../../../interfaces/api/User';
 
 const LoginForm: React.FC<FormProps> = ({ active }) => {
   const initialValues = {
@@ -29,8 +28,8 @@ const LoginForm: React.FC<FormProps> = ({ active }) => {
   };
 
   // Hooks
-  const { signIn } = useAuth();
-  const apiPost = useApiPost<IUser>();
+  const { login } = useSessionContext();
+  const apiPost = useApiPost<string>();
 
   // States
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -40,7 +39,7 @@ const LoginForm: React.FC<FormProps> = ({ active }) => {
 
     const data = await apiPost('/login', values);
 
-    if (data) return signIn(data);
+    if (data) return login(data);
 
     return setButtonDisabled(false);
   }, []);

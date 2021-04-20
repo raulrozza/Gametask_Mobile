@@ -15,8 +15,9 @@ const USER_HEADER_KEY = 'Authorization';
 const GAME_HEADER_KEY = 'x-game-id';
 
 interface IUserData {
-  name: string;
   id: string;
+  name: string;
+  profile_img?: string;
 }
 
 const DefaultSessionContext: React.FC = ({ children }) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Hooks
-import { useAuth } from '../../../hooks/contexts/useAuth';
 import { useNavigation } from '@react-navigation/native';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // styles
 import { Row, Button } from './styles';
@@ -11,7 +11,7 @@ import { Row, Button } from './styles';
 import { FooterProps } from './types';
 
 const Footer: React.FC<FooterProps> = ({ showModal }) => {
-  const { signOut } = useAuth();
+  const { logout } = useSessionContext();
   const { navigate } = useNavigation();
 
   return (
@@ -29,7 +29,7 @@ const Footer: React.FC<FooterProps> = ({ showModal }) => {
       </Button.Wrapper>
 
       <Button.Wrapper>
-        <Button.Icon name="sign-out" onPress={signOut} />
+        <Button.Icon name="sign-out" onPress={logout} />
 
         <Button.Text>Sair</Button.Text>
       </Button.Wrapper>

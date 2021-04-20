@@ -7,8 +7,8 @@ import BasicLevelInfo from './BasicLevelInfo';
 import Options from './Options';
 
 // Hooks
-import { useAuth } from '../../../hooks/contexts/useAuth';
 import { useGameData } from '../../../hooks/contexts/useGameData';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Libs
@@ -23,7 +23,7 @@ import { useRecoilValue } from 'recoil';
 import playerTitle from '../../../atoms/playerTitle';
 
 const PlayerProfile: React.FC = () => {
-  const { user } = useAuth();
+  const { userData } = useSessionContext();
   const { game, player } = useGameData();
   const { theme } = useThemeContext();
 
@@ -31,21 +31,20 @@ const PlayerProfile: React.FC = () => {
 
   const currentTitle = useRecoilValue(playerTitle);
 
-  if (!game || !player || !user) return null;
+  if (!game || !player) return null;
 
   return (
     <SafeAreaView>
       <Container theme={rankTheme}>
         <Header
           theme={rankTheme}
-          firstname={user.firstname}
+          firstname={userData.name}
           rank={player.rank}
           title={currentTitle}
         />
 
         <BasicLevelInfo
           rankTheme={rankTheme}
-          user={user}
           player={player}
           levelInfo={game.levelInfo}
         />

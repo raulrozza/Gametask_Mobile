@@ -5,7 +5,7 @@ interface ITheme {
 
 export default interface ISessionContext {
   userToken: string | null;
-  userData: { id: string; name: string };
+  userData: { id: string; name: string; profile_img?: string };
   selectedGame: string | null;
   loading: boolean;
 

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 // Hooks
-import { useAuth } from '../contexts/useAuth';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // Types
 import { HandleApiErrors } from '../../interfaces/hooks/UseErrorHandling';
@@ -16,7 +16,7 @@ import { handleUnknownError } from '../../utils/errors/handleUnkownError';
 import { isAxiosError } from '../../utils/errors/isAxiosError';
 
 export function useErrorHandling(): HandleApiErrors {
-  const { signOut } = useAuth();
+  const { logout } = useSessionContext();
 
   const handleApiErrors: HandleApiErrors = useCallback(error => {
     if (isAxiosError(error)) {
@@ -26,7 +26,7 @@ export function useErrorHandling(): HandleApiErrors {
 
       switch (response.status) {
         case 403:
-          return handleForbiddenStatus(signOut);
+          return handleForbiddenStatus(logout);
 
         case 500:
           return handleInternalErrorStatus();

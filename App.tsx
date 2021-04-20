@@ -3,7 +3,6 @@ import 'react-native-gesture-handler';
 import React from 'react';
 
 // Contexts
-import Authorization from './src/contexts/Authorization';
 import Theme from './src/contexts/Theme';
 
 // Routes
@@ -14,9 +13,7 @@ const App: React.FC = () => {
   return (
     <AppView>
       <Theme>
-        <Authorization>
-          <Routes />
-        </Authorization>
+        <Routes />
       </Theme>
     </AppView>
   );

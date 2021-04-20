@@ -30,7 +30,6 @@ import { useApiPut } from '../../../../hooks/api/useApiPut';
 
 const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
   rankTheme,
-  user,
   player,
   levelInfo,
 }) => {
@@ -58,7 +57,7 @@ const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
 
   return (
     <Container>
-      <Picture user={user} />
+      <Picture />
 
       <LevelInfo.View>
         <LevelInfo.Text>{player.level}</LevelInfo.Text>

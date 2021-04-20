@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { GameContext } from './rawContexts';
 
 // Hooks
-import { useAuth } from '../hooks/contexts/useAuth';
 import { useTheme } from '../hooks/contexts/useTheme';
 import { useApiGet } from '../hooks/api/useApiGet';
 
@@ -29,7 +28,6 @@ const Game: React.FC = ({ children }) => {
   );
   const [loading, setLoading] = useState(true);
 
-  const { signOut } = useAuth();
   const { changeTheme } = useTheme();
   const setTitle = useSetRecoilState(playerTitle);
   const apiGet = useApiGet<IPlayer>();
@@ -55,7 +53,7 @@ const Game: React.FC = ({ children }) => {
       setPlayer(player);
       changeTheme(player.game.theme);
     },
-    [signOut, changeTheme],
+    [changeTheme],
   );
 
   useEffect(() => {

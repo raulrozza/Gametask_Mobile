@@ -8,7 +8,6 @@ import Input from '../../components/Input';
 
 // Hooks
 import { useApiPut } from '../../hooks/api/useApiPut';
-import { useAuth } from '../../hooks/contexts/useAuth';
 import { useNavigation } from '@react-navigation/native';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
@@ -26,22 +25,21 @@ import { FormValues } from './types';
 
 // Utils
 import { imageUriToFormData } from './utils';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 const UserProfile: React.FC = () => {
   const [disableButton, setDisableButton] = useState(false);
 
   // Hooks
   const apiPut = useApiPut();
-  const { user, updateUser } = useAuth();
+  const { userData } = useSessionContext();
   const { goBack } = useNavigation();
   const toast = useToastContext();
 
-  if (!user) return null;
-
   const initialValues: FormValues = {
-    firstname: user.firstname,
-    lastname: user.lastname,
-    image: user.image,
+    firstname: userData.name,
+    lastname: '',
+    image: userData.profile_img,
   };
 
   const onSubmit = useCallback(async values => {
@@ -64,7 +62,7 @@ const UserProfile: React.FC = () => {
 
     if (response !== null) {
       toast.showSuccess('Dados atualizados!');
-      updateUser({ firstname, lastname, image });
+      // updateUser({ firstname, lastname, image });
       goBack();
     }
   }, []);

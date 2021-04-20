@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Hooks
-import { useAuth } from '../../../../hooks/contexts/useAuth';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import { useGameData } from '../../../../hooks/contexts/useGameData';
 
 // Icons
@@ -11,7 +11,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Button, Container, Icon, ThinText } from './styles';
 
 const Options: React.FC = () => {
-  const { signOut } = useAuth();
+  const { logout } = useSessionContext();
   const { switchGame } = useGameData();
 
   return (
@@ -21,7 +21,7 @@ const Options: React.FC = () => {
         <ThinText> Trocar Jogo</ThinText>
       </Button>
 
-      <Button onPress={() => signOut()}>
+      <Button onPress={logout}>
         <Icon name="log-out" />
         <ThinText> Sair</ThinText>
       </Button>
