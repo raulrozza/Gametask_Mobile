@@ -9,25 +9,23 @@ import Options from './Options';
 // Hooks
 import { useAuth } from '../../../hooks/contexts/useAuth';
 import { useGameData } from '../../../hooks/contexts/useGameData';
+import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Libs
 import { SafeAreaView } from 'react-native';
 
 // Styles
-import { withTheme } from 'styled-components';
 import { Container } from './styles';
-
-// Types
-import { IThemedComponent } from '../../../interfaces/theme/ThemedComponent';
 
 // Utils
 import { getRankTheme } from './utils';
 import { useRecoilValue } from 'recoil';
 import playerTitle from '../../../atoms/playerTitle';
 
-const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
+const PlayerProfile: React.FC = () => {
   const { user } = useAuth();
   const { game, player } = useGameData();
+  const { theme } = useThemeContext();
 
   const rankTheme = useMemo(() => getRankTheme(theme, player?.rank), [player]);
 
@@ -61,4 +59,4 @@ const PlayerProfile: React.FC<IThemedComponent> = ({ theme }) => {
   );
 };
 
-export default withTheme(PlayerProfile);
+export default PlayerProfile;

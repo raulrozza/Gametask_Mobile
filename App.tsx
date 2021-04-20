@@ -2,9 +2,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 
-// Libs
-import FlashMessage from 'react-native-flash-message';
-
 // Contexts
 import Authorization from './src/contexts/Authorization';
 import Theme from './src/contexts/Theme';
@@ -20,7 +17,6 @@ const App: React.FC = () => {
         <Authorization>
           <Routes />
         </Authorization>
-        <FlashMessage position="bottom" />
       </Theme>
     </AppView>
   );

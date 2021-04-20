@@ -2,7 +2,6 @@ import React from 'react';
 
 // Styles
 import { Container, Name, Title } from './styles';
-import { withTheme } from 'styled-components';
 
 // Types
 import { HeaderProps } from './types';
@@ -17,4 +16,4 @@ const Header: React.FC<HeaderProps> = ({ theme, firstname, title, rank }) => (
   </Container>
 );
 
-export default withTheme(Header);
+export default Header;

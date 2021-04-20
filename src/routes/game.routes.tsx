@@ -1,4 +1,5 @@
 import React from 'react';
+import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Icons
 import {
@@ -16,15 +17,11 @@ import Home from './game/home.routes';
 import Profile from './game/profile.routes';
 import Activities from './game/activities.routes';
 
-// Styles
-import { withTheme } from 'styled-components';
-
-// Types
-import { IThemedComponent } from '../interfaces/theme/ThemedComponent';
-
 const Tab = createBottomTabNavigator();
 
-const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
+const GameRoutes: React.FC = () => {
+  const { theme } = useThemeContext();
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -72,4 +69,4 @@ const GameRoutes: React.FC<IThemedComponent> = ({ theme }) => {
   );
 };
 
-export default withTheme(GameRoutes);
+export default GameRoutes;

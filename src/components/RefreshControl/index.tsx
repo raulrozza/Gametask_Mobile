@@ -2,19 +2,21 @@ import React from 'react';
 
 // Libs
 import { RefreshControl as RNRefresh } from 'react-native';
-
-// Styles
-import { withTheme } from 'styled-components';
+import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Types
 import { RefreshControlProps } from './types';
 
-const RefreshControl: React.FC<RefreshControlProps> = ({ theme, ...props }) => (
-  <RNRefresh
-    colors={[theme.palette.primary.main]}
-    progressBackgroundColor={theme.palette.primary.dark}
-    {...props}
-  />
-);
+const RefreshControl: React.FC<RefreshControlProps> = ({ ...props }) => {
+  const { theme } = useThemeContext();
 
-export default withTheme(RefreshControl);
+  return (
+    <RNRefresh
+      colors={[theme.palette.primary.main]}
+      progressBackgroundColor={theme.palette.primary.dark}
+      {...props}
+    />
+  );
+};
+
+export default RefreshControl;

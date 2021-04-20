@@ -2,19 +2,21 @@ import React, { useMemo } from 'react';
 
 // Lib
 import RNPCSelect from 'react-native-picker-select';
+import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Style
-import { withTheme } from 'styled-components';
-import { generalContainerStyles, generalInputStyles } from './styles';
+import { generalInputStyles } from './styles';
 
 // Types
 import { SelectProps } from './types';
 
-const Select: React.FC<SelectProps> = ({ style, theme, ...rest }) => {
+const Select: React.FC<SelectProps> = ({ style, ...rest }) => {
+  const { theme } = useThemeContext();
+
   const inputStyle = useMemo(() => {
     let newInputStyle = {};
 
-    style.forEach(element => {
+    style?.forEach(element => {
       newInputStyle = {
         ...newInputStyle,
         ...element,
@@ -33,12 +35,10 @@ const Select: React.FC<SelectProps> = ({ style, theme, ...rest }) => {
         inputAndroid: inputStyle,
         inputIOS: inputStyle,
         placeholder: { color: theme.palette.primary.dark },
-        headlessAndroidContainer: generalContainerStyles,
-        inputAndroidContainer: generalContainerStyles,
       }}
       {...rest}
     />
   );
 };
 
-export default withTheme(Select);
+export default Select;

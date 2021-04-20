@@ -7,19 +7,15 @@ import Game from '../contexts/Game';
 
 // Hooks
 import { useAuth } from '../hooks/contexts/useAuth';
-
-// Styles
-import { withTheme } from 'styled-components';
+import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Routes
 import DefaultRoutes from './default.routes';
 import LoggedRoutes from './logged.routes';
 
-// Types
-import { IThemedComponent } from '../interfaces/theme/ThemedComponent';
-
-const Routes: React.FC<IThemedComponent> = ({ theme }) => {
+const Routes: React.FC = () => {
   const { logged, loading } = useAuth();
+  const { theme } = useThemeContext();
 
   if (loading) return <AppLoading />;
 
@@ -40,4 +36,4 @@ const Routes: React.FC<IThemedComponent> = ({ theme }) => {
   );
 };
 
-export default withTheme(Routes);
+export default Routes;

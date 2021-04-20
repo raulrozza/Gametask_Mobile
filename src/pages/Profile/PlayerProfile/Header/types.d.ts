@@ -1,9 +1,10 @@
+import { DefaultTheme } from 'styled-components';
 import { IRank } from '../../../../interfaces/api/Rank';
 import { ITitle } from '../../../../interfaces/api/Title';
-import { IThemedComponent } from '../../../../interfaces/theme/ThemedComponent';
 
-export interface HeaderProps extends IThemedComponent {
+export interface HeaderProps {
   firstname: string;
   title?: ITitle | null;
   rank?: IRank;
+  theme: DefaultTheme;
 }

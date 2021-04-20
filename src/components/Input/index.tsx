@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Styles
-import { withTheme } from 'styled-components';
 import { StyledInput } from './styles';
 
 // Types
 import { InputProps } from './types';
 
-const Input: React.FC<InputProps> = ({ theme, onBlur, ...props }) => {
+const Input: React.FC<InputProps> = ({ onBlur, ...props }) => {
   const [focused, setFocus] = useState(false);
+
+  const { theme } = useThemeContext();
 
   return (
     <StyledInput
@@ -24,4 +26,4 @@ const Input: React.FC<InputProps> = ({ theme, onBlur, ...props }) => {
   );
 };
 
-export default withTheme(Input);
+export default Input;

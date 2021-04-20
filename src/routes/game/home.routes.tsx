@@ -1,4 +1,5 @@
 import React from 'react';
+import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Navigation
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -7,15 +8,11 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Feed from '../../pages/Home/Feed';
 import Ranking from '../../pages/Home/Ranking';
 
-// Styles
-import { withTheme } from 'styled-components';
-
-// Types
-import { IThemedComponent } from '../../interfaces/theme/ThemedComponent';
-
 const Tab = createMaterialTopTabNavigator();
 
-const Home: React.FC<IThemedComponent> = ({ theme }) => {
+const Home: React.FC = () => {
+  const { theme } = useThemeContext();
+
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -36,4 +33,4 @@ const Home: React.FC<IThemedComponent> = ({ theme }) => {
   );
 };
 
-export default withTheme(Home);
+export default Home;

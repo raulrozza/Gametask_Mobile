@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Styles
-import { withTheme } from 'styled-components';
 import { Container, Text } from './styles';
 
 // Types
@@ -12,26 +11,20 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   style,
   children,
-  theme,
   onPress,
   activeOpacity,
   as,
-}) => {
-  return (
-    <Container
-      outline={outline}
-      enabled={!disabled}
-      style={style}
-      theme={theme}
-      onPress={onPress}
-      activeOpacity={activeOpacity}
-      as={as}
-    >
-      <Text outline={outline} theme={theme}>
-        {children}
-      </Text>
-    </Container>
-  );
-};
+}) => (
+  <Container
+    outline={outline}
+    enabled={!disabled}
+    style={style}
+    onPress={onPress}
+    activeOpacity={activeOpacity}
+    as={as}
+  >
+    <Text outline={outline}>{children}</Text>
+  </Container>
+);
 
-export default withTheme(Button);
+export default Button;

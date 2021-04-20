@@ -1,36 +1,39 @@
 import React from 'react';
+import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Styles
-import { withTheme } from 'styled-components';
 import Rank from '../../../../styles/Rank';
 import { FeedText } from '../styles';
 
 // Types
 import { FeedProps } from '../types';
-import { IThemedComponent } from '../../../../interfaces/theme/ThemedComponent';
 
 // Utils
 import { getTextColor } from '../../../../utils/theme/getTextColor';
 
-const RankFeed: React.FC<FeedProps & IThemedComponent> = ({ item, theme }) => (
-  <FeedText.Text>
-    <FeedText.Name>
-      {item.player.user.firstname}
-      {item.player.user.lastname && ` ${item.player.user.lastname}`}
-    </FeedText.Name>
+const RankFeed: React.FC<FeedProps> = ({ item }) => {
+  const { theme } = useThemeContext();
 
-    <FeedText.Text> conseguiu a patente </FeedText.Text>
+  return (
+    <FeedText.Text>
+      <FeedText.Name>
+        {item.player.user.firstname}
+        {item.player.user.lastname && ` ${item.player.user.lastname}`}
+      </FeedText.Name>
 
-    <Rank
-      background={item.rank?.color || theme.palette.primary.contrast}
-      text={getTextColor(item.rank?.color || theme.palette.primary.main)}
-    >
-      {' '}
-      {item.rank?.tag}{' '}
-    </Rank>
+      <FeedText.Text> conseguiu a patente </FeedText.Text>
 
-    <FeedText.Text>!</FeedText.Text>
-  </FeedText.Text>
-);
+      <Rank
+        background={item.rank?.color || theme.palette.primary.contrast}
+        text={getTextColor(item.rank?.color || theme.palette.primary.main)}
+      >
+        {' '}
+        {item.rank?.tag}{' '}
+      </Rank>
 
-export default withTheme(RankFeed);
+      <FeedText.Text>!</FeedText.Text>
+    </FeedText.Text>
+  );
+};
+
+export default RankFeed;
