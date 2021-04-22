@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
 
 // Components
-import ErrorField from '../../../components/ErrorField';
-import Input from '../../../components/Input';
+import ErrorField from '../../../../../../components/ErrorField';
+import Input from '../../../../../../components/Input';
 
 // Hooks
-import { useApiPost } from '../../../hooks/api/useApiPost';
+import { useApiPost } from '../../../../../../hooks/api/useApiPost';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Libs
@@ -16,7 +16,7 @@ import { SignupSchema } from './schemas';
 
 // Styles
 import { Form, InputGroup, ConfirmText } from '../styles';
-import Button from '../../../components/Button';
+import Button from '../../../../../../components/Button';
 
 // Types
 import { FormProps } from '../types';

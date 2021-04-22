@@ -22,7 +22,9 @@ const Login: React.FC = () => {
     <HomePage>
       <TitleContainer>
         <Title.View>
-          <Title.Text>GAMETASK</Title.Text>
+          <Title.Text variant="title" fontBold="bold">
+            GAMETASK
+          </Title.Text>
         </Title.View>
       </TitleContainer>
 

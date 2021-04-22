@@ -8,7 +8,7 @@ import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/use
 
 // Routes
 import LoggedRoutes from '../../../routes/logged.routes';
-import DefaultRoutes from '../../../routes/default.routes';
+import PublicRoutes from 'shared/infra/routes/public';
 
 const Routes: React.FC = () => {
   const { userToken, loading } = useSessionContext();
@@ -22,7 +22,7 @@ const Routes: React.FC = () => {
         barStyle={theme.palette.statusBar}
         backgroundColor={theme.palette.primary.main}
       />
-      {userToken ? <LoggedRoutes /> : <DefaultRoutes />}
+      {userToken ? <LoggedRoutes /> : <PublicRoutes />}
     </>
   );
 };

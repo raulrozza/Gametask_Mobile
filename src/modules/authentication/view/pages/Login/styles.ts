@@ -1,3 +1,4 @@
+import { Typography } from 'shared/view/components';
 import styled, { css } from 'styled-components/native';
 
 // Types
@@ -24,13 +25,12 @@ export const Title = {
   View: styled.View`
     background-color: ${({ theme }) => theme.palette.secondary.dark};
     padding: ${({ theme }) => theme.layout.spacing(2, 5)};
-    border-radius: 15px;
+    border-radius: ${({ theme }) => theme.layout.borderRadius.medium};
     width: 300px;
   `,
-  Text: styled.Text`
+  Text: styled(Typography)`
     text-align: center;
     color: ${({ theme }) => theme.palette.secondary.contrast};
-    font-family: OpenSans_700Bold;
     font-weight: bold;
     font-size: 24px;
   `,
@@ -62,9 +62,8 @@ export const ToggleButton = {
     background-color: ${({ theme, active }) =>
       active ? theme.palette.primary.main : theme.palette.secondary.main};
   `,
-  Text: styled.Text<ActiveItemProps>`
+  Text: styled(Typography)<ActiveItemProps>`
     font-size: 20px;
-    font-family: Roboto;
     font-weight: bold;
     color: ${({ theme, active }) =>
       active ? theme.palette.secondary.main : theme.palette.secondary.contrast};
@@ -94,7 +93,7 @@ export const InputGroup = styled.View`
   margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
 `;
 
-export const ConfirmText = styled.Text`
+export const ConfirmText = styled(Typography)`
   color: ${({ theme }) => theme.palette.secondary.contrast};
   line-height: 24px;
   font-size: 16px;

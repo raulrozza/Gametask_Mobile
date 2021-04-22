@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
 
 // Components
-import Input from '../../../components/Input';
-import ErrorField from '../../../components/ErrorField';
+import Input from '../../../../../../components/Input';
+import ErrorField from '../../../../../../components/ErrorField';
 
 // Hooks
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import { useApiPost } from '../../../hooks/api/useApiPost';
+import { useApiPost } from '../../../../../../hooks/api/useApiPost';
 
 // Libs
 import { Formik } from 'formik';
@@ -16,7 +16,7 @@ import { LoginSchema } from './schemas';
 
 // Styles
 import { Form, InputGroup, ConfirmText } from '../styles';
-import Button from '../../../components/Button';
+import Button from '../../../../../../components/Button';
 
 // Types
 import { FormProps } from '../types';
