@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Components
-import LoginForm from './LoginForm';
+import { LoginForm } from './components';
 import SignupForm from './SignupForm';
 
 // Styles

@@ -1,9 +1,6 @@
 import { Typography } from 'shared/view/components';
 import styled, { css } from 'styled-components/native';
 
-// Types
-import { ActiveItemProps } from './types';
-
 export const HomePage = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
     flex: 1,
@@ -52,6 +49,10 @@ export const FormToggle = styled.View`
   height: 60px;
   flex-direction: row;
 `;
+
+interface ActiveItemProps {
+  active: boolean;
+}
 
 export const ToggleButton = {
   Button: styled.TouchableOpacity<ActiveItemProps>`

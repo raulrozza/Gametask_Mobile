@@ -1,27 +1,29 @@
 import React, { useCallback, useState } from 'react';
 
 // Components
-import Input from '../../../../../../components/Input';
-import ErrorField from '../../../../../../components/ErrorField';
+import { Button } from 'shared/view/components';
+import Input from '../../../../../../../components/Input';
+import ErrorField from '../../../../../../../components/ErrorField';
 
 // Hooks
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import { useApiPost } from '../../../../../../hooks/api/useApiPost';
+import { useApiPost } from '../../../../../../../hooks/api/useApiPost';
 
 // Libs
 import { Formik } from 'formik';
 
 // Schemas
-import { LoginSchema } from './schemas';
+import LoginSchema from 'modules/authentication/validation/Login';
 
 // Styles
-import { Form, InputGroup, ConfirmText } from '../styles';
-import Button from '../../../../../../components/Button';
+import { Form, InputGroup } from '../../styles';
+import { confirmTextStyle } from './styles';
 
-// Types
-import { FormProps } from '../types';
+interface LoginFormProps {
+  active: boolean;
+}
 
-const LoginForm: React.FC<FormProps> = ({ active }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ active }) => {
   const initialValues = {
     email: '',
     password: '',
@@ -89,8 +91,12 @@ const LoginForm: React.FC<FormProps> = ({ active }) => {
           </InputGroup>
 
           <InputGroup>
-            <Button onPress={() => handleSubmit()} disabled={buttonDisabled}>
-              <ConfirmText>Entrar</ConfirmText>
+            <Button
+              onPress={() => handleSubmit()}
+              disabled={buttonDisabled}
+              textStyle={confirmTextStyle}
+            >
+              Entrar
             </Button>
           </InputGroup>
         </Form>
