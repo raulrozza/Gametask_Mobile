@@ -1,12 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 // Components
 import { Input, SubmitButton } from 'shared/view/components';
 import { Form } from '..';
-
-// Hooks
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import { useApiPost } from '../../../../../../../hooks/api/useApiPost';
 
 // Libs
 import { Formik } from 'formik';
@@ -16,6 +12,7 @@ import LoginSchema from 'modules/authentication/validation/Login';
 
 // Styles
 import { confirmTextStyle } from './styles';
+import useLoginController from 'modules/authentication/infra/controllers/useLoginController';
 
 const initialValues = {
   email: '',
@@ -27,20 +24,7 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ active }) => {
-  const { login } = useSessionContext();
-  const apiPost = useApiPost<string>();
-
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-
-  const onSubmit = useCallback(async values => {
-    setButtonDisabled(true);
-
-    const data = await apiPost('/login', values);
-
-    if (data) return login(data);
-
-    return setButtonDisabled(false);
-  }, []);
+  const { loading, onSubmit } = useLoginController();
 
   return (
     <Formik
@@ -64,7 +48,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ active }) => {
           secureTextEntry
         />
 
-        <SubmitButton loading={buttonDisabled} textStyle={confirmTextStyle}>
+        <SubmitButton loading={loading} textStyle={confirmTextStyle}>
           Entrar
         </SubmitButton>
       </Form>

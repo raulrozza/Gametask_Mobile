@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import IUserSignupDTO from 'modules/landing/dtos/IUserSignupDTO';
+import IUserSignupDTO from 'modules/authentication/dtos/IUserSignupDTO';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
-import makeSignUserService from 'modules/landing/services/factories/makeSignUserService';
+import makeSignUserService from 'modules/authentication/services/factories/makeSignUserService';
 
 interface Helpers {
   resetForm: () => void;

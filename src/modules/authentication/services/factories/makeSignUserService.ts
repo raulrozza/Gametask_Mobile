@@ -1,4 +1,4 @@
-import makeUsersRepository from 'modules/landing/providers/factories/makeUsersRepository';
+import makeUsersRepository from 'modules/authentication/repositories/factories/makeUsersRepository';
 import SignUserService from '../SignUserService';
 
 export default function makeSignUserService(): SignUserService {

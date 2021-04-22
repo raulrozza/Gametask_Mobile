@@ -1,8 +1,8 @@
 import IUser from 'shared/entities/IUser';
-import IUserLoginDTO from 'modules/landing/dtos/IUserLoginDTO';
-import IUserSignupDTO from 'modules/landing/dtos/IUserSignupDTO';
-import IUserAuthentication from 'modules/landing/entities/IUserAuthentication';
-import IUsersRepository from 'modules/landing/repositories/IUsersRepository';
+import IUserLoginDTO from 'modules/authentication/dtos/IUserLoginDTO';
+import IUserSignupDTO from 'modules/authentication/dtos/IUserSignupDTO';
+import IUserAuthentication from 'modules/authentication/entities/IUserAuthentication';
+import IUsersRepository from 'modules/authentication/repositories/IUsersRepository';
 import { makeHttpProvider } from 'shared/container/providers';
 
 export default class UsersRepository implements IUsersRepository {
