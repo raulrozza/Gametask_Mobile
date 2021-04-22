@@ -1,9 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 // Components
-import { Button } from 'shared/view/components';
-import Input from '../../../../../../../components/Input';
-import ErrorField from '../../../../../../../components/ErrorField';
+import { Button, Input } from 'shared/view/components';
 
 // Hooks
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
@@ -52,43 +50,22 @@ const LoginForm: React.FC<LoginFormProps> = ({ active }) => {
       validationSchema={LoginSchema}
       onSubmit={onSubmit}
     >
-      {({
-        handleSubmit,
-        handleBlur,
-        handleChange,
-        values,
-        errors,
-        touched,
-      }) => (
+      {({ handleSubmit }) => (
         <Form active={active}>
-          <InputGroup>
-            <Input
-              textContentType="emailAddress"
-              keyboardType="email-address"
-              value={values.email}
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              placeholder="E-mail"
-              autoCapitalize="none"
-            />
-            {errors.email && touched.email ? (
-              <ErrorField message={errors.email} />
-            ) : null}
-          </InputGroup>
+          <Input
+            name="email"
+            placeholder="E-mail"
+            textContentType="emailAddress"
+            autoCapitalize="none"
+            keyboardType="email-address"
+          />
 
-          <InputGroup>
-            <Input
-              textContentType="password"
-              value={values.password}
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              placeholder="Senha"
-              secureTextEntry
-            />
-            {errors.password && touched.password ? (
-              <ErrorField message={errors.password} />
-            ) : null}
-          </InputGroup>
+          <Input
+            name="password"
+            textContentType="password"
+            placeholder="Senha"
+            secureTextEntry
+          />
 
           <InputGroup>
             <Button
