@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
 
 // Components
-import { Button, Input } from 'shared/view/components';
+import { Input, SubmitButton } from 'shared/view/components';
+import { Form } from '..';
 
 // Hooks
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
@@ -14,25 +15,22 @@ import { Formik } from 'formik';
 import LoginSchema from 'modules/authentication/validation/Login';
 
 // Styles
-import { Form, InputGroup } from '../../styles';
 import { confirmTextStyle } from './styles';
+
+const initialValues = {
+  email: '',
+  password: '',
+};
 
 interface LoginFormProps {
   active: boolean;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ active }) => {
-  const initialValues = {
-    email: '',
-    password: '',
-  };
-
-  // Hooks
   const { login } = useSessionContext();
   const apiPost = useApiPost<string>();
 
-  // States
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const onSubmit = useCallback(async values => {
     setButtonDisabled(true);
@@ -50,34 +48,26 @@ const LoginForm: React.FC<LoginFormProps> = ({ active }) => {
       validationSchema={LoginSchema}
       onSubmit={onSubmit}
     >
-      {({ handleSubmit }) => (
-        <Form active={active}>
-          <Input
-            name="email"
-            placeholder="E-mail"
-            textContentType="emailAddress"
-            autoCapitalize="none"
-            keyboardType="email-address"
-          />
+      <Form active={active}>
+        <Input
+          name="email"
+          placeholder="E-mail"
+          textContentType="emailAddress"
+          autoCapitalize="none"
+          keyboardType="email-address"
+        />
 
-          <Input
-            name="password"
-            textContentType="password"
-            placeholder="Senha"
-            secureTextEntry
-          />
+        <Input
+          name="password"
+          textContentType="password"
+          placeholder="Senha"
+          secureTextEntry
+        />
 
-          <InputGroup>
-            <Button
-              onPress={() => handleSubmit()}
-              disabled={buttonDisabled}
-              textStyle={confirmTextStyle}
-            >
-              Entrar
-            </Button>
-          </InputGroup>
-        </Form>
-      )}
+        <SubmitButton loading={buttonDisabled} textStyle={confirmTextStyle}>
+          Entrar
+        </SubmitButton>
+      </Form>
     </Formik>
   );
 };

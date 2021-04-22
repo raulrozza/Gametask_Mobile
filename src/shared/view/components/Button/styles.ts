@@ -34,9 +34,11 @@ export const Container = styled(RectButton)<StyledButtonProps>`
 
     align-items: stretch;
 
+    min-width: 80px;
+
     ${disabled &&
     css`
-      opacity: 0.3;
+      opacity: 0.5;
     `}
   `}
 `;
