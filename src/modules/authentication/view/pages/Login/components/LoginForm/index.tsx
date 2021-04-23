@@ -1,18 +1,18 @@
 import React from 'react';
 
 // Components
-import { Input, SubmitButton } from 'shared/view/components';
-import { Form } from '..';
-
-// Libs
 import { Formik } from 'formik';
+import { Input, SubmitButton } from 'shared/view/components';
+import Form from '../Form';
+
+// Hooks
+import useLoginController from 'modules/authentication/infra/controllers/useLoginController';
 
 // Schemas
 import LoginSchema from 'modules/authentication/validation/Login';
 
 // Styles
 import { confirmTextStyle } from './styles';
-import useLoginController from 'modules/authentication/infra/controllers/useLoginController';
 
 const initialValues = {
   email: '',
@@ -39,6 +39,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ active }) => {
           textContentType="emailAddress"
           autoCapitalize="none"
           keyboardType="email-address"
+          required
         />
 
         <Input
@@ -46,6 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ active }) => {
           textContentType="password"
           placeholder="Senha"
           secureTextEntry
+          required
         />
 
         <SubmitButton loading={loading} textStyle={confirmTextStyle}>

@@ -9,6 +9,7 @@ import { Container, ErrorField, ErrorFieldText, StyledInput } from './styles';
 
 interface InputProps {
   name: string;
+  required?: boolean;
   textContentType?: TextInputProps['textContentType'];
   keyboardType?: TextInputProps['keyboardType'];
   placeholder?: TextInputProps['placeholder'];
@@ -16,11 +17,14 @@ interface InputProps {
   secureTextEntry?: TextInputProps['secureTextEntry'];
 }
 
-const Input: React.FC<InputProps> = ({ name, ...props }) => {
+const Input: React.FC<InputProps> = ({ name, required, ...props }) => {
   const [focused, setFocus] = useState(false);
   const [field, meta, helpers] = useField(name);
 
   const { theme } = useThemeContext();
+
+  const placeholder =
+    props.placeholder && `${props.placeholder}${required ? ' *' : ''}`;
 
   return (
     <Container>
@@ -35,6 +39,7 @@ const Input: React.FC<InputProps> = ({ name, ...props }) => {
         placeholderTextColor={darken(0.4, theme.palette.primary.main)}
         value={field.value}
         {...props}
+        placeholder={placeholder}
       />
 
       {meta.touched && meta.error && (

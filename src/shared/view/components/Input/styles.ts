@@ -17,6 +17,8 @@ export const StyledInput = styled.TextInput<StyledInputProps>`
     border-radius: ${theme.layout.borderRadius.small};
     padding: ${theme.layout.spacing(0, 3)};
 
+    font-family: ${theme.typography.family.content.main};
+
     background-color: ${theme.palette.primary.main};
     border: 1px solid
       ${focused
@@ -37,4 +39,6 @@ export const ErrorField = styled.View`
 
 export const ErrorFieldText = styled.Text`
   color: #fff;
+
+  font-family: ${({ theme }) => theme.typography.family.content.main};
 `;

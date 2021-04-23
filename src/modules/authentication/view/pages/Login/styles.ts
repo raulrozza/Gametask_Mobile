@@ -1,5 +1,5 @@
 import { Typography } from 'shared/view/components';
-import styled, { css } from 'styled-components/native';
+import styled from 'styled-components/native';
 
 export const HomePage = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
@@ -70,32 +70,3 @@ export const ToggleButton = {
       active ? theme.palette.secondary.main : theme.palette.secondary.contrast};
   `,
 };
-
-export const Form = styled.ScrollView.attrs(() => ({
-  contentContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}))<ActiveItemProps>`
-  margin: ${({ theme }) => theme.layout.spacing(4, 0)};
-
-  ${({ active }) =>
-    active
-      ? css`
-          display: flex;
-        `
-      : css`
-          display: none;
-        `}
-`;
-
-export const InputGroup = styled.View`
-  width: 80%;
-  margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
-`;
-
-export const ConfirmText = styled(Typography)`
-  color: ${({ theme }) => theme.palette.secondary.contrast};
-  line-height: 24px;
-  font-size: 16px;
-`;
