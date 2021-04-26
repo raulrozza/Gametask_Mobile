@@ -7,7 +7,7 @@ import useSessionContext from 'shared/container/contexts/SessionContext/contexts
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Routes
-import LoggedRoutes from '../../../routes/logged.routes';
+import LoggedRoutes from 'shared/infra/routes/logged';
 import PublicRoutes from 'shared/infra/routes/public';
 
 const Routes: React.FC = () => {

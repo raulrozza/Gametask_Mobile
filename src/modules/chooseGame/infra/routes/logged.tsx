@@ -5,13 +5,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Pages
-import GameInvite from '../pages/GameInvite';
-import UserProfile from '../pages/UserProfile';
-import Lobby from '../pages/Lobby';
+import GameInvite from '../../../../pages/GameInvite';
+import UserProfile from '../../../../pages/UserProfile';
+import Lobby from '../../../../pages/Lobby';
 
 const Stack = createStackNavigator();
 
-const ChooseGameRoutes: React.FC = () => {
+const ChooseGameLoggedRoutes: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode="none">
@@ -23,4 +23,4 @@ const ChooseGameRoutes: React.FC = () => {
   );
 };
 
-export default ChooseGameRoutes;
+export default ChooseGameLoggedRoutes;
