@@ -1,11 +1,8 @@
 import styled from 'styled-components/native';
 
 // Components
-import GameImage from '../../../components/GameImage';
-import DefaultButton from '../../../components/Button';
-
-// Styles
-import DefaultTitle from '../../../styles/Title';
+import GameImage from '../../../../../../../components/GameImage';
+import DefaultButton from '../../../../../../../components/Button';
 
 export const Container = styled.View`
   width: 100%;
@@ -33,10 +30,12 @@ export const Info = styled.View`
   flex: 1;
   height: 100%;
 `;
-export const Title = styled(DefaultTitle)`
+export const Title = styled.Text`
   color: ${({ theme }) => theme.palette.secondary.dark};
   text-align: left;
   font-size: 18px;
+  font-family: ${({ theme }) => theme.typography.family.title.bold};
+  font-size: 24px;
 `;
 
 export const Description = {

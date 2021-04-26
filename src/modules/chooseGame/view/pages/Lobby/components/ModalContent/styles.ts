@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components/native';
 
 // Components
 import { MaterialIcons } from '@expo/vector-icons';
-import Title from '../../../styles/Title';
 
 export const Wrapper = styled.View`
   flex: 1;
@@ -20,9 +19,11 @@ export const Container = styled.View`
   justify-content: center;
 `;
 
-export const PageTitle = styled(Title)`
+export const PageTitle = styled.Text`
   color: ${({ theme }) => theme.palette.secondary.main};
   margin-bottom: ${({ theme }) => theme.layout.spacing(12)};
+  font-family: ${({ theme }) => theme.typography.family.title.bold};
+  font-size: 24px;
 `;
 
 export const PasteGroup = {

@@ -25,9 +25,9 @@ export type LobbyParams = RouteProp<ParamList, 'Lobby'>;
 
 const Lobby: React.FC = () => {
   const { params } = useRoute<LobbyParams>();
-  const { loading, players, fetchPlayers } = useFetchPlayersController([
-    params.newGame,
-  ]);
+  const { loading, players, fetchPlayers } = useFetchPlayersController(
+    params?.newGame ? [params.newGame] : [],
+  );
 
   const [modalVisible, setModalVisible] = useState(false);
 

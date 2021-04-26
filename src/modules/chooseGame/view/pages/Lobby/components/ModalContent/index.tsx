@@ -1,22 +1,22 @@
 import React, { useCallback, useState } from 'react';
 
 // Components
-import Button from '../../../components/Button';
+import Button from '../../../../../../../components/Button';
 import { Clipboard, TouchableOpacity } from 'react-native';
 
 // Hooks
-import { useApiGet } from '../../../hooks/api/useApiGet';
+import { useApiGet } from '../../../../../../../hooks/api/useApiGet';
 import { useNavigation } from '@react-navigation/native';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Services
-import { decrypt } from '../../../services/encrypting';
+import { decrypt } from '../../../../../../../services/encrypting';
 
 // Styles
 import { Container, Wrapper, PasteGroup, PageTitle } from './styles';
 
 // Types
-import { IInvitationData } from '../../../interfaces/api/InvitationData';
+import { IInvitationData } from '../../../../../../../interfaces/api/InvitationData';
 import { ModalContentProps } from './types';
 
 const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
