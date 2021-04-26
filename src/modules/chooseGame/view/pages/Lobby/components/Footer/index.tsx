@@ -7,8 +7,9 @@ import useSessionContext from 'shared/container/contexts/SessionContext/contexts
 // styles
 import { Row, Button } from './styles';
 
-// Types
-import { FooterProps } from './types';
+interface FooterProps {
+  showModal: () => void;
+}
 
 const Footer: React.FC<FooterProps> = ({ showModal }) => {
   const { logout } = useSessionContext();

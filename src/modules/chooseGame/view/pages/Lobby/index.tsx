@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 // Components
 import { FlatList } from 'react-native-gesture-handler';
@@ -6,7 +6,7 @@ import { RefreshControl } from 'shared/view/components';
 import { EmptyList, Footer, GameInfo, ModalContent } from './components';
 
 // Hooks
-import { useApiFetch } from '../../hooks/api/useApiFetch';
+import useFetchPlayersController from 'modules/chooseGame/infra/controllers/useFetchPlayersController';
 import { useRoute, RouteProp } from '@react-navigation/native';
 
 // Libs
@@ -14,9 +14,6 @@ import { Modal } from 'react-native';
 
 // Style
 import { Container, Title } from './styles';
-
-// Types
-import { IPlayer } from '../../interfaces/api/Player';
 
 type ParamList = {
   Lobby: {
@@ -28,25 +25,21 @@ export type LobbyParams = RouteProp<ParamList, 'Lobby'>;
 
 const Lobby: React.FC = () => {
   const { params } = useRoute<LobbyParams>();
-  const { data: createdPlayers, loading, fetch } = useApiFetch<IPlayer[]>(
-    '/gameplay',
-  );
+  const { loading, players, fetchPlayers } = useFetchPlayersController([
+    params.newGame,
+  ]);
 
   const [modalVisible, setModalVisible] = useState(false);
-
-  useEffect(() => {
-    fetch();
-  }, [params]);
 
   return (
     <Container>
       <Title>LOBBY</Title>
 
       <FlatList
-        data={createdPlayers || []}
-        keyExtractor={item => item._id}
+        data={players}
+        keyExtractor={item => item.id}
         refreshControl={
-          <RefreshControl refreshing={loading} onRefresh={fetch} />
+          <RefreshControl refreshing={loading} onRefresh={fetchPlayers} />
         }
         ListEmptyComponent={() => <EmptyList />}
         renderItem={({ item }) => <GameInfo player={item} />}

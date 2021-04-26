@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 // Components
 import { RectButton } from 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
+import { Typography } from 'shared/view/components';
 
 export const Row = styled.View`
   flex-direction: row;
@@ -27,7 +28,7 @@ export const Button = {
     font-size: 24px;
     margin-right: ${({ theme }) => theme.layout.spacing(1)};
   `,
-  Text: styled.Text`
+  Text: styled(Typography)`
     color: ${({ theme }) => theme.palette.secondary.dark};
     font-size: 18px;
   `,
