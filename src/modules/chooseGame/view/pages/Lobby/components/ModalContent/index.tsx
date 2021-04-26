@@ -1,22 +1,24 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 // Components
-import Button from '../../../../../../../components/Button';
-import { Clipboard, TouchableOpacity } from 'react-native';
+import Clipboard from '@react-native-community/clipboard';
+import Button from 'shared/view/components/Button';
 
 // Hooks
 import { useApiGet } from '../../../../../../../hooks/api/useApiGet';
 import { useNavigation } from '@react-navigation/native';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
-// Services
-import { decrypt } from '../../../../../../../services/encrypting';
+// Providers
+import { makeCryptoProvider } from 'modules/chooseGame/container/providers';
 
 // Styles
 import { Container, Wrapper, PasteGroup, PageTitle } from './styles';
 
-// Types
-import { IInvitationData } from '../../../../../../../interfaces/api/InvitationData';
+interface IInvitationData {
+  gameId: string;
+  inviter: string;
+}
 
 interface ModalContentProps {
   closeModal(): void;
@@ -28,13 +30,14 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
 
   const { navigate } = useNavigation();
   const toast = useToastContext();
+
+  const crypto = useMemo(() => makeCryptoProvider(), []);
   const apiGet = useApiGet();
 
   const handleCodePaste = useCallback(async () => {
     const clipboardText = await Clipboard.getString();
-    const SECRET = process.env.REACT_NATIVE_SECRET;
 
-    const decrypted = decrypt<IInvitationData>(clipboardText, SECRET);
+    const decrypted = crypto.decrypt<IInvitationData>(clipboardText);
 
     if (!decrypted || !decrypted.gameId || !decrypted.inviter) {
       toast.showError('Código de jogo inválido.');
@@ -69,20 +72,18 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
         <PageTitle>Entrar em um Jogo</PageTitle>
 
         <PasteGroup.Container>
-          <PasteGroup.Input value={code} editable={false} />
+          <PasteGroup.Input
+            value={code}
+            editable={false}
+            placeholder="Clique para colar da área de transferência"
+          />
 
           <PasteGroup.Button onPress={handleCodePaste} activeOpacity={0.6}>
             <PasteGroup.Icon name="content-paste" />
           </PasteGroup.Button>
         </PasteGroup.Container>
 
-        <Button
-          as={TouchableOpacity}
-          activeOpacity={0.6}
-          onPress={handleSubmitInvitation}
-        >
-          ENTRAR
-        </Button>
+        <Button onPress={handleSubmitInvitation}>ENTRAR</Button>
       </Container>
     </Wrapper>
   );
