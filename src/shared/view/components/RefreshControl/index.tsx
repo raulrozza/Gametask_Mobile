@@ -9,8 +9,8 @@ const RefreshControl: React.FC<RefreshControlProps> = ({ ...props }) => {
 
   return (
     <RNRefresh
-      colors={[theme.palette.primary.main]}
-      progressBackgroundColor={theme.palette.primary.dark}
+      colors={[theme.palette.secondary.main]}
+      progressBackgroundColor={theme.palette.primary.main}
       {...props}
     />
   );

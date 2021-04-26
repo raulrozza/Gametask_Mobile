@@ -10,6 +10,7 @@ module.exports = function (api) {
           root: ['./'],
           include: ['./'],
           alias: {
+            assets: ['./src/assets'],
             config: ['./src/config'],
             modules: ['./src/modules'],
             shared: ['./src/shared'],

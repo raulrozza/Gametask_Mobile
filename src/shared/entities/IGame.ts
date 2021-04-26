@@ -5,7 +5,7 @@ export default interface IGame {
   name: string;
   description: string;
   image?: string;
-  image_url: string;
+  image_url?: string;
   ranks: IRank[];
   theme: {
     primary: string;

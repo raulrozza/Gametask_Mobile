@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
 // Components
-import GameImage from '../../../../../../../components/GameImage';
-import DefaultButton from '../../../../../../../components/Button';
+import GameImage from 'modules/chooseGame/view/components/GameImage';
+import DefaultButton from 'shared/view/components/Button';
 
 export const Container = styled.View`
   width: 100%;

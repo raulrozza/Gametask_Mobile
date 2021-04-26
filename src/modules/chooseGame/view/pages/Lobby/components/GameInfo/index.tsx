@@ -1,13 +1,17 @@
 import React from 'react';
 
+// Entities
+import IPlayer from 'shared/entities/IPlayer';
+
 // Hooks
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // Styles
 import { Button, Container, Description, Info, Image, Title } from './styles';
 
-// Types
-import { GameInfoProps } from './types';
+interface GameInfoProps {
+  player: IPlayer;
+}
 
 const GameInfo: React.FC<GameInfoProps> = ({ player }) => {
   const { switchGame } = useSessionContext();

@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
 // Components
-import Button from '../../components/Button';
-import GameImage from '../../components/GameImage';
+import Button from 'shared/view/components/Button';
+import GameImage from 'modules/chooseGame/view/components/GameImage';
 
 export const Container = styled.View`
   flex: 1;

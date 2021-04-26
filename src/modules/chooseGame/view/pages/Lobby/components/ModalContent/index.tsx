@@ -17,7 +17,10 @@ import { Container, Wrapper, PasteGroup, PageTitle } from './styles';
 
 // Types
 import { IInvitationData } from '../../../../../../../interfaces/api/InvitationData';
-import { ModalContentProps } from './types';
+
+interface ModalContentProps {
+  closeModal(): void;
+}
 
 const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const [code, setCode] = useState('');
