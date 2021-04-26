@@ -2,15 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 // Components
 import { FlatList } from 'react-native-gesture-handler';
-import EmptyList from './EmptyList';
-import Footer from './Footer';
-import GameInfo from './GameInfo';
-import ModalContent from './ModalContent';
-import RefreshControl from '../../components/RefreshControl';
+import { RefreshControl } from 'shared/view/components';
+import { EmptyList, Footer, GameInfo, ModalContent } from './components';
 
 // Hooks
 import { useApiFetch } from '../../hooks/api/useApiFetch';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, RouteProp } from '@react-navigation/native';
 
 // Libs
 import { Modal } from 'react-native';
@@ -20,7 +17,14 @@ import { Container, Title } from './styles';
 
 // Types
 import { IPlayer } from '../../interfaces/api/Player';
-import { LobbyParams } from './types';
+
+type ParamList = {
+  Lobby: {
+    newGame?: string;
+  };
+};
+
+export type LobbyParams = RouteProp<ParamList, 'Lobby'>;
 
 const Lobby: React.FC = () => {
   const { params } = useRoute<LobbyParams>();

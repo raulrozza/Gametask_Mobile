@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import EmptyList from './EmptyList';
-import RefreshControl from '../../../components/RefreshControl';
+import { RefreshControl } from 'shared/view/components';
 import { FlatList } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 

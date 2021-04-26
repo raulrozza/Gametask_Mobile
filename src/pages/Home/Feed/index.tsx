@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import FeedItem from './FeedItem';
 import EmptyList from './EmptyList';
-import RefreshControl from '../../../components/RefreshControl';
+import { RefreshControl } from 'shared/view/components';
 
 // Hooks
 import { useApiFetch } from '../../../hooks/api/useApiFetch';

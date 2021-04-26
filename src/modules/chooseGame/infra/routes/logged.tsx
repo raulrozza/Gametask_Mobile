@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 // Pages
 import GameInvite from '../../../../pages/GameInvite';
 import UserProfile from '../../../../pages/UserProfile';
-import Lobby from '../../../../pages/Lobby';
+import Lobby from 'modules/chooseGame/view/pages/Lobby';
 
 const Stack = createStackNavigator();
 
