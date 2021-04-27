@@ -5,7 +5,6 @@ import Clipboard from 'expo-clipboard';
 import Button from 'shared/view/components/Button';
 
 // Hooks
-import { useApiGet } from '../../../../../../../hooks/api/useApiGet';
 import { useNavigation } from '@react-navigation/native';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
@@ -32,7 +31,6 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const toast = useToastContext();
 
   const crypto = useMemo(() => makeCryptoProvider(), []);
-  const apiGet = useApiGet();
 
   const handleCodePaste = useCallback(async () => {
     const clipboardText = await Clipboard.getStringAsync();
@@ -53,17 +51,11 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const handleSubmitInvitation = useCallback(async () => {
     if (code === '' || !inviteData) return;
 
-    const data = await apiGet(
-      `/invite/${inviteData.gameId}/${inviteData.inviter}`,
-    );
-
     closeModal();
 
-    if (data)
-      return navigate('GameInvite', {
-        gameData: data,
-        inviteData,
-      });
+    return navigate('GameInvite', {
+      id: inviteData.gameId,
+    });
   }, []);
 
   return (
@@ -83,7 +75,9 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
           </PasteGroup.Button>
         </PasteGroup.Container>
 
-        <Button onPress={handleSubmitInvitation}>ENTRAR</Button>
+        <Button onPress={handleSubmitInvitation} type="touchable-opacity">
+          ENTRAR
+        </Button>
       </Container>
     </Wrapper>
   );

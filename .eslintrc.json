@@ -1,55 +1,58 @@
 {
-    "env": {
-        "browser": true,
-        "es2020": true,
-        "node": true
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "standard",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/standard",
+    "prettier/@typescript-eslint"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "standard",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended",
-        "prettier/react",
-        "prettier/standard",
-        "prettier/@typescript-eslint"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 11,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "prettier"
-    ],
-    "rules": {
-      "prettier/prettier":[
-        "error",
-        {
-            "singleQuote": true,
-            "semi": true,
-            "trailingComma": "all",
-            "arrowParens": "avoid"
-        }
-      ],
-      "react/prop-types": 0,
-      "@typescript-eslint/no-empty-interface": 0,
-      "@typescript-eslint/no-explicit-any": 0,
-      "no-useless-constructor": 0
-    },
-    "overrides": [
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "react-hooks"
+  ],
+  "rules": {
+    "prettier/prettier":[
+      "error",
       {
-        "files": ["**/*.ts", "**/*.tsx"],
-        "rules": {
-          "no-unused-vars": ["off"],
-          "no-undef": ["off"],
-          "react/display-name": ["off"],
-          "camelcase":"off"
-        }
+        "singleQuote": true,
+        "semi": true,
+        "trailingComma": "all",
+        "arrowParens": "avoid"
       }
-    ]
+    ],
+    "react/prop-types": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "no-useless-constructor": 0
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "no-unused-vars": ["off"],
+        "no-undef": ["off"],
+        "react/display-name": ["off"],
+        "camelcase":"off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
+      }
+    }
+  ]
 }

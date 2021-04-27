@@ -9,12 +9,12 @@ import Typography from 'shared/view/components/Typography';
 // Libs
 import { RectButton } from 'react-native-gesture-handler';
 
-interface StyledButtonProps {
+export interface StyledButtonProps {
   outline: boolean;
   disabled?: boolean;
 }
 
-export const Container = styled(RectButton)<StyledButtonProps>`
+const buttonStyle = css<StyledButtonProps>`
   ${({ theme, outline, disabled = false }) => css`
     ${outline
       ? css`
@@ -41,6 +41,14 @@ export const Container = styled(RectButton)<StyledButtonProps>`
       opacity: 0.5;
     `}
   `}
+`;
+
+export const RectContainer = styled(RectButton)`
+  ${buttonStyle}
+`;
+
+export const TouchableContainer = styled.TouchableOpacity`
+  ${buttonStyle}
 `;
 
 interface TextProps {
