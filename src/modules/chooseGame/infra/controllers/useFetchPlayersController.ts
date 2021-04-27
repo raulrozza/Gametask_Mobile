@@ -11,7 +11,7 @@ interface UseFetchPlayersController {
 }
 
 export default function useFetchPlayersController(
-  deps: any[],
+  deps?: string,
 ): UseFetchPlayersController {
   const [loading, setLoading] = useState(true);
   const [players, setPlayers] = useState<IPlayer[]>([]);
@@ -33,11 +33,11 @@ export default function useFetchPlayersController(
     if (response.error) return toast.showError(response.error);
 
     if (response.players) setPlayers(response.players);
-  }, []);
+  }, [fetchPlayersService, session, toast]);
 
   useEffect(() => {
     fetchPlayers();
-  }, [...deps]);
+  }, [deps, fetchPlayers]);
 
   return {
     loading,

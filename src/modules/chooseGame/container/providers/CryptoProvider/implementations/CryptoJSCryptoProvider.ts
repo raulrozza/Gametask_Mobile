@@ -9,6 +9,8 @@ export default class CryptoJDCryptoProvider implements ICryptoProvider {
       const decryptedCode = crypto.AES.decrypt(encrypted, SECRET);
 
       return JSON.parse(decryptedCode.toString(crypto.enc.Utf8));
-    } catch {}
+    } catch {
+      return undefined;
+    }
   }
 }

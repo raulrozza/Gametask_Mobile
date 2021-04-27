@@ -16,26 +16,29 @@ export default function useCreatePlayerController(): UseCreatePlayerController {
   const session = useSessionContext();
   const toast = useToastContext();
 
-  const createPlayer = useCallback(async (gameId: string) => {
-    setLoading(true);
+  const createPlayer = useCallback(
+    async (gameId: string) => {
+      setLoading(true);
 
-    const response = await createPlayerService.execute(gameId);
+      const response = await createPlayerService.execute(gameId);
 
-    setLoading(false);
+      setLoading(false);
 
-    if (response.shouldLogout) {
-      session.logout();
+      if (response.shouldLogout) {
+        session.logout();
 
-      return false;
-    }
+        return false;
+      }
 
-    if (response.error) {
-      toast.showError(response.error);
-      return false;
-    }
+      if (response.error) {
+        toast.showError(response.error);
+        return false;
+      }
 
-    return true;
-  }, []);
+      return true;
+    },
+    [createPlayerService, session, toast],
+  );
 
   return {
     loading,

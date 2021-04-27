@@ -16,10 +16,9 @@ import { IUser } from '../../../../../interfaces/api/User';
 import { getGameTheme } from './utils';
 import { defaultTheme } from 'config/defaultTheme';
 
-
 type ParamList = {
   GameInvite: {
-    id: string
+    id: string;
   };
 };
 
@@ -36,7 +35,7 @@ const GameInvite: React.FC = () => {
   const toast = useToastContext();
 
   // Data
-  const gameTheme = defaultTheme /* useMemo(() => getGameTheme(params.gameData.theme), []); */
+  const gameTheme = defaultTheme; /* useMemo(() => getGameTheme(params.gameData.theme), []); */
 
   const [btnDisabled, setBtnDisabled] = useState(false);
 
@@ -54,7 +53,7 @@ const GameInvite: React.FC = () => {
 
       navigate('Lobby', { newGame: data });
     }
-  }, []);
+  }, [apiPost, navigate, params.id, toast]);
 
   if (loading) return null;
 

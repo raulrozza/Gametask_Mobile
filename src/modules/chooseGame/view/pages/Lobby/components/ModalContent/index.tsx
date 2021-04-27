@@ -46,7 +46,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
     setCode(clipboardText);
 
     return setInviteData(decrypted);
-  }, []);
+  }, [crypto, toast]);
 
   const handleSubmitInvitation = useCallback(async () => {
     if (code === '' || !inviteData) return;
@@ -56,7 +56,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
     return navigate('GameInvite', {
       id: inviteData.gameId,
     });
-  }, [code, inviteData]);
+  }, [code, inviteData, closeModal, navigate]);
 
   return (
     <Wrapper>
