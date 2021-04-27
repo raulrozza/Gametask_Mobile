@@ -18,7 +18,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ player }) => {
 
   return (
     <Container>
-      <Image game={player.game} />
+      <Image url={player.game.image_url} />
 
       <Info>
         <Title>{player.game.name} </Title>

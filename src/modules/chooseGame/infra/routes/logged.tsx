@@ -5,9 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Pages
-import GameInvite from '../../../../pages/GameInvite';
-import UserProfile from '../../../../pages/UserProfile';
+import GameInvite from 'modules/chooseGame/view/pages/GameInvite';
 import Lobby from 'modules/chooseGame/view/pages/Lobby';
+import UserProfile from '../../../../pages/UserProfile';
 
 const Stack = createStackNavigator();
 

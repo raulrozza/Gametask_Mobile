@@ -1,7 +1,7 @@
 // Types
 import { defaultTheme } from 'config/defaultTheme';
 import { DefaultTheme } from 'styled-components';
-import { fillTheme } from '../../utils/theme/fillTheme';
+import { fillTheme } from '../../../../../utils/theme/fillTheme';
 
 export const getGameTheme = (theme: {
   primary: string;

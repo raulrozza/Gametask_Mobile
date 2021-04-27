@@ -3,22 +3,19 @@ import React from 'react';
 // Components
 import { Image, ImageStyle, StyleProp } from 'react-native';
 
-// Types
-import IGame from 'shared/entities/IGame';
-
 interface GameImageProps {
-  game: IGame;
+  url?: string;
   style?: StyleProp<ImageStyle>;
 }
 
-const GameImage: React.FC<GameImageProps> = ({ game, style }) => {
+const GameImage: React.FC<GameImageProps> = ({ url, style }) => {
   return (
     <Image
       style={style}
       source={
-        game.image_url
+        url
           ? {
-              uri: game.image_url,
+              uri: url,
             }
           : require('assets/img/games/placeholder.png')
       }

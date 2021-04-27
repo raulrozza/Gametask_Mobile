@@ -56,5 +56,5 @@ export const GameContainer = {
     font-size: 16px;
     text-align: center;
   `,
-  Button,
+  Button: styled(Button)``,
 };
