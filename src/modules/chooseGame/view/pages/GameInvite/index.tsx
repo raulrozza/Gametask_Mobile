@@ -29,14 +29,12 @@ const GameInvite: React.FC = () => {
   // Hooks
   const { params } = useRoute<IGameInviteRoute>();
 
-  const {game, loading} = useGameGameController({gameId: params.id})
+  const { game, loading } = useGameGameController({ gameId: params.id });
 
-  const {createPlayer, loading: loadingCreate} = useCreatePlayerController()
+  const { createPlayer, loading: loadingCreate } = useCreatePlayerController();
 
   const { goBack, navigate } = useNavigation();
-  const { data: inviter, errors } = useApiFetch<IUser>(
-    `/user/${params.id}`,
-  );
+  const { data: inviter, errors } = useApiFetch<IUser>(`/user/${params.id}`);
   const toast = useToastContext();
 
   // Data
@@ -61,8 +59,7 @@ const GameInvite: React.FC = () => {
       <InviteTitle.Text>
         Você foi convidado(a) por{' '}
         <InviteTitle.Inviter>{inviter?.firstname}</InviteTitle.Inviter> para
-        participar de{' '}
-        <InviteTitle.Game>{game.name}</InviteTitle.Game>
+        participar de <InviteTitle.Game>{game.name}</InviteTitle.Game>
       </InviteTitle.Text>
 
       <GameContainer.Wrapper theme={gameTheme}>
