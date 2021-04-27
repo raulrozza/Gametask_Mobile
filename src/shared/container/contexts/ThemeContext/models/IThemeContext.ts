@@ -8,4 +8,5 @@ export interface ISwitchThemeArgs {
 export default interface IThemeContext {
   theme: DefaultTheme;
   switchTheme: (theme?: ISwitchThemeArgs) => Promise<void>;
+  createPallete: (theme: ISwitchThemeArgs) => DefaultTheme['palette'];
 }

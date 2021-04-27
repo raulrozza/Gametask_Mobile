@@ -8,15 +8,15 @@ interface GameParams {
   gameId: string;
 }
 
-interface UseGameGameController {
+interface UseGetGameController {
   loading: boolean;
   game: IGame;
   getGame(id: string): Promise<void>;
 }
 
-export default function useGameGameController({
+export default function useGetGameController({
   gameId,
-}: GameParams): UseGameGameController {
+}: GameParams): UseGetGameController {
   const [loading, setLoading] = useState(true);
   const [game, setGame] = useState<IGame>({} as IGame);
 

@@ -56,6 +56,7 @@ const StyledComponentsThemeContext: React.FC = ({ children }) => {
       value={{
         theme,
         switchTheme,
+        createPallete: getNewPalette,
       }}
     >
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

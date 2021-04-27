@@ -54,7 +54,8 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
     closeModal();
 
     return navigate('GameInvite', {
-      id: inviteData.gameId,
+      gameId: inviteData.gameId,
+      inviterId: inviteData.inviter,
     });
   }, [code, inviteData, closeModal, navigate]);
 
