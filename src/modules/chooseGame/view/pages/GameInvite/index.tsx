@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 
 // Hooks
 import { useApiFetch } from '../../../../../hooks/api/useApiFetch';
-import { useApiPost } from '../../../../../hooks/api/useApiPost';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
+import useGameGameController from 'modules/chooseGame/infra/controllers/useGameGameController';
+import useCreatePlayerController from 'modules/chooseGame/infra/controllers/useCreatePlayerController';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Styles
@@ -27,9 +28,13 @@ type IGameInviteRoute = RouteProp<ParamList, 'GameInvite'>;
 const GameInvite: React.FC = () => {
   // Hooks
   const { params } = useRoute<IGameInviteRoute>();
+
+  const {game, loading} = useGameGameController({gameId: params.id})
+
+  const {createPlayer, loading: loadingCreate} = useCreatePlayerController()
+
   const { goBack, navigate } = useNavigation();
-  const apiPost = useApiPost();
-  const { data: inviter, loading, errors } = useApiFetch<IUser>(
+  const { data: inviter, errors } = useApiFetch<IUser>(
     `/user/${params.id}`,
   );
   const toast = useToastContext();
@@ -37,23 +42,15 @@ const GameInvite: React.FC = () => {
   // Data
   const gameTheme = defaultTheme; /* useMemo(() => getGameTheme(params.gameData.theme), []); */
 
-  const [btnDisabled, setBtnDisabled] = useState(false);
-
   const handleAcceptInvitation = useCallback(async () => {
-    setBtnDisabled(true);
+    const success = await createPlayer(game.id);
 
-    const data = await apiPost('/player', {
-      game: params.id,
-    });
-
-    setBtnDisabled(false);
-
-    if (data) {
+    if (success) {
       toast.showSuccess('Jogo adicionado!');
 
-      navigate('Lobby', { newGame: data });
+      navigate('Lobby', { newGame: game.id });
     }
-  }, [apiPost, navigate, params.id, toast]);
+  }, [createPlayer, navigate, game.id, toast]);
 
   if (loading) return null;
 
@@ -65,20 +62,20 @@ const GameInvite: React.FC = () => {
         Você foi convidado(a) por{' '}
         <InviteTitle.Inviter>{inviter?.firstname}</InviteTitle.Inviter> para
         participar de{' '}
-        <InviteTitle.Game>{/* params.gameData.name */}</InviteTitle.Game>
+        <InviteTitle.Game>{game.name}</InviteTitle.Game>
       </InviteTitle.Text>
 
       <GameContainer.Wrapper theme={gameTheme}>
-        <GameContainer.Image theme={gameTheme} url={params.id} />
+        <GameContainer.Image theme={gameTheme} url={game.image_url} />
 
         <GameContainer.Description theme={gameTheme}>
-          {/* params.gameData.description */}
+          {game.description}
         </GameContainer.Description>
 
         <GameContainer.Button
           theme={gameTheme}
-          disabled={btnDisabled}
           onPress={handleAcceptInvitation}
+          loading={loadingCreate}
         >
           Aceitar convite
         </GameContainer.Button>
