@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
 // Components
-import Clipboard from '@react-native-community/clipboard';
+import Clipboard from 'expo-clipboard';
 import Button from 'shared/view/components/Button';
 
 // Hooks
@@ -35,7 +35,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const apiGet = useApiGet();
 
   const handleCodePaste = useCallback(async () => {
-    const clipboardText = await Clipboard.getString();
+    const clipboardText = await Clipboard.getStringAsync();
 
     const decrypted = crypto.decrypt<IInvitationData>(clipboardText);
 
