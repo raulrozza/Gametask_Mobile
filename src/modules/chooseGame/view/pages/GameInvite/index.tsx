@@ -10,6 +10,7 @@ import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/use
 
 // Styles
 import { Container, InviteTitle, GameContainer } from './styles';
+import { ThemeProvider } from 'styled-components';
 
 type ParamList = {
   GameInvite: {
@@ -28,8 +29,6 @@ const GameInvite: React.FC = () => {
   const { user, loading: loadingUser } = useGetUserController({
     userId: params.inviterId,
   });
-
-  console.log(game, user);
 
   const { createPlayer, loading: loadingCreate } = useCreatePlayerController();
 
@@ -68,21 +67,22 @@ const GameInvite: React.FC = () => {
         participar de <InviteTitle.Game>{game.name}</InviteTitle.Game>
       </InviteTitle.Text>
 
-      <GameContainer.Wrapper theme={gameTheme}>
-        <GameContainer.Image theme={gameTheme} url={game.image_url} />
+      <ThemeProvider theme={gameTheme}>
+        <GameContainer.Wrapper>
+          <GameContainer.Image url={game.image_url} />
 
-        <GameContainer.Description theme={gameTheme}>
-          {game.description}
-        </GameContainer.Description>
+          <GameContainer.Description>
+            {game.description}
+          </GameContainer.Description>
 
-        <GameContainer.Button
-          theme={gameTheme}
-          onPress={handleAcceptInvitation}
-          loading={loadingCreate}
-        >
-          Aceitar convite
-        </GameContainer.Button>
-      </GameContainer.Wrapper>
+          <GameContainer.Button
+            onPress={handleAcceptInvitation}
+            loading={loadingCreate}
+          >
+            Aceitar convite
+          </GameContainer.Button>
+        </GameContainer.Wrapper>
+      </ThemeProvider>
     </Container>
   );
 };

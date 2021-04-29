@@ -6,7 +6,11 @@ export default class GamesRepository implements IGamesRepository {
   private httpProvider = makeHttpProvider();
 
   public async findById(id: string): Promise<IGame> {
-    const response = await this.httpProvider.get<IGame>('games/details');
+    const response = await this.httpProvider.get<IGame>('games/details', {
+      headers: {
+        'x-game-id': id,
+      },
+    });
 
     return response;
   }
