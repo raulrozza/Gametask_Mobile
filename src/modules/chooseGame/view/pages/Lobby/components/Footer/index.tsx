@@ -17,7 +17,7 @@ const Footer: React.FC<FooterProps> = ({ showModal }) => {
 
   return (
     <Row>
-      <Button.Wrapper onPress={() => navigate('UserProfile')}>
+      <Button.Wrapper onPress={() => navigate('Profile')}>
         <Button.Icon name="gear" />
 
         <Button.Text>Usuário</Button.Text>
