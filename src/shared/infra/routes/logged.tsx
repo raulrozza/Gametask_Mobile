@@ -4,7 +4,7 @@ import React from 'react';
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // Routes
-import GameRoutes from '../../../routes/game.routes';
+import GameRoutes from 'shared/infra/routes/game';
 import ChooseGameLoggedRoutes from 'modules/chooseGame/infra/routes/logged';
 
 const LoggedRoutes: React.FC = () => {
