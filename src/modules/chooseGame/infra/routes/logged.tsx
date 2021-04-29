@@ -17,7 +17,7 @@ const ChooseGameLoggedRoutes: React.FC = () => {
       <Stack.Navigator headerMode="none">
         <Stack.Screen name="Lobby" component={Lobby} />
         <Stack.Screen name="GameInvite" component={GameInvite} />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Profile" component={Profile} options={{}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

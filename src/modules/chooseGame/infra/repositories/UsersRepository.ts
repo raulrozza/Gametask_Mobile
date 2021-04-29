@@ -36,10 +36,10 @@ export default class UsersRepository implements IUsersRepository {
     const match = FILETYPE_REGEX.exec(filename);
     const type = match ? `image/${match[1]}` : 'image';
 
-    const imageData = { uri, name: filename, type };
+    const imageData = { uri, name: filename, type } as unknown;
 
     const formData = new FormData();
-    formData.append('avatar', JSON.stringify(imageData));
+    formData.append('avatar', imageData as Blob);
 
     return formData;
   }
