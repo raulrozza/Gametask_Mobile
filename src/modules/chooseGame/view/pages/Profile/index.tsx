@@ -2,7 +2,9 @@ import React, { useCallback, useState } from 'react';
 
 // Components
 import { Input, SubmitButton } from 'shared/view/components';
-import ImageInput from '../../../../../components/ImageInput';
+import { ImageInput } from './components';
+import { Formik } from 'formik';
+import { Form, InputGroup } from './styles';
 
 // Hooks
 import { useApiPut } from '../../../../../hooks/api/useApiPut';
@@ -10,14 +12,8 @@ import { useNavigation } from '@react-navigation/native';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
-// Libs
-import { Formik } from 'formik';
-
 // Schemas
 import UserSchema from 'modules/chooseGame/view/validation/UserSchema';
-
-// Styles
-import { Form, InputGroup } from './styles';
 
 // Utils
 import { imageUriToFormData } from './utils';
@@ -25,7 +21,7 @@ import { imageUriToFormData } from './utils';
 interface FormValues {
   firstname: string;
   lastname: string;
-  image?: string | null;
+  image?: string;
 }
 
 const Profile: React.FC = () => {
@@ -77,31 +73,27 @@ const Profile: React.FC = () => {
       validationSchema={UserSchema}
       onSubmit={onSubmit}
     >
-      {({ handleChange, values }) => (
-        <Form>
-          <ImageInput value={values.image} onChange={handleChange('image')} />
+      <Form>
+        <ImageInput name="image" />
 
-          <Input
-            name="firstname"
-            textContentType="name"
-            placeholder="Nome"
-            autoCapitalize="words"
-          />
+        <Input
+          name="firstname"
+          textContentType="name"
+          placeholder="Nome"
+          autoCapitalize="words"
+        />
 
-          <Input
-            name="lastname"
-            textContentType="familyName"
-            placeholder="Sobrenome"
-            autoCapitalize="words"
-          />
+        <Input
+          name="lastname"
+          textContentType="familyName"
+          placeholder="Sobrenome"
+          autoCapitalize="words"
+        />
 
-          <InputGroup>
-            <SubmitButton loading={disableButton}>
-              Salvar Alterações
-            </SubmitButton>
-          </InputGroup>
-        </Form>
-      )}
+        <InputGroup>
+          <SubmitButton loading={disableButton}>Salvar Alterações</SubmitButton>
+        </InputGroup>
+      </Form>
     </Formik>
   );
 };

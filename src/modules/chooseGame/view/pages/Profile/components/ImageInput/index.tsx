@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // Hooks
+import { useField } from 'formik';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
 // Libs
@@ -12,11 +13,13 @@ import * as ImagePicker from 'expo-image-picker';
 // Styles
 import { Image } from './styles';
 
-// Types
-import { ImageInputProps } from './types';
+interface ImageInputProps {
+  name: string;
+}
 
-const ImageInput: React.FC<ImageInputProps> = ({ value = null, onChange }) => {
+const ImageInput: React.FC<ImageInputProps> = ({ name }) => {
   const toast = useToastContext();
+  const [{ value }, , { setValue }] = useField(name);
 
   useEffect(() => {
     (async () => {
@@ -25,7 +28,7 @@ const ImageInput: React.FC<ImageInputProps> = ({ value = null, onChange }) => {
       if (status !== 'granted')
         toast.showError('É necessária permissão para acessar a câmera.');
     })();
-  }, []);
+  }, [toast]);
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -36,7 +39,7 @@ const ImageInput: React.FC<ImageInputProps> = ({ value = null, onChange }) => {
     });
 
     if (!result.cancelled) {
-      onChange(result.uri);
+      setValue(result.uri);
     }
   };
 
@@ -48,7 +51,7 @@ const ImageInput: React.FC<ImageInputProps> = ({ value = null, onChange }) => {
             ? {
                 uri: value,
               }
-            : require('../../assets/img/users/placeholder.png')
+            : require('assets/img/users/placeholder.png')
         }
       />
     </TouchableOpacity>
