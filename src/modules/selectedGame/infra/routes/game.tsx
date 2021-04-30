@@ -9,9 +9,9 @@ import {
 } from '@expo/vector-icons';
 
 // Pages
-import Home from '../../../../routes/game/home.routes';
 import Profile from '../../../../routes/game/profile.routes';
 import Activities from '../../../../routes/game/activities.routes';
+import SelectedGameHome from './home.routes';
 
 const SelectedGameGameRoutes = (
   Screen: IGameRouteScreen,
@@ -23,9 +23,9 @@ const SelectedGameGameRoutes = (
       tabBarIcon: props => <Feather name="list" {...props} />,
     }}
     name="Home"
-    component={Home}
+    component={SelectedGameHome}
   />,
-  <Screen
+  /* <Screen
     key="selected-game-activities"
     options={{
       title: 'Atividades',
@@ -44,7 +44,7 @@ const SelectedGameGameRoutes = (
     }}
     name="Profile"
     component={Profile}
-  />,
+  />, */
 ];
 
 export default SelectedGameGameRoutes;

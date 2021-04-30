@@ -5,12 +5,12 @@ import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/use
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 // Pages
-import Feed from '../../pages/Home/Feed';
-import Ranking from '../../pages/Home/Ranking';
+import Ranking from '../../../../pages/Home/Ranking';
+import Feed from 'modules/selectedGame/view/pages/Feed';
 
 const Tab = createMaterialTopTabNavigator();
 
-const Home: React.FC = () => {
+const SelectedGameHome: React.FC = () => {
   const { theme } = useThemeContext();
 
   return (
@@ -28,9 +28,9 @@ const Home: React.FC = () => {
       }}
     >
       <Tab.Screen name="Atividades Recentes" component={Feed} />
-      <Tab.Screen name="Ranking" component={Ranking} />
+      {/* <Tab.Screen name="Ranking" component={Ranking} /> */}
     </Tab.Navigator>
   );
 };
 
-export default Home;
+export default SelectedGameHome;
