@@ -1,7 +1,6 @@
+import { UserImage } from 'modules/selectedGame/view/components';
+import { Typography } from 'shared/view/components';
 import styled from 'styled-components/native';
-
-// Components
-import UserImage from '../../../../components/UserImage';
 
 export const Container = styled.View`
   margin: ${({ theme }) => theme.layout.spacing(2)};
@@ -38,7 +37,7 @@ export const Meta = {
     flex-direction: row;
     justify-content: flex-end;
   `,
-  Text: styled.Text`
+  Text: styled(Typography)`
     color: ${({ theme }) => theme.palette.primary.dark};
     font-style: italic;
   `,

@@ -1,12 +1,11 @@
 import React from 'react';
 
 // Components
-import FeedItem from './FeedItem';
-import EmptyList from './EmptyList';
+import { EmptyList, FeedPost } from './components';
 import { RefreshControl } from 'shared/view/components';
 
 // Hooks
-import { useApiFetch } from '../../../../../hooks/api/useApiFetch';
+import useGetFeedPostsController from 'modules/selectedGame/infra/controllers/useGetFeedPostsController';
 
 // Libs
 import { FlatList } from 'react-native-gesture-handler';
@@ -14,25 +13,20 @@ import { FlatList } from 'react-native-gesture-handler';
 // Styles
 import { Container } from './styles';
 
-// Types
-import { IFeedItem } from '../../../../../interfaces/api/FeedItem';
-
 const Feed: React.FC = () => {
-  /* const { data: feed, loading: refreshing, fetch } = useApiFetch<IFeedItem[]>(
-    '/feed',
-  ); */
+  const { loading, posts, getPosts } = useGetFeedPostsController();
 
   return (
     <Container>
-      {/* <FlatList
+      <FlatList
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={fetch} />
+          <RefreshControl refreshing={loading} onRefresh={getPosts} />
         }
-        data={feed || []}
-        keyExtractor={feedItem => feedItem._id}
+        data={posts}
+        keyExtractor={post => post.id}
         ListEmptyComponent={() => <EmptyList />}
-        renderItem={({ item }) => <FeedItem item={item} />}
-      /> */}
+        renderItem={({ item }) => <FeedPost post={item} />}
+      />
     </Container>
   );
 };
