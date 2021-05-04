@@ -20,7 +20,7 @@ const GameRoutes: React.FC = () => {
       <Tab.Navigator
         tabBarOptions={{
           style: {
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.gray['0'],
             borderTopColor: theme.palette.secondary.dark,
           },
           activeTintColor: theme.palette.secondary.dark,

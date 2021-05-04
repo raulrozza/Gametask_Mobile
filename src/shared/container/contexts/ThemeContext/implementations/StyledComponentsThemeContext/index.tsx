@@ -3,7 +3,7 @@ import { DefaultTheme, ThemeProvider } from 'styled-components';
 import lodash from 'lodash';
 
 import defaultTheme from 'config/theme';
-import { getNewPalette, setMobileThemeColor } from './helpers';
+import { getNewPalette } from './helpers';
 import IThemeContext, {
   ISwitchThemeArgs,
 } from 'shared/container/contexts/ThemeContext/models/IThemeContext';
@@ -25,8 +25,6 @@ const StyledComponentsThemeContext: React.FC = ({ children }) => {
       layout: previousTheme.layout,
       palette: newPalette,
     }));
-
-    setMobileThemeColor(newPalette.secondary.main);
   }, []);
 
   const switchTheme = useCallback<IThemeContext['switchTheme']>(
