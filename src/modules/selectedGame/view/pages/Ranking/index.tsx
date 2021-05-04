@@ -1,32 +1,33 @@
 import React from 'react';
 
 // Components
-import EmptyList from './EmptyList';
-import RankingItem from './RankingItem';
-
-// Libs
 import { FlatList } from 'react-native-gesture-handler';
+import { EmptyList, RankingPosition } from './components';
+
+// Hooks
+import useGetCurrentLeaderboardController from 'modules/selectedGame/infra/controllers/useGetCurrentLeaderboardController';
 
 // Styles
 import { Container } from './styles';
 
 const Ranking: React.FC = () => {
+  const { loading, leaderboard } = useGetCurrentLeaderboardController();
+
   return (
     <Container>
-      {/* <FlatList
+      <FlatList
+        refreshing={loading}
         style={{ width: '100%' }}
         contentContainerStyle={{
           width: '100%',
         }}
-        data={game.weeklyRanking}
-        keyExtractor={item =>
-          typeof item.player === 'string' ? item.player : item.player._id
-        }
+        data={leaderboard?.position}
+        keyExtractor={item => item.player.id}
         ListEmptyComponent={() => <EmptyList />}
         renderItem={({ item, index }) => (
-          <RankingItem item={item} index={index} />
+          <RankingPosition item={item} index={index} />
         )}
-      /> */}
+      />
     </Container>
   );
 };

@@ -9,6 +9,8 @@ export const Container = styled.View`
   flex-direction: row;
   margin-bottom: ${({ theme }) => theme.layout.spacing(1)};
   align-items: center;
+
+  background-color: ${({ theme }) => theme.palette.primary.light};
 `;
 
 export const Text = styled.Text`

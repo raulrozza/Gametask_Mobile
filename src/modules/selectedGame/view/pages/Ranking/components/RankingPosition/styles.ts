@@ -2,10 +2,11 @@ import styled from 'styled-components/native';
 
 // Components
 import { FontAwesome } from '@expo/vector-icons';
-import UserImage from '../../../../components/UserImage';
+import { UserImage } from 'modules/selectedGame/view/components';
 
-// Types
-import { IconProps } from './types';
+interface IconProps {
+  index: number;
+}
 
 const trophyColor = ['gold', 'silver', 'bronze'];
 
