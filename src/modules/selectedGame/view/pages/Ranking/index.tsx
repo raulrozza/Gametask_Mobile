@@ -4,9 +4,6 @@ import React from 'react';
 import EmptyList from './EmptyList';
 import RankingItem from './RankingItem';
 
-// Hooks
-import { useGameData } from '../../../hooks/contexts/useGameData';
-
 // Libs
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -14,13 +11,9 @@ import { FlatList } from 'react-native-gesture-handler';
 import { Container } from './styles';
 
 const Ranking: React.FC = () => {
-  const { game } = useGameData();
-
-  if (!game) return null;
-
   return (
     <Container>
-      <FlatList
+      {/* <FlatList
         style={{ width: '100%' }}
         contentContainerStyle={{
           width: '100%',
@@ -33,7 +26,7 @@ const Ranking: React.FC = () => {
         renderItem={({ item, index }) => (
           <RankingItem item={item} index={index} />
         )}
-      />
+      /> */}
     </Container>
   );
 };
