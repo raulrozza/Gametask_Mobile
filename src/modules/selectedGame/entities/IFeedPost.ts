@@ -12,6 +12,7 @@ interface IFeedPost {
   level: {
     level: number;
     requiredExperience: number;
+    title?: string
   };
   rank: IRank;
   date: string;

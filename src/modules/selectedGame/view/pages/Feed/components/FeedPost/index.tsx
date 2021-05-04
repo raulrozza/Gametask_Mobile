@@ -1,24 +1,25 @@
 import React, { useMemo } from 'react';
 
 // Components
-/* import ActivityFeed from '../ActivityFeed';
+import AchievementFeed from '../AchievementFeed';
+import ActivityFeed from '../ActivityFeed';
 import LevelUpFeed from '../LevelUpFeed';
 import RankFeed from '../RankFeed';
-import AchievementFeed from '../AchievementFeed'; */
 
 // Entities
 import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
 
-// Styles
-import { Container, Content, Image, Meta, Row } from './styles';
+// Helpers
 import { formatDate } from 'modules/selectedGame/view/helpers';
 
+// Styles
+import { Container, Content, Image, Meta, Row } from './styles';
+
 const FeedType = {
-  activity: React.Fragment,
-  achievement: React.Fragment,
-  title: React.Fragment,
-  rank: React.Fragment,
-  level: React.Fragment,
+  achievement: AchievementFeed,
+  activity: ActivityFeed,
+  level: LevelUpFeed,
+  rank: RankFeed,
 };
 
 interface FeedPostProps {
@@ -34,7 +35,7 @@ const FeedItem: React.FC<FeedPostProps> = ({ post }) => {
         <Image image={post.player.user.profile_url} />
 
         <Row>
-          <FeedTextContent /* item={post} */ />
+          <FeedTextContent post={post} />
         </Row>
       </Content>
 

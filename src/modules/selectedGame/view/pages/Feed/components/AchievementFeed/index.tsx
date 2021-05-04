@@ -2,13 +2,14 @@ import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
 import React from 'react';
 
 // Components
-import { FeedText, RankTag } from '../';
+import FeedText from '../FeedText';
+import RankTag from '../RankTag';
 
-interface FeedProps {
+interface AchievementFeedProps {
   post: IFeedPost;
 }
 
-const AchievementFeed: React.FC<FeedProps> = ({ post }) => (
+const AchievementFeed: React.FC<AchievementFeedProps> = ({ post }) => (
   <FeedText.Text>
     <RankTag rank={post.player.rank} />{' '}
     <FeedText.Name>
