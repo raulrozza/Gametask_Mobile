@@ -5,16 +5,13 @@ import IActivity from 'modules/selectedGame/entities/IActivity';
 
 // Components
 import { Formik } from 'formik';
-import DatePicker from '@react-native-community/datetimepicker';
-import { Input as MInput } from 'shared/view/components';
-import { Footer } from './components';
-import Input from '../../../../../components/Input';
-import ErrorField from '../../../../../components/ErrorField';
+import { Input } from 'shared/view/components';
+import { DateInput, Footer } from './components';
 
 // Hooks
 import { useGameData } from '../../../../../hooks/contexts/useGameData';
 import { useApiPost } from '../../../../../hooks/api/useApiPost';
-import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
+import { useRoute, RouteProp } from '@react-navigation/native';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
@@ -22,10 +19,7 @@ import useSessionContext from 'shared/container/contexts/SessionContext/contexts
 import RequestActivitySchema from 'modules/selectedGame/view/validation/RequestActivitySchema';
 
 // Styles
-import { Container, Title, Paragraph, Info, Form, DateInput } from './styles';
-
-// Utils
-import showDate from '../../../../../utils/showDate';
+import { Container, Title, Paragraph, Info, Form } from './styles';
 
 type ActivityParams = RouteProp<
   {
@@ -35,7 +29,7 @@ type ActivityParams = RouteProp<
 >;
 
 const initialValues = {
-  date: undefined,
+  date: undefined as string | undefined,
   information: '',
 };
 
@@ -44,21 +38,12 @@ const ActivityRegister: React.FC = () => {
   const {
     params: { activity },
   } = useRoute<ActivityParams>();
-  const { goBack } = useNavigation();
   const apiPost = useApiPost();
   const { player } = useGameData();
   const session = useSessionContext();
   const toast = useToastContext();
 
-  // State
   const [confirmDisabled, setConfirmDisabled] = useState(false);
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-
-  const handleDateChange = useCallback((date: Date | undefined) => {
-    setShowDatePicker(false);
-    setSelectedDate(date);
-  }, []);
 
   const onSubmit = useCallback(async values => {
     setConfirmDisabled(true);
@@ -100,43 +85,18 @@ const ActivityRegister: React.FC = () => {
         validationSchema={RequestActivitySchema}
         onSubmit={onSubmit}
       >
-        {({ handleChange, errors, touched }) => (
-          <Form.Container>
-            <MInput
-              name="information"
-              placeholder="Como foi sua atividade?"
-              multiline
-            />
+        <Form>
+          <Input
+            name="information"
+            placeholder="Como foi sua atividade?"
+            multiline
+            fullWidth
+          />
 
-            <Form.InputGroup>
-              <DateInput.View
-                onTouchEnd={() => {
-                  setShowDatePicker(true);
-                }}
-              >
-                <DateInput.Text date={!!selectedDate}>
-                  {selectedDate ? showDate(selectedDate) : 'Data da conclusão'}
-                </DateInput.Text>
-              </DateInput.View>
-              {errors.date && touched.date ? (
-                <ErrorField message={errors.date} />
-              ) : null}
+          <DateInput />
 
-              {showDatePicker && (
-                <DatePicker
-                  value={selectedDate || new Date()}
-                  onChange={(_, date) => {
-                    handleDateChange(date);
-                    handleChange('date')(date ? date.toLocaleString() : '');
-                  }}
-                  maximumDate={new Date()}
-                />
-              )}
-            </Form.InputGroup>
-
-            <Footer loading={confirmDisabled} />
-          </Form.Container>
-        )}
+          <Footer loading={confirmDisabled} />
+        </Form>
       </Formik>
     </Container>
   );

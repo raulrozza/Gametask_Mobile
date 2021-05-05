@@ -1,9 +1,5 @@
-import styled, { css } from 'styled-components/native';
+import styled from 'styled-components/native';
 import { Typography } from 'shared/view/components';
-
-interface DateInputTextProps {
-  date: boolean;
-}
 
 export const Container = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
@@ -41,28 +37,7 @@ export const Info = styled(Typography)`
   font-style: italic;
 `;
 
-export const Form = {
-  Container: styled.View`
-    width: 100%;
-    padding: ${({ theme }) => theme.layout.spacing(4)};
-  `,
-  InputGroup: styled.View`
-    margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
-  `,
-};
-
-export const DateInput = {
-  View: styled.View`
-    width: 100%;
-    border-radius: ${({ theme }) => theme.layout.borderRadius.small};
-    padding: ${({ theme }) => theme.layout.spacing(3)};
-    ${({ theme }) => css`
-      background-color: ${theme.palette.primary.main};
-      border: 1px solid ${theme.palette.primary.dark};
-    `}
-  `,
-  Text: styled(Typography)<DateInputTextProps>`
-    color: ${({ theme, date }) =>
-      date ? theme.palette.primary.contrast : theme.palette.primary.dark};
-  `,
-};
+export const Form = styled.View`
+  width: 100%;
+  padding: ${({ theme }) => theme.layout.spacing(4)};
+`;

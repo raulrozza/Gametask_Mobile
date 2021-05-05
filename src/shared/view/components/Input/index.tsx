@@ -9,6 +9,7 @@ import { Container, ErrorField, ErrorFieldText, StyledInput } from './styles';
 
 interface InputProps {
   name: string;
+  fullWidth?: boolean;
   required?: boolean;
   textContentType?: TextInputProps['textContentType'];
   keyboardType?: TextInputProps['keyboardType'];
@@ -18,7 +19,12 @@ interface InputProps {
   multiline?: boolean;
 }
 
-const Input: React.FC<InputProps> = ({ name, required, ...props }) => {
+const Input: React.FC<InputProps> = ({
+  name,
+  required,
+  fullWidth = false,
+  ...props
+}) => {
   const [focused, setFocus] = useState(false);
   const [field, meta, helpers] = useField(name);
 
@@ -28,7 +34,7 @@ const Input: React.FC<InputProps> = ({ name, required, ...props }) => {
     props.placeholder && `${props.placeholder}${required ? ' *' : ''}`;
 
   return (
-    <Container>
+    <Container fullWidth={fullWidth}>
       <StyledInput
         onBlur={() => {
           setFocus(false);

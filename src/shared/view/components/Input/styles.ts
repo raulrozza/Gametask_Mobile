@@ -1,8 +1,12 @@
 import { darken } from 'polished';
 import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View`
-  width: 80%;
+interface ContainerProps {
+  fullWidth: boolean;
+}
+
+export const Container = styled.View<ContainerProps>`
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : '80%')};
   margin-bottom: ${({ theme }) => theme.layout.spacing(2)};
 `;
 
