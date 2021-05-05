@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 
 // Entities
 import IActivity from 'modules/selectedGame/entities/IActivity';
@@ -9,9 +9,8 @@ import { Input } from 'shared/view/components';
 import { DateInput, Footer } from './components';
 
 // Hooks
-import { useGameData } from '../../../../../hooks/contexts/useGameData';
-import { useApiPost } from '../../../../../hooks/api/useApiPost';
-import { useRoute, RouteProp } from '@react-navigation/native';
+import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
+import useRequestActivityController from 'modules/selectedGame/infra/controllers/useRequestActivityController';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
@@ -28,8 +27,13 @@ type ActivityParams = RouteProp<
   'requestActivity'
 >;
 
-const initialValues = {
-  date: undefined as string | undefined,
+interface IValues {
+  date: string;
+  information: string;
+}
+
+const initialValues: IValues = {
+  date: new Date().toDateString(),
   information: '',
 };
 
@@ -38,34 +42,28 @@ const ActivityRegister: React.FC = () => {
   const {
     params: { activity },
   } = useRoute<ActivityParams>();
-  const apiPost = useApiPost();
-  const { player } = useGameData();
   const session = useSessionContext();
   const toast = useToastContext();
+  const navigation = useNavigation();
 
-  const [confirmDisabled, setConfirmDisabled] = useState(false);
+  const { loading, requestActivity } = useRequestActivityController();
 
-  const onSubmit = useCallback(async values => {
-    setConfirmDisabled(true);
+  const onSubmit = useCallback(
+    async (values: IValues) => {
+      const success = await requestActivity({
+        id: activity.id,
+        information: values.information,
+        completionDate: values.date,
+        playerId: '', // select player id
+      });
 
-    /* const body = {
-      requester: player._id,
-      activity: activity._id,
-      requestDate: new Date(),
-      completionDate: selectedDate,
-      information: values.information,
-      gameId: session.selectedGame,
-    };
-
-    const result = await apiPost('/activityRegister', body);
-
-    if (result !== null) {
-      toast.showSuccess('Atividade registrada!');
-      return goBack();
-    } */
-
-    return setConfirmDisabled(false);
-  }, []);
+      if (success) {
+        toast.showSuccess('Atividade registrada!');
+        return navigation.goBack();
+      }
+    },
+    [activity.id, requestActivity, toast, navigation],
+  );
 
   return (
     <Container>
@@ -95,7 +93,7 @@ const ActivityRegister: React.FC = () => {
 
           <DateInput />
 
-          <Footer loading={confirmDisabled} />
+          <Footer loading={loading} />
         </Form>
       </Formik>
     </Container>
