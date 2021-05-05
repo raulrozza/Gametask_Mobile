@@ -7,18 +7,13 @@ import { FlatList } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Hooks
-import { useApiFetch } from '../../../../../hooks/api/useApiFetch';
+import useGetActivitiesController from 'modules/selectedGame/infra/controllers/useGetActivitiesController';
 
 // Styles
 import { Container, PageTitle, Description, ActivityContainer } from './styles';
 
-// Types
-import { IActivity } from '../../../../../interfaces/api/Activity';
-
 const Activities: React.FC = () => {
-  const { data: activities, loading: refreshing, fetch } = useApiFetch<
-    IActivity[]
-  >('/activity');
+  const { loading, activities, getActivities } = useGetActivitiesController();
 
   return (
     <SafeAreaProvider>
@@ -34,9 +29,9 @@ const Activities: React.FC = () => {
 
           <FlatList
             refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={fetch} />
+              <RefreshControl refreshing={loading} onRefresh={getActivities} />
             }
-            keyExtractor={activity => activity._id}
+            keyExtractor={activity => activity.id}
             data={activities || []}
             ListEmptyComponent={() => <EmptyList />}
             renderItem={({ item }) => <ActivityCard activity={item} />}
