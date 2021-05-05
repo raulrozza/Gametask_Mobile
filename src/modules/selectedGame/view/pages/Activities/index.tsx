@@ -1,22 +1,21 @@
 import React from 'react';
 
 // Components
-import EmptyList from './EmptyList';
+import { ActivityCard, EmptyList } from './components';
 import { RefreshControl } from 'shared/view/components';
 import { FlatList } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Hooks
-import { useApiFetch } from '../../../hooks/api/useApiFetch';
+import { useApiFetch } from '../../../../../hooks/api/useApiFetch';
 
 // Styles
 import { Container, PageTitle, Description, ActivityContainer } from './styles';
 
 // Types
-import { IActivity } from '../../../interfaces/api/Activity';
-import ActivityCard from './ActivityCard';
+import { IActivity } from '../../../../../interfaces/api/Activity';
 
-const ActivityList: React.FC = () => {
+const Activities: React.FC = () => {
   const { data: activities, loading: refreshing, fetch } = useApiFetch<
     IActivity[]
   >('/activity');
@@ -48,4 +47,4 @@ const ActivityList: React.FC = () => {
   );
 };
 
-export default ActivityList;
+export default Activities;

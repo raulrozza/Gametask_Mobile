@@ -10,7 +10,7 @@ import {
 
 // Pages
 import Profile from '../../../../routes/game/profile.routes';
-import Activities from '../../../../routes/game/activities.routes';
+import ActivitiesRoutes from './activities.routes';
 import SelectedGameHome from './home.routes';
 
 const SelectedGameGameRoutes = (
@@ -25,7 +25,7 @@ const SelectedGameGameRoutes = (
     name="Home"
     component={SelectedGameHome}
   />,
-  /* <Screen
+  <Screen
     key="selected-game-activities"
     options={{
       title: 'Atividades',
@@ -34,8 +34,8 @@ const SelectedGameGameRoutes = (
       ),
     }}
     name="Activities"
-    component={Activities}
-  />,
+    component={ActivitiesRoutes}
+  /> /*
   <Screen
     key="selected-game-profile"
     options={{
@@ -44,7 +44,7 @@ const SelectedGameGameRoutes = (
     }}
     name="Profile"
     component={Profile}
-  />, */
+  />, */,
 ];
 
 export default SelectedGameGameRoutes;
