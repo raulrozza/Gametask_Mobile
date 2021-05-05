@@ -15,6 +15,7 @@ interface InputProps {
   placeholder?: TextInputProps['placeholder'];
   autoCapitalize?: TextInputProps['autoCapitalize'];
   secureTextEntry?: TextInputProps['secureTextEntry'];
+  multiline?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({ name, required, ...props }) => {
