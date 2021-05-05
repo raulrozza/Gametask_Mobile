@@ -14,8 +14,6 @@ const DateInput: React.FC = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [{ value }, { error, touched }, { setValue }] = useField('date');
 
-  console.log(value);
-
   const handleChange = useCallback(
     (_: unknown, date?: Date) => {
       setShowDatePicker(false);
@@ -44,7 +42,7 @@ const DateInput: React.FC = () => {
 
       {showDatePicker && (
         <DatePicker
-          value={new Date()}
+          value={value ? ((Date.parse(value) as unknown) as Date) : new Date()}
           onChange={handleChange}
           maximumDate={new Date()}
         />
