@@ -11,6 +11,7 @@ import useGetActivitiesController from 'modules/selectedGame/infra/controllers/u
 
 // Styles
 import { Container, PageTitle, Description, ActivityContainer } from './styles';
+import IActivity from 'modules/selectedGame/entities/IActivity';
 
 const Activities: React.FC = () => {
   const { loading, activities, getActivities } = useGetActivitiesController();
@@ -18,7 +19,7 @@ const Activities: React.FC = () => {
   return (
     <SafeAreaProvider>
       <Container>
-        <PageTitle>Registrar Atividades</PageTitle>
+        <PageTitle variant="title">Registrar Atividades</PageTitle>
 
         <Description>
           Completou alguma atividade? Informe aos moderadores para ganhar XP!
@@ -32,7 +33,7 @@ const Activities: React.FC = () => {
               <RefreshControl refreshing={loading} onRefresh={getActivities} />
             }
             keyExtractor={activity => activity.id}
-            data={activities || []}
+            data={activities}
             ListEmptyComponent={() => <EmptyList />}
             renderItem={({ item }) => <ActivityCard activity={item} />}
           />
