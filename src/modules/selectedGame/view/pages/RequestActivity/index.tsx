@@ -54,7 +54,7 @@ const ActivityRegister: React.FC = () => {
         id: activity.id,
         information: values.information,
         completionDate: values.date,
-        playerId: '', // select player id
+        playerId: session.playerId,
       });
 
       if (success) {
@@ -62,7 +62,7 @@ const ActivityRegister: React.FC = () => {
         return navigation.goBack();
       }
     },
-    [activity.id, requestActivity, toast, navigation],
+    [activity.id, requestActivity, toast, navigation, session.playerId],
   );
 
   return (

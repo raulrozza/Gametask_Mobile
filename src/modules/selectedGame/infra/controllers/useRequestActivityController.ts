@@ -1,6 +1,6 @@
 import IRequestActivityDTO from 'modules/selectedGame/dtos/IRequestActivityDTO';
 import makeRequestActivityService from 'modules/selectedGame/services/factories/makeRequestActivityService';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 
@@ -10,8 +10,7 @@ interface UseRequestActivityController {
 }
 
 export default function useRequestActivityController(): UseRequestActivityController {
-  const [loading, setLoading] = useState(true);
-  const mounted = useRef(false);
+  const [loading, setLoading] = useState(false);
 
   const requestActivityService = useMemo(
     () => makeRequestActivityService(),
@@ -27,7 +26,6 @@ export default function useRequestActivityController(): UseRequestActivityContro
 
       const response = await requestActivityService.execute(values);
 
-      if (!mounted.current) return false;
       setLoading(false);
 
       if (response.shouldLogout) {

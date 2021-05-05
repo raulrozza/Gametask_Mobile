@@ -29,7 +29,9 @@ const GameInfo: React.FC<GameInfoProps> = ({ player }) => {
 
         <Button
           outline
-          onPress={() => switchGame(player.game.id, player.game.theme)}
+          onPress={() =>
+            switchGame(player.game.id, player.game.theme, player.id)
+          }
         >
           Entrar
         </Button>
