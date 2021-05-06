@@ -1,7 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, StyleProp, ViewStyle } from 'react-native';
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
-import { StyledButtonProps } from 'src/components/Button/types';
 import {
   DefaultTheme,
   FlattenInterpolation,
@@ -10,13 +9,18 @@ import {
 } from 'styled-components';
 
 // Styles
-import { RectContainer, TouchableContainer, Text } from './styles';
+import {
+  RectContainer,
+  StyledContainer,
+  TouchableContainer,
+  Text,
+} from './styles';
 
 type ButtonTypes = 'rect-button' | 'touchable-opacity';
 
 const ButtonComponent: Record<
   ButtonTypes,
-  StyledComponent<any, DefaultTheme, StyledButtonProps>
+  StyledComponent<any, DefaultTheme>
 > = {
   'rect-button': RectContainer,
   'touchable-opacity': TouchableContainer,
@@ -51,13 +55,12 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <Container
-      outline={outline}
-      disabled={disabled || loading}
-      style={style}
-      onPress={onPress}
       activeOpacity={activeOpacity}
+      disabled={disabled || loading}
+      onPress={onPress}
+      style={style}
     >
-      <Text outline={outline} textStyle={textStyle}>
+      <StyledContainer outline={outline} disabled={disabled || loading}>
         {loading ? (
           <ActivityIndicator
             size="small"
@@ -68,9 +71,11 @@ const Button: React.FC<ButtonProps> = ({
             }
           />
         ) : (
-          children
+          <Text outline={outline} textStyle={textStyle}>
+            {children}
+          </Text>
         )}
-      </Text>
+      </StyledContainer>
     </Container>
   );
 };

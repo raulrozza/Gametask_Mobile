@@ -6,6 +6,8 @@ interface TypographyProps {
 }
 
 const Typography = styled.Text<TypographyProps>`
+  font-size: 16px;
+
   ${({ variant = 'body', theme, fontBold = 'main' }) => css`
     font-family: ${variant === 'body'
       ? theme.typography.family.content[fontBold]

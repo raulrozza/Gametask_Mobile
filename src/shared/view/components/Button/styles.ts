@@ -14,7 +14,7 @@ export interface StyledButtonProps {
   disabled?: boolean;
 }
 
-const buttonStyle = css<StyledButtonProps>`
+export const StyledContainer = styled.View<StyledButtonProps>`
   ${({ theme, outline, disabled = false }) => css`
     ${outline
       ? css`
@@ -30,9 +30,13 @@ const buttonStyle = css<StyledButtonProps>`
     line-height: 24px;
     font-size: 16px;
 
+    height: ${theme.layout.spacing(10)};
+
+    border-width: 1px;
     border-color: ${theme.palette.secondary.main};
 
     align-items: stretch;
+    justify-content: center;
 
     min-width: 80px;
 
@@ -44,11 +48,11 @@ const buttonStyle = css<StyledButtonProps>`
 `;
 
 export const RectContainer = styled(RectButton)`
-  ${buttonStyle}
+  min-width: 80px;
 `;
 
 export const TouchableContainer = styled.TouchableOpacity`
-  ${buttonStyle}
+  min-width: 80px;
 `;
 
 interface TextProps {
@@ -58,15 +62,11 @@ interface TextProps {
 
 export const Text = styled(Typography)<TextProps>`
   ${({ theme, outline, textStyle }) => css`
-    padding: ${theme.layout.spacing(2, 3)};
     text-align: center;
-    border-radius: ${theme.layout.borderRadius.small};
 
     color: ${outline
       ? theme.palette.secondary.main
       : theme.palette.secondary.contrast};
-    border-width: 1px;
-    border-color: ${theme.palette.secondary.main};
 
     ${textStyle}
   `}
