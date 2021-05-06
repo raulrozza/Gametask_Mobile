@@ -85,10 +85,13 @@ const DefaultSessionContext: React.FC = ({ children }) => {
   }, [http, storage, theme]);
 
   const switchGame = useCallback<ISessionContext['switchGame']>(
-    async (gameId, newTheme, playerId) => {
-      setSelectedGame(gameId || null);
-      setPlayerId(playerId || '');
-      if (gameId) {
+    async params => {
+      if (params) {
+        const { gameId, theme: newTheme, playerId } = params;
+
+        setSelectedGame(gameId);
+        setPlayerId(playerId);
+
         if (newTheme) await theme.switchTheme(newTheme);
         http.addHeader(GAME_HEADER_KEY, gameId);
         await storage.store(GAME_STORAGE_KEY, gameId);
@@ -98,6 +101,8 @@ const DefaultSessionContext: React.FC = ({ children }) => {
         return;
       }
 
+      setSelectedGame(null);
+      setPlayerId('');
       await theme.switchTheme();
       http.removeHeader(GAME_HEADER_KEY);
       await storage.delete(GAME_STORAGE_KEY);

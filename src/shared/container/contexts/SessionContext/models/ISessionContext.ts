@@ -3,6 +3,12 @@ interface ITheme {
   secondary: string;
 }
 
+interface ISwitchGameParams {
+  gameId: string;
+  theme: ITheme;
+  playerId: string;
+}
+
 export default interface ISessionContext {
   playerId: string;
   userToken: string | null;
@@ -13,5 +19,5 @@ export default interface ISessionContext {
   login(token: string): Promise<void>;
   logout(): Promise<void>;
 
-  switchGame(gameId?: string, theme?: ITheme, playerId?: string): Promise<void>;
+  switchGame(params?: ISwitchGameParams): Promise<void>;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 // Entities
 import IPlayer from 'shared/entities/IPlayer';
@@ -16,6 +16,16 @@ interface GameInfoProps {
 const GameInfo: React.FC<GameInfoProps> = ({ player }) => {
   const { switchGame } = useSessionContext();
 
+  const handleGoToGame = useCallback(
+    () =>
+      switchGame({
+        gameId: player.game.id,
+        theme: player.game.theme,
+        playerId: player.id,
+      }),
+    [switchGame, player],
+  );
+
   return (
     <Container>
       <Image url={player.game.image_url} />
@@ -27,12 +37,7 @@ const GameInfo: React.FC<GameInfoProps> = ({ player }) => {
           <Description.Text>{player.game.description}</Description.Text>
         </Description.Container>
 
-        <Button
-          outline
-          onPress={() =>
-            switchGame(player.game.id, player.game.theme, player.id)
-          }
-        >
+        <Button outline onPress={handleGoToGame}>
           Entrar
         </Button>
       </Info>
