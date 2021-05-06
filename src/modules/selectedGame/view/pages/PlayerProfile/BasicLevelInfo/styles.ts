@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import Select from '../../../../components/Select';
-import UserImage from '../../../../components/UserImage';
+import Select from '../../../../../../components/Select';
+import UserImage from '../../../../../../components/UserImage';
 
 export const Container = styled.View`
   width: 100%;

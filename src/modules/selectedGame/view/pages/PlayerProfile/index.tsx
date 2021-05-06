@@ -7,7 +7,7 @@ import BasicLevelInfo from './BasicLevelInfo';
 import Options from './Options';
 
 // Hooks
-import { useGameData } from '../../../hooks/contexts/useGameData';
+import { useGameData } from '../../../../../hooks/contexts/useGameData';
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 import { useRecoilValue } from 'recoil';
@@ -20,7 +20,7 @@ import { Container } from './styles';
 
 // Utils
 import { getRankTheme } from './utils';
-import playerTitle from '../../../atoms/playerTitle';
+import playerTitle from '../../../../../atoms/playerTitle';
 
 const PlayerProfile: React.FC = () => {
   const { userData } = useSessionContext();

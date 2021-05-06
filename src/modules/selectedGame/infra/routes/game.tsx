@@ -9,7 +9,7 @@ import {
 } from '@expo/vector-icons';
 
 // Pages
-import Profile from '../../../../routes/game/profile.routes';
+import ProfileRoutes from './profile.routes';
 import ActivitiesRoutes from './activities.routes';
 import SelectedGameHome from './home.routes';
 
@@ -35,7 +35,7 @@ const SelectedGameGameRoutes = (
     }}
     name="Activities"
     component={ActivitiesRoutes}
-  /> /*
+  />,
   <Screen
     key="selected-game-profile"
     options={{
@@ -43,8 +43,8 @@ const SelectedGameGameRoutes = (
       tabBarIcon: props => <FontAwesome name="user-circle-o" {...props} />,
     }}
     name="Profile"
-    component={Profile}
-  />, */,
+    component={ProfileRoutes}
+  />,
 ];
 
 export default SelectedGameGameRoutes;

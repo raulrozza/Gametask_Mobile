@@ -4,13 +4,13 @@ import React, { useMemo } from 'react';
 import AchievementCard from './AchievementCard';
 
 // Hooks
-import { useApiFetch } from '../../../../hooks/api/useApiFetch';
+import { useApiFetch } from '../../../../../../hooks/api/useApiFetch';
 
 // Styles
 import { Container, Title } from './styles';
 
 // Types
-import { IAchievement } from '../../../../interfaces/api/Achievement';
+import { IAchievement } from '../../../../../../interfaces/api/Achievement';
 import { AchievementListProps } from './types';
 
 // Utils

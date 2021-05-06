@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components/native';
 
 // Components
-import AchievementImage from '../../../../../components/AchievementImage';
+import AchievementImage from '../../../../../../../components/AchievementImage';
 
 // Types
 import { AchievementContainerProps } from './types';

@@ -1,14 +1,14 @@
 import React, { useMemo, useState } from 'react';
 
 // Components
-import ProgressBar from '../../../../components/ProgressBar';
+import ProgressBar from '../../../../../../components/ProgressBar';
 
 // Hooks
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Recoil
 import { useSetRecoilState } from 'recoil';
-import playerTitle from '../../../../atoms/playerTitle';
+import playerTitle from '../../../../../../atoms/playerTitle';
 
 // Styles
 import {
@@ -22,11 +22,11 @@ import {
 
 // Types
 import { BasicLevelInfoProps } from './types';
-import { ITitle } from '../../../../interfaces/api/Title';
+import { ITitle } from '../../../../../../interfaces/api/Title';
 
 // Utils
 import { getPlayerNextLevel } from '../utils';
-import { useApiPut } from '../../../../hooks/api/useApiPut';
+import { useApiPut } from '../../../../../../hooks/api/useApiPut';
 
 const BasicLevelInfo: React.FC<BasicLevelInfoProps> = ({
   rankTheme,

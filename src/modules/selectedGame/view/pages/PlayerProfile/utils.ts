@@ -1,12 +1,12 @@
 // Types
 import { DefaultTheme } from 'styled-components';
-import { IAchievement } from '../../../interfaces/api/Achievement';
-import { ILevelInfo } from '../../../interfaces/api/LevelInfo';
-import { IPlayer } from '../../../interfaces/api/Player';
-import { IRank } from '../../../interfaces/api/Rank';
+import { IAchievement } from '../../../../../interfaces/api/Achievement';
+import { ILevelInfo } from '../../../../../interfaces/api/LevelInfo';
+import { IPlayer } from '../../../../../interfaces/api/Player';
+import { IRank } from '../../../../../interfaces/api/Rank';
 
 // Utils
-import { fillTheme } from '../../../utils/theme/fillTheme';
+import { fillTheme } from '../../../../../utils/theme/fillTheme';
 
 export function addObtainedFieldToAchievements(
   data: IAchievement[] | null,
