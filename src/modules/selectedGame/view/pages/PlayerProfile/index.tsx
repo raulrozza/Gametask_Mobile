@@ -2,13 +2,13 @@ import React, { useMemo } from 'react';
 
 // Components
 import { ActivityIndicator, SafeAreaView } from 'react-native';
-import Header from './Header';
+import { Header, Options } from './components';
 import AchievementList from './AchievementList';
 import BasicLevelInfo from './BasicLevelInfo';
-import Options from './Options';
 import { Container } from './styles';
 
 // Containers
+import PlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext';
 import { ThemeProvider } from 'styled-components';
 
 // Hooks
@@ -38,24 +38,21 @@ const PlayerProfile: React.FC = () => {
   return (
     <SafeAreaView>
       <ThemeProvider theme={rankTheme}>
-        <Container>
-          {/* <Header
-          theme={rankTheme}
-          firstname={userData.name}
-          rank={player.rank}
-          title={currentTitle}
-        />
-
+        <PlayerProfileContext player={player}>
+          <Container>
+            <Header />
+            {/* 
         <BasicLevelInfo
           rankTheme={rankTheme}
           player={player}
           levelInfo={game.levelInfo}
         />
 
-        <AchievementList player={player} />
+        <AchievementList player={player} /> */}
 
-        <Options /> */}
-        </Container>
+            <Options />
+          </Container>
+        </PlayerProfileContext>
       </ThemeProvider>
     </SafeAreaView>
   );

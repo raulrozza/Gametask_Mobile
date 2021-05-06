@@ -1,12 +1,7 @@
 // Types
-import { DefaultTheme } from 'styled-components';
 import { IAchievement } from '../../../../../interfaces/api/Achievement';
 import { ILevelInfo } from '../../../../../interfaces/api/LevelInfo';
 import { IPlayer } from '../../../../../interfaces/api/Player';
-import { IRank } from '../../../../../interfaces/api/Rank';
-
-// Utils
-import { fillTheme } from '../../../../../utils/theme/fillTheme';
 
 export function addObtainedFieldToAchievements(
   data: IAchievement[] | null,
@@ -22,21 +17,6 @@ export function addObtainedFieldToAchievements(
   });
 
   return mappedAchievements;
-}
-
-export function getRankTheme(
-  defaultTheme: DefaultTheme,
-  rank?: IRank,
-): DefaultTheme {
-  if (!rank || !rank.color) return defaultTheme;
-
-  return {
-    ...defaultTheme,
-    palette: fillTheme({
-      primary: rank.color,
-      secondary: defaultTheme.palette.secondary.main,
-    }),
-  };
 }
 
 export function getPlayerNextLevel(

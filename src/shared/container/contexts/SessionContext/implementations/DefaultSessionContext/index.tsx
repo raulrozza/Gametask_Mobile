@@ -76,12 +76,16 @@ const DefaultSessionContext: React.FC = ({ children }) => {
   );
 
   const logout = useCallback<ISessionContext['logout']>(async () => {
+    await theme.switchTheme();
+
     setUserToken(null);
+    setSelectedGame(null);
+    setPlayerId('');
     http.removeHeader(USER_HEADER_KEY);
+    http.removeHeader(GAME_HEADER_KEY);
 
     await storage.delete(USER_STORAGE_KEY);
     await storage.delete(GAME_STORAGE_KEY);
-    await theme.switchTheme();
   }, [http, storage, theme]);
 
   const switchGame = useCallback<ISessionContext['switchGame']>(
@@ -98,12 +102,13 @@ const DefaultSessionContext: React.FC = ({ children }) => {
 
         setPlayerId(String(playerId));
         await storage.store(PLAYER_ID_STORAGE_KEY, playerId);
+
         return;
       }
 
+      await theme.switchTheme();
       setSelectedGame(null);
       setPlayerId('');
-      await theme.switchTheme();
       http.removeHeader(GAME_HEADER_KEY);
       await storage.delete(GAME_STORAGE_KEY);
       await storage.delete(PLAYER_ID_STORAGE_KEY);
