@@ -67,8 +67,8 @@ const DefaultSessionContext: React.FC = ({ children }) => {
       const userData = await decodeToken(String(token));
       if (userData) setUserData(userData);
 
-      setUserToken(token);
       addAuthenticationHeader(token);
+      setUserToken(token);
 
       await storage.store(USER_STORAGE_KEY, token);
     },
@@ -93,11 +93,12 @@ const DefaultSessionContext: React.FC = ({ children }) => {
       if (params) {
         const { gameId, theme: newTheme, playerId } = params;
 
+        http.addHeader(GAME_HEADER_KEY, gameId);
+
         setSelectedGame(gameId);
         setPlayerId(playerId);
 
         if (newTheme) await theme.switchTheme(newTheme);
-        http.addHeader(GAME_HEADER_KEY, gameId);
         await storage.store(GAME_STORAGE_KEY, gameId);
 
         setPlayerId(String(playerId));
