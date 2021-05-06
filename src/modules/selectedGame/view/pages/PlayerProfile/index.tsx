@@ -1,36 +1,45 @@
 import React, { useMemo } from 'react';
 
 // Components
-import { SafeAreaView } from 'react-native';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
 import Header from './Header';
 import AchievementList from './AchievementList';
 import BasicLevelInfo from './BasicLevelInfo';
 import Options from './Options';
 import { Container } from './styles';
 
+// Containers
+import { ThemeProvider } from 'styled-components';
+
 // Hooks
-import { useGameData } from '../../../../../hooks/contexts/useGameData';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+import useFindPlayerController from 'modules/selectedGame/infra/controllers/useFindPlayerController';
 
 const PlayerProfile: React.FC = () => {
-  const { userData } = useSessionContext();
-  const { game, player } = useGameData();
+  const { loading, player } = useFindPlayerController();
   const { theme, createPallete } = useThemeContext();
 
   const rankTheme = useMemo(
     () =>
-      createPallete({
-        primary: player?.rank.color,
-        secondary: theme.palette.primary.main,
-      }),
-    [player, createPallete, theme],
+      loading || !player?.rank?.color
+        ? theme
+        : {
+            ...theme,
+            palette: createPallete({
+              primary: player.rank.color,
+              secondary: theme.palette.primary.main,
+            }),
+          },
+    [player, createPallete, theme, loading],
   );
+
+  if (loading) return <ActivityIndicator />;
 
   return (
     <SafeAreaView>
-      <Container>
-        {/* <Header
+      <ThemeProvider theme={rankTheme}>
+        <Container>
+          {/* <Header
           theme={rankTheme}
           firstname={userData.name}
           rank={player.rank}
@@ -46,7 +55,8 @@ const PlayerProfile: React.FC = () => {
         <AchievementList player={player} />
 
         <Options /> */}
-      </Container>
+        </Container>
+      </ThemeProvider>
     </SafeAreaView>
   );
 };
