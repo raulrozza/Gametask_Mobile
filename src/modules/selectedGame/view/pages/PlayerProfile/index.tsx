@@ -1,42 +1,36 @@
 import React, { useMemo } from 'react';
 
 // Components
+import { SafeAreaView } from 'react-native';
 import Header from './Header';
 import AchievementList from './AchievementList';
 import BasicLevelInfo from './BasicLevelInfo';
 import Options from './Options';
+import { Container } from './styles';
 
 // Hooks
 import { useGameData } from '../../../../../hooks/contexts/useGameData';
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
-import { useRecoilValue } from 'recoil';
-
-// Libs
-import { SafeAreaView } from 'react-native';
-
-// Styles
-import { Container } from './styles';
-
-// Utils
-import { getRankTheme } from './utils';
-import playerTitle from '../../../../../atoms/playerTitle';
 
 const PlayerProfile: React.FC = () => {
   const { userData } = useSessionContext();
   const { game, player } = useGameData();
-  const { theme } = useThemeContext();
+  const { theme, createPallete } = useThemeContext();
 
-  const rankTheme = useMemo(() => getRankTheme(theme, player?.rank), [player]);
-
-  const currentTitle = useRecoilValue(playerTitle);
-
-  if (!game || !player) return null;
+  const rankTheme = useMemo(
+    () =>
+      createPallete({
+        primary: player?.rank.color,
+        secondary: theme.palette.primary.main,
+      }),
+    [player, createPallete, theme],
+  );
 
   return (
     <SafeAreaView>
-      <Container theme={rankTheme}>
-        <Header
+      <Container>
+        {/* <Header
           theme={rankTheme}
           firstname={userData.name}
           rank={player.rank}
@@ -51,7 +45,7 @@ const PlayerProfile: React.FC = () => {
 
         <AchievementList player={player} />
 
-        <Options />
+        <Options /> */}
       </Container>
     </SafeAreaView>
   );
