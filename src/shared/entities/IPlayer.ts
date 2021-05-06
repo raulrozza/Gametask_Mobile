@@ -7,10 +7,10 @@ export default interface IPlayer {
   id: string;
   experience: number;
   level: number;
-  titles: ITitle[];
+  titles?: ITitle[];
   currentTitle?: ITitle;
   achievements: string[];
-  rank: IRank;
+  rank?: IRank;
   user: Omit<IUser, 'email'>;
   game: IGame;
 }

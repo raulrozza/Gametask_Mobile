@@ -2,9 +2,8 @@ import React, { useMemo } from 'react';
 
 // Components
 import { ActivityIndicator, SafeAreaView } from 'react-native';
-import { Header, Options } from './components';
+import { BasicLevelInfo, Header, Options } from './components';
 import AchievementList from './AchievementList';
-import BasicLevelInfo from './BasicLevelInfo';
 import { Container } from './styles';
 
 // Containers
@@ -41,14 +40,10 @@ const PlayerProfile: React.FC = () => {
         <PlayerProfileContext player={player}>
           <Container>
             <Header />
-            {/* 
-        <BasicLevelInfo
-          rankTheme={rankTheme}
-          player={player}
-          levelInfo={game.levelInfo}
-        />
 
-        <AchievementList player={player} /> */}
+            <BasicLevelInfo />
+
+            {/* <AchievementList player={player} /> */}
 
             <Options />
           </Container>
