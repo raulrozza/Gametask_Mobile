@@ -1,6 +1,5 @@
 // Types
 import { IAchievement } from '../../../../../interfaces/api/Achievement';
-import { ILevelInfo } from '../../../../../interfaces/api/LevelInfo';
 import { IPlayer } from '../../../../../interfaces/api/Player';
 
 export function addObtainedFieldToAchievements(
@@ -17,17 +16,4 @@ export function addObtainedFieldToAchievements(
   });
 
   return mappedAchievements;
-}
-
-export function getPlayerNextLevel(
-  currentLevel: number,
-  levelInfo: ILevelInfo[],
-): ILevelInfo | undefined {
-  const descSortedLevelInfo = levelInfo.sort((a, b) => a.level - b.level);
-
-  const nextLevelToGain = descSortedLevelInfo.find(
-    info => currentLevel < info.level,
-  );
-
-  return nextLevelToGain;
 }
