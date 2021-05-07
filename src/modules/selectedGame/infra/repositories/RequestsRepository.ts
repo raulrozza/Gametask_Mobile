@@ -1,9 +1,22 @@
+import IRequestAchievementDTO from 'modules/selectedGame/dtos/IRequestAchievementDTO';
 import IRequestActivityDTO from 'modules/selectedGame/dtos/IRequestActivityDTO';
 import IRequestsRepository from 'modules/selectedGame/repositories/IRequestsRepository';
 import { makeHttpProvider } from 'shared/container/providers';
 
 export default class RequestsRepository implements IRequestsRepository {
   private httpProvider = makeHttpProvider();
+
+  public async achievement({
+    id,
+    information,
+    playerId,
+  }: IRequestAchievementDTO): Promise<void> {
+    return this.httpProvider.post(`players/${playerId}/achievements`, {
+      information,
+      achievement: id,
+      requestDate: new Date(),
+    });
+  }
 
   public async activity({
     id,
