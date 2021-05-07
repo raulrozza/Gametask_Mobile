@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 // Components
 import { ActivityIndicator, SafeAreaView } from 'react-native';
@@ -12,9 +12,11 @@ import { ThemeProvider } from 'styled-components';
 // Hooks
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 import useFindPlayerController from 'modules/selectedGame/infra/controllers/useFindPlayerController';
+import { useFocusEffect } from '@react-navigation/core';
+import { isEmpty } from 'lodash';
 
 const PlayerProfile: React.FC = () => {
-  const { loading, player } = useFindPlayerController();
+  const { loading, player, getPlayer } = useFindPlayerController();
   const { theme, createPallete } = useThemeContext();
 
   const rankTheme = useMemo(
@@ -31,7 +33,15 @@ const PlayerProfile: React.FC = () => {
     [player, createPallete, theme, loading],
   );
 
-  if (loading) return <ActivityIndicator />;
+  useFocusEffect(
+    useCallback(() => {
+      if (!player.id) return;
+
+      getPlayer(player.id);
+    }, [getPlayer]), // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
+  if (loading && isEmpty(player)) return <ActivityIndicator />;
 
   return (
     <SafeAreaView>
