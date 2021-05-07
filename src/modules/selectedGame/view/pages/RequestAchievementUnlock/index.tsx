@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 // Components
 import { Formik } from 'formik';
@@ -9,8 +9,10 @@ import { Container, Title, Form, Footer } from './styles';
 import IAchievement from 'modules/selectedGame/entities/IAchievement';
 
 // Hooks
+import useRequestAchievementUnlockController from 'modules/selectedGame/infra/controllers/useRequestAchievementUnlockController';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // Schemas
 import RequestAchievementUnlockSchema from 'modules/selectedGame/view/validation/RequestAchievementUnlockSchema';
@@ -35,32 +37,27 @@ const RequestAchievementUnlock: React.FC = () => {
   } = useRoute<RequestAchievementUnlockParams>();
   const { goBack } = useNavigation();
   const toast = useToastContext();
+  const session = useSessionContext();
 
-  // State
-  const [confirmDisabled, setConfirmDisabled] = useState(false);
+  const {
+    loading,
+    requestAchievement,
+  } = useRequestAchievementUnlockController();
 
   const onSubmit = useCallback(
     async values => {
-      setConfirmDisabled(true);
-
-      /* const body = {
-      requester: player._id,
-      achievement: achievement._id,
-      requestDate: new Date(),
-      information: values.information,
-      gameId: session.selectedGame,
-    }; */
-
-      const result = null; // await apiPost('/achievementRegister', body);
+      const result = await requestAchievement({
+        id: achievement.id,
+        information: values.information,
+        playerId: session.playerId,
+      });
 
       if (result !== null) {
         toast.showSuccess('Conquista requisitada!');
         return goBack();
       }
-
-      return setConfirmDisabled(false);
     },
-    [goBack, toast],
+    [goBack, toast, achievement.id, session.playerId, requestAchievement],
   );
 
   return (
@@ -87,7 +84,7 @@ const RequestAchievementUnlock: React.FC = () => {
               Voltar
             </Footer.Back>
 
-            <Footer.Button loading={confirmDisabled}>Confirmar</Footer.Button>
+            <Footer.Button loading={loading}>Confirmar</Footer.Button>
           </Footer.Container>
         </Form>
       </Formik>
