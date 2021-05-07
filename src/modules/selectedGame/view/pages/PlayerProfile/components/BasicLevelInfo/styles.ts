@@ -1,4 +1,5 @@
 import { UserImage } from 'modules/selectedGame/view/components';
+import { Typography } from 'shared/view/components';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -30,13 +31,12 @@ export const LevelInfo = {
     justify-content: center;
     align-items: center;
   `,
-  Text: styled.Text`
+  Text: styled(Typography)`
     color: goldenrod;
     font-weight: bold;
-    font-family: Roboto;
     font-size: 36px;
   `,
-  Exp: styled.Text`
+  Exp: styled(Typography)`
     text-align: center;
   `,
 };
@@ -54,7 +54,7 @@ export const NextLevel = {
     padding: ${({ theme }) => theme.layout.spacing(0, 3)};
     margin-bottom: ${({ theme }) => theme.layout.spacing(4)};
   `,
-  Text: styled.Text`
+  Text: styled(Typography)`
     color: ${({ theme }) => theme.palette.primary.contrast};
   `,
 };

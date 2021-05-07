@@ -1,3 +1,5 @@
 import IPlayer from 'shared/entities/IPlayer';
 
-export default interface IPlayerProfileContext extends IPlayer {}
+export default interface IPlayerProfileContext {
+  player: IPlayer;
+}

@@ -1,4 +1,3 @@
-import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
 import React, { useMemo, useState } from 'react';
 
 // Components
@@ -9,12 +8,13 @@ import ITitle from 'shared/entities/ITitle';
 
 // Hooks
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
 
 import { inputStyles } from './styles';
 
 const TitleSelect: React.FC = () => {
   const { theme } = useThemeContext();
-  const player = usePlayerProfileContext();
+  const { player } = usePlayerProfileContext();
 
   const [currentTitle, setCurrentTitle] = useState<ITitle | undefined>(
     player.currentTitle,

@@ -2,11 +2,14 @@ import React, { useMemo } from 'react';
 
 // Components
 import TitleSelect from '../TitleSelect';
-import ProgressBar from '../../../../../../../components/ProgressBar';
+import ProgressBar from '../ProgressBar';
+
+// Helpers
+import { getPlayerNextLevel } from './helpers';
 
 // Hooks
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
+import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // Styles
 import {
@@ -17,21 +20,27 @@ import {
   Picture,
 } from './styles';
 
-// Utils
-import { getPlayerNextLevel } from '../../utils';
-
 const BasicLevelInfo: React.FC = () => {
-  const { theme } = useThemeContext();
-  const player = usePlayerProfileContext();
+  const session = useSessionContext();
+  const { player } = usePlayerProfileContext();
 
   const playerNextLevel = useMemo(
-    () => getPlayerNextLevel(player?.level, [] /* levelInfo */),
+    () =>
+      player && getPlayerNextLevel(player.level, player.game.levelInfo || []),
     [player],
   );
 
+  const progressToNextLevel = playerNextLevel
+    ? player.experience / playerNextLevel.requiredExperience
+    : 1;
+
+  const missingExpToNextLevel = playerNextLevel
+    ? playerNextLevel.requiredExperience - player.experience
+    : 0;
+
   return (
     <Container>
-      <Picture />
+      <Picture image={session.userData.profile_img} />
 
       <LevelInfo.View>
         <LevelInfo.Text>{player.level}</LevelInfo.Text>
@@ -39,25 +48,13 @@ const BasicLevelInfo: React.FC = () => {
       </LevelInfo.View>
 
       <BarContainer>
-        <ProgressBar
-          unfilledColor={theme.palette.primary.main}
-          fillColor={theme.palette.secondary.main}
-          borderColor={theme.palette.primary.dark}
-          progress={
-            playerNextLevel
-              ? player.experience / playerNextLevel.requiredExperience
-              : 1
-          }
-        />
+        <ProgressBar progress={progressToNextLevel} />
       </BarContainer>
 
       <NextLevel.Container>
-        {playerNextLevel &&
-          playerNextLevel.requiredExperience - player.experience !== 0 && (
-            <NextLevel.Text>
-              Faltam {playerNextLevel.requiredExperience - player.experience} XP
-            </NextLevel.Text>
-          )}
+        {missingExpToNextLevel > 0 && (
+          <NextLevel.Text>Faltam {missingExpToNextLevel} XP</NextLevel.Text>
+        )}
       </NextLevel.Container>
 
       <TitleSelect />
