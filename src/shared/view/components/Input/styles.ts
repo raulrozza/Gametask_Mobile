@@ -23,7 +23,7 @@ export const StyledInput = styled.TextInput<StyledInputProps>`
 
     font-family: ${theme.typography.family.content.main};
 
-    background-color: ${theme.palette.primary.main};
+    background-color: ${theme.palette.gray['0']};
     border: 1px solid
       ${focused
         ? theme.palette.secondary.main

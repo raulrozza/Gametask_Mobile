@@ -14,7 +14,7 @@ export const Picker = styled.View`
   ${({ theme }) => css`
     border-radius: ${theme.layout.borderRadius.small};
     padding: ${theme.layout.spacing(3)};
-    background-color: ${theme.palette.primary.main};
+    background-color: ${theme.palette.gray['0']};
     border: 1px solid ${theme.palette.primary.dark};
   `}
 `;

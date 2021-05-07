@@ -79,6 +79,7 @@ const RequestAchievementUnlock: React.FC = () => {
             name="information"
             multiline={true}
             placeholder="Como desbloqueou a conquista?"
+            fullWidth
           />
 
           <Footer.Container>
