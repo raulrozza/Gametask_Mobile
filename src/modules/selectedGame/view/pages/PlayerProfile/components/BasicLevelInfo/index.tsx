@@ -26,7 +26,7 @@ const BasicLevelInfo: React.FC = () => {
 
   const playerNextLevel = useMemo(
     () =>
-      player && getPlayerNextLevel(player.level, player.game.levelInfo || []),
+      player && getPlayerNextLevel(player.level, player.game?.levelInfo || []),
     [player],
   );
 

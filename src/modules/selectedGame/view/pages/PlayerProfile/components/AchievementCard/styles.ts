@@ -28,4 +28,5 @@ export const Image = styled(AchievementImage)`
 export const Text = styled(Typography)`
   font-weight: bold;
   color: ${({ theme }) => theme.palette.secondary.main};
+  text-align: center;
 `;

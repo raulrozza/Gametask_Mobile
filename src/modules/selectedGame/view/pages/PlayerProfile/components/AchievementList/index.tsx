@@ -1,24 +1,27 @@
 import React, { useMemo } from 'react';
 
 // Components
+import { Container, Title } from './styles';
+import { ActivityIndicator } from 'react-native';
 import AchievementCard from '../AchievementCard';
 
 // Helpers
 import { addObtainedFieldToAchievements } from './helpers';
 
 // Hooks
+import useGetAchievementsController from 'modules/selectedGame/infra/controllers/useGetAchievementsController';
 import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
-
-// Styles
-import { Container, Title } from './styles';
 
 const AchievementList: React.FC = () => {
   const { player } = usePlayerProfileContext();
+  const { loading, achievements } = useGetAchievementsController();
 
   const achievementsWithObtainedFlag = useMemo(
-    () => addObtainedFieldToAchievements([], player),
-    [player],
+    () => addObtainedFieldToAchievements(achievements, player),
+    [player, achievements],
   );
+
+  if (loading) return <ActivityIndicator />;
 
   if (achievementsWithObtainedFlag.length <= 0) return null;
 
