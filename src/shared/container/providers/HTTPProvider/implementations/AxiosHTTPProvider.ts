@@ -8,7 +8,7 @@ export default class AxiosHTTPProvider implements IHTTPProvider {
   };
 
   public removeHeader: IHTTPProvider['removeHeader'] = key => {
-    delete Http.instance.defaults.headers[key];
+    Reflect.deleteProperty(Http.instance.defaults.headers, key);
   };
 
   public delete: IHTTPProvider['delete'] = async (path, config) => {
