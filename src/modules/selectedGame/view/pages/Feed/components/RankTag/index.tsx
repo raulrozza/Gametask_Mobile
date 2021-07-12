@@ -17,8 +17,7 @@ const RankTag: React.FC<RankTagProps> = ({ rank }) => {
   if (rank)
     return (
       <RankChip backgroundColor={rank.color} color={getTextColor(rank.color)}>
-        {' '}
-        {rank.tag}{' '}
+        {` ${rank.tag} `}
       </RankChip>
     );
 

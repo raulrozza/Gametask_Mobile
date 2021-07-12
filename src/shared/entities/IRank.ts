@@ -1,5 +1,5 @@
 export default interface IRank {
-  color: string;
+  color?: string;
   level: number;
   name: string;
   tag: string;
