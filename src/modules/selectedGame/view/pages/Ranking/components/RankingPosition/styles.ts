@@ -8,7 +8,11 @@ interface IconProps {
   index: number;
 }
 
-const trophyColor = ['gold', 'silver', 'bronze'];
+const trophyColor = [
+  '#d4af37', // gold
+  '#C0C0C0', // silver
+  '#b08d57', // bronze
+];
 
 export const Container = styled.View`
   width: 100%;
