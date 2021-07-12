@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 // Components
 import { FlatList } from 'react-native-gesture-handler';
@@ -24,6 +24,11 @@ const Ranking: React.FC = () => {
     }, [getLeaderboard]),
   );
 
+  const orderedPositions = useMemo(
+    () => leaderboard?.position.sort((a, b) => b.experience - a.experience),
+    [leaderboard],
+  );
+
   return (
     <Container>
       <FlatList
@@ -32,7 +37,7 @@ const Ranking: React.FC = () => {
         contentContainerStyle={{
           width: '100%',
         }}
-        data={leaderboard?.position}
+        data={orderedPositions}
         keyExtractor={item => item.player.id}
         ListEmptyComponent={() => <EmptyList />}
         renderItem={({ item, index }) => (
