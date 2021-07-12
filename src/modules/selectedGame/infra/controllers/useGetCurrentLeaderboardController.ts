@@ -7,6 +7,7 @@ import useToastContext from 'shared/container/contexts/ToastContext/contexts/use
 interface UseGetCurrentLeaderboardController {
   loading: boolean;
   leaderboard: ILeaderboard | null;
+  getLeaderboard(): Promise<void>;
 }
 
 export default function useGetCurrentLeaderboardController(): UseGetCurrentLeaderboardController {
@@ -53,5 +54,6 @@ export default function useGetCurrentLeaderboardController(): UseGetCurrentLeade
   return {
     loading,
     leaderboard,
+    getLeaderboard: fetchLeaderboard,
   };
 }

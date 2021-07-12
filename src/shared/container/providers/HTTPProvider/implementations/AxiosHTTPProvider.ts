@@ -23,6 +23,7 @@ export default class AxiosHTTPProvider implements IHTTPProvider {
   public get: IHTTPProvider['get'] = async (path, config) => {
     try {
       const response = await Http.instance.get(path, config);
+
       return response.data;
     } catch (error) {
       throw new RequestError(error);

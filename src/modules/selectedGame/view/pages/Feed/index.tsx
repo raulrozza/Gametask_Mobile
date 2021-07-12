@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 // Components
 import { EmptyList, FeedPost } from './components';
@@ -12,9 +12,16 @@ import { FlatList } from 'react-native-gesture-handler';
 
 // Styles
 import { Container } from './styles';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Feed: React.FC = () => {
   const { loading, posts, getPosts } = useGetFeedPostsController();
+
+  useFocusEffect(
+    useCallback(() => {
+      getPosts();
+    }, [getPosts]),
+  );
 
   return (
     <Container>

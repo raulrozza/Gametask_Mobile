@@ -1,7 +1,6 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 // Components
-import Button from 'shared/view/components/Button';
 import GameImage from 'modules/chooseGame/view/components/GameImage';
 
 export const Container = styled.View`
@@ -56,5 +55,7 @@ export const GameContainer = {
     font-size: 16px;
     text-align: center;
   `,
-  Button: styled(Button)``,
+  buttonTextStyle: css`
+    margin: ${({ theme }) => theme.layout.spacing(0, 2)};
+  `,
 };

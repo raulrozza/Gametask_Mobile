@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 // Components
 import { FlatList } from 'react-native-gesture-handler';
@@ -9,9 +9,20 @@ import useGetCurrentLeaderboardController from 'modules/selectedGame/infra/contr
 
 // Styles
 import { Container } from './styles';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Ranking: React.FC = () => {
-  const { loading, leaderboard } = useGetCurrentLeaderboardController();
+  const {
+    loading,
+    leaderboard,
+    getLeaderboard,
+  } = useGetCurrentLeaderboardController();
+
+  useFocusEffect(
+    useCallback(() => {
+      getLeaderboard();
+    }, [getLeaderboard]),
+  );
 
   return (
     <Container>

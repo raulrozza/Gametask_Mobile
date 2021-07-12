@@ -1,5 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
 
+// Components
+import Button from 'shared/view/components/Button';
+
 // Hooks
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import useGetGameController from 'modules/chooseGame/infra/controllers/useGetGameController';
@@ -75,12 +78,13 @@ const GameInvite: React.FC = () => {
             {game.description}
           </GameContainer.Description>
 
-          <GameContainer.Button
+          <Button
             onPress={handleAcceptInvitation}
             loading={loadingCreate}
+            textStyle={GameContainer.buttonTextStyle}
           >
             Aceitar convite
-          </GameContainer.Button>
+          </Button>
         </GameContainer.Wrapper>
       </ThemeProvider>
     </Container>
