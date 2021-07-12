@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 // Components
 import { FontAwesome } from '@expo/vector-icons';
@@ -31,11 +31,23 @@ export const Image = styled(UserImage)`
   margin-right: ${({ theme }) => theme.layout.spacing(2)};
 `;
 
+export const PositionBlock = styled.View`
+  ${({ theme }) => css`
+    margin-right: ${theme.layout.spacing(1)};
+    background-color: ${theme.palette.secondary.light};
+    padding: ${theme.layout.spacing(0, 2)};
+    border-radius: ${theme.layout.borderRadius.small};
+  `}
+`;
+
 export const Text = {
   Position: styled.Text`
-    margin-right: ${({ theme }) => theme.layout.spacing(1)};
-    font-weight: bold;
-    font-size: 24px;
+    ${({ theme }) => css`
+      font-weight: bold;
+      font-size: 24px;
+
+      color: ${theme.palette.secondary.contrast};
+    `}
   `,
   Name: styled.Text`
     color: ${({ theme }) => theme.palette.secondary.light};
