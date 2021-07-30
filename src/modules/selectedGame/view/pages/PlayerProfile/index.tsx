@@ -41,7 +41,7 @@ const PlayerProfile: React.FC = () => {
     }, [getPlayer]), // eslint-disable-line react-hooks/exhaustive-deps
   );
 
-  if (loading && isEmpty(player)) return <ActivityIndicator />;
+  if (loading || isEmpty(player)) return <ActivityIndicator />;
 
   return (
     <SafeAreaView>

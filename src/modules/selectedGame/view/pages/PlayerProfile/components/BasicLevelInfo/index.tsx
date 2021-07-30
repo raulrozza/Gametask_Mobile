@@ -40,7 +40,7 @@ const BasicLevelInfo: React.FC = () => {
 
   return (
     <Container>
-      <Picture image={session.userData.profile_url} />
+      <Picture image={player.user.profile_url} />
 
       <LevelInfo.View>
         <LevelInfo.Text>{player.level}</LevelInfo.Text>
