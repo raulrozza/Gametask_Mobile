@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components/native';
 
 // Components
 import { MaterialIcons } from '@expo/vector-icons';
+import { Dimensions } from 'react-native';
+import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export const Wrapper = styled.View`
   flex: 1;
@@ -62,3 +64,24 @@ export const PasteGroup = {
     color: ${({ theme }) => theme.palette.secondary.main};
   `,
 };
+
+export const ScannerContainer = styled.View`
+  ${({ theme }) => css`
+    margin-bottom: ${theme.layout.spacing(4)};
+  `}
+`;
+
+export const CodeScanner = styled(BarCodeScanner)`
+  ${({ theme }) => {
+    const { width, height } = Dimensions.get('window');
+
+    return css`
+      width: ${width}px;
+      height: ${height}px;
+
+      border-radius: ${theme.layout.borderRadius.medium};
+
+      border: 1px solid ${theme.palette.secondary.main};
+    `;
+  }}
+`;
