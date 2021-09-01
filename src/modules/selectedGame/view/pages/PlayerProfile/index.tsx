@@ -10,7 +10,7 @@ import PlayerProfileContext from 'modules/selectedGame/container/contexts/Player
 import { ThemeProvider } from 'styled-components';
 
 // Hooks
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+import { useThemeContext } from 'shared/view/contexts';
 import useFindPlayerController from 'modules/selectedGame/infra/controllers/useFindPlayerController';
 import { useFocusEffect } from '@react-navigation/core';
 import { isEmpty } from 'lodash';

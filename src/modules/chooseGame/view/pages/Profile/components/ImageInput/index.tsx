@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // Hooks
 import { useField } from 'formik';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import { useToastContext } from 'shared/view/contexts';
 
 // Libs
 import * as ImagePicker from 'expo-image-picker';

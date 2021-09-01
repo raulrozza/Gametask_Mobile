@@ -2,10 +2,10 @@ import React, { useCallback } from 'react';
 
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 
-import { ToastContextProvider } from 'shared/container/contexts/ToastContext/contexts/useToastContext';
 import IToastContext from 'shared/domain/providers/IToastContext';
+import { ToastContextProvider } from 'shared/view/contexts/ToastContext/hooks/useToastContext';
 
-const ReactToastifyToastContext: React.FC = ({ children }) => {
+const FlashMessageToastContext: React.FC = ({ children }) => {
   const showError = useCallback<IToastContext['showError']>(
     message =>
       showMessage({
@@ -42,4 +42,4 @@ const ReactToastifyToastContext: React.FC = ({ children }) => {
   );
 };
 
-export default ReactToastifyToastContext;
+export default FlashMessageToastContext;

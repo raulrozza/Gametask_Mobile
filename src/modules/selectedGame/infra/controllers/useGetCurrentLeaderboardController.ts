@@ -1,8 +1,8 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
 import ILeaderboard from 'modules/selectedGame/entities/ILeaderboard';
 import makeGetCurrentLeaderboard from 'modules/selectedGame/services/factories/makeGetCurrentLeaderboard';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
 interface UseGetCurrentLeaderboardController {
   loading: boolean;

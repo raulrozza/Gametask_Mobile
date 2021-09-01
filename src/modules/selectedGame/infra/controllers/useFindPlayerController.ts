@@ -1,8 +1,8 @@
-import makeFindPlayerService from 'modules/selectedGame/services/factories/makeFindPlayerService';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+
+import makeFindPlayerService from 'modules/selectedGame/services/factories/makeFindPlayerService';
 import IPlayer from 'shared/domain/entities/IPlayer';
+import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
 interface UseFindPlayerController {
   loading: boolean;

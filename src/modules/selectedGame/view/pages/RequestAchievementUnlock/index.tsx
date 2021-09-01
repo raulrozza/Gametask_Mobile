@@ -1,21 +1,22 @@
 import React, { useCallback } from 'react';
 
 // Components
+import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { Formik } from 'formik';
-import { Input } from 'shared/view/components';
-import { Container, Title, Form, Footer } from './styles';
 
 // Entities
 import IAchievement from 'modules/selectedGame/entities/IAchievement';
 
 // Hooks
 import useRequestAchievementUnlockController from 'modules/selectedGame/infra/controllers/useRequestAchievementUnlockController';
-import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
+import RequestAchievementUnlockSchema from 'modules/selectedGame/view/validation/RequestAchievementUnlockSchema';
+import { Input } from 'shared/view/components';
+import { useSessionContext } from 'shared/view/contexts';
 
 // Schemas
-import RequestAchievementUnlockSchema from 'modules/selectedGame/view/validation/RequestAchievementUnlockSchema';
+import { useToastContext } from 'shared/view/contexts';
+
+import { Container, Title, Form, Footer } from './styles';
 
 const initialValues = {
   information: '',

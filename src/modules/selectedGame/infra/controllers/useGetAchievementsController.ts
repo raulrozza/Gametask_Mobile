@@ -1,8 +1,9 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
 import IAchievement from 'modules/selectedGame/entities/IAchievement';
 import makeGetAchievementsService from 'modules/selectedGame/services/factories/makeGetAchievementsService';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import { useSessionContext } from 'shared/view/contexts';
+import { useToastContext } from 'shared/view/contexts';
 
 interface UseGetAchievementsController {
   loading: boolean;

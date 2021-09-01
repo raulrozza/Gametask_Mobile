@@ -1,12 +1,12 @@
 import React from 'react';
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Navigation
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 
 // Pages
 import SelectedGameGameRoutes from 'modules/selectedGame/infra/routes/game';
+import { useThemeContext } from 'shared/view/contexts';
 
 const Tab = createBottomTabNavigator();
 

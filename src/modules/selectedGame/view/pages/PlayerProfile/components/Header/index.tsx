@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Hooks
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
+import { useSessionContext } from 'shared/view/contexts';
 
 // Styles
 import { Container, Name, Title } from './styles';

@@ -8,7 +8,7 @@ import { BarCodeScannedCallback } from 'expo-barcode-scanner';
 // Hooks
 import { useNavigation } from '@react-navigation/native';
 import { useCodeScannerPermission } from './hooks';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import { useToastContext } from 'shared/view/contexts';
 
 // Providers
 import { makeCryptoProvider } from 'modules/chooseGame/container/providers';

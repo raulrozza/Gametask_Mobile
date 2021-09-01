@@ -4,11 +4,11 @@ import lodash from 'lodash';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 
 import defaultTheme from 'config/theme';
-import { ThemeContextProvider } from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 import IThemeContext, {
   ISwitchThemeArgs,
 } from 'shared/domain/providers/IThemeContext';
 import makeStorageProvider from 'shared/infra/providers/factories/makeStorageProvider';
+import { ThemeContextProvider } from 'shared/view/contexts/ThemeContext/hooks/useThemeContext';
 
 import { getNewPalette } from './helpers';
 

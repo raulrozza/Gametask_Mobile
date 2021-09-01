@@ -1,8 +1,10 @@
-import { useField } from 'formik';
-import { darken } from 'polished';
 import React, { useState } from 'react';
 import { TextInputProps } from 'react-native';
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+
+import { useField } from 'formik';
+import { darken } from 'polished';
+
+import { useThemeContext } from 'shared/view/contexts';
 
 // Styles
 import { Container, ErrorField, ErrorFieldText, StyledInput } from './styles';

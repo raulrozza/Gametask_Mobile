@@ -1,15 +1,16 @@
 import React, { useMemo } from 'react';
 
 // Components
-import TitleSelect from '../TitleSelect';
+import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
+import { useSessionContext } from 'shared/view/contexts';
+
 import ProgressBar from '../ProgressBar';
+import TitleSelect from '../TitleSelect';
 
 // Helpers
 import { getPlayerNextLevel } from './helpers';
 
 // Hooks
-import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
 // Styles
 import {

@@ -7,7 +7,7 @@ import RNPCSelect from 'react-native-picker-select';
 import ITitle from 'shared/domain/entities/ITitle';
 
 // Hooks
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+import { useThemeContext } from 'shared/view/contexts';
 import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
 
 import { inputStyles } from './styles';

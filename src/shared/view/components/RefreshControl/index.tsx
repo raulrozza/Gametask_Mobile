@@ -2,7 +2,8 @@ import React from 'react';
 
 // Libs
 import { RefreshControl as RNRefresh, RefreshControlProps } from 'react-native';
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+
+import { useThemeContext } from 'shared/view/contexts';
 
 const RefreshControl: React.FC<RefreshControlProps> = ({ ...props }) => {
   const { theme } = useThemeContext();

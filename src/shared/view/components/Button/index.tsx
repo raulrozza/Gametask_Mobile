@@ -1,12 +1,14 @@
 import React from 'react';
 import { ActivityIndicator, StyleProp, ViewStyle } from 'react-native';
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+
 import {
   DefaultTheme,
   FlattenInterpolation,
   StyledComponent,
   ThemeProps,
 } from 'styled-components';
+
+import { useThemeContext } from 'shared/view/contexts';
 
 // Styles
 import {

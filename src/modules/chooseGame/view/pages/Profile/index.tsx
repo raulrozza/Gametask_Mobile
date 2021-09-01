@@ -8,8 +8,8 @@ import { Form, InputGroup } from './styles';
 
 // Hooks
 import { useNavigation } from '@react-navigation/native';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
+import { useToastContext } from 'shared/view/contexts';
+import { useSessionContext } from 'shared/view/contexts';
 import useUpdateUserController from 'modules/chooseGame/infra/controllers/useUpdateUserController';
 import useGetUserController from 'modules/chooseGame/infra/controllers/useGetUserController';
 

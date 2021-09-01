@@ -1,10 +1,11 @@
 import React from 'react';
 
 // Hooks
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+import { useSessionContext } from 'shared/view/contexts';
 
 // Icons
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Styles
 import { Button, Container, Icon, ThinText } from './styles';

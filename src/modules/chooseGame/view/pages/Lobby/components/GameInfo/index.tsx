@@ -4,7 +4,7 @@ import React, { useCallback } from 'react';
 import IPlayer from 'shared/domain/entities/IPlayer';
 
 // Hooks
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
+import { useSessionContext } from 'shared/view/contexts';
 
 // Styles
 import { Button, Container, Description, Info, Image, Title } from './styles';

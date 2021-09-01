@@ -1,5 +1,4 @@
 import React from 'react';
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 
 // Navigation
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -7,6 +6,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 // Pages
 import Feed from 'modules/selectedGame/view/pages/Feed';
 import Ranking from 'modules/selectedGame/view/pages/Ranking';
+import { useThemeContext } from 'shared/view/contexts';
 
 const Tab = createMaterialTopTabNavigator();
 
