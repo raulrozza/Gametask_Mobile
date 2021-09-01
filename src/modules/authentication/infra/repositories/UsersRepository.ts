@@ -1,7 +1,7 @@
 import IUserLoginDTO from 'modules/authentication/domain/dtos/IUserLoginDTO';
 import IUserSignupDTO from 'modules/authentication/domain/dtos/IUserSignupDTO';
 import IUserAuthentication from 'modules/authentication/domain/entities/IUserAuthentication';
-import IUsersRepository from 'modules/authentication/repositories/IUsersRepository';
+import IUsersRepository from 'modules/authentication/domain/repositories/IUsersRepository';
 import IUser from 'shared/domain/entities/IUser';
 import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 
