@@ -1,4 +1,4 @@
-import IPlayersRepository from 'modules/chooseGame/repositories/IPlayersRepository';
+import IPlayersRepository from 'modules/chooseGame/domain/repositories/IPlayersRepository';
 import IPlayer from 'shared/domain/entities/IPlayer';
 import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 

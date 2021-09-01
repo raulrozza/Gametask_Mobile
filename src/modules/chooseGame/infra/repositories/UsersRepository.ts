@@ -1,6 +1,6 @@
 import IUsersRepository, {
   IUpdateParams,
-} from 'modules/chooseGame/repositories/IUsersRepository';
+} from 'modules/chooseGame/domain/repositories/IUsersRepository';
 import IUser from 'shared/domain/entities/IUser';
 import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 
