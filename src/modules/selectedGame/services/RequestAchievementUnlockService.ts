@@ -1,4 +1,4 @@
-import IRequestAchievementDTO from 'modules/selectedGame/dtos/IRequestAchievementDTO';
+import IRequestAchievementDTO from 'modules/selectedGame/domain/dtos/IRequestAchievementDTO';
 import IRequestsRepository from 'modules/selectedGame/repositories/IRequestsRepository';
 
 interface IExecute {

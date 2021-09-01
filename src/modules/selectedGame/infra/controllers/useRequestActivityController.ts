@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import IRequestActivityDTO from 'modules/selectedGame/dtos/IRequestActivityDTO';
+import IRequestActivityDTO from 'modules/selectedGame/domain/dtos/IRequestActivityDTO';
 import makeRequestActivityService from 'modules/selectedGame/services/factories/makeRequestActivityService';
 import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
