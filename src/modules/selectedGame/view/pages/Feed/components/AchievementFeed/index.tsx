@@ -1,4 +1,4 @@
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
 import React from 'react';
 
 // Components

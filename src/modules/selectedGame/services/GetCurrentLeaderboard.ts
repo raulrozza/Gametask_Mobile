@@ -1,4 +1,4 @@
-import ILeaderboard from 'modules/selectedGame/entities/ILeaderboard';
+import ILeaderboard from 'modules/selectedGame/domain/entities/ILeaderboard';
 import ILeaderboardsRepository from 'modules/selectedGame/repositories/ILeaderboardsRepository';
 
 interface IExecute {

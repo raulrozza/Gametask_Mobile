@@ -1,4 +1,4 @@
-import IAchievement from 'modules/selectedGame/entities/IAchievement';
+import IAchievement from 'modules/selectedGame/domain/entities/IAchievement';
 import IAchievementsRepository from 'modules/selectedGame/repositories/IAchievementsRepository';
 
 interface IExecute {

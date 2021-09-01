@@ -7,7 +7,7 @@ import LevelUpFeed from '../LevelUpFeed';
 import RankFeed from '../RankFeed';
 
 // Entities
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
 
 // Helpers
 import { formatDate } from 'modules/selectedGame/view/helpers';

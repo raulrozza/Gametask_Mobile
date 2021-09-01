@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Entities
-import IActivity from 'modules/selectedGame/entities/IActivity';
+import IActivity from 'modules/selectedGame/domain/entities/IActivity';
 
 // Hooks
 import { useNavigation } from '@react-navigation/native';

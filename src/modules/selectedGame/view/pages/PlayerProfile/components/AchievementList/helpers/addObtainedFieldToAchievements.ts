@@ -1,4 +1,4 @@
-import IAchievement from 'modules/selectedGame/entities/IAchievement';
+import IAchievement from 'modules/selectedGame/domain/entities/IAchievement';
 import IPlayer from 'shared/domain/entities/IPlayer';
 
 export default function addObtainedFieldToAchievements(

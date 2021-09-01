@@ -5,7 +5,7 @@ import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { Formik } from 'formik';
 
 // Entities
-import IAchievement from 'modules/selectedGame/entities/IAchievement';
+import IAchievement from 'modules/selectedGame/domain/entities/IAchievement';
 
 // Hooks
 import useRequestAchievementUnlockController from 'modules/selectedGame/infra/controllers/useRequestAchievementUnlockController';

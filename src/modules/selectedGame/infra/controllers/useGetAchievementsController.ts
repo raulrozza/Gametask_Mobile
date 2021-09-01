@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import IAchievement from 'modules/selectedGame/entities/IAchievement';
+import IAchievement from 'modules/selectedGame/domain/entities/IAchievement';
 import makeGetAchievementsService from 'modules/selectedGame/services/factories/makeGetAchievementsService';
 import { useSessionContext } from 'shared/view/contexts';
 import { useToastContext } from 'shared/view/contexts';

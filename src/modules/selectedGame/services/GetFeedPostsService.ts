@@ -1,4 +1,4 @@
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
 import IFeedPostsRepository from 'modules/selectedGame/repositories/IFeedPostsRepository';
 
 interface IExecute {

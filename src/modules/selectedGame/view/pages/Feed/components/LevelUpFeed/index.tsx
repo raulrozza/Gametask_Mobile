@@ -1,4 +1,4 @@
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
 import FeedText from '../FeedText';
 import RankTag from '../RankTag';
 import React from 'react';

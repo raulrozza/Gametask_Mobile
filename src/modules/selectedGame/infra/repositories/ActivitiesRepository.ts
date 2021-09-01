@@ -1,4 +1,4 @@
-import IActivity from 'modules/selectedGame/entities/IActivity';
+import IActivity from 'modules/selectedGame/domain/entities/IActivity';
 import IActivitiesRepository from 'modules/selectedGame/repositories/IActivitiesRepository';
 import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import ILeaderboard from 'modules/selectedGame/entities/ILeaderboard';
+import ILeaderboard from 'modules/selectedGame/domain/entities/ILeaderboard';
 import makeGetCurrentLeaderboard from 'modules/selectedGame/services/factories/makeGetCurrentLeaderboard';
 import { useSessionContext, useToastContext } from 'shared/view/contexts';
 

@@ -1,4 +1,4 @@
-import IActivity from 'modules/selectedGame/entities/IActivity';
+import IActivity from 'modules/selectedGame/domain/entities/IActivity';
 
 export default interface IActivitiesRepository {
   findAll(): Promise<IActivity[]>;

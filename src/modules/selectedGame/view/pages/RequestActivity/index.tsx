@@ -4,7 +4,7 @@ import React, { useCallback } from 'react';
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
 
-import IActivity from 'modules/selectedGame/entities/IActivity';
+import IActivity from 'modules/selectedGame/domain/entities/IActivity';
 
 // Components
 import useRequestActivityController from 'modules/selectedGame/infra/controllers/useRequestActivityController';

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
 import makeGetFeedPostsService from 'modules/selectedGame/services/factories/makeGetFeedPostsService';
 import { useSessionContext } from 'shared/view/contexts';
 import { useToastContext } from 'shared/view/contexts';

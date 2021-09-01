@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import IActivity from 'modules/selectedGame/entities/IActivity';
+import IActivity from 'modules/selectedGame/domain/entities/IActivity';
 import makeGetActivitiesService from 'modules/selectedGame/services/factories/makeGetActivitiesService';
 import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
