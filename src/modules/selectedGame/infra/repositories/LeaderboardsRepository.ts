@@ -1,6 +1,6 @@
 import ILeaderboard from 'modules/selectedGame/entities/ILeaderboard';
 import ILeaderboardsRepository from 'modules/selectedGame/repositories/ILeaderboardsRepository';
-import { makeHttpProvider } from 'shared/container/providers';
+import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 
 export default class LeaderboardsRepository implements ILeaderboardsRepository {
   private httpProvider = makeHttpProvider();

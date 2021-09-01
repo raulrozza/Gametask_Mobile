@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import ISessionContext from 'shared/container/contexts/SessionContext/models/ISessionContext';
+
 import { SessionContextProvider } from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import {
-  makeHttpProvider,
-  makeJwtProvider,
-  makeStorageProvider,
-} from 'shared/container/providers';
+import ISessionContext from 'shared/container/contexts/SessionContext/models/ISessionContext';
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
+import makeJwtProvider from 'shared/infra/providers/factories/makeJwtProvider';
+import makeStorageProvider from 'shared/infra/providers/factories/makeStorageProvider';
 
 const USER_STORAGE_KEY = '@GameTask/token';
 const GAME_STORAGE_KEY = '@GameTask/game';

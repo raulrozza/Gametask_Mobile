@@ -1,8 +1,8 @@
 import IUsersRepository, {
   IUpdateParams,
 } from 'modules/chooseGame/repositories/IUsersRepository';
-import { makeHttpProvider } from 'shared/container/providers';
 import IUser from 'shared/domain/entities/IUser';
+import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 
 const FILETYPE_REGEX = /\.(\w+)$/;
 

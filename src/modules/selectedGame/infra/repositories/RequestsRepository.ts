@@ -1,7 +1,7 @@
 import IRequestAchievementDTO from 'modules/selectedGame/dtos/IRequestAchievementDTO';
 import IRequestActivityDTO from 'modules/selectedGame/dtos/IRequestActivityDTO';
 import IRequestsRepository from 'modules/selectedGame/repositories/IRequestsRepository';
-import { makeHttpProvider } from 'shared/container/providers';
+import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 
 export default class RequestsRepository implements IRequestsRepository {
   private httpProvider = makeHttpProvider();
