@@ -1,12 +1,12 @@
 import React from 'react';
 
-// Entities
+
 import IActivity from 'modules/selectedGame/domain/entities/IActivity';
 
-// Hooks
+
 import { useNavigation } from '@react-navigation/native';
 
-// Styles
+
 import {
   Container,
   Description,

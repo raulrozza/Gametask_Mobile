@@ -1,8 +1,7 @@
+import { FontAwesome } from '@expo/vector-icons';
+import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
-// Components
-import { RectButton } from 'react-native-gesture-handler';
-import { FontAwesome } from '@expo/vector-icons';
 import { Typography } from 'shared/view/components';
 
 export const Row = styled.View`

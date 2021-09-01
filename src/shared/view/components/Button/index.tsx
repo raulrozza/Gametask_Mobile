@@ -10,7 +10,6 @@ import {
 
 import { useThemeContext } from 'shared/view/contexts';
 
-// Styles
 import {
   RectContainer,
   StyledContainer,

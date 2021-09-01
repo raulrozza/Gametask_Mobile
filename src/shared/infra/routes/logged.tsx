@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Hooks
 import ChooseGameLoggedRoutes from 'modules/chooseGame/infra/routes/logged';
 import GameRoutes from 'shared/infra/routes/game';
 import { useSessionContext } from 'shared/view/contexts';

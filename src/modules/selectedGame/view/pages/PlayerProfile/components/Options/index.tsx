@@ -1,13 +1,13 @@
 import React from 'react';
 
-// Hooks
+
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { useSessionContext } from 'shared/view/contexts';
 
 // Icons
 
-// Styles
+
 import { Button, Container, Icon, ThinText } from './styles';
 
 const Options: React.FC = () => {

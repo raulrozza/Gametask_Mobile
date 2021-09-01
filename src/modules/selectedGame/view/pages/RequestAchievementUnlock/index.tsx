@@ -1,13 +1,9 @@
 import React, { useCallback } from 'react';
 
-// Components
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { Formik } from 'formik';
 
-// Entities
 import IAchievement from 'modules/selectedGame/domain/entities/IAchievement';
-
-// Hooks
 import useRequestAchievementUnlockController from 'modules/selectedGame/infra/controllers/useRequestAchievementUnlockController';
 import RequestAchievementUnlockSchema from 'modules/selectedGame/view/validation/RequestAchievementUnlockSchema';
 import { Input } from 'shared/view/components';
@@ -32,7 +28,6 @@ type RequestAchievementUnlockParams = RouteProp<
 >;
 
 const RequestAchievementUnlock: React.FC = () => {
-  // Hooks
   const {
     params: { achievement },
   } = useRoute<RequestAchievementUnlockParams>();

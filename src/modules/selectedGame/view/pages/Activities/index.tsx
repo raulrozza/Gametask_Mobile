@@ -1,15 +1,15 @@
 import React from 'react';
 
-// Components
+
 import { ActivityCard, EmptyList } from './components';
 import { RefreshControl } from 'shared/view/components';
 import { FlatList } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-// Hooks
+
 import useGetActivitiesController from 'modules/selectedGame/infra/controllers/useGetActivitiesController';
 
-// Styles
+
 import { Container, PageTitle, Description, ActivityContainer } from './styles';
 import IActivity from 'modules/selectedGame/domain/entities/IActivity';
 

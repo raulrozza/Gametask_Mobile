@@ -1,9 +1,8 @@
-import styled, { css } from 'styled-components/native';
-
-// Components
-import { MaterialIcons } from '@expo/vector-icons';
 import { Dimensions } from 'react-native';
+
+import { MaterialIcons } from '@expo/vector-icons';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import styled, { css } from 'styled-components/native';
 
 export const Wrapper = styled.View`
   flex: 1;

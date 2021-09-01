@@ -1,6 +1,9 @@
-import { PlayerProfileContextProvider } from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
-import IPlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/models/IPlayerProfileContext';
 import React from 'react';
+
+import {
+  IPlayerProfileContext,
+  PlayerProfileContextProvider,
+} from 'modules/selectedGame/view/contexts/PlayerProfileContext/hooks/usePlayerProfileContext';
 
 const DefaultPlayerProfileContext: React.FC<IPlayerProfileContext> = ({
   player,

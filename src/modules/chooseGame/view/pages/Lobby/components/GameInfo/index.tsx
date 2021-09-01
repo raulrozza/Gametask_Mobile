@@ -1,12 +1,10 @@
 import React, { useCallback } from 'react';
 
-// Entities
-import IPlayer from 'shared/domain/entities/IPlayer';
 
-// Hooks
+import IPlayer from 'shared/domain/entities/IPlayer';
 import { useSessionContext } from 'shared/view/contexts';
 
-// Styles
+
 import { Button, Container, Description, Info, Image, Title } from './styles';
 
 interface GameInfoProps {

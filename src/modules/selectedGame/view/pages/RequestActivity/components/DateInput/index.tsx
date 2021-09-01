@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react';
 
-// Components
+
 import DatePicker from '@react-native-community/datetimepicker';
 import { Container, ErrorField, ErrorFieldText, Picker, Text } from './styles';
 
-// Helpers
+
 import { formatDate } from 'modules/selectedGame/view/helpers';
 
-// Hooks
+
 import { useField } from 'formik';
 
 const DateInput: React.FC = () => {

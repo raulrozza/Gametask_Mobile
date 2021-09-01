@@ -1,7 +1,7 @@
 import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
 import React from 'react';
 
-// Components
+
 import FeedText from '../FeedText';
 import RankTag from '../RankTag';
 

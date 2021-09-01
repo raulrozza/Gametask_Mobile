@@ -1,5 +1,10 @@
-import IPlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/models/IPlayerProfileContext';
 import { createContext, useContext } from 'react';
+
+import IPlayer from 'shared/domain/entities/IPlayer';
+
+export interface IPlayerProfileContext {
+  player: IPlayer;
+}
 
 export const PlayerProfileContextProvider = createContext<IPlayerProfileContext>(
   {} as IPlayerProfileContext,

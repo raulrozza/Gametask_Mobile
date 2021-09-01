@@ -6,7 +6,6 @@ import { darken } from 'polished';
 
 import { useThemeContext } from 'shared/view/contexts';
 
-// Styles
 import { Container, ErrorField, ErrorFieldText, StyledInput } from './styles';
 
 interface InputProps {

@@ -3,7 +3,6 @@ import { StatusBar } from 'react-native';
 
 import { AppLoading } from 'expo';
 
-// Hooks
 import LoggedRoutes from 'shared/infra/routes/logged';
 import PublicRoutes from 'shared/infra/routes/public';
 import { useSessionContext, useThemeContext } from 'shared/view/contexts';

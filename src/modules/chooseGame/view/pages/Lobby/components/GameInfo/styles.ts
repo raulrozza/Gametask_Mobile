@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 
-// Components
 import GameImage from 'modules/chooseGame/view/components/GameImage';
 import DefaultButton from 'shared/view/components/Button';
 

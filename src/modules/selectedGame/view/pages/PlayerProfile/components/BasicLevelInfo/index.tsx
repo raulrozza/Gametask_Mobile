@@ -1,18 +1,10 @@
 import React, { useMemo } from 'react';
 
-// Components
-import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
-import { useSessionContext } from 'shared/view/contexts';
+import { usePlayerProfileContext } from 'modules/selectedGame/view/contexts';
 
 import ProgressBar from '../ProgressBar';
 import TitleSelect from '../TitleSelect';
-
-// Helpers
 import { getPlayerNextLevel } from './helpers';
-
-// Hooks
-
-// Styles
 import {
   BarContainer,
   Container,
@@ -22,7 +14,6 @@ import {
 } from './styles';
 
 const BasicLevelInfo: React.FC = () => {
-  const session = useSessionContext();
   const { player } = usePlayerProfileContext();
 
   const playerNextLevel = useMemo(

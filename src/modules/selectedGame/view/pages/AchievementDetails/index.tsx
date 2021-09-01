@@ -1,13 +1,9 @@
 import React from 'react';
 
-// Entities
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 
 import IAchievement from 'modules/selectedGame/domain/entities/IAchievement';
 
-// Hooks
-
-// Styles
 import {
   Container,
   Picture,

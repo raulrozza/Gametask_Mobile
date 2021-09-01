@@ -1,20 +1,18 @@
 import React, { useCallback, useMemo } from 'react';
 
-// Components
-import { Input, SubmitButton } from 'shared/view/components';
-import { ImageInput } from './components';
+import { useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
+
+import useGetUserController from 'modules/chooseGame/infra/controllers/useGetUserController';
+import useUpdateUserController from 'modules/chooseGame/infra/controllers/useUpdateUserController';
+import UserSchema from 'modules/chooseGame/view/validation/UserSchema';
+import { Input, SubmitButton } from 'shared/view/components';
+import { useToastContext, useSessionContext } from 'shared/view/contexts';
+
+import { ImageInput } from './components';
 import { Form, InputGroup } from './styles';
 
-// Hooks
-import { useNavigation } from '@react-navigation/native';
-import { useToastContext } from 'shared/view/contexts';
-import { useSessionContext } from 'shared/view/contexts';
-import useUpdateUserController from 'modules/chooseGame/infra/controllers/useUpdateUserController';
-import useGetUserController from 'modules/chooseGame/infra/controllers/useGetUserController';
-
 // Schemas
-import UserSchema from 'modules/chooseGame/view/validation/UserSchema';
 
 const Profile: React.FC = () => {
   const { userData } = useSessionContext();

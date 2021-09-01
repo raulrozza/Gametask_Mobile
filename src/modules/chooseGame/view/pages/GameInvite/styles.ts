@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components/native';
 
-// Components
 import GameImage from 'modules/chooseGame/view/components/GameImage';
 
 export const Container = styled.View`

@@ -1,12 +1,9 @@
 import React, { useCallback } from 'react';
 
-// Entities
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
 
 import IActivity from 'modules/selectedGame/domain/entities/IActivity';
-
-// Components
 import useRequestActivityController from 'modules/selectedGame/infra/controllers/useRequestActivityController';
 import RequestActivitySchema from 'modules/selectedGame/view/validation/RequestActivitySchema';
 import { Input } from 'shared/view/components';
@@ -14,11 +11,8 @@ import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
 import { DateInput, Footer } from './components';
 
-// Hooks
-
 // Schemas
 
-// Styles
 import { Container, Title, Paragraph, Info, Form } from './styles';
 
 type ActivityParams = RouteProp<
@@ -39,7 +33,6 @@ const initialValues: IValues = {
 };
 
 const ActivityRegister: React.FC = () => {
-  // Hooks
   const {
     params: { activity },
   } = useRoute<ActivityParams>();

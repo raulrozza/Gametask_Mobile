@@ -1,19 +1,19 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import { Modal } from 'react-native';
 
-// Components
-import Clipboard from 'expo-clipboard';
-import Button from 'shared/view/components/Button';
-import { BarCodeScannedCallback } from 'expo-barcode-scanner';
-
-// Hooks
 import { useNavigation } from '@react-navigation/native';
-import { useCodeScannerPermission } from './hooks';
+import { BarCodeScannedCallback } from 'expo-barcode-scanner';
+import Clipboard from 'expo-clipboard';
+
+import { makeCryptoProvider } from 'modules/chooseGame/container/providers';
+import Button from 'shared/view/components/Button';
 import { useToastContext } from 'shared/view/contexts';
 
-// Providers
-import { makeCryptoProvider } from 'modules/chooseGame/container/providers';
+import { useCodeScannerPermission } from './hooks';
 
-// Styles
+// Providers
+
+
 import {
   Container,
   Wrapper,
@@ -22,7 +22,6 @@ import {
   ScannerContainer,
   CodeScanner,
 } from './styles';
-import { Modal } from 'react-native';
 
 interface IInvitationData {
   gameId: string;

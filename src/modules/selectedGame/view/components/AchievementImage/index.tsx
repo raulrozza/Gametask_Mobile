@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Components
+
 import { Image, ImageStyle, StyleProp } from 'react-native';
 
 interface AchievementImageProps {

@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
+import { Modal } from 'react-native';
 
-// Components
+import { useRoute, RouteProp } from '@react-navigation/native';
 import { FlatList } from 'react-native-gesture-handler';
+
+import useFetchPlayersController from 'modules/chooseGame/infra/controllers/useFetchPlayersController';
 import { RefreshControl } from 'shared/view/components';
+
 import { EmptyList, Footer, GameInfo, ModalContent } from './components';
 
-// Hooks
-import useFetchPlayersController from 'modules/chooseGame/infra/controllers/useFetchPlayersController';
-import { useRoute, RouteProp } from '@react-navigation/native';
-
 // Libs
-import { Modal } from 'react-native';
 
 // Style
 import { Container, Title } from './styles';
