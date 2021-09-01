@@ -1,4 +1,4 @@
-import IUser from 'shared/entities/IUser';
+import IUser from 'shared/domain/entities/IUser';
 import IUserSignupDTO from 'modules/authentication/dtos/IUserSignupDTO';
 import IUsersRepository from '../repositories/IUsersRepository';
 

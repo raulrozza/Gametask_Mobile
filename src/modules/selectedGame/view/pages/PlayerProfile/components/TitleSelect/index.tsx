@@ -4,7 +4,7 @@ import React, { useMemo, useState } from 'react';
 import RNPCSelect from 'react-native-picker-select';
 
 // Entities
-import ITitle from 'shared/entities/ITitle';
+import ITitle from 'shared/domain/entities/ITitle';
 
 // Hooks
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';

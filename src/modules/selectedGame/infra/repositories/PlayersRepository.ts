@@ -1,6 +1,6 @@
 import IPlayersRepository from 'modules/selectedGame/repositories/IPlayersRepository';
 import { makeHttpProvider } from 'shared/container/providers';
-import IPlayer from 'shared/entities/IPlayer';
+import IPlayer from 'shared/domain/entities/IPlayer';
 
 export default class PlayersRepository implements IPlayersRepository {
   private httpProvider = makeHttpProvider();

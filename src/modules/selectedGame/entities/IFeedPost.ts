@@ -1,7 +1,7 @@
 import IAchievement from 'modules/selectedGame/entities/IAchievement';
 import IActivity from 'modules/selectedGame/entities/IActivity';
-import IPlayer from 'shared/entities/IPlayer';
-import IRank from 'shared/entities/IRank';
+import IPlayer from 'shared/domain/entities/IPlayer';
+import IRank from 'shared/domain/entities/IRank';
 
 interface IFeedPost {
   id: string;

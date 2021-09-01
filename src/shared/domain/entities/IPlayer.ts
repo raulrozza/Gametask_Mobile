@@ -1,7 +1,7 @@
-import IGame from 'shared/entities/IGame';
-import IRank from 'shared/entities/IRank';
-import ITitle from 'shared/entities/ITitle';
-import IUser from 'shared/entities/IUser';
+import IGame from 'shared/domain/entities/IGame';
+import IRank from 'shared/domain/entities/IRank';
+import ITitle from 'shared/domain/entities/ITitle';
+import IUser from 'shared/domain/entities/IUser';
 
 export default interface IPlayer {
   id: string;

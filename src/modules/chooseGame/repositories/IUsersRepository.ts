@@ -1,4 +1,4 @@
-import IUser from 'shared/entities/IUser';
+import IUser from 'shared/domain/entities/IUser';
 
 export interface IUpdateParams {
   firstname: string;

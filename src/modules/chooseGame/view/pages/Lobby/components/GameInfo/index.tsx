@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 // Entities
-import IPlayer from 'shared/entities/IPlayer';
+import IPlayer from 'shared/domain/entities/IPlayer';
 
 // Hooks
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';

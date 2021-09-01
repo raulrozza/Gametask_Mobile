@@ -1,4 +1,4 @@
-import ILevelInfo from 'shared/entities/ILevelInfo';
+import ILevelInfo from 'shared/domain/entities/ILevelInfo';
 
 export default function getPlayerNextLevel(
   currentLevel: number,

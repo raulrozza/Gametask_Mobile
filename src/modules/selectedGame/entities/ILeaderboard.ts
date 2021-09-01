@@ -1,5 +1,5 @@
-import IRank from 'shared/entities/IRank';
-import IUser from 'shared/entities/IUser';
+import IRank from 'shared/domain/entities/IRank';
+import IUser from 'shared/domain/entities/IUser';
 
 export interface IPosition {
   player: {

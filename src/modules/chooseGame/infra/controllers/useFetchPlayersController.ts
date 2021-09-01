@@ -2,7 +2,7 @@ import makeFetchPlayersService from 'modules/chooseGame/services/factories/makeF
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
-import IPlayer from 'shared/entities/IPlayer';
+import IPlayer from 'shared/domain/entities/IPlayer';
 
 interface UseFetchPlayersController {
   loading: boolean;

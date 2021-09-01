@@ -1,6 +1,6 @@
 import IGamesRepository from 'modules/chooseGame/repositories/IGamesRepository';
 import { makeHttpProvider } from 'shared/container/providers';
-import IGame from 'shared/entities/IGame';
+import IGame from 'shared/domain/entities/IGame';
 
 export default class GamesRepository implements IGamesRepository {
   private httpProvider = makeHttpProvider();

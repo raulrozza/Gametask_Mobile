@@ -1,4 +1,4 @@
-import ITitle from 'shared/entities/ITitle';
+import ITitle from 'shared/domain/entities/ITitle';
 
 export default interface IAchievement {
   id: string;

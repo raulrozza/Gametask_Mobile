@@ -1,5 +1,5 @@
-import IGame from 'shared/entities/IGame';
-import IUser from 'shared/entities/IUser';
+import IGame from 'shared/domain/entities/IGame';
+import IUser from 'shared/domain/entities/IUser';
 
 export interface IActivityLog {
   version: number;

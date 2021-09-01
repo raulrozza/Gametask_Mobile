@@ -1,5 +1,5 @@
-import ILevelInfo from 'shared/entities/ILevelInfo';
-import IRank from 'shared/entities/IRank';
+import ILevelInfo from 'shared/domain/entities/ILevelInfo';
+import IRank from 'shared/domain/entities/IRank';
 
 export default interface IGame {
   id: string;
