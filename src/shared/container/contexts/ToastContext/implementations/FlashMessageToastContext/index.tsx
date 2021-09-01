@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
-import { ToastContextProvider } from 'shared/container/contexts/ToastContext/contexts/useToastContext';
-import IToastContext from 'shared/container/contexts/ToastContext/models/IToastContext';
 
 import FlashMessage, { showMessage } from 'react-native-flash-message';
+
+import { ToastContextProvider } from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import IToastContext from 'shared/domain/providers/IToastContext';
 
 const ReactToastifyToastContext: React.FC = ({ children }) => {
   const showError = useCallback<IToastContext['showError']>(

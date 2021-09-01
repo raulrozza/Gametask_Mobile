@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import ISessionContext from 'shared/container/contexts/SessionContext/models/ISessionContext';
+import ISessionContext from 'shared/domain/providers/ISessionContext';
 
 export const SessionContextProvider = createContext<ISessionContext>(
   {} as ISessionContext,

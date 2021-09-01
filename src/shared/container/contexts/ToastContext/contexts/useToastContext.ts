@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react';
-import IToastContext from 'shared/container/contexts/ToastContext/models/IToastContext';
+
+import IToastContext from 'shared/domain/providers/IToastContext';
 
 export const ToastContextProvider = createContext<IToastContext>(
   {} as IToastContext,

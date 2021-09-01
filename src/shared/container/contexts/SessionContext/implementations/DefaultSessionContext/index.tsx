@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { SessionContextProvider } from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import ISessionContext from 'shared/container/contexts/SessionContext/models/ISessionContext';
 import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+import ISessionContext from 'shared/domain/providers/ISessionContext';
 import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 import makeJwtProvider from 'shared/infra/providers/factories/makeJwtProvider';
 import makeStorageProvider from 'shared/infra/providers/factories/makeStorageProvider';

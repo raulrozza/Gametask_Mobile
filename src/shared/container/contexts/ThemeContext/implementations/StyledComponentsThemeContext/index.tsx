@@ -7,7 +7,7 @@ import defaultTheme from 'config/theme';
 import { ThemeContextProvider } from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
 import IThemeContext, {
   ISwitchThemeArgs,
-} from 'shared/container/contexts/ThemeContext/models/IThemeContext';
+} from 'shared/domain/providers/IThemeContext';
 import makeStorageProvider from 'shared/infra/providers/factories/makeStorageProvider';
 
 import { getNewPalette } from './helpers';

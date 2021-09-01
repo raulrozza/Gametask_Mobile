@@ -1,9 +1,8 @@
-import tinyColor from 'tinycolor2';
 import { DefaultTheme } from 'styled-components';
+import tinyColor from 'tinycolor2';
 
 import defaultPalette from 'config/theme/palette';
-
-import { ISwitchThemeArgs } from 'shared/container/contexts/ThemeContext/models/IThemeContext';
+import { ISwitchThemeArgs } from 'shared/domain/providers/IThemeContext';
 
 type Palette = DefaultTheme['palette'];
 
