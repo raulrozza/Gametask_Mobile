@@ -1,5 +1,7 @@
 import { createContext, useContext } from 'react';
 
+import { isEmpty } from 'lodash';
+
 import IPlayer from 'shared/domain/entities/IPlayer';
 
 export interface IPlayerProfileContext {
@@ -13,7 +15,7 @@ export const PlayerProfileContextProvider = createContext<IPlayerProfileContext>
 const usePlayerProfileContext = (): IPlayerProfileContext => {
   const playerProfileProvider = useContext(PlayerProfileContextProvider);
 
-  if (!playerProfileProvider)
+  if (isEmpty(playerProfileProvider))
     throw new Error(
       'usePlayerProfileContext should be called inside a PlayerProfileContextProvider',
     );

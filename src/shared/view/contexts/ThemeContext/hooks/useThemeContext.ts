@@ -1,4 +1,7 @@
 import { createContext, useContext } from 'react';
+
+import { isEmpty } from 'lodash';
+
 import IThemeContext from 'shared/domain/providers/IThemeContext';
 
 export const ThemeContextProvider = createContext<IThemeContext>(
@@ -8,7 +11,7 @@ export const ThemeContextProvider = createContext<IThemeContext>(
 const useThemeContext = (): IThemeContext => {
   const themeProvider = useContext(ThemeContextProvider);
 
-  if (!themeProvider)
+  if (isEmpty(themeProvider))
     throw new Error(
       'useThemeContext should be called inside a ThemeContextProvider',
     );
