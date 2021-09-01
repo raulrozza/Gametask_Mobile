@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import IUserLoginDTO from 'modules/authentication/dtos/IUserLoginDTO';
+import IUserLoginDTO from 'modules/authentication/domain/dtos/IUserLoginDTO';
 import makeLogUserService from 'modules/authentication/services/factories/makeLogUserService';
 import { useSessionContext, useToastContext } from 'shared/view/contexts';
 

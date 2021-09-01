@@ -1,4 +1,5 @@
-import IUserLoginDTO from 'modules/authentication/dtos/IUserLoginDTO';
+import IUserLoginDTO from 'modules/authentication/domain/dtos/IUserLoginDTO';
+
 import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IExecute {
