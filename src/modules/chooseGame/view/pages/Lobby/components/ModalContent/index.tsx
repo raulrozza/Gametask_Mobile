@@ -5,15 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 import { BarCodeScannedCallback } from 'expo-barcode-scanner';
 import Clipboard from 'expo-clipboard';
 
-import { makeCryptoProvider } from 'modules/chooseGame/container/providers';
+import makeCryptoProvider from 'modules/chooseGame/infra/providers/factories/makeCryptoProvider';
 import Button from 'shared/view/components/Button';
 import { useToastContext } from 'shared/view/contexts';
 
 import { useCodeScannerPermission } from './hooks';
-
-// Providers
-
-
 import {
   Container,
   Wrapper,

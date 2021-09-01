@@ -1,5 +1,6 @@
 import crypto from 'react-native-crypto-js';
-import ICryptoProvider from 'modules/chooseGame/container/providers/CryptoProvider/models/ICryptoProvider';
+
+import ICryptoProvider from 'modules/chooseGame/domain/providers/ICryptoProvider';
 
 const SECRET = process.env.REACT_NATIVE_SECRET || '';
 
