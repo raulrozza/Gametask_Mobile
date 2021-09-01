@@ -1,17 +1,12 @@
 import React from 'react';
 
-
 import { Formik } from 'formik';
-import { Input, SubmitButton } from 'shared/view/components';
-import Form from '../Form';
-
 
 import useLoginController from 'modules/authentication/infra/controllers/useLoginController';
+import LoginSchema from 'modules/authentication/view/validation/Login';
+import { Input, SubmitButton } from 'shared/view/components';
 
-// Schemas
-import LoginSchema from 'modules/authentication/validation/Login';
-
-
+import Form from '../Form';
 import { confirmTextStyle } from './styles';
 
 const initialValues = {

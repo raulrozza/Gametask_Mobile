@@ -10,10 +10,10 @@ import { Formik } from 'formik';
 
 import useSignupController from 'modules/authentication/infra/controllers/useSignupController';
 
-// Schemas
+
 import SignupSchema, {
   passwordsMatchValidation,
-} from 'modules/authentication/validation/Signup';
+} from 'modules/authentication/view/validation/Signup';
 
 
 import { signInTextStyle } from './styles';

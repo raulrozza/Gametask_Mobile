@@ -11,7 +11,7 @@ import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
 import { DateInput, Footer } from './components';
 
-// Schemas
+
 
 import { Container, Title, Paragraph, Info, Form } from './styles';
 

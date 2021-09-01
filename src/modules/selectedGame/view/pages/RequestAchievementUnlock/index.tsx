@@ -9,7 +9,7 @@ import RequestAchievementUnlockSchema from 'modules/selectedGame/view/validation
 import { Input } from 'shared/view/components';
 import { useSessionContext } from 'shared/view/contexts';
 
-// Schemas
+
 import { useToastContext } from 'shared/view/contexts';
 
 import { Container, Title, Form, Footer } from './styles';

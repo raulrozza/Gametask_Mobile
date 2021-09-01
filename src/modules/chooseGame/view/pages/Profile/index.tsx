@@ -12,7 +12,7 @@ import { useToastContext, useSessionContext } from 'shared/view/contexts';
 import { ImageInput } from './components';
 import { Form, InputGroup } from './styles';
 
-// Schemas
+
 
 const Profile: React.FC = () => {
   const { userData } = useSessionContext();
