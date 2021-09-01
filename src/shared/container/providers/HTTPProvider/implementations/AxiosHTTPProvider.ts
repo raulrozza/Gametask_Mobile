@@ -1,5 +1,5 @@
 import Http from 'config/http';
-import IHTTPProvider from 'shared/container/providers/HTTPProvider/models/IHTTPProvider';
+import IHTTPProvider from 'shared/domain/providers/IHTTPProvider';
 import RequestError from 'shared/infra/errors/RequestError';
 
 export default class AxiosHTTPProvider implements IHTTPProvider {

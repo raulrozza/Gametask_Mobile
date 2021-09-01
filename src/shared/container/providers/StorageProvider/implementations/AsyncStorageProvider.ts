@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import IStorageProvider from 'shared/container/providers/StorageProvider/models/IStorageProvider';
+
+import IStorageProvider from 'shared/domain/providers/IStorageProvider';
 
 export default class AsyncStorageProvider implements IStorageProvider {
   public async clear(): Promise<void> {
