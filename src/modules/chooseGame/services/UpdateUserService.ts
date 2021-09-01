@@ -1,4 +1,4 @@
-import IUpdateUserDTO from 'modules/chooseGame/dtos/IUpdateUserDTO';
+import IUpdateUserDTO from 'modules/chooseGame/domain/dtos/IUpdateUserDTO';
 import IUsersRepository from 'modules/chooseGame/repositories/IUsersRepository';
 
 interface IExecute {
