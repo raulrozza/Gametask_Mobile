@@ -1,18 +1,12 @@
 import React, { useMemo } from 'react';
 
-// Components
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
+import { formatDate } from 'modules/selectedGame/view/helpers';
+
 import AchievementFeed from '../AchievementFeed';
 import ActivityFeed from '../ActivityFeed';
 import LevelUpFeed from '../LevelUpFeed';
 import RankFeed from '../RankFeed';
-
-// Entities
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
-
-// Helpers
-import { formatDate } from 'modules/selectedGame/view/helpers';
-
-// Styles
 import { Container, Content, Image, Meta, Row } from './styles';
 
 const FeedType = {

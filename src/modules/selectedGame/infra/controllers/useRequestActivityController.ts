@@ -1,8 +1,8 @@
-import IRequestActivityDTO from 'modules/selectedGame/dtos/IRequestActivityDTO';
-import makeRequestActivityService from 'modules/selectedGame/services/factories/makeRequestActivityService';
 import { useCallback, useMemo, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+
+import IRequestActivityDTO from 'modules/selectedGame/domain/dtos/IRequestActivityDTO';
+import makeRequestActivityService from 'modules/selectedGame/services/factories/makeRequestActivityService';
+import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
 interface UseRequestActivityController {
   loading: boolean;

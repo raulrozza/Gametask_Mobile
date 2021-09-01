@@ -1,8 +1,9 @@
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
-import makeGetFeedPostsService from 'modules/selectedGame/services/factories/makeGetFeedPostsService';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
+import makeGetFeedPostsService from 'modules/selectedGame/services/factories/makeGetFeedPostsService';
+import { useSessionContext } from 'shared/view/contexts';
+import { useToastContext } from 'shared/view/contexts';
 
 interface UseGetFeedPostsController {
   loading: boolean;

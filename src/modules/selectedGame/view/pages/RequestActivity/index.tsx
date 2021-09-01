@@ -1,23 +1,18 @@
 import React, { useCallback } from 'react';
 
-// Entities
-import IActivity from 'modules/selectedGame/entities/IActivity';
-
-// Components
+import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
+
+import IActivity from 'modules/selectedGame/domain/entities/IActivity';
+import useRequestActivityController from 'modules/selectedGame/infra/controllers/useRequestActivityController';
+import RequestActivitySchema from 'modules/selectedGame/view/validation/RequestActivitySchema';
 import { Input } from 'shared/view/components';
+import { useSessionContext, useToastContext } from 'shared/view/contexts';
+
 import { DateInput, Footer } from './components';
 
-// Hooks
-import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
-import useRequestActivityController from 'modules/selectedGame/infra/controllers/useRequestActivityController';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
-// Schemas
-import RequestActivitySchema from 'modules/selectedGame/view/validation/RequestActivitySchema';
 
-// Styles
 import { Container, Title, Paragraph, Info, Form } from './styles';
 
 type ActivityParams = RouteProp<
@@ -38,7 +33,6 @@ const initialValues: IValues = {
 };
 
 const ActivityRegister: React.FC = () => {
-  // Hooks
   const {
     params: { activity },
   } = useRoute<ActivityParams>();

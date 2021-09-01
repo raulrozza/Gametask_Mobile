@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 
-// Components
+import * as ImagePicker from 'expo-image-picker';
+import { useField } from 'formik';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-// Hooks
-import { useField } from 'formik';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+import { useToastContext } from 'shared/view/contexts';
 
 // Libs
-import * as ImagePicker from 'expo-image-picker';
 
-// Styles
+
 import { Image } from './styles';
 
 interface ImageInputProps {

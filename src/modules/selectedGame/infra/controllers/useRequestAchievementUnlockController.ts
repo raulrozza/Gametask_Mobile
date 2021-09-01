@@ -1,8 +1,8 @@
-import IRequestAchievementDTO from 'modules/selectedGame/dtos/IRequestAchievementDTO';
-import makeRequestAchievementUnlockService from 'modules/selectedGame/services/factories/makeRequestAchievementUnlockService';
 import { useCallback, useMemo, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+
+import IRequestAchievementDTO from 'modules/selectedGame/domain/dtos/IRequestAchievementDTO';
+import makeRequestAchievementUnlockService from 'modules/selectedGame/services/factories/makeRequestAchievementUnlockService';
+import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
 interface UseRequestAchievementUnlockController {
   loading: boolean;

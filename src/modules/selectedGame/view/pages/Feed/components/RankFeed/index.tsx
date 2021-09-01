@@ -1,5 +1,5 @@
 import React from 'react';
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
 import { RankChip } from 'modules/selectedGame/view/components';
 import FeedText from '../FeedText';
 import { getTextColor } from 'shared/view/helpers';

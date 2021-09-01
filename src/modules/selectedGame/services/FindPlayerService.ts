@@ -1,5 +1,5 @@
-import IPlayersRepository from 'modules/selectedGame/repositories/IPlayersRepository';
-import IPlayer from 'shared/entities/IPlayer';
+import IPlayersRepository from 'modules/selectedGame/domain/repositories/IPlayersRepository';
+import IPlayer from 'shared/domain/entities/IPlayer';
 
 interface IExecute {
   player?: IPlayer;

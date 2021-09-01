@@ -3,7 +3,7 @@ import React from 'react';
 // Navigation
 import { createStackNavigator } from '@react-navigation/stack';
 
-// Components
+
 import AchievementDetails from 'modules/selectedGame/view/pages/AchievementDetails';
 import PlayerProfile from 'modules/selectedGame/view/pages/PlayerProfile';
 import RequestAchievementUnlock from 'modules/selectedGame/view/pages/RequestAchievementUnlock';

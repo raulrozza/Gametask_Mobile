@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Styles
 import { BarContainer, Progress } from './styles';
 
 interface ProgressBarProps {

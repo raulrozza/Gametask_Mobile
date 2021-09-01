@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo } from 'react';
 
-// Components
+
 import { FlatList } from 'react-native-gesture-handler';
 import { EmptyList, RankingPosition } from './components';
 
-// Hooks
+
 import useGetCurrentLeaderboardController from 'modules/selectedGame/infra/controllers/useGetCurrentLeaderboardController';
 
-// Styles
+
 import { Container } from './styles';
 import { useFocusEffect } from '@react-navigation/native';
 

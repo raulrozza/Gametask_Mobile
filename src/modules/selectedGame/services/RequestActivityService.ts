@@ -1,5 +1,5 @@
-import IRequestActivityDTO from 'modules/selectedGame/dtos/IRequestActivityDTO';
-import IRequestsRepository from 'modules/selectedGame/repositories/IRequestsRepository';
+import IRequestActivityDTO from 'modules/selectedGame/domain/dtos/IRequestActivityDTO';
+import IRequestsRepository from 'modules/selectedGame/domain/repositories/IRequestsRepository';
 
 interface IExecute {
   shouldLogout?: boolean;

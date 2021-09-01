@@ -1,11 +1,12 @@
 import React from 'react';
 
-// Components
+import { useNavigation } from '@react-navigation/core';
+
 import { Button, SubmitButton } from 'shared/view/components';
+
 import { Container } from './styles';
 
-// Hooks
-import { useNavigation } from '@react-navigation/core';
+
 
 interface FooterProps {
   loading: boolean;

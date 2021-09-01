@@ -1,5 +1,5 @@
-import IUpdateUserDTO from 'modules/chooseGame/dtos/IUpdateUserDTO';
-import IUsersRepository from 'modules/chooseGame/repositories/IUsersRepository';
+import IUpdateUserDTO from 'modules/chooseGame/domain/dtos/IUpdateUserDTO';
+import IUsersRepository from 'modules/chooseGame/domain/repositories/IUsersRepository';
 
 interface IExecute {
   shouldLogout?: boolean;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-// Components
+
 import { LoginForm, SignupForm } from './components';
 
-// Styles
+
 import {
   HomePage,
   TitleContainer,

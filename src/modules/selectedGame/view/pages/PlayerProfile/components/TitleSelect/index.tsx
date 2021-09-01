@@ -1,14 +1,10 @@
 import React, { useMemo, useState } from 'react';
 
-// Components
 import RNPCSelect from 'react-native-picker-select';
 
-// Entities
-import ITitle from 'shared/entities/ITitle';
-
-// Hooks
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
-import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
+import { usePlayerProfileContext } from 'modules/selectedGame/view/contexts';
+import ITitle from 'shared/domain/entities/ITitle';
+import { useThemeContext } from 'shared/view/contexts';
 
 import { inputStyles } from './styles';
 

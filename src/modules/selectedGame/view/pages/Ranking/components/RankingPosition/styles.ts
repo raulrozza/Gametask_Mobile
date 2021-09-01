@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native';
 
-// Components
+
 import { FontAwesome } from '@expo/vector-icons';
 import { UserImage } from 'modules/selectedGame/view/components';
 
