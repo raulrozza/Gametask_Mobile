@@ -1,6 +1,6 @@
-import IHTTPProvider from 'shared/container/providers/HTTPProvider/models/IHTTPProvider';
 import Http from 'config/http';
-import RequestError from 'shared/errors/entities/RequestError';
+import IHTTPProvider from 'shared/container/providers/HTTPProvider/models/IHTTPProvider';
+import RequestError from 'shared/infra/errors/RequestError';
 
 export default class AxiosHTTPProvider implements IHTTPProvider {
   public addHeader: IHTTPProvider['addHeader'] = (key, value) => {

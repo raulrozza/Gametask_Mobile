@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios';
+
 import apiCodes from 'config/errors/apiCodes';
 
 interface IErrorResponseDetails {
