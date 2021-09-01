@@ -1,4 +1,4 @@
-import makeRequestsRepository from 'modules/selectedGame/repositories/factories/makeRequestsRepository';
+import makeRequestsRepository from 'modules/selectedGame/infra/repositories/factories/makeRequestsRepository';
 import RequestActivityService from 'modules/selectedGame/services/RequestActivityService';
 
 export default function makeRequestActivityService(): RequestActivityService {

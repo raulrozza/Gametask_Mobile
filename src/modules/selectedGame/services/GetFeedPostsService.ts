@@ -1,5 +1,5 @@
 import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
-import IFeedPostsRepository from 'modules/selectedGame/repositories/IFeedPostsRepository';
+import IFeedPostsRepository from 'modules/selectedGame/domain/repositories/IFeedPostsRepository';
 
 interface IExecute {
   posts?: IFeedPost[];

@@ -1,4 +1,4 @@
-import makeActivitiesRepository from 'modules/selectedGame/repositories/factories/makeActivitiesRepository';
+import makeActivitiesRepository from 'modules/selectedGame/infra/repositories/factories/makeActivitiesRepository';
 import GetActivitiesService from 'modules/selectedGame/services/GetActivitiesService';
 
 export default function makeGetActivitiesService(): GetActivitiesService {

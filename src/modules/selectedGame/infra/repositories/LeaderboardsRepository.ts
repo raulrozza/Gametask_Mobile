@@ -1,5 +1,5 @@
 import ILeaderboard from 'modules/selectedGame/domain/entities/ILeaderboard';
-import ILeaderboardsRepository from 'modules/selectedGame/repositories/ILeaderboardsRepository';
+import ILeaderboardsRepository from 'modules/selectedGame/domain/repositories/ILeaderboardsRepository';
 import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 
 export default class LeaderboardsRepository implements ILeaderboardsRepository {

@@ -1,5 +1,5 @@
 import ILeaderboard from 'modules/selectedGame/domain/entities/ILeaderboard';
-import ILeaderboardsRepository from 'modules/selectedGame/repositories/ILeaderboardsRepository';
+import ILeaderboardsRepository from 'modules/selectedGame/domain/repositories/ILeaderboardsRepository';
 
 interface IExecute {
   leaderboard?: ILeaderboard | null;
