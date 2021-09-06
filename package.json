@@ -2,6 +2,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
+    "start:clean": "expo start -c",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -13,6 +14,7 @@
     "@react-native-community/async-storage": "~1.12.0",
     "@react-native-community/datetimepicker": "3.0.0",
     "@react-native-community/masked-view": "0.1.10",
+    "@react-native-picker/picker": "^1.16.7",
     "@react-navigation/bottom-tabs": "^5.6.1",
     "@react-navigation/material-top-tabs": "^5.2.14",
     "@react-navigation/native": "^5.6.1",
@@ -38,7 +40,6 @@
     "react-native-crypto-js": "^1.0.0",
     "react-native-flash-message": "^0.1.16",
     "react-native-gesture-handler": "~1.7.0",
-    "react-native-picker-select": "^8.0.0",
     "react-native-progress": "^4.1.2",
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.4",

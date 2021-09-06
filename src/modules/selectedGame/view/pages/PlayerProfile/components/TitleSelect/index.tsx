@@ -1,44 +1,30 @@
-import React, { useMemo, useState } from 'react';
-
-import RNPCSelect from 'react-native-picker-select';
+import React, { useState } from 'react';
 
 import { usePlayerProfileContext } from 'modules/selectedGame/view/contexts';
-import ITitle from 'shared/domain/entities/ITitle';
-import { useThemeContext } from 'shared/view/contexts';
 
-import { inputStyles } from './styles';
+import { Container, Select } from './styles';
 
 const TitleSelect: React.FC = () => {
-  const { theme } = useThemeContext();
   const { player } = usePlayerProfileContext();
 
-  const [currentTitle, setCurrentTitle] = useState<ITitle | undefined>(
-    player.currentTitle,
+  const [currentTitle, setCurrentTitle] = useState<string | undefined>(
+    player.currentTitle?.id,
   );
 
-  const computedInputStyle = useMemo(() => inputStyles(theme), [theme]);
+  if (!player.titles) return null;
 
   return (
-    <RNPCSelect
-      style={{
-        inputAndroid: computedInputStyle,
-        inputIOS: computedInputStyle,
-        placeholder: { color: theme.palette.primary.dark },
-      }}
-      items={
-        player.titles?.map(title => ({
-          key: title.id,
-          label: title.name,
-          value: title,
-        })) || []
-      }
-      value={currentTitle}
-      onValueChange={setCurrentTitle}
-      placeholder={{
-        label: 'Selecione um título...',
-        value: null,
-      }}
-    />
+    <Container>
+      <Select
+        selectedValue={currentTitle}
+        onValueChange={value => setCurrentTitle(value as string)}
+      >
+        <Select.Item label="Escolha um título..." value={null} />
+        {player.titles.map(title => (
+          <Select.Item key={title.id} label={title.name} value={title.id} />
+        ))}
+      </Select>
+    </Container>
   );
 };
 
