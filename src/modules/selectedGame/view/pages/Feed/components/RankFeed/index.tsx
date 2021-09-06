@@ -1,8 +1,10 @@
 import React from 'react';
+
 import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
 import { RankChip } from 'modules/selectedGame/view/components';
-import FeedText from '../FeedText';
 import { getTextColor } from 'shared/view/helpers';
+
+import FeedText from '../FeedText';
 
 interface RankFeedProps {
   post: IFeedPost;
@@ -13,6 +15,7 @@ const RankFeed: React.FC<RankFeedProps> = ({ post }) => (
     <FeedText.Name>
       {post.player.user.firstname}
       {post.player.user.lastname && ` ${post.player.user.lastname}`}
+      {post.player.currentTitle && `, ${post.player.currentTitle?.name}`}
     </FeedText.Name>
 
     <FeedText.Text> conseguiu a patente </FeedText.Text>

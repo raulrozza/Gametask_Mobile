@@ -1,18 +1,13 @@
 import React, { useCallback } from 'react';
 
-
-import { EmptyList, FeedPost } from './components';
-import { RefreshControl } from 'shared/view/components';
-
-
-import useGetFeedPostsController from 'modules/selectedGame/infra/controllers/useGetFeedPostsController';
-
-// Libs
+import { useFocusEffect } from '@react-navigation/native';
 import { FlatList } from 'react-native-gesture-handler';
 
+import useGetFeedPostsController from 'modules/selectedGame/infra/controllers/useGetFeedPostsController';
+import { RefreshControl } from 'shared/view/components';
 
+import { EmptyList, FeedPost } from './components';
 import { Container } from './styles';
-import { useFocusEffect } from '@react-navigation/native';
 
 const Feed: React.FC = () => {
   const { loading, posts, getPosts } = useGetFeedPostsController();

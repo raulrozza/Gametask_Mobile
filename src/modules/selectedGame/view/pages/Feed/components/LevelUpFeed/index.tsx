@@ -1,7 +1,9 @@
+import React from 'react';
+
 import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
+
 import FeedText from '../FeedText';
 import RankTag from '../RankTag';
-import React from 'react';
 
 interface LevelUpFeedProps {
   post: IFeedPost;
@@ -13,6 +15,7 @@ const LevelUpFeed: React.FC<LevelUpFeedProps> = ({ post }) => (
     <FeedText.Name>
       {post.player.user.firstname}
       {post.player.user.lastname && ` ${post.player.user.lastname}`}
+      {post.player.currentTitle && `, ${post.player.currentTitle?.name}`}
     </FeedText.Name>{' '}
     atingiu o{' '}
     {post.level.title ? (

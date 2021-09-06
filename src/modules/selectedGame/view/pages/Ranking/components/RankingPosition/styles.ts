@@ -1,7 +1,6 @@
+import { FontAwesome } from '@expo/vector-icons';
 import styled, { css } from 'styled-components/native';
 
-
-import { FontAwesome } from '@expo/vector-icons';
 import { UserImage } from 'modules/selectedGame/view/components';
 
 interface IconProps {
@@ -44,7 +43,7 @@ export const Text = {
   Position: styled.Text`
     ${({ theme }) => css`
       font-weight: bold;
-      font-size: 24px;
+      font-size: 16px;
 
       color: ${theme.palette.secondary.contrast};
     `}
@@ -53,12 +52,12 @@ export const Text = {
     color: ${({ theme }) => theme.palette.secondary.light};
     font-weight: bold;
     flex-wrap: wrap;
-    font-size: 16px;
+    font-size: 12px;
   `,
   Bold: styled.Text`
     color: ${({ theme }) => theme.palette.primary.contrast};
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
     margin-right: ${({ theme }) => theme.layout.spacing(1)};
   `,
 };

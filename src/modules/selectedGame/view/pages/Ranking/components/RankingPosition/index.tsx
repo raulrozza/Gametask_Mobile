@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Container, Icon, Image, PositionBlock, Text } from './styles';
-
 import { IPosition } from 'modules/selectedGame/domain/entities/ILeaderboard';
 import { RankChip } from 'modules/selectedGame/view/components';
 import { getTextColor } from 'shared/view/helpers';
+
+import { Container, Icon, Image, PositionBlock, Text } from './styles';
 
 interface RankingPositionProps {
   item: IPosition;
