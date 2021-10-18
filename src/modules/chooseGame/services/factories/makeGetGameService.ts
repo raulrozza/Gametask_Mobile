@@ -1,4 +1,4 @@
-import makeGamesRepository from 'modules/chooseGame/repositories/factories/makeGamesRepository';
+import makeGamesRepository from 'modules/chooseGame/infra/repositories/factories/makeGamesRepository';
 import GetGameService from 'modules/chooseGame/services/GetGameService';
 
 export default function makeGetGameService(): GetGameService {

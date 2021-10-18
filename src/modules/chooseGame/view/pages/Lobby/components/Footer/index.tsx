@@ -1,10 +1,10 @@
 import React from 'react';
 
-// Hooks
-import { useNavigation } from '@react-navigation/native';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
 
-// styles
+import { useNavigation } from '@react-navigation/native';
+import { useSessionContext } from 'shared/view/contexts';
+
+
 import { Row, Button } from './styles';
 
 interface FooterProps {

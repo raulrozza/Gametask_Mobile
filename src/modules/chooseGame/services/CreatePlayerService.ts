@@ -1,4 +1,4 @@
-import IPlayersRepository from 'modules/chooseGame/repositories/IPlayersRepository';
+import IPlayersRepository from 'modules/chooseGame/domain/repositories/IPlayersRepository';
 
 interface IExecute {
   shouldLogout?: boolean;

@@ -1,7 +1,7 @@
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
 import React from 'react';
 
-// Components
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
+
 import FeedText from '../FeedText';
 import RankTag from '../RankTag';
 
@@ -15,6 +15,7 @@ const AchievementFeed: React.FC<AchievementFeedProps> = ({ post }) => (
     <FeedText.Name>
       {post.player.user.firstname}
       {post.player.user.lastname && ` ${post.player.user.lastname}`}
+      {post.player.currentTitle && `, ${post.player.currentTitle?.name}`}
     </FeedText.Name>{' '}
     desbloqueou a conquista{' '}
     <FeedText.Activity>{post.achievement?.name}</FeedText.Activity>

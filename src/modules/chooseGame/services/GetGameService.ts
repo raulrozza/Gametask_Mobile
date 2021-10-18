@@ -1,5 +1,5 @@
-import IGamesRepository from 'modules/chooseGame/repositories/IGamesRepository';
-import IGame from 'shared/entities/IGame';
+import IGamesRepository from 'modules/chooseGame/domain/repositories/IGamesRepository';
+import IGame from 'shared/domain/entities/IGame';
 
 interface IExecute {
   game?: IGame;

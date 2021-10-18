@@ -1,5 +1,7 @@
 import React from 'react';
-import IFeedPost from 'modules/selectedGame/entities/IFeedPost';
+
+import IFeedPost from 'modules/selectedGame/domain/entities/IFeedPost';
+
 import FeedText from '../FeedText';
 import RankTag from '../RankTag';
 
@@ -13,6 +15,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({ post }) => (
     <FeedText.Name>
       {post.player.user.firstname}
       {post.player.user.lastname && ` ${post.player.user.lastname}`}
+      {post.player.currentTitle && `, ${post.player.currentTitle?.name}`}
     </FeedText.Name>{' '}
     ganhou <FeedText.Bold>{post.activity?.experience} XP</FeedText.Bold> por{' '}
     <FeedText.Activity>{post.activity?.name}</FeedText.Activity>!

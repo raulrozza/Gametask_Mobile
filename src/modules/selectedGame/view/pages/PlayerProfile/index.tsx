@@ -1,19 +1,16 @@
 import React, { useCallback, useMemo } from 'react';
-
-// Components
 import { ActivityIndicator, SafeAreaView } from 'react-native';
-import { AchievementList, BasicLevelInfo, Header, Options } from './components';
-import { Container } from './styles';
 
-// Containers
-import PlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext';
-import { ThemeProvider } from 'styled-components';
-
-// Hooks
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
-import useFindPlayerController from 'modules/selectedGame/infra/controllers/useFindPlayerController';
 import { useFocusEffect } from '@react-navigation/core';
 import { isEmpty } from 'lodash';
+import { ThemeProvider } from 'styled-components';
+
+import useFindPlayerController from 'modules/selectedGame/infra/controllers/useFindPlayerController';
+import { PlayerProfileContext } from 'modules/selectedGame/view/contexts';
+import { useThemeContext } from 'shared/view/contexts';
+
+import { AchievementList, BasicLevelInfo, Header, Options } from './components';
+import { Container } from './styles';
 
 const PlayerProfile: React.FC = () => {
   const { loading, player, getPlayer } = useFindPlayerController();
@@ -41,7 +38,7 @@ const PlayerProfile: React.FC = () => {
     }, [getPlayer]), // eslint-disable-line react-hooks/exhaustive-deps
   );
 
-  if (loading && isEmpty(player)) return <ActivityIndicator />;
+  if (loading || isEmpty(player)) return <ActivityIndicator />;
 
   return (
     <SafeAreaView>

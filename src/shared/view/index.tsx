@@ -1,9 +1,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import FontLoader from 'shared/view/global/FontLoader';
+
 import { RecoilRoot } from 'recoil';
-import AppContainer from 'shared/container/contexts';
+
 import Routes from 'shared/infra/routes';
+import FontLoader from 'shared/view/global/FontLoader';
+
+import AppContainer from './AppContainer';
 
 const AppView: React.FC = () => (
   <RecoilRoot>

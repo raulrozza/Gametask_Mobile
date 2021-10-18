@@ -1,14 +1,17 @@
-import styled from 'styled-components/native';
-
-// Components
 import { FontAwesome } from '@expo/vector-icons';
+import styled, { css } from 'styled-components/native';
+
 import { UserImage } from 'modules/selectedGame/view/components';
 
 interface IconProps {
   index: number;
 }
 
-const trophyColor = ['gold', 'silver', 'bronze'];
+const trophyColor = [
+  '#d4af37', // gold
+  '#C0C0C0', // silver
+  '#b08d57', // bronze
+];
 
 export const Container = styled.View`
   width: 100%;
@@ -27,22 +30,34 @@ export const Image = styled(UserImage)`
   margin-right: ${({ theme }) => theme.layout.spacing(2)};
 `;
 
+export const PositionBlock = styled.View`
+  ${({ theme }) => css`
+    margin-right: ${theme.layout.spacing(1)};
+    background-color: ${theme.palette.secondary.light};
+    padding: ${theme.layout.spacing(0, 2)};
+    border-radius: ${theme.layout.borderRadius.small};
+  `}
+`;
+
 export const Text = {
   Position: styled.Text`
-    margin-right: ${({ theme }) => theme.layout.spacing(1)};
-    font-weight: bold;
-    font-size: 24px;
+    ${({ theme }) => css`
+      font-weight: bold;
+      font-size: 16px;
+
+      color: ${theme.palette.secondary.contrast};
+    `}
   `,
   Name: styled.Text`
     color: ${({ theme }) => theme.palette.secondary.light};
     font-weight: bold;
     flex-wrap: wrap;
-    font-size: 16px;
+    font-size: 12px;
   `,
   Bold: styled.Text`
     color: ${({ theme }) => theme.palette.primary.contrast};
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
     margin-right: ${({ theme }) => theme.layout.spacing(1)};
   `,
 };

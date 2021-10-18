@@ -1,48 +1,38 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
-// Components
-import RNPCSelect from 'react-native-picker-select';
+import useUpdateTitleController from 'modules/selectedGame/infra/controllers/useUpdateTitleController';
+import { usePlayerProfileContext } from 'modules/selectedGame/view/contexts';
 
-// Entities
-import ITitle from 'shared/entities/ITitle';
-
-// Hooks
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
-import usePlayerProfileContext from 'modules/selectedGame/container/contexts/PlayerProfileContext/contexts/usePlayerProfileContext';
-
-import { inputStyles } from './styles';
+import { Container, Select } from './styles';
 
 const TitleSelect: React.FC = () => {
-  const { theme } = useThemeContext();
   const { player } = usePlayerProfileContext();
 
-  const [currentTitle, setCurrentTitle] = useState<ITitle | undefined>(
-    player.currentTitle,
+  const { updateTitle } = useUpdateTitleController();
+
+  const [currentTitle, setCurrentTitle] = useState<string | undefined>(
+    player.currentTitle?.id,
   );
 
-  const computedInputStyle = useMemo(() => inputStyles(theme), [theme]);
+  const onTitleUpdate = (value: unknown) => {
+    const newValue = typeof value === 'string' ? value : undefined;
+
+    setCurrentTitle(newValue);
+
+    updateTitle({ playerId: player.id, titleId: newValue });
+  };
+
+  if (!player.titles) return null;
 
   return (
-    <RNPCSelect
-      style={{
-        inputAndroid: computedInputStyle,
-        inputIOS: computedInputStyle,
-        placeholder: { color: theme.palette.primary.dark },
-      }}
-      items={
-        player.titles?.map(title => ({
-          key: title.id,
-          label: title.name,
-          value: title,
-        })) || []
-      }
-      value={currentTitle}
-      onValueChange={setCurrentTitle}
-      placeholder={{
-        label: 'Selecione um título...',
-        value: null,
-      }}
-    />
+    <Container>
+      <Select selectedValue={currentTitle} onValueChange={onTitleUpdate}>
+        <Select.Item label="Escolha um título..." value={null} />
+        {player.titles.map(title => (
+          <Select.Item key={title.id} label={title.name} value={title.id} />
+        ))}
+      </Select>
+    </Container>
   );
 };
 

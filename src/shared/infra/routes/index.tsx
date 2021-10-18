@@ -1,14 +1,13 @@
 import React from 'react';
-import { AppLoading } from 'expo';
 import { StatusBar } from 'react-native';
 
-// Hooks
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
+import { AppLoading } from 'expo';
 
-// Routes
 import LoggedRoutes from 'shared/infra/routes/logged';
 import PublicRoutes from 'shared/infra/routes/public';
+import { useSessionContext, useThemeContext } from 'shared/view/contexts';
+
+// Routes
 
 const Routes: React.FC = () => {
   const { userToken, loading } = useSessionContext();

@@ -1,16 +1,15 @@
 import React, { useCallback, useMemo } from 'react';
 
-// Hooks
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import useGetGameController from 'modules/chooseGame/infra/controllers/useGetGameController';
-import useCreatePlayerController from 'modules/chooseGame/infra/controllers/useCreatePlayerController';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
-import useGetUserController from 'modules/chooseGame/infra/controllers/useGetUserController';
-import useThemeContext from 'shared/container/contexts/ThemeContext/contexts/useThemeContext';
-
-// Styles
-import { Container, InviteTitle, GameContainer } from './styles';
 import { ThemeProvider } from 'styled-components';
+
+import useCreatePlayerController from 'modules/chooseGame/infra/controllers/useCreatePlayerController';
+import useGetGameController from 'modules/chooseGame/infra/controllers/useGetGameController';
+import useGetUserController from 'modules/chooseGame/infra/controllers/useGetUserController';
+import Button from 'shared/view/components/Button';
+import { useThemeContext, useToastContext } from 'shared/view/contexts';
+
+import { Container, InviteTitle, GameContainer } from './styles';
 
 type ParamList = {
   GameInvite: {
@@ -75,12 +74,13 @@ const GameInvite: React.FC = () => {
             {game.description}
           </GameContainer.Description>
 
-          <GameContainer.Button
+          <Button
             onPress={handleAcceptInvitation}
             loading={loadingCreate}
+            textStyle={GameContainer.buttonTextStyle}
           >
             Aceitar convite
-          </GameContainer.Button>
+          </Button>
         </GameContainer.Wrapper>
       </ThemeProvider>
     </Container>

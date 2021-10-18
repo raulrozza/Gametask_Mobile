@@ -1,21 +1,21 @@
 import React from 'react';
 
-// Components
+
 import { Input, SubmitButton } from 'shared/view/components';
 import Form from '../Form';
 
 // Libs
 import { Formik } from 'formik';
 
-// Hooks
+
 import useSignupController from 'modules/authentication/infra/controllers/useSignupController';
 
-// Schemas
+
 import SignupSchema, {
   passwordsMatchValidation,
-} from 'modules/authentication/validation/Signup';
+} from 'modules/authentication/view/validation/Signup';
 
-// Styles
+
 import { signInTextStyle } from './styles';
 
 const initialValues = {

@@ -1,11 +1,10 @@
 import React from 'react';
 
-// Hooks
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
+import ChooseGameLoggedRoutes from 'modules/chooseGame/infra/routes/logged';
+import GameRoutes from 'shared/infra/routes/game';
+import { useSessionContext } from 'shared/view/contexts';
 
 // Routes
-import GameRoutes from 'shared/infra/routes/game';
-import ChooseGameLoggedRoutes from 'modules/chooseGame/infra/routes/logged';
 
 const LoggedRoutes: React.FC = () => {
   const { selectedGame } = useSessionContext();

@@ -1,8 +1,8 @@
 import makeGetUserService from 'modules/chooseGame/services/factories/makeGetUserService';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
-import IUser from 'shared/entities/IUser';
+import { useSessionContext } from 'shared/view/contexts';
+import { useToastContext } from 'shared/view/contexts';
+import IUser from 'shared/domain/entities/IUser';
 
 interface UserParams {
   userId: string;

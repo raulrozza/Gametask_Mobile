@@ -1,8 +1,9 @@
-import makeGetGameService from 'modules/chooseGame/services/factories/makeGetGameService';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
-import IGame from 'shared/entities/IGame';
+
+import makeGetGameService from 'modules/chooseGame/services/factories/makeGetGameService';
+import { useSessionContext } from 'shared/view/contexts';
+import { useToastContext } from 'shared/view/contexts';
+import IGame from 'shared/domain/entities/IGame';
 
 interface GameParams {
   gameId: string;

@@ -1,9 +1,9 @@
-import IUser from 'shared/entities/IUser';
-import IUserLoginDTO from 'modules/authentication/dtos/IUserLoginDTO';
-import IUserSignupDTO from 'modules/authentication/dtos/IUserSignupDTO';
-import IUserAuthentication from 'modules/authentication/entities/IUserAuthentication';
-import IUsersRepository from 'modules/authentication/repositories/IUsersRepository';
-import { makeHttpProvider } from 'shared/container/providers';
+import IUserLoginDTO from 'modules/authentication/domain/dtos/IUserLoginDTO';
+import IUserSignupDTO from 'modules/authentication/domain/dtos/IUserSignupDTO';
+import IUserAuthentication from 'modules/authentication/domain/entities/IUserAuthentication';
+import IUsersRepository from 'modules/authentication/domain/repositories/IUsersRepository';
+import IUser from 'shared/domain/entities/IUser';
+import makeHttpProvider from 'shared/infra/providers/factories/makeHttpProvider';
 
 export default class UsersRepository implements IUsersRepository {
   private httpProvider = makeHttpProvider();

@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 
-// Components
+
 import { FlatList } from 'react-native-gesture-handler';
 import { EmptyList, RankingPosition } from './components';
 
-// Hooks
+
 import useGetCurrentLeaderboardController from 'modules/selectedGame/infra/controllers/useGetCurrentLeaderboardController';
 
-// Styles
+
 import { Container } from './styles';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Ranking: React.FC = () => {
-  const { loading, leaderboard } = useGetCurrentLeaderboardController();
+  const {
+    loading,
+    leaderboard,
+    getLeaderboard,
+  } = useGetCurrentLeaderboardController();
+
+  useFocusEffect(
+    useCallback(() => {
+      getLeaderboard();
+    }, [getLeaderboard]),
+  );
+
+  const orderedPositions = useMemo(
+    () => leaderboard?.position.sort((a, b) => b.experience - a.experience),
+    [leaderboard],
+  );
 
   return (
     <Container>
@@ -21,7 +37,7 @@ const Ranking: React.FC = () => {
         contentContainerStyle={{
           width: '100%',
         }}
-        data={leaderboard?.position}
+        data={orderedPositions}
         keyExtractor={item => item.player.id}
         ListEmptyComponent={() => <EmptyList />}
         renderItem={({ item, index }) => (

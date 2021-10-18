@@ -1,5 +1,5 @@
-import IActivity from 'modules/selectedGame/entities/IActivity';
-import IActivitiesRepository from 'modules/selectedGame/repositories/IActivitiesRepository';
+import IActivity from 'modules/selectedGame/domain/entities/IActivity';
+import IActivitiesRepository from 'modules/selectedGame/domain/repositories/IActivitiesRepository';
 
 interface IExecute {
   activities?: IActivity[];

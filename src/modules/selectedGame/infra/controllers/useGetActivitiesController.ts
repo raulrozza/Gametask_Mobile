@@ -1,8 +1,8 @@
-import IActivity from 'modules/selectedGame/entities/IActivity';
-import makeGetActivitiesService from 'modules/selectedGame/services/factories/makeGetActivitiesService';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+
+import IActivity from 'modules/selectedGame/domain/entities/IActivity';
+import makeGetActivitiesService from 'modules/selectedGame/services/factories/makeGetActivitiesService';
+import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
 interface UseGetActivitiesController {
   loading: boolean;

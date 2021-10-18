@@ -1,7 +1,7 @@
-import makeCreatePlayerService from 'modules/chooseGame/services/factories/makeCreatePlayerService';
 import { useCallback, useMemo, useState } from 'react';
-import useSessionContext from 'shared/container/contexts/SessionContext/contexts/useSessionContext';
-import useToastContext from 'shared/container/contexts/ToastContext/contexts/useToastContext';
+
+import makeCreatePlayerService from 'modules/chooseGame/services/factories/makeCreatePlayerService';
+import { useSessionContext, useToastContext } from 'shared/view/contexts';
 
 interface UseCreatePlayerController {
   loading: boolean;

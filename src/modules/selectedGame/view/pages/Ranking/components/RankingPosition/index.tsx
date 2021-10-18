@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Container, Icon, Image, Text } from './styles';
-
-import { IPosition } from 'modules/selectedGame/entities/ILeaderboard';
+import { IPosition } from 'modules/selectedGame/domain/entities/ILeaderboard';
 import { RankChip } from 'modules/selectedGame/view/components';
 import { getTextColor } from 'shared/view/helpers';
+
+import { Container, Icon, Image, PositionBlock, Text } from './styles';
 
 interface RankingPositionProps {
   item: IPosition;
@@ -18,7 +18,9 @@ const RankingPosition: React.FC<RankingPositionProps> = ({ item, index }) => (
     {index < 3 ? (
       <Icon name="trophy" index={index} />
     ) : (
-      <Text.Position>{index + 1}</Text.Position>
+      <PositionBlock>
+        <Text.Position>{`${index + 1}º`}</Text.Position>
+      </PositionBlock>
     )}
 
     <Text.Bold>{item.experience} XP</Text.Bold>

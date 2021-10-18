@@ -1,5 +1,5 @@
-import IUsersRepository from 'modules/chooseGame/repositories/IUsersRepository';
-import IUser from 'shared/entities/IUser';
+import IUsersRepository from 'modules/chooseGame/domain/repositories/IUsersRepository';
+import IUser from 'shared/domain/entities/IUser';
 
 interface IExecute {
   user?: IUser;

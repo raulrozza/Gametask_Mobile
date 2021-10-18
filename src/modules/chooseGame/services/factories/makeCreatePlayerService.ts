@@ -1,4 +1,4 @@
-import makePlayersRepository from 'modules/chooseGame/repositories/factories/makePlayersRepository';
+import makePlayersRepository from 'modules/chooseGame/infra/repositories/factories/makePlayersRepository';
 import CreatePlayerService from 'modules/chooseGame/services/CreatePlayerService';
 
 export default function makeCreatePlayerService(): CreatePlayerService {
