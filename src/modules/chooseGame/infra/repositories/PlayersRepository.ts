@@ -6,15 +6,11 @@ export default class PlayersRepository implements IPlayersRepository {
   private httpProvider = makeHttpProvider();
 
   public async create(gameId: string): Promise<void> {
-    return this.httpProvider.post(
-      'players',
-      {},
-      {
-        headers: {
-          'x-game-id': gameId,
-        },
+    return this.httpProvider.post('players', null, {
+      headers: {
+        'x-game-id': gameId,
       },
-    );
+    });
   }
 
   public async findAll(): Promise<IPlayer[]> {
